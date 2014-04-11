@@ -1,6 +1,7 @@
-assets/*
+src/web/assets/*
 !assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
+src/web/protected/runtime/*
+src/web/protected/runtime/.gitignore
+src/web/protected/data/*.db
+src/web/themes/classic/views/
+nbproject/*
