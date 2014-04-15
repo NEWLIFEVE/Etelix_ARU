@@ -179,7 +179,8 @@
                                      <div class="form-group">
                                        <label class="control-label col-md-3">Estado Civil<span class="required">*</span></label>
                                        <div class="col-md-4">
-                                          <input type="text" class="form-control" name="state_marital"/>
+                                             <?php echo $form->dropDownList($model,'id_marital_status',CHtml::ListData(MaritalStatus::model()->findAll(),"id","name"), array("class"=>"form-control")); ?>
+<!--                                          <input type="text" class="form-control" name="state_marital"/>-->
                                           <span class="help-block">Estado Civil del Empleado</span>
                                        </div>
                                     </div>
@@ -387,7 +388,8 @@
                                      <div class="form-group">
                                       <label class="control-label col-md-3">Tipo de Moneda<span class="required">*</span></label>
                                           <div class="col-md-4">
-                                              <input class="form-control" id="mask_cuenta" type="text" name="type_currency"  />
+                                              <?php echo $form->dropDownList($model,'id_marital_status',CHtml::ListData(Currency::model()->findAll(),"id","name"), array("class"=>"form-control")); ?>
+<!--                                              <input class="form-control" id="mask_cuenta" type="text" name="type_currency"  />-->
                                          
                                           </div>
                                      </div>
