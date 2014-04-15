@@ -112,9 +112,7 @@ $this->breadcrumbs=array(
                                     <td><?php echo $t->home_phone;?></td>-->
                                     <td><?php echo $t->extension_numeric;?></td>
                                     <td><?php echo CHtml::link('Ver', array('view','id'=>$t->id));?></td>
-                                    <!--<td><?php echo $t->country;?></td>-->
-                                    <!--<td><?php echo $t->state;?></td>
-                                    <td><?php echo $t->town;?></td>-->
+ 
                                 </tr>
                                 <?php } ?>
                               

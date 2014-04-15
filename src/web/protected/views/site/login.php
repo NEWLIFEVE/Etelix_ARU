@@ -74,13 +74,13 @@
                para restablecer tu contraseña.
             </p>
          </div>
-         <div class="create-account">
+<!--         <div class="create-account">
             <p>
                  
                ¿No tienes una cuenta todavía?&nbsp; 
                <a href="javascript:;" id="register-btn" >Crear una cuenta</a>
             </p>
-         </div>
+         </div>-->
       </form>
       <!-- END LOGIN FORM -->        
       <!-- BEGIN FORGOT PASSWORD FORM -->

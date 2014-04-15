@@ -26,9 +26,9 @@ class EmployeeController extends Controller
             
             
             if (isset($_POST['Employee'])){
-                   
+               
             $model->attributes=$_POST['Employee'];
-            
+       
           
             if($model->save())
                     $this->redirect(array('view','id'=>$model->id));

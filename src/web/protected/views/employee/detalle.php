@@ -75,7 +75,7 @@
                                        </div>
                                        <div class="form-group">
                                           <label class="control-label">Nacionalidad</label>
-                                          <input type="text" value="<?php echo $model->nationality;?>" class="form-control" />
+                                          <input type="text" value="<?php echo $model->nationality;?>" disabled="true"  class="form-control" />
                                        </div>
 <!--                                       <div class="form-group">
                                           <label class="control-label">About</label>
@@ -96,16 +96,16 @@
                                     <form role="form" action="#">
                                        <div class="form-group">
                                           <label class="control-label">País</label>
-                                          <input type="text" class="form-control" disabled="true" value="<?php echo $model->country;?>" />
+                                          <input type="text" class="form-control" disabled="true" value="<?php //echo $model->id_country;?>" />
                                            
                                        </div>
                                        <div class="form-group">
                                           <label class="control-label">Estado</label>
-                                          <input type="text" value="<?php echo $model->state;?>" disabled="true" class="form-control" />
+                                          <input type="text" value="<?php //echo $model->id_state;?>" disabled="true" class="form-control" />
                                        </div>
                                        <div class="form-group">
                                           <label class="control-label">Cuidad</label>
-                                          <input type="text" value="<?php echo $model->town;?>" disabled="true" class="form-control" />
+                                          <input type="text" value="<?php //echo $model->id_town;?>" disabled="true" class="form-control" />
                                        </div>
                                        <div class="form-group">
                                           <label class="control-label">Calle/Avenida/</label>
@@ -120,7 +120,7 @@
                                     <div id="tab_6-7" class="tab-pane">
                                     <form role="form" action="#">
                                        <div class="form-group">
-                                          <label class="control-label">Teléfono</label>
+                                          <label class="control-label">Teléfono Celular</label>
                                           <input type="text" class="form-control" disabled="true" value="<?php echo $model->cellphone;?>" />
                                            
                                        </div>
@@ -129,7 +129,7 @@
                                           <input type="text" value="<?php echo $model->home_phone;?>" disabled="true" class="form-control" />
                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Extension de Oficina</label>
+                                          <label class="control-label">Extensión de Oficina</label>
                                           <input type="text" value="<?php echo $model->extension_numeric;?>" disabled="true" class="form-control" />
                                        </div>
                                        <div class="form-group">

@@ -14,7 +14,7 @@ var FormWizard = function () {
             }
 
             $("#country_list").select2({
-                placeholder: "Seleccione el País",
+                placeholder: "Seleccione el País8",
                 allowClear: true,
                 formatResult: format,
                 formatSelection: format,
