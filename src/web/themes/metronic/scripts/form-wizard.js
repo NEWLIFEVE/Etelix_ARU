@@ -14,7 +14,7 @@ var FormWizard = function () {
             }
 
             $("#country_list").select2({
-                placeholder: "Select",
+                placeholder: "Seleccione el País",
                 allowClear: true,
                 formatResult: format,
                 formatSelection: format,
@@ -148,6 +148,14 @@ var FormWizard = function () {
                     card_name: {
                         required: true
                     },
+                    
+                    type_acount: {
+                        required: true
+                    },
+                    
+                    type_currency: {
+                        required: true
+                    },
                     acount_number: {
                       
                         maxlength: 24,
@@ -216,6 +224,7 @@ var FormWizard = function () {
                 submitHandler: function (form) {
                     success.show();
                     error.hide();
+                    form.submit();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
                 }
 
@@ -309,7 +318,10 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                alert('Finished! Hope you like it :)');
+              
+               
+               
+               
             }).hide();
         }
 

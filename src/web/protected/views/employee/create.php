@@ -9,8 +9,6 @@
 ?>
 
 
-
-
 <div class="row">
             <div class="col-md-12">
                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
@@ -20,7 +18,7 @@
                <ul class="page-breadcrumb breadcrumb">
                   <li>
                      <i class="icon-home"></i>
-                     <a href="index.html">Inicio</a> 
+                     <a href="/">Inicio</a> 
                      <i class="icon-angle-right"></i>
                   </li>
                   <li><a href="/employee/">Datos Empleado</a></li>
@@ -36,12 +34,9 @@
             </div>
          </div>
 
-             
- <!-- BEGIN PAGE HEADER-->   
-       
-         <!-- END PAGE HEADER-->
-         <!-- BEGIN PAGE CONTENT-->
-         <div class="row">
+
+
+<div class="row">
             <div class="col-md-12">
                <div class="portlet box blue" id="form_wizard_1">
                   <div class="portlet-title">
@@ -55,9 +50,9 @@
                         <a href="javascript:;" class="remove"></a>
                      </div>
                   </div>
-                  <div class="portlet-body form">
-                     <form action="#" class="form-horizontal" id="submit_form">
-                        <div class="form-wizard">
+                   <div class="portlet-body form">
+                       
+                          <div class="form-wizard">
                            <div class="form-body">
                               <ul class="nav nav-pills nav-justified steps">
                                  <li>
@@ -79,16 +74,11 @@
                                     </a>
                                  </li>
                                  
-<!--                                  <li>
-                                    <a href="#tab3" data-toggle="tab" class="step active">
-                                    <span class="number">3</span>
-                                    <span class="desc"><i class="icon-ok"></i>familia</span>   
-                                    </a>
-                                 </li>-->
+
                                  <li>
                                     <a href="#tab4" data-toggle="tab" class="step">
                                     <span class="number">4</span>
-                                    <span class="desc"><i class="icon-ok"></i> Confirm</span>   
+                                    <span class="desc"><i class="icon-ok"></i> Confirmar</span>   
                                     </a> 
                                  </li>
                               </ul>
@@ -100,103 +90,43 @@
                                     <button class="close" data-dismiss="alert"></button>
                                     You have some form errors. Please check below.
                                  </div>
-                                 <div class="alert alert-success display-none">
-                                    <button class="close" data-dismiss="alert"></button>
-                                    Your form validation is successful!
-                                 </div>
-                                 <div class="tab-pane active" id="tab1">
-                                    <h3 class="block">Proporcione detalles del Empleado</h3>
+                              </div>
+                               
+                                <?php $form=$this->beginWidget('CActiveForm', array(
+				'id'=>'submit_form',
+				'enableClientValidation'=>true,
+				'clientOptions'=>array(
+					'validateOnSubmit'=>true,
+					),
+				)
+			);
+			?>
+                               
+                               <div class="tab-pane active" id="tab1">
+                                 
+                                   <h3 class="block">Proporcione detalles del Empleado</h3>
                                     <div class="form-group">
                                        <label class="control-label col-md-3">Nombre<span class="required">*</span></label>
                                        <div class="col-md-4">
-                                          <input type="text" class="form-control" name="first_name"/>
+                                          <?php echo $form->textField($model,'first_name'); ?>
                                           <span class="help-block">Proporcione el Nombre del Empleado</span>
                                        </div>
                                     </div>
-                                    
-                                     <div class="form-group">
+                                   
+                                    <div class="form-group">
                                        <label class="control-label col-md-3">Apellido<span class="required">*</span></label>
                                        <div class="col-md-4">
-                                          <input type="text" class="form-control" name="last_name"/>
+                                          <?php echo $form->textField($model,'last_name'); ?>
                                           <span class="help-block">Proporcione el Apellido del Empleado</span>
                                        </div>
                                     </div>
+                                   
+                                     
                                     
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Genero<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <div class="radio-list">
-                                             <label>
-                                             <input type="radio" name="gender" value="M" data-title="Masculino" />
-                                             Masculino
-                                             </label>
-                                             <label>
-                                             <input type="radio" name="gender" value="F" data-title="Femenino"/>
-                                             Femenino
-                                             </label>  
-                                          </div>
-                                          <div id="form_gender_error"></div>
-                                       </div>
-                                    </div>
-                                    
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Cédula de Identidad<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" id="mask_ci" name="identity_card"/>
-                                          <span class="help-block">Proporcione la Cédula del Empleado</span>
-                                       </div>
-                                    </div>
-                                    
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Fecha de Nacimiento<span class="required">*</span></label>
-                                    
-                                          <div class="col-md-4">
-                                              <input class="form-control form-control-inline input-medium date-picker" name="date_birth"  size="8" type="text" value="" />
-                                             <span class="help-block">Seleccione la Fecha de Nacimiento del Empleado</span>
-                                
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Nacionalidad<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" name="nationality"/>
-                                          <span class="help-block">Nacionalidad del Empleado</span>
-                                       </div>
-                                    </div>
-                                    
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Estado Civil<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" name="state_marital"/>
-                                          <span class="help-block">Estado Civil del Empleado</span>
-                                       </div>
-                                    </div>
-                                    
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Grado de Educación<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" name="level_education"/>
-                                          <span class="help-block">Grado de Educación del Empleado</span>
-                                       </div>
-                                    </div>
-<!--                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Password<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="password" class="form-control" name="password" id="submit_form_password"/>
-                                          <span class="help-block">Provide your password.</span>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Confirm Password<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="password" class="form-control" name="rpassword"/>
-                                          <span class="help-block">Confirm your password</span>
-                                       </div>
-                                    </div>
-                                  -->
-                                 </div>
-                                 <div class="tab-pane" id="tab2">
+                               </div>
+                               
+                               
+                               <div class="tab-pane" id="tab2">
                                     <h3 class="block">Dirección de Habitación</h3>
                                     
                                     
@@ -534,7 +464,7 @@
                                     <div class="form-group">
                                       <label class="control-label col-md-3">Teléfono de Oficina</label>
                                           <div class="col-md-4">
-                                             <input class="form-control" id="officephone" type="text"  />
+                                              <input class="form-control" id="officephone" name="officephone" type="text"  />
                                              <span class="help-block">(02XX) XXX-XXXX</span>
                                           </div>
                                      </div>
@@ -542,7 +472,7 @@
                                      <div class="form-group">
                                       <label class="control-label col-md-3">Extensión de Oficina</label>
                                           <div class="col-md-4">
-                                             <input class="form-control" id="extension_numeric" type="text"  />
+                                              <input class="form-control" id="extension_numeric" name="extension_numeric" type="text"  />
                                              <span class="help-block">XXX</span>
                                           </div>
                                      </div>
@@ -557,327 +487,32 @@
 
                                     
                                  </div>
-                                 <div class="tab-pane" id="tab3">
-                                    <h3 class="block">Datos Bancarios</h3>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Nombre de la Entidad Bancaria<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" name="card_name" />
-                                          <span class="help-block"></span>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Número de Cuenta<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" id="mask_acount" name="acount_number"/>
-                                          <span class="help-block"></span>
-                                       </div>
-                                    </div>
-                                    
-                                     <div class="form-group">
-                                      <label class="control-label col-md-3">Tipo de Cuenta<span class="required">*</span></label>
-                                          <div class="col-md-4">
-                                             <input class="form-control" id="mask_cuenta" type="text"  />
-                                             <span class="help-block">Tipo de Cuenta del Empleado</span>
-                                          </div>
-                                     </div>
-                                   
-                                    
-                                     <div class="form-group">
-                                      <label class="control-label col-md-3">Tipo de Moneda<span class="required">*</span></label>
-                                          <div class="col-md-4">
-                                             <input class="form-control" id="mask_cuenta" type="text"  />
-                                         
-                                          </div>
-                                     </div>
-                                  
-                                 </div>
-                                 <div class="tab-pane" id="tab4">
-                                    <h3 class="block">Confirmar Datos del Empleado</h3>
-                                    <h4 class="form-section">Datos Básico</h4>
-                                    
-                                    <div class="col-md-6">
-                                        
-                                        <div class="form-group">
-                                               <label class="control-label col-md-3">Nombre:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="first_name"></p>
-                                                </div>
-                                            
-                                        </div>
-                                       <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Apellido:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="last_name"></p>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Genero:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="gender"></p>
-                                                </div>
-                                        </div>
-                                        
-                                        
-                                         <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Estado Civil:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="state_marital"></p>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    
-                             
-                                        <div class="col-md-6">
-                                        <div class="form-group">
-                                               <label class="control-label col-md-6">Cedula:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="identity_card"></p>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Fecha de Nacimiento:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="date_birth"></p>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Nacionalidad:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="nationality"></p>
-                                                </div>
-                                        </div>
-                                            
-                                             <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Grado de Educacion:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="level_education"></p>
-                                                </div>
-                                        </div>
-                                
-                                        </div>
-                                    
-
-                                    <h4 class="form-section">Dirección de Habitación</h4>
-                                    
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-                                               <label class="control-label col-md-3">País:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="country"></p>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Estado:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="emplo_state"></p>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Ciudad:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="city"></p>
-                                                </div>
-                                        </div>
-                                            
-                                             <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Calle/Avenida:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="address_room"></p>
-                                                </div>
-                                        </div>
-                                
-                                        </div>
-                                    
-                                    
-                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                               <label class="control-label col-md-6">Correo Personal:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="email"></p>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Skype:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="skype"></p>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Teléfono (Personal):</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="cellphone"></p>
-                                                </div>
-                                        </div>
-                                            
-                                             <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Calle/Avenida:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="address_room"></p>
-                                                </div>
-                                        </div>
-                                
-                                        </div>
-                                    
-                                    
-                                    
-                                      <h4 class="form-section">Dirección de Habitación</h4>
-                                    
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-                                               <label class="control-label col-md-3">País:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="country"></p>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Estado:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="emplo_state"></p>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Ciudad:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="city"></p>
-                                                </div>
-                                        </div>
-                                            
-                                             <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-3">Calle/Avenida:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="address_room"></p>
-                                                </div>
-                                        </div>
-                                
-                                        </div>
-                                    
-                                    
-                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                               <label class="control-label col-md-6">Correo Personal:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="email"></p>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Skype:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="skype"></p>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Teléfono (Personal):</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="cellphone"></p>
-                                                </div>
-                                        </div>
-                                            
-                                             <div class="form-group">
-                                            
-                                                   <label class="control-label col-md-6">Calle/Avenida:</label>
-                                                <div class="col-md-4">
-                                                    <p class="form-control-static" data-display="address_room"></p>
-                                                </div>
-                                        </div>
-                                
-                                        </div>
-
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-
-                                    
-                           
-                                    <h4 class="form-section">Billing</h4>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Card Holder Name:</label>
-                                       <div class="col-md-4">
-                                          <p class="form-control-static" data-display="card_name"></p>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Card Number:</label>
-                                       <div class="col-md-4">
-                                          <p class="form-control-static" data-display="card_number"></p>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">CVC:</label>
-                                       <div class="col-md-4">
-                                          <p class="form-control-static" data-display="card_cvc"></p>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Expiration:</label>
-                                       <div class="col-md-4">
-                                          <p class="form-control-static" data-display="card_expiry_date"></p>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Payment Options:</label>
-                                       <div class="col-md-4">
-                                          <p class="form-control-static" data-display="payment"></p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-actions fluid">
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <div class="col-md-offset-3 col-md-9">
-                                       <a href="javascript:;" class="btn default button-previous">
-                                       <i class="m-icon-swapleft"></i> Back 
-                                       </a>
-                                       <a href="javascript:;" class="btn blue button-next">
-                                       Continue <i class="m-icon-swapright m-icon-white"></i>
-                                       </a>
-                                       <a href="javascript:;" class="btn green button-submit">
-                                       Submit <i class="m-icon-swapright m-icon-white"></i>
-                                       </a>                            
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </form>
-                  </div>
+                               
+                               <div class="tab-pane" id="tab4">
+                                   <input type="submit" value="enviar" class="btn blue button-submit"/>
+                               </div>
+                               
+                               
                </div>
-            </div>
-         </div>
+            </div> <a href="javascript:;" class="btn blue button-next">Siguiente <i class="m-icon-swapright m-icon-white"></i></a>
+</div>
+
+
+
+
+
+
+   
+    
+   
+      
        
-  
-   <!-- END PAGE LEVEL SCRIPTS -->
+    
+     <?php $this->endWidget(); ?>
+               </div>
+            </div></div>
+
+
 
 
 
