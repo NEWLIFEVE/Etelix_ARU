@@ -35,7 +35,7 @@
                <div class="portlet box blue" id="form_wizard_1">
                   <div class="portlet-title">
                      <div class="caption">
-                        <i class="icon-reorder"></i> Asistente para formularios - <span class="step-title">Paso 1 de 4</span>
+                        <i class="icon-reorder"></i> Asistente para formularios - <span class="step-title">Paso 1 de 9</span>
                      </div>
                      <div class="tools hidden-xs">
                         <a href="javascript:;" class="collapse"></a>
@@ -53,8 +53,8 @@
 					'validateOnSubmit'=>true,
 					),
                                                'htmlOptions'=>array(
-'class'=>'form-horizontal'
-)
+                                                    'class'=>'form-horizontal'
+                                                )
 				)
 			);
 			?>
@@ -67,32 +67,55 @@
                                  <li>
                                     <a href="#tab1" data-toggle="tab" class="step">
                                     <span class="number">1</span>
-                                    <span class="desc"><i class="icon-ok"></i> Datos Basicos</span>   
+                                    <span class="desc"><i class="icon-ok"></i>Datos Personales</span>   
                                     </a>
                                  </li>
                                  <li>
                                     <a href="#tab2" data-toggle="tab" class="step">
                                     <span class="number">2</span>
-                                    <span class="desc"><i class="icon-ok"></i> Dirección</span>   
+                                    <span class="desc"><i class="icon-ok"></i>Dirección</span>   
+                                    </a>
+                                 </li>
+                                  <li>
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                    <span class="number">3</span>
+                                    <span class="desc"><i class="icon-ok"></i>Relación familiar</span>   
                                     </a>
                                  </li>
                                  <li>
-                                    <a href="#tab3" data-toggle="tab" class="step active">
-                                    <span class="number">3</span>
-                                    <span class="desc"><i class="icon-ok"></i> Datos Bancarios</span>   
-                                    </a>
-                                 </li>
-                                 
-<!--                                  <li>
-                                    <a href="#tab3" data-toggle="tab" class="step active">
-                                    <span class="number">3</span>
-                                    <span class="desc"><i class="icon-ok"></i>familia</span>   
-                                    </a>
-                                 </li>-->
-                                 <li>
-                                    <a href="#tab4" data-toggle="tab" class="step">
+                                    <a href="#tab4" data-toggle="tab" class="step active">
                                     <span class="number">4</span>
-                                    <span class="desc"><i class="icon-ok"></i> Confirmar</span>   
+                                    <span class="desc"><i class="icon-ok"></i>Datos Bancarios</span>   
+                                    </a>
+                                 </li>
+                                  <li>
+                                    <a href="#tab5" data-toggle="tab" class="step">
+                                    <span class="number">5</span>
+                                    <span class="desc"><i class="icon-ok"></i>Asig. Organizacional</span>   
+                                    </a> 
+                                 </li>
+                                  <li>
+                                    <a href="#tab6" data-toggle="tab" class="step">
+                                    <span class="number">6</span>
+                                    <span class="desc"><i class="icon-ok"></i>Horario Teórico</span>   
+                                    </a> 
+                                 </li>
+                                 <li>
+                                    <a href="#tab7" data-toggle="tab" class="step">
+                                    <span class="number">7</span>
+                                    <span class="desc"><i class="icon-ok"></i>Servicio Médico</span>   
+                                    </a> 
+                                 </li>
+                                  <li>
+                                    <a href="#tab8" data-toggle="tab" class="step">
+                                    <span class="number">8</span>
+                                    <span class="desc"><i class="icon-ok"></i>Medidas Laborales</span>   
+                                    </a> 
+                                 </li>
+                                 <li>
+                                    <a href="#tab9" data-toggle="tab" class="step">
+                                    <span class="number">9</span>
+                                    <span class="desc"><i class="icon-ok"></i>Confirmar</span>   
                                     </a> 
                                  </li>
                               </ul>
@@ -104,116 +127,162 @@
                                     <button class="close" data-dismiss="alert"></button>
                                     Usted tiene algunos errores en el formulario. Por favor, consulte más abajo.
                                  </div>
-<!--                                 <div class="alert alert-success display-none">
-                                    <button class="close" data-dismiss="alert"></button>
-                                    Your form validation is successful!
-                                 </div>-->
-
-
                                  <div class="tab-pane active" id="tab1">
-                                    <h3 class="block">Proporcione detalles del Empleado</h3>
+                                    <h3 class="form-section">Información Personal</h3>
                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Nombre<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                        <?php echo $form->textField($model,'first_name', array('class'=>'form-control')); ?>
-                                          <span class="help-block">Proporcione el Nombre del Empleado</span>
-                                       </div>
-                                    </div>
-                            
-                                    
-           
-                                    
-                                    
-                                    
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Apellido<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                           <?php echo $form->textField($model,'last_name', array('class'=>'form-control')); ?>
-                                          <span class="help-block">Proporcione el Apellido del Empleado</span>
-                                       </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Género<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <div class="radio-list">
-                                             <label>
-                                                  <input type="radio" name="sex" value="m" id="sex" />
-                                         
-                                             </label>
-                                             <label>
-                                                 <input type="radio" name="sex" value="f" id="sex"  />
-                                    
-                                             </label>  
+                                        <label class="control-label col-md-2">Nombre<span class="required">*</span></label>
+                                           <div class="col-md-3"> 
+                                               <?php echo $form->textField($model,'first_name', array('class'=>'form-control')); ?>  
+                                               <span class="help-block">Proporcione el Nombre del Empleado</span>
+                                           </div>
+                                        <label class="control-label col-md-2">Apellido<span class="required">*</span></label>
+                                           <div class="col-md-3">
+                                            <?php echo $form->textField($model,'last_name', array('class'=>'form-control')); ?>
+                                             <span class="help-block">Proporcione el Apellido del Empleado</span>
                                           </div>
-                                          <div id="form_gender_error"></div>
-                                       </div>
+                                    </div>
+                                     <div class="form-group">
+                                         <label class="control-label col-md-2">Genero<span class="required">*</span></label>
+                                           <div class="col-md-3"> 
+                                               <div class="radio-list">
+                                                    <label control-label> 
+                                                        <input type="radio" name="sex" value="m" id="sex" />
+                                                        Masculino
+                                                    </label>
+                                                    <label control-label>
+                                                        <input type="radio" name="sex" value="f" id="sex"  />
+                                                        Femenino
+                                                    </label>  
+                                               </div>
+                                           </div>
+                                         <label class="control-label col-md-2">Cédula<span class="required">*</span></label>
+                                           <div class="col-md-3"> 
+                                               <?php echo $form->textField($model,'identity_card', array('class'=>'form-control', 'id'=>'mask_ci')); ?>
+                                               <span class="help-block">Proporcione la Cédula del Empleado</span>
+                                           </div>
+                                        
+                                    </div>
+                                     <div class="form-group">
+                                          <label class="control-label col-md-2">Fecha de Nacimiento<span class="required">*</span></label>
+                                            <div class="col-md-3"> 
+                                                <?php echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-medium date-picker', 'id'=>'mask_ci')); ?>
+                                                <span class="help-block">Seleccione la Fecha de Nacimiento del Empleado</span>
+                                            </div>
+                                          <label class="control-label col-md-2">Nacionalidad<span class="required">*</span></label>
+                                            <div class="col-md-3"> 
+                                                  <?php echo $form->textField($model,'nationality', array('class'=>'form-control', 'id'=>'nationality')); ?>
+                                                  <span class="help-block">Nacionalidad del Empleado</span>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Estado Civil<span class="required">*</span></label>
+                                            <div class="col-md-3"> 
+                                                 <?php echo $form->dropDownList($model,'id_marital_status',$model->getMaritalStatus(), array("class"=>"form-control")); ?>
+                                                 <span class="help-block">Estado Civil del Empleado</span>
+                                            </div>
                                     </div>
                                     
+                                   
+                                   <h3 class="form-section">Estudios Realizados</h3>
+                                   
                                      <div class="form-group">
-                                       <label class="control-label col-md-3">Cédula de Identidad<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                           <?php echo $form->textField($model,'identity_card', array('class'=>'form-control', 'id'=>'mask_ci')); ?>
-                                          <span class="help-block">Proporcione la Cédula del Empleado</span>
-                                       </div>
+                                         <label class="control-label col-md-2">Titulo Obtenido<span class="required">*</span></label>
+                                            <div class="col-md-2"> 
+                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control', 'id'=>'mask_ci')); ?>
+                                                <span class="help-block">Titulo</span>
+                                            </div>
+                                         <div class="col-md-1">
+                                                <label>+</label>
+                                            </div>
+                                          <label class="control-label col-md-1 ">Desde<span class="required">*</span></label>
+                                            <div class="col-md-2"> 
+                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker', 'id'=>'mask_ci')); ?>
+                                                <span class="help-block">Fecha Inicio</span>
+                                            </div>
+                                          <label class="control-label col-md-1">Hasta<span class="required">*</span></label>
+                                            <div class="col-md-2"> 
+                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker', 'id'=>'mask_ci')); ?>
+                                                <span class="help-block">Fecha Fin</span>
+                                            </div>
+                                            <div class="newGroup">
+                                                <label>+</label>
+                                            </div>                          
                                     </div>
-                                    
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Fecha de Nacimiento<span class="required">*</span></label>
-                                    
-                                          <div class="col-md-4">
-                                              <?php echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-medium date-picker', 'id'=>'mask_ci')); ?>
-                                             <span class="help-block">Seleccione la Fecha de Nacimiento del Empleado</span>
-                                
+                                   
+                                    <h3 class="form-section">Cursos Realizados</h3>
+                                      <div class="form-group">
+                                         <label class="control-label col-md-2">Nombre del Curso</label>
+                                            <div class="col-md-2"> 
+                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control')); ?>
+                                                <span class="help-block">Nombre del Curso</span>
+                                            </div>
+                                          <div class="col-md-1">
+                                                <label>+</label>
+                                            </div>
+                                          <label class="control-label col-md-1 ">Desde</label>
+                                            <div class="col-md-2"> 
+                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker')); ?>
+                                                <span class="help-block">Fecha Inicio</span>
+                                            </div>
+                                          <label class="control-label col-md-1">Hasta</label>
+                                            <div class="col-md-2"> 
+                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker')); ?>
+                                                 <span class="help-block">Fecha Fin</span>
+                                            </div>
+                                            <div class="newGroup">
+                                                <label>+</label>
+                                            </div>
                                         </div>
-                                    </div>
+                                    
+                                    <h3 class="form-section">Idiomas</h3>
                                     
                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Nacionalidad<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                            <?php echo $form->textField($model,'nationality', array('class'=>'form-control', 'id'=>'nationality')); ?>
-                                          <span class="help-block">Nacionalidad del Empleado</span>
-                                       </div>
+                                        <label class="control-label col-md-2">Idioma</label>
+                                            <div class="col-md-2"> 
+                                             <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control')); ?>
+                                              <span class="help-block">Indique el Idioma</span>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>+</label>
+                                            </div>
+                                        <div class="col-md-7">
+                                            <div class="form-group" align="center">
+                                                <div class="col-md-12" ><label>Nivel de Comprensión</label></div>
+                                            </div>
+                                             <div class="form-group" align="center">
+                                                 <div class="col-md-4" >
+                                                     <label>Comprensión Auditiva</label>
+                                                       <div class="radio-list">
+                                                            <label control-label>
+                                                                <input type="radio" name="sex" value="m" id="sex" />
+                                                                  Basico</label>
+                                                            
+                                                            <label control-label>
+                                                                <input type="radio" name="sex" value="f" id="sex"  />
+                                                                   Intermedio</label> 
+                                                            
+                                                       
+                                                       </div>
+                                                 </div>
+                                                 <div class="col-md-4" >
+                                                     <label>Comprensión Lectora</label>
+                                                 </div>
+                                                 <div class="col-md-4" >
+                                                     <label>Escritura</label>
+                                                 </div>
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                       
                                     </div>
                                     
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Estado Civil<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                             <?php echo $form->dropDownList($model,'id_marital_status',CHtml::ListData(MaritalStatus::model()->findAll(),"id","name"), array("class"=>"form-control")); ?>
-<!--                                          <input type="text" class="form-control" name="state_marital"/>-->
-                                          <span class="help-block">Estado Civil del Empleado</span>
-                                       </div>
-                                    </div>
                                     
-                                     <div class="form-group">
-                                       <label class="control-label col-md-3">Grado de Educación<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="text" class="form-control" name="level_education"/>
-                                          <span class="help-block">Grado de Educación del Empleado</span>
-                                          
-    
-                                       </div>
-                                    </div>
-<!--                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Password<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="password" class="form-control" name="password" id="submit_form_password"/>
-                                          <span class="help-block">Provide your password.</span>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Confirm Password<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                          <input type="password" class="form-control" name="rpassword"/>
-                                          <span class="help-block">Confirm your password</span>
-                                       </div>
-                                    </div>
-                                  -->
+                                    
+                                    
                                  </div>
                                  <div class="tab-pane" id="tab2">
-                                    <h3 class="block">Dirección de Habitación</h3>
-                                    
-                                    
+                                    <h3 class="form-section">Dirección de Habitación</h3>
                                     
                                      <div class="form-group">
                                          
@@ -292,7 +361,7 @@
                                      </div>
                                     
                                     
-                                     <h3 class="block">Dirección Organizacional</h3>
+                                     <h3 class="form-section">Dirección Organizacional</h3>
                                     
                                      
                                       <div class="form-group">
@@ -356,10 +425,16 @@
                                             </div>
                                     </div>
 
+                                   
                                     
                                  </div>
                                  <div class="tab-pane" id="tab3">
-                                    <h3 class="block">Datos Bancarios</h3>
+                                    <h3 class="form-section">familia</h3>
+                                    
+                                 </div>
+
+                                 <div class="tab-pane" id="tab4">
+                                    <h3 class="form-section">Datos bancarios</h3>
                                     <div class="form-group">
                                        <label class="control-label col-md-3">Nombre de la Entidad Bancaria<span class="required">*</span></label>
                                        <div class="col-md-4">
@@ -388,14 +463,31 @@
                                      <div class="form-group">
                                       <label class="control-label col-md-3">Tipo de Moneda<span class="required">*</span></label>
                                           <div class="col-md-4">
-                                              <?php echo $form->dropDownList($model,'id_marital_status',CHtml::ListData(Currency::model()->findAll(),"id","name"), array("class"=>"form-control")); ?>
+                                              <?php echo $form->dropDownList($model,'id_marital_status',$model->getCurrency(), array("class"=>"form-control")); ?>
 <!--                                              <input class="form-control" id="mask_cuenta" type="text" name="type_currency"  />-->
                                          
                                           </div>
                                      </div>
                                   
                                  </div>
-                                 <div class="tab-pane" id="tab4">
+
+                                  <div class="tab-pane" id="tab5">
+                                      <h3 class="form-section">Asignación Organizacional</h3>
+                                  </div>
+                                  
+                                   <div class="tab-pane" id="tab6">
+                                      <h3 class="form-section">Horario Teórico</h3>
+                                  </div>
+                                  
+                                  <div class="tab-pane" id="tab7">
+                                      <h3 class="form-section">Servicios Médico</h3>
+                                  </div>
+                                    
+                                   <div class="tab-pane" id="tab8">
+                                      <h3 class="form-section">Medidas Laborales</h3>
+                                  </div>
+
+                                 <div class="tab-pane" id="tab9">
                                     <h3 class="block">Confirmar Datos del Empleado</h3>
                                     <h4 class="form-section">Datos Básico</h4>
                                     
