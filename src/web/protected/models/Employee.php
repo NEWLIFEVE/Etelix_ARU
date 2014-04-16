@@ -150,6 +150,15 @@ class Employee extends CActiveRecord
 		));
 	}
 
+        
+        public function getMaritalStatus() {
+            return  CHtml::ListData(MaritalStatus::model()->findAll(),"id","name");
+        }
+       
+        public function getCurrency() {
+            return  CHtml::ListData(Currency::model()->findAll(),"id","name"); 
+        }
+        
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

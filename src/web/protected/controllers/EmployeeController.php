@@ -20,19 +20,15 @@ class EmployeeController extends Controller
         }
         
         public function actionCreate(){
-            
-          
             $model= new Employee();
-            
-            
-            if (isset($_POST['Employee'])){
-               
-            $model->attributes=$_POST['Employee'];
+
+                if (isset($_POST['Employee'])){
+                    $model->attributes=$_POST['Employee'];
        
           
-            if($model->save())
-                    $this->redirect(array('view','id'=>$model->id));
-            }
+                    if($model->save())
+                        $this->redirect(array('view','id'=>$model->id));
+                }
          
             $this->render('create',array('model'=>$model));
         }
