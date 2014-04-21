@@ -101,7 +101,7 @@ $this->breadcrumbs=array(
                                     <td><?php echo $t->first_name;?></td>
                                     <td><?php echo $t->last_name;?></td>
                                     <td><?php echo $t->identity_card;?></td>
-                            <!--    <td><?php echo $t->sex;?></td>-->
+                            <!--    <td><?php echo $t->id_gender;?></td>-->
 <!--                                <td><?php echo $t->date_birth;?></td>
                                     <td><?php echo $t->nationality;?></td>     
                                     <td><?php echo $t->address_room;?></td>
