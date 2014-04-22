@@ -14,7 +14,7 @@ var FormWizard = function () {
             }
 
             $("#country_list").select2({
-                placeholder: "Seleccione el País8",
+                placeholder: "Seleccione el País",
                 allowClear: true,
                 formatResult: format,
                 formatSelection: format,
@@ -50,8 +50,9 @@ var FormWizard = function () {
                     },
                     
                     date_birth: {
-                      
-                        required: true
+                        
+                        required: true,
+                        date: true
                     },
                     
                     nationality: {
@@ -67,6 +68,38 @@ var FormWizard = function () {
                     level_education: {
                   
                         required: true
+                    },
+                    
+                    
+                    id_profession: {
+                  
+                        required: true
+                    },
+                    
+                    
+                      date_start: {
+                        date: true,  
+                        required: true
+                    },
+                    
+                     date_end: {
+                        date: true,  
+                        required: true
+                    },
+                    
+                     id_course: {
+                        
+                        required: false
+                    },
+                    
+                    date_start_cur: {
+                        
+                        required: false
+                    },
+                    
+                    date_end_cur: {
+                        
+                        required: false
                     },
                     
                      mask_cuenta: {
@@ -93,7 +126,7 @@ var FormWizard = function () {
                     fullname: {
                         required: true
                     },
-                    email: {
+                    email_personal: {
                         required: true,
                         email: true
                     },
