@@ -58,7 +58,7 @@
    
    
    
-   
+
    
    
 
@@ -381,7 +381,7 @@
                                            <i class='icon-angle-down'></i>
                                            </a>
                                            <ul class='dropdown-menu'>
-                                              <li><a href='extra_profile.html'><i class='icon-user'></i> My Profile</a>
+                                              <li><a href='extra_profile.html'><i class='icon-user'></i> Mi Perfil</a>
                                               </li>
                                              <!-- <li><a href='page_calendar.html'><i class='icon-calendar'></i> My Calendar</a>
                                               </li>
@@ -392,7 +392,7 @@
                                               <li class='divider'></li>
                                               <li><a href='javascript:;' id='trigger_fullscreen'><i class='icon-move'></i> Full Screen</a>
                                               </li>-->
-                                              <li><a href='extra_lock.html'><i class='icon-lock'></i> Lock Screen</a>
+                                              <li><a href='extra_lock.html'><i class='icon-lock'></i> Cambiar Contraseña</a>
                                               </li>
                                               <li><a href='/site/logout'><i class='icon-key'></i> Log Out</a>
                                               </li>
@@ -452,17 +452,17 @@
                                                    </a>
                                                    <ul class='sub-menu'>
                                                       <li >
-                                                         <a href='/employee/'>
-                                                         Datos Empleados</a>
+                                                         <a href='/User_Employee/'>
+                                                         Perfil</a>
                                                       </li>
-                                                      <li >
+                                                      <!--<li >
                                                          <a href='login_soft.html'>
                                                          Programación de Jornada Laboral</a>
                                                       </li>
                                                       <li >
                                                          <a href='login_soft.html'>
                                                          Programación de Guardías</a>
-                                                      </li>
+                                                      </li>-->
                                                    </ul>
                                                 </li>
                                               

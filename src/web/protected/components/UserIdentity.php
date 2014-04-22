@@ -23,7 +23,7 @@ class UserIdentity extends CUserIdentity
 	{
            if (strpos($this->username,"@")) {
 			$user= User::model()->findByAttributes(array('email'=>$this->username));
-                      //CVarDumper::dump($user);
+                     
 		} else {
 			$user= User::model()->findByAttributes(array('username'=>$this->username));
                          
@@ -37,12 +37,13 @@ class UserIdentity extends CUserIdentity
 		}
 		else if($this->password!==$user->password)
 		{
-                        echo $this->password;    
+                       
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		}
 		
 		else 
 		{
+                  
 			$this->_id=$user->id;
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
@@ -50,4 +51,9 @@ class UserIdentity extends CUserIdentity
 		}
 		return $this->errorCode;
 	}
+        
+         public function getId()
+    {
+        return $this->_id;
+    }
 }

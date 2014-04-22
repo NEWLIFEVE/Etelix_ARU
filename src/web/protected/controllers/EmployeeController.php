@@ -31,12 +31,15 @@ class EmployeeController extends Controller
                     $language->attributes=$_POST['LanguageEmployee'];
                     $education->attributes=$_POST['EducationEmployee'];
           
-                    if($model->save())
-                        $language->id_employee=$model->id;
-                        $education->id_employee=$model->id;
-                        $language->save();
-                        $education->save();
-                        $this->redirect(array('view','id'=>$model->id));
+                    var_dump($_POST['EducationEmployee']);
+                    echo $_POST['EducationEmployee'];
+                    
+//                    if($model->save())
+//                        $language->id_employee=$model->id;
+//                        $education->id_employee=$model->id;
+//                        $language->save();
+//                        $education->save();
+//                        $this->redirect(array('view','id'=>$model->id));
                 }
          
             $this->render('create',array('model'=>$model));
