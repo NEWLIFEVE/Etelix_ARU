@@ -14,7 +14,7 @@ var FormWizard = function () {
             }
 
             $("#country_list").select2({
-                placeholder: "Seleccione el País8",
+                placeholder: "Seleccione el País",
                 allowClear: true,
                 formatResult: format,
                 formatSelection: format,
@@ -50,8 +50,9 @@ var FormWizard = function () {
                     },
                     
                     date_birth: {
-                      
-                        required: true
+                        
+                        required: true,
+                        date: true
                     },
                     
                     nationality: {
@@ -67,6 +68,38 @@ var FormWizard = function () {
                     level_education: {
                   
                         required: true
+                    },
+                    
+                    
+                    id_profession: {
+                  
+                        required: true
+                    },
+                    
+                    
+                      date_start: {
+                        date: true,  
+                        required: true
+                    },
+                    
+                     date_end: {
+                        date: true,  
+                        required: true
+                    },
+                    
+                     id_course: {
+                        
+                        required: false
+                    },
+                    
+                    date_start_cur: {
+                        
+                        required: false
+                    },
+                    
+                    date_end_cur: {
+                        
+                        required: false
                     },
                     
                      mask_cuenta: {
@@ -93,7 +126,7 @@ var FormWizard = function () {
                     fullname: {
                         required: true
                     },
-                    email: {
+                    email_personal: {
                         required: true,
                         email: true
                     },
@@ -253,7 +286,7 @@ var FormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
                 // set done steps
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
@@ -323,6 +356,12 @@ var FormWizard = function () {
                
                
             }).hide();
+            
+            
+           $('div.hacerUnaNota, div.quitaNota').click('on',function()
+{
+    $('div.hacerUnaNota, div.quitaNota, div.contratoFormTextArea').toggle('fast');
+});
         }
 
     };

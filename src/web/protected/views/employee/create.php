@@ -146,11 +146,11 @@
                                            <div class="col-md-3"> 
                                                <div class="radio-list">
                                                     <label control-label> 
-                                                        <input type="radio" name="sex" value="m" id="sex" />
-                                                        Masculino
+                                                        <?php echo $form->radioButton($model, 'id_gender', array('value'=>'1','uncheckValue'=>null)); ?>
+                                                         Masculino       
                                                     </label>
                                                     <label control-label>
-                                                        <input type="radio" name="sex" value="f" id="sex"  />
+                                                        <?php echo $form->radioButton($model, 'id_gender', array('value'=>'2','uncheckValue'=>null)); ?>
                                                         Femenino
                                                     </label>  
                                                </div>
@@ -170,7 +170,7 @@
                                             </div>
                                           <label class="control-label col-md-2">Nacionalidad<span class="required">*</span></label>
                                             <div class="col-md-3"> 
-                                                  <?php echo $form->textField($model,'nationality', array('class'=>'form-control', 'id'=>'nationality')); ?>
+                                                  <?php echo $form->dropDownList($model,'nationality',$model->getNationality(), array("class"=>"form-control")); ?>
                                                   <span class="help-block">Nacionalidad del Empleado</span>
                                             </div>
                                     </div>
@@ -188,7 +188,7 @@
                                      <div class="form-group">
                                          <label class="control-label col-md-2">Titulo Obtenido<span class="required">*</span></label>
                                             <div class="col-md-2"> 
-                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control', 'id'=>'mask_ci')); ?>
+                                               <?php echo $form->dropDownList(educationEmployee::model(),'id_profession',$model->getProfessions(), array("class"=>"form-control")); ?>
                                                 <span class="help-block">Titulo</span>
                                             </div>
                                          <div class="col-md-1">
@@ -196,24 +196,25 @@
                                             </div>
                                           <label class="control-label col-md-1 ">Desde<span class="required">*</span></label>
                                             <div class="col-md-2"> 
-                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker', 'id'=>'mask_ci')); ?>
+                                                <?php echo $form->textField(educationEmployee::model(),'date_start', array('class'=>'form-control form-control-inline input-small date-picker', 'id'=>'mask_ci')); ?>
                                                 <span class="help-block">Fecha Inicio</span>
                                             </div>
                                           <label class="control-label col-md-1">Hasta<span class="required">*</span></label>
                                             <div class="col-md-2"> 
-                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker', 'id'=>'mask_ci')); ?>
+                                                <?php echo $form->textField(educationEmployee::model(),'date_end', array('class'=>'form-control form-control-inline input-small date-picker', 'id'=>'mask_ci')); ?>
                                                 <span class="help-block">Fecha Fin</span>
                                             </div>
                                             <div class="newGroup">
                                                 <label>+</label>
                                             </div>                          
                                     </div>
-                                   
+                                 
+                                  
                                     <h3 class="form-section">Cursos Realizados</h3>
                                       <div class="form-group">
                                          <label class="control-label col-md-2">Nombre del Curso</label>
                                             <div class="col-md-2"> 
-                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control')); ?>
+                                                <?php echo $form->dropDownList(educationEmployee::model(),'id_course',$model->getCourses(), array("class"=>"form-control")); ?>
                                                 <span class="help-block">Nombre del Curso</span>
                                             </div>
                                           <div class="col-md-1">
@@ -221,59 +222,142 @@
                                             </div>
                                           <label class="control-label col-md-1 ">Desde</label>
                                             <div class="col-md-2"> 
-                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker')); ?>
+                                                <?php echo $form->textField(educationEmployee::model(),'date_start_cur', array('class'=>'form-control form-control-inline input-small date-picker')); ?>
                                                 <span class="help-block">Fecha Inicio</span>
                                             </div>
                                           <label class="control-label col-md-1">Hasta</label>
                                             <div class="col-md-2"> 
-                                                <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-small date-picker')); ?>
+                                                <?php echo $form->textField(educationEmployee::model(),'date_end_cur', array('class'=>'form-control form-control-inline input-small date-picker')); ?>
                                                  <span class="help-block">Fecha Fin</span>
                                             </div>
                                             <div class="newGroup">
                                                 <label>+</label>
                                             </div>
                                         </div>
-                                    
+                                   
+                                   
                                     <h3 class="form-section">Idiomas</h3>
-                                    
+                               
                                     <div class="form-group">
-                                        <label class="control-label col-md-2">Idioma</label>
+                                      
+                                             <label class="control-label col-md-2">Idioma</label>
                                             <div class="col-md-2"> 
-                                             <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control')); ?>
+                                             <?php echo $form->dropDownList(LanguageEmployee::model(),'id_language',$model->getLanguaje(), array("class"=>"form-control")); ?>
                                               <span class="help-block">Indique el Idioma</span>
                                             </div>
-                                            <div class="col-md-1">
+                                               <div class="col-md-1">
                                                 <label>+</label>
+                                               </div>
+                                        
+                                        <div class="div_tabla">
+                                            <div class="principal">
+                                                
+                                                <label>
+                                                  Nivel de Comprensión
+                                                </label>
+                                                
+                                              
                                             </div>
-                                        <div class="col-md-7">
-                                            <div class="form-group" align="center">
-                                                <div class="col-md-12" ><label>Nivel de Comprensión</label></div>
+                                            <div class="contenidos_columnas">
+                                                
+                                                <div class="secundario">
+                                                  Auditiva
+                                                </div>
+                                                <div class="secundario">
+                                                  Lectura
+                                                </div>
+                                                 <div class="secundario">
+                                                  Escritura
+                                                </div>
+                                              
                                             </div>
-                                             <div class="form-group" align="center">
-                                                 <div class="col-md-4" >
-                                                     <label>Comprensión Auditiva</label>
-                                                       <div class="radio-list">
-                                                            <label control-label>
-                                                                <input type="radio" name="sex" value="m" id="sex" />
-                                                                  Basico</label>
-                                                            
-                                                            <label control-label>
-                                                                <input type="radio" name="sex" value="f" id="sex"  />
-                                                                   Intermedio</label> 
-                                                            
-                                                       
-                                                       </div>
-                                                 </div>
-                                                 <div class="col-md-4" >
-                                                     <label>Comprensión Lectora</label>
-                                                 </div>
-                                                 <div class="col-md-4" >
-                                                     <label>Escritura</label>
-                                                 </div>
+                                             <div class="contenidos_columnas">
+                                                
+                                                <div class="separador_cell">
+                                                    <label>
+                                                        <?php echo $form->radioButton(LanguageEmployee::model(), 'reading', array('value'=>'1','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Básico
+                                                    </label>
+                                                </div>
+                                                <div class="separador_cell">
+                                                    <label>
+                                                          <?php echo $form->radioButton(LanguageEmployee::model(), 'writing', array('value'=>'1','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label> 
+                                                        Básico
+                                                    </label>
+                                                </div>
+                                                 <div class="separador_cell">
+                                                    <label>
+                                                         <?php echo $form->radioButton(LanguageEmployee::model(), 'hearing', array('value'=>'1','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label> 
+                                                        Básico
+                                                    </label>
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="contenidos_columnas">
+                                                
+                                                <div class="separador_cell">
+                                                    <label>
+                                                        <?php echo $form->radioButton(LanguageEmployee::model(), 'reading', array('value'=>'2','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Intermedio
+                                                    </label>
+                                                </div>
+                                                <div class="separador_cell">
+                                                  <label>
+                                                        <?php echo $form->radioButton(LanguageEmployee::model(), 'writing', array('value'=>'2','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Intermedio
+                                                    </label>
+                                                </div>
+                                                 <div class="separador_cell">
+                                                  <label>
+                                                        <?php echo $form->radioButton(LanguageEmployee::model(), 'hearing', array('value'=>'2','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Intermedio
+                                                    </label>
+                                                </div>
+                                              
+                                            </div>
+                                            
+                                             <div class="contenidos_columnas">
+                                                
+                                                <div class="separador_cell">
+                                                    <label>
+                                                       <?php echo $form->radioButton(LanguageEmployee::model(), 'reading', array('value'=>'3','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Avanzado
+                                                    </label>
+                                                </div>
+                                                <div class="separador_cell">
+                                                   <label>
+                                                         <?php echo $form->radioButton(LanguageEmployee::model(), 'writing', array('value'=>'3','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Avanzado
+                                                    </label>
+                                                </div>
+                                                 <div class="separador_cell">
+                                                   <label>
+                                                        <?php echo $form->radioButton(LanguageEmployee::model(), 'hearing', array('value'=>'3','uncheckValue'=>null)); ?>
+                                                    </label>
+                                                    <label>
+                                                        Avanzado
+                                                    </label>
+                                                </div>
+                                              
                                             </div>
                                             
                                         </div>
-                                       
                                        
                                     </div>
                                     
@@ -776,5 +860,4 @@
    <!-- END PAGE LEVEL SCRIPTS -->
    
    
-   
-
+     

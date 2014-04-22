@@ -15,18 +15,27 @@ class EmployeeController extends Controller
         
         
         public function actionView($id){
-            $model = Employee::model()->findByPk($id);
-            $this->render('detalle', array('model'=>$model));
+           $model = Employee::model()->findByPk($id);
+           $this->render('detalle', array('model'=>$model));
+          
         }
         
         public function actionCreate(){
             $model= new Employee();
-
-                if (isset($_POST['Employee'])){
+            $language= new LanguageEmployee();
+            $education= new EducationEmployee();
+            
+                if (isset($_POST['Employee'], $_POST['LanguageEmployee'], $_POST['EducationEmployee'])){
+                   
                     $model->attributes=$_POST['Employee'];
-       
+                    $language->attributes=$_POST['LanguageEmployee'];
+                    $education->attributes=$_POST['EducationEmployee'];
           
                     if($model->save())
+                        $language->id_employee=$model->id;
+                        $education->id_employee=$model->id;
+                        $language->save();
+                        $education->save();
                         $this->redirect(array('view','id'=>$model->id));
                 }
          

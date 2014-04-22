@@ -447,7 +447,7 @@
                                                 <li class=''>
                                                    <a href='javascript:;'>
                                                    <i class='icon-user'></i> 
-                                                   <span class='title'>Usuarios</span>
+                                                   <span class='title'>Empleados</span>
                                                    <span class='arrow '></span>
                                                    </a>
                                                    <ul class='sub-menu'>
