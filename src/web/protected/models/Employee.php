@@ -23,8 +23,10 @@
  * @property string $extension_numeric
  * @property integer $id_country
  * @property integer $id_gender
+ * @property integer $id_states
  *
  * The followings are the available model relations:
+ * @property EducationEmployee[] $educationEmployees
  * @property User[] $users
  * @property ChildrenEmployee[] $childrenEmployees
  * @property EmergencyReference[] $emergencyReferences
@@ -34,6 +36,8 @@
  * @property LevelEducation $idEducation
  * @property MaritalStatus $idMaritalStatus
  * @property Gender $idGender
+ * @property Country $idCountry
+ * @property StatesEmployee $idStates
  * @property LanguageEmployee[] $languageEmployees
  */
 class Employee extends CActiveRecord
@@ -54,11 +58,11 @@ class Employee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_position, id_supervisor, id_education, id_marital_status, id_country, id_gender', 'numerical', 'integerOnly'=>true),
+			array('id_position, id_supervisor, id_education, id_marital_status, id_country, id_gender, id_states', 'numerical', 'integerOnly'=>true),
 			array('first_name, last_name, date_birth, nationality, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, nationality, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_country, id_gender', 'safe', 'on'=>'search'),
+			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, nationality, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_country, id_gender, id_states', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,6 +74,7 @@ class Employee extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'educationEmployees' => array(self::HAS_MANY, 'EducationEmployee', 'id_employee'),
 			'users' => array(self::HAS_MANY, 'User', 'id_employee'),
 			'childrenEmployees' => array(self::HAS_MANY, 'ChildrenEmployee', 'id_employee'),
 			'emergencyReferences' => array(self::HAS_MANY, 'EmergencyReference', 'id_employee'),
@@ -79,6 +84,8 @@ class Employee extends CActiveRecord
 			'idEducation' => array(self::BELONGS_TO, 'LevelEducation', 'id_education'),
 			'idMaritalStatus' => array(self::BELONGS_TO, 'MaritalStatus', 'id_marital_status'),
 			'idGender' => array(self::BELONGS_TO, 'Gender', 'id_gender'),
+			'idCountry' => array(self::BELONGS_TO, 'Country', 'id_country'),
+			'idStates' => array(self::BELONGS_TO, 'StatesEmployee', 'id_states'),
 			'languageEmployees' => array(self::HAS_MANY, 'LanguageEmployee', 'id_employee'),
 		);
 	}
@@ -108,6 +115,7 @@ class Employee extends CActiveRecord
 			'extension_numeric' => 'Extension Numeric',
 			'id_country' => 'Id Country',
 			'id_gender' => 'Id Gender',
+			'id_states' => 'Id States',
 		);
 	}
 
@@ -148,6 +156,7 @@ class Employee extends CActiveRecord
 		$criteria->compare('extension_numeric',$this->extension_numeric,true);
 		$criteria->compare('id_country',$this->id_country);
 		$criteria->compare('id_gender',$this->id_gender);
+		$criteria->compare('id_states',$this->id_states);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -160,33 +169,6 @@ class Employee extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Employee the static model class
 	 */
-        
-        
-  public function getMaritalStatus() {
-            return  CHtml::ListData(MaritalStatus::model()->findAll(),"id","name");
-        }
-       
-        public function getCurrency() {
-            return  CHtml::ListData(Currency::model()->findAll(),"id","name"); 
-        }
-        
-        public function getLanguaje() {
-            return  CHtml::ListData(Language::model()->findAll(),"id","name"); 
-        }
-        
-          public function getProfessions() {
-            return  CHtml::ListData(Professions::model()->findAll(),"id","name"); 
-        }
-        
-        
-         public function getCourses() {
-            return  CHtml::ListData(Courses::model()->findAll(),"id","name"); 
-        }
-        
-         public function getNationality() {
-            return  CHtml::ListData(Nationality::model()->findAll(),"id","name"); 
-        }
-        
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);

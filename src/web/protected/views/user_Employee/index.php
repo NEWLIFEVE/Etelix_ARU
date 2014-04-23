@@ -1,3 +1,5 @@
+
+
 <!-- END BEGIN STYLE CUSTOMIZER -->            
          <!-- BEGIN PAGE HEADER-->
          <div class="row">
@@ -41,8 +43,8 @@
                <div class="tabbable tabbable-custom tabbable-full-width">
                   <ul class="nav nav-tabs">
                      <li class="active"><a href="#tab_1_1" data-toggle="tab">Datos del Perfil</a></li>
-                     <li><a href="#tab_1_3" data-toggle="tab">Datos Personales</a></li>
-                     <li><a href="#tab_1_4" data-toggle="tab">Dirección de Habitación</a></li>
+                     <li><a href="#tab_1_3" data-toggle="tab">Modificar Perfil</a></li>
+<!--                     <li><a href="#tab_1_4" data-toggle="tab">Dirección de Habitación</a></li>-->
                      
                   </ul>
                   <div class="tab-content">
@@ -51,7 +53,8 @@
                            <div class="col-md-3">
                               <ul class="list-unstyled profile-nav">
                                  <li><img src="/themes/metronic/img/profile/profile-img.png" class="img-responsive" alt="" /> 
-                                    <a href="#" class="profile-edit">Cambiar Imagen</a>
+                                      <a data-toggle="modal" href="#responsive">Cambiar Imagen</a>
+                                    
                                  </li>
 <!--                                 <li><a href="#">Projects</a></li>
                                  <li><a href="#">Messages <span>3</span></a></li>
@@ -66,10 +69,11 @@
                               
                                  
                                     <ul class="list-inline">
-                                       <li><i class="icon-map-marker"></i><?php echo $model->id_country;?></li>
+                                       <li><i class="icon-map-marker"></i><?php echo $model->idCountry->name;?></li>
                                        <li><i class="icon-calendar"></i><?php echo $model->date_birth;?></li>
                                        <li><i class="icon-briefcase"></i> Design</li>
-                                       <li><i class="icon-star"></i><?php echo $model->email_personal;?></li>
+                                       <li><i class="icon-envelope"></i><?php echo $model->email_personal;?></li>
+                                        <li><i class="icon-skype"></i><?php echo $model->skype;?></li>
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->
                                     </ul>
                                  </div>
@@ -109,8 +113,8 @@
                               <!--end row-->
                               <div class="tabbable tabbable-custom tabbable-custom-profile">
                                  <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab_1_11" data-toggle="tab">Datos Basicos</a></li>
-<!--                                    <li ><a href="#tab_1_22" data-toggle="tab">Feeds</a></li>-->
+                                    <li class="active"><a href="#tab_1_11" data-toggle="tab">Datos Básicos</a></li>
+                                    <li ><a href="#tab_1_22" data-toggle="tab">Dirección de Habitación</a></li>
                                  </ul>
                                  <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1_11">
@@ -126,53 +130,53 @@
                                              </thead>-->
                                              <tbody>
                                                 <tr>
-                                                   <td>Primer Nombre</td>
+                                                    <td class="letra_empleado">Primer Nombre</td>
                                                    <td><?php echo $model->first_name;?></td>
-                                                   <td>Segundo Nombre</td>
-                                                   <td>David</td>
+                                                   <td class="letra_empleado">Segundo Nombre</td>
+                                                   <td></td>
                                                 </tr>
                                                 <tr>
-                                                   <td class="">Primer Apellido</td>
+                                                   <td class="letra_empleado">Primer Apellido</td>
                                                    <td><?php echo $model->last_name;?></td>
-                                                   <td>Segundo Apellido</td>
+                                                   <td class="letra_empleado">Segundo Apellido</td>
                                                    <td></td>
                                                   
                                                 </tr>
                                                 <tr>
-                                                   <td class="">Fecha de Nacimiento</td>
+                                                   <td class="letra_empleado">Fecha de Nacimiento</td>
                                                    <td><?php echo $model->date_birth;?></td>
-                                                   <td>Documento de Identidad</td>
+                                                   <td class="letra_empleado">Documento de Identidad</td>
                                                    <td><?php echo $model->identity_card;?></td>
                                                 </tr>
                                                 
                                                  <tr>
-                                                   <td class="">Nacionalidad</td>
+                                                   <td class="letra_empleado">Nacionalidad</td>
                                                    <td><?php echo $model->nationality;?></td>
-                                                   <td>Estado Civil</td>
-                                                   <td><?php echo $model->id_marital_status;?></td>
+                                                   <td class="letra_empleado">Estado Civil</td>
+                                                   <td><?php echo $model->idMaritalStatus->name;?></td>
                                                 </tr>
                                                 <tr>
-                                                   <td class="">Correo Personal</td>
+                                                   <td class="letra_empleado">Correo Personal</td>
                                                    <td><?php echo $model->email_personal;?></td>
-                                                   <td>Correo Corporativo</td>
+                                                   <td class="letra_empleado">Correo Corporativo</td>
                                                    <td><?php echo $model->email_company;?></td>
                                                 </tr>
                                                 
                                                  <tr>
-                                                   <td class="">Skype</td>
+                                                   <td class="letra_empleado">Skype</td>
                                                    <td><?php echo $model->skype;?></td>
                                                    <td></td>
                                                    <td></td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                   <td class="">Teléfono Celular</td>
+                                                   <td class="letra_empleado">Teléfono Celular</td>
                                                    <td><?php echo $model->cellphone;?></td>
-                                                   <td>Teléfono De Habitación</td>
+                                                   <td class="letra_empleado">Teléfono De Habitación</td>
                                                    <td><?php echo $model->home_phone;?></td>
                                                 </tr>
                                                 <tr>
-                                                   <td class="">Extensión de Oficina</td>
+                                                   <td class="letra_empleado">Extensión de Oficina</td>
                                                    <td><?php echo $model->extension_numeric;?></td>
                                                    <td></td>
                                                    <td></td>
@@ -186,393 +190,40 @@
                                     <div class="tab-pane" id="tab_1_22">
                                        <div class="tab-pane active" id="tab_1_1_1">
                                           <div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-                                             <ul class="feeds">
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-success">                        
-                                                               <i class="icon-bell"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               You have 4 pending tasks.
-                                                               <span class="label label-danger label-sm">
-                                                               Take action 
-                                                               <i class="icon-share-alt"></i>
-                                                               </span>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         Just now
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <a href="#">
-                                                      <div class="col1">
-                                                         <div class="cont">
-                                                            <div class="cont-col1">
-                                                               <div class="label label-success">                        
-                                                                  <i class="icon-bell"></i>
-                                                               </div>
-                                                            </div>
-                                                            <div class="cont-col2">
-                                                               <div class="desc">
-                                                                  New version v1.4 just lunched!   
-                                                               </div>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                      <div class="col2">
-                                                         <div class="date">
-                                                            20 mins
-                                                         </div>
-                                                      </div>
-                                                   </a>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-danger">                      
-                                                               <i class="icon-bolt"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               Database server #12 overloaded. Please fix the issue.                      
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         24 mins
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-info">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         30 mins
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-success">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         40 mins
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-warning">                        
-                                                               <i class="icon-plus"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New user registered.                
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         1.5 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-success">                        
-                                                               <i class="icon-bell-alt"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               Web server hardware needs to be upgraded. 
-                                                               <span class="label label-inverse label-sm">Overdue</span>             
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         2 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-default">                       
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         3 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-warning">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         5 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-info">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         18 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-default">                       
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         21 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-info">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         22 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-default">                       
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         21 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-info">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         22 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-default">                       
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         21 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-info">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         22 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-default">                       
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         21 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                                <li>
-                                                   <div class="col1">
-                                                      <div class="cont">
-                                                         <div class="cont-col1">
-                                                            <div class="label label-info">                        
-                                                               <i class="icon-bullhorn"></i>
-                                                            </div>
-                                                         </div>
-                                                         <div class="cont-col2">
-                                                            <div class="desc">
-                                                               New order received. Please take care of it.                 
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                   <div class="col2">
-                                                      <div class="date">
-                                                         22 hours
-                                                      </div>
-                                                   </div>
-                                                </li>
-                                             </ul>
+                                             <table class="table table-striped table-bordered table-advance table-hover">
+<!--                                             <thead>
+                                                <tr>
+                                                   <th><i class="icon-briefcase"></i> Company</th>
+                                                   <th class="hidden-xs"><i class="icon-question-sign"></i> Descrition</th>
+                                                   <th><i class="icon-bookmark"></i> Amount</th>
+                                                   <th></th>
+                                                </tr>
+                                             </thead>-->
+                                             <tbody>
+                                                <tr>
+                                                    <td class="letra_empleado">Pais</td>
+                                                   <td><?php echo $model->idCountry->name;?></td>
+                                                   <td class="letra_empleado">Estado</td>
+                                                   <td><?php echo $model->idStates->name;?></td>
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Cuidad</td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Calle/Avenida</td>
+                                                   <td><?php echo $model->address_room;?></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                </tr>
+                                                
+                                                 
+                                               
+                                             </tbody>
+                                          </table>
                                           </div>
                                        </div>
                                     </div>
@@ -590,11 +241,12 @@
                                  <li class="active">
                                     <a data-toggle="tab" href="#tab_1-1">
                                     <i class="icon-cog"></i> 
-                                    Información Personal
+                                    Datos Básicos
                                     </a> 
                                     <span class="after"></span>                                    
                                  </li>
-                                 <li ><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i>Cambiar Imagen de Perfil</a></li>
+                                 <li ><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i>Dirección de Habitación</a></li>
+<!--                                 <li ><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i>Cambiar Imagen de Perfil</a></li>-->
                                 
                                
                               </ul>
@@ -619,70 +271,83 @@
                                            <?php echo $form->textField($model,'first_name', array('class'=>'form-control', 'value'=>$model->first_name)); ?>
                                        </div>
                                        <div class="form-group">
-                                          <label class="control-label">Segundo nombre</label>
+                                          <label class="control-label">Segundo Nombre</label>
+                                         <?php //echo $form->textField($model,'last_name', array('class'=>'form-control', 'value'=>$model->last_name)); ?>
+                                       </div>
+                                     
+                                     <div class="form-group">
+                                          <label class="control-label">Primer Apellido</label>
                                          <?php echo $form->textField($model,'last_name', array('class'=>'form-control', 'value'=>$model->last_name)); ?>
+                                       </div>
+                                      <div class="form-group">
+                                          <label class="control-label">Segundo Apellido</label>
+                                         <?php //echo $form->textField($model,'last_name', array('class'=>'form-control', 'value'=>$model->last_name)); ?>
                                        </div>
                                        <div class="form-group">
                                           <label class="control-label">Fecha de Nacimiento</label>
                                           <?php echo $form->textField($model,'date_birth', array('class'=>'form-control', 'value'=>$model->date_birth)); ?>
                                        </div>
                                        <div class="form-group">
-                                          <label class="control-label">Interests</label>
-                                          <input type="text" placeholder="Design, Web etc." class="form-control" />
+                                          <label class="control-label">Documento de Identidad</label>
+                                          <?php echo $form->textField($model,'identity_card', array('class'=>'form-control', 'value'=>$model->identity_card)); ?>
                                        </div>
-                                       <div class="form-group">
-                                          <label class="control-label">Occupation</label>
-                                          <input type="text" placeholder="Web Developer" class="form-control" />
+                                     <div class="form-group">
+                                          <label class="control-label">Nacionalidad</label>
+                                          <?php echo $form->textField($model,'nationality', array('class'=>'form-control', 'value'=>$model->nationality)); ?>
                                        </div>
-                                       <div class="form-group">
-                                          <label class="control-label">About</label>
-                                          <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+                                     <div class="form-group">
+                                          <label class="control-label">Estado Civil</label>
+                                          <?php echo $form->textField($model,'id_marital_status', array('class'=>'form-control', 'value'=>$model->idMaritalStatus->name)); ?>
                                        </div>
-                                       <div class="form-group">
-                                          <label class="control-label">Website Url</label>
-                                          <input type="text" placeholder="http://www.mywebsite.com" class="form-control" />
+                                     <div class="form-group">
+                                          <label class="control-label">Correo Personal</label>
+                                          <?php echo $form->textField($model,'email_personal', array('class'=>'form-control', 'value'=>$model->email_personal)); ?>
                                        </div>
+                                     <div class="form-group">
+                                          <label class="control-label">Correo Corporativo</label>
+                                          <?php echo $form->textField($model,'email_company', array('class'=>'form-control', 'value'=>$model->email_company)); ?>
+                                       </div>
+                                     <div class="form-group">
+                                          <label class="control-label">Skype</label>
+                                          <?php echo $form->textField($model,'skype', array('class'=>'form-control', 'value'=>$model->skype)); ?>
+                                       </div>
+                                     <div class="form-group">
+                                          <label class="control-label">Teléfono Celular</label>
+                                          <?php echo $form->textField($model,'cellphone', array('class'=>'form-control', 'value'=>$model->cellphone)); ?>
+                                       </div>
+                                     <div class="form-group">
+                                          <label class="control-label">Teléfono de Habitación</label>
+                                          <?php echo $form->textField($model,'home_phone', array('class'=>'form-control', 'value'=>$model->home_phone)); ?>
+                                       </div>
+                                     <div class="form-group">
+                                          <label class="control-label">Extensión de Oficina</label>
+                                          <?php echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
+                                       </div>
+                                      
                                        <div class="margiv-top-10">
-                                          <a href="#" class="btn green">Save Changes</a>
-                                          <a href="#" class="btn default">Cancel</a>
+                                          <a href="#" class="btn green">Guardar</a>
+<!--                                          <a href="#" class="btn default">Cancelar</a>-->
                                        </div>
                                       <?php $this->endWidget(); ?>
                                  </div>
                                  <div id="tab_2-2" class="tab-pane">
-                                    <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
-                                    <form action="#" role="form">
                                        <div class="form-group">
-                                          <div class="thumbnail" style="width: 310px;">
-                                             <img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="">
-                                          </div>
-                                          <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
-                                             <div class="input-group input-group-fixed">
-                                                <span class="input-group-btn">
-                                                <span class="uneditable-input">
-                                                <i class="icon-file fileupload-exists"></i> 
-                                                <span class="fileupload-preview"></span>
-                                                </span>
-                                                </span>
-                                                <span class="btn default btn-file">
-                                                <span class="fileupload-new"><i class="icon-paper-clip"></i> Select file</span>
-                                                <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
-                                                <input type="file" class="default" />
-                                                </span>
-                                                <a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
-                                             </div>
-                                          </div>
-                                          <span class="label label-danger">NOTE!</span>
-                                          <span>
-                                          Attached image thumbnail is
-                                          supported in Latest Firefox, Chrome, Opera, 
-                                          Safari and Internet Explorer 10 only
-                                          </span>
+                                          <label class="control-label">País</label>
+                                          <?php echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
                                        </div>
-                                       <div class="margin-top-10">
-                                          <a href="#" class="btn green">Submit</a>
-                                          <a href="#" class="btn default">Cancel</a>
+                                     <div class="form-group">
+                                          <label class="control-label">Estado</label>
+                                          <?php echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
                                        </div>
-                                    </form>
+                                     <div class="form-group">
+                                          <label class="control-label">Cuidad</label>
+                                          <?php //echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
+                                       </div>
+                                     <div class="form-group">
+                                          <label class="control-label">Calle/Avenida</label>
+                                          <?php echo $form->textField($model,'address_room', array('class'=>'form-control', 'value'=>$model->address_room)); ?>
+                                       </div>
+                                   
                                  </div>
                               
                                  <div id="tab_4-4" class="tab-pane">
@@ -1199,4 +864,61 @@
                <!--END TABS-->
             </div>
          </div>
+         
+          <div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                 <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
+                              </div>
+                              <div class="modal-body">
+                                 <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="row">
+                                       <div class="col-md-6">
+                                           
+                                           
+                                            <form action="#" role="form">
+                                       <div class="form-group">
+                                          <div class="thumbnail" style="width: 310px;">
+                                             <img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                                          </div>
+                                          <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+                                             <div class="input-group input-group-fixed">
+                                                <span class="input-group-btn">
+                                                <span class="uneditable-input">
+                                                <i class="icon-file fileupload-exists"></i> 
+                                                <span class="fileupload-preview"></span>
+                                                </span>
+                                                </span>
+                                                <span class="btn default btn-file">
+                                                <span class="fileupload-new"><i class="icon-paper-clip"></i> Select file</span>
+                                                <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
+                                                <input type="file" class="default" />
+                                                </span>
+                                                <a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                             </div>
+                                          </div>
+                                      
+                                    
+                                       </div>
+                                       <div class="margin-top-10">
+                                          <a href="#" class="btn green">Submit</a>
+                                          <a href="#" class="btn default">Cancel</a>
+                                       </div>
+                                    </form>
+                                         
+                                        
+                                       </div>
+                                       
+                                 </div>
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>
+                                 <button type="button" class="btn green">Guardar</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+          </div>
                  

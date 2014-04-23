@@ -134,3 +134,8 @@ abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"
     
 }
 
+
+.letra_empleado{
+    
+    color: #045FB4;
+}

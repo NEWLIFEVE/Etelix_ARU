@@ -11,6 +11,7 @@ class UserIdentity extends CUserIdentity
         private $_id;
 	const ERROR_EMAIL_INVALID=3;
 	const ERROR_STATUS_INACTIV=4;
+        private $id_rol;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -45,6 +46,7 @@ class UserIdentity extends CUserIdentity
 		{
                   
 			$this->_id=$user->id;
+                        $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
                     
@@ -55,5 +57,6 @@ class UserIdentity extends CUserIdentity
          public function getId()
     {
         return $this->_id;
+     
     }
 }

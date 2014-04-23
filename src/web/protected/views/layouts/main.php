@@ -381,7 +381,7 @@
                                            <i class='icon-angle-down'></i>
                                            </a>
                                            <ul class='dropdown-menu'>
-                                              <li><a href='extra_profile.html'><i class='icon-user'></i> Mi Perfil</a>
+                                              <li><a href='/User_Employee/'><i class='icon-user'></i> Mi Perfil</a>
                                               </li>
                                              <!-- <li><a href='page_calendar.html'><i class='icon-calendar'></i> My Calendar</a>
                                               </li>
@@ -447,22 +447,26 @@
                                                 <li class=''>
                                                    <a href='javascript:;'>
                                                    <i class='icon-user'></i> 
-                                                   <span class='title'>Empleados</span>
+                                                   <span class='title'>Declarar</span>
                                                    <span class='arrow '></span>
                                                    </a>
                                                    <ul class='sub-menu'>
                                                       <li >
                                                          <a href='/User_Employee/'>
-                                                         Perfil</a>
+                                                         Inicio de Jornada Laboral</a>
                                                       </li>
-                                                      <!--<li >
+                                                      <li>
                                                          <a href='login_soft.html'>
-                                                         Programación de Jornada Laboral</a>
+                                                         Fin de Jornada Laboral</a>
                                                       </li>
                                                       <li >
                                                          <a href='login_soft.html'>
-                                                         Programación de Guardías</a>
-                                                      </li>-->
+                                                         Hora inicio Comer</a>
+                                                      </li>
+                                                       <li >
+                                                         <a href='login_soft.html'>
+                                                         Hora fin Comer</a>
+                                                      </li>
                                                    </ul>
                                                 </li>
                                               
@@ -585,10 +589,7 @@
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    <script src="/themes/metronic/scripts/form-components.js"></script>  
      <!-- END PAGE LEVEL SCRIPTS -->
-   
-   
-   
-   
+
    
    <script>
       jQuery(document).ready(function() {     

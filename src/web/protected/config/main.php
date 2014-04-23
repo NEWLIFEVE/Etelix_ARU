@@ -38,9 +38,10 @@ return array(
 	// application components
 	'components'=>array(
 		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
-		),
+                    'class'=>'WebUser',
+                    // enable cookie-based authentication
+                    'allowAutoLogin'=>true,
+                    ),
 //                'bootstrap'=>array(
 //                    'class'=>'application.extensions.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
 //                ),
