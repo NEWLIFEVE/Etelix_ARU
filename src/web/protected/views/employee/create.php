@@ -165,7 +165,7 @@
                                      <div class="form-group">
                                           <label class="control-label col-md-2">Fecha de Nacimiento<span class="required">*</span></label>
                                             <div class="col-md-3"> 
-                                                <?php echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-medium date-picker', 'id'=>'mask_ci')); ?>
+                                                <?php echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-medium date-picker', 'id'=>'mask_tin')); ?>
                                                 <span class="help-block">Seleccione la Fecha de Nacimiento del Empleado</span>
                                             </div>
                                           <label class="control-label col-md-2">Nacionalidad<span class="required">*</span></label>
@@ -855,9 +855,3 @@
                </div>
             </div>
          </div>
-       
-  
-   <!-- END PAGE LEVEL SCRIPTS -->
-   
-   
-     

@@ -34,33 +34,33 @@ var FormWizard = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
                     //account
-                    first_name: {
-                        minlength: 5,
+                    'Employee[first_name]': {
+                    
                         required: true
                     },
-                    last_name: {
-                        minlength: 5,
+                    'Employee[last_name]': {
+                      
                         required: true
                     },
                     
-                     identity_card: {
+                     'Employee[identity_card]': {
                         minlength: 7,
                         required: true,
                    
                     },
                     
-                    date_birth: {
+                    'Employee[date_birth]': {
                         
                         required: true,
                         date: true
                     },
                     
-                    nationality: {
+                    'Employee[nationality]': {
                       
                         required: true
                     },
                     
-                     state_marital: {
+                     'Employee[state_marital]': {
                   
                         required: true
                     },
@@ -126,20 +126,24 @@ var FormWizard = function () {
                     fullname: {
                         required: true
                     },
-                    email_personal: {
+                    'Employee[email_personal]': {
                         required: true,
                         email: true
                     },
                     
-                     email_company: {
+                     'Employee[email_company]': {
                         required: true,
                         email: true
                     },
-                    cellphone: {
+                    'Employee[cellphone]': {
                         required: true
                     },
                     
-                     officephone: {
+                    'Employee[officephone]': {
+                        required: true
+                    },
+                    
+                     'Employee[home_phone]': {
                         required: true
                     },
                     
@@ -352,7 +356,7 @@ var FormWizard = function () {
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
               
-               
+       
                
                
             }).hide();

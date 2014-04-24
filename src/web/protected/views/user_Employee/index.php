@@ -1,8 +1,4 @@
-
-
-<!-- END BEGIN STYLE CUSTOMIZER -->            
-         <!-- BEGIN PAGE HEADER-->
-         <div class="row">
+<div class="row">
             <div class="col-md-12">
                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                <h3 class="page-title">
@@ -151,7 +147,7 @@
                                                 
                                                  <tr>
                                                    <td class="letra_empleado">Nacionalidad</td>
-                                                   <td><?php echo $model->nationality;?></td>
+                                                   <td><?php echo $model->idNationality->name;?></td>
                                                    <td class="letra_empleado">Estado Civil</td>
                                                    <td><?php echo $model->idMaritalStatus->name;?></td>
                                                 </tr>
@@ -254,94 +250,137 @@
                            <div class="col-md-9">
                               <div class="tab-content">
                                  <div id="tab_1-1" class="tab-pane active">
-                                                         <?php $form=$this->beginWidget('CActiveForm', array(
-				'id'=>'submit_form',
-				'enableClientValidation'=>true,
-				'clientOptions'=>array(
-					'validateOnSubmit'=>true,
-					),
-                                               'htmlOptions'=>array(
-                                                    'class'=>'form-horizontal'
-                                                )
-				)
-			);
-			?>
-                                       <div class="form-group">
-                                          <label class="control-label">Primer Nombre</label>
-                                           <?php echo $form->textField($model,'first_name', array('class'=>'form-control', 'value'=>$model->first_name)); ?>
-                                       </div>
-                                       <div class="form-group">
-                                          <label class="control-label">Segundo Nombre</label>
-                                         <?php //echo $form->textField($model,'last_name', array('class'=>'form-control', 'value'=>$model->last_name)); ?>
-                                       </div>
+                            <?php $form=$this->beginWidget('CActiveForm', array(
+                                    'id'=>'submit_form',
+                                    'enableClientValidation'=>true,
+                                    'clientOptions'=>array(
+                                            'validateOnSubmit'=>true,
+                                                    ),
+                                                           'htmlOptions'=>array(
+                                                                'class'=>'form-horizontal'
+                                                            )
+                                            )
+                                        );
+                                ?>
                                      
-                                     <div class="form-group">
-                                          <label class="control-label">Primer Apellido</label>
-                                         <?php echo $form->textField($model,'last_name', array('class'=>'form-control', 'value'=>$model->last_name)); ?>
-                                       </div>
-                                      <div class="form-group">
-                                          <label class="control-label">Segundo Apellido</label>
-                                         <?php //echo $form->textField($model,'last_name', array('class'=>'form-control', 'value'=>$model->last_name)); ?>
-                                       </div>
-                                       <div class="form-group">
-                                          <label class="control-label">Fecha de Nacimiento</label>
-                                          <?php echo $form->textField($model,'date_birth', array('class'=>'form-control', 'value'=>$model->date_birth)); ?>
-                                       </div>
-                                       <div class="form-group">
-                                          <label class="control-label">Documento de Identidad</label>
-                                          <?php echo $form->textField($model,'identity_card', array('class'=>'form-control', 'value'=>$model->identity_card)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Nacionalidad</label>
-                                          <?php echo $form->textField($model,'nationality', array('class'=>'form-control', 'value'=>$model->nationality)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Estado Civil</label>
-                                          <?php echo $form->textField($model,'id_marital_status', array('class'=>'form-control', 'value'=>$model->idMaritalStatus->name)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Correo Personal</label>
-                                          <?php echo $form->textField($model,'email_personal', array('class'=>'form-control', 'value'=>$model->email_personal)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Correo Corporativo</label>
-                                          <?php echo $form->textField($model,'email_company', array('class'=>'form-control', 'value'=>$model->email_company)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Skype</label>
-                                          <?php echo $form->textField($model,'skype', array('class'=>'form-control', 'value'=>$model->skype)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Teléfono Celular</label>
-                                          <?php echo $form->textField($model,'cellphone', array('class'=>'form-control', 'value'=>$model->cellphone)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Teléfono de Habitación</label>
-                                          <?php echo $form->textField($model,'home_phone', array('class'=>'form-control', 'value'=>$model->home_phone)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Extensión de Oficina</label>
-                                          <?php echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
-                                       </div>
+                                     
+                                     
+                                     <div class="div_tabla_editar_empleados">
+                                            <div class="principal">
+                                             
+                                            </div>
+                                            <div class="contenidos_columnas">
+                                                
+                                                  <div class="secundario">
+                                                    <label class="control-label letra_empleado">Primer Nombre</label>
+                                                        <?php echo $form->textField($model,'first_name', array('class'=>'form-control input-xmedium ', 'value'=>$model->first_name)); ?>
+                                                  </div>
+                                                  <div class="secundario letra_empleado">
+                                                    <label class="control-label">Segundo Nombre</label>
+                                                        <?php //echo $form->textField($model,'last_name', array('class'=>'form-control input-medium', 'value'=>$model->last_name)); ?>
+                                                  </div>
+                                            </div>
+                                             <div class="contenidos_columnas ">
+                                                 <div class="secundario letra_empleado">
+                                                    <label class="control-label">Primer Apellido</label>
+                                                         <?php echo $form->textField($model,'last_name', array('class'=>'form-control input-xmedium', 'value'=>$model->last_name)); ?>
+                                                 </div>
+                                                 <div class="secundario letra_empleado">
+                                                    <label class="control-label">Segundo Apellido</label>
+                                                         <?php //echo $form->textField($model,'last_name', array('class'=>'form-control input-medium', 'value'=>$model->last_name)); ?>
+                                                 </div>
+                                            </div>
+                                            <div class="contenidos_columnas">
+                                                
+                                                 <div class="secundario letra_empleado">
+                                                     <label class="control-label">Fecha de Nacimiento</label>
+                                                         <?php echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci')); ?>
+                                                        <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control', 'value'=>$model->date_birth)); ?>
+                                                 </div>
+                                                <div class="secundario letra_empleado">
+                                                     <label class="control-label">Documento de Identidad</label>
+                                                        <?php echo $form->textField($model,'identity_card', array('class'=>'form-control input-xmedium', 'value'=>$model->identity_card,'id'=>'mask_number')); ?>
+                                                 </div>
+                                              
+                                            </div>
+                                            
+                                             <div class="contenidos_columnas">
+                                                 <div class="secundario letra_empleado">
+                                                     <label class="control-label">Nacionalidad</label>
+                                                        <?php echo $form->dropDownList($model,'id_nationality',$model->getNationality(), array("class"=>"form-control")); ?>
+                                                        <?php //echo $form->textField($model,'nationality', array('class'=>'form-control', 'value'=>$model->nationality)); ?>
+                                                 </div>
+                                                <div class="secundario letra_empleado">
+                                                      <label class="control-label">Estado Civil</label>
+                                                      <?php echo $form->dropDownList($model,'id_marital_status',$model->getMaritalStatus(), array("class"=>"form-control")); ?>
+                                                        <?php //echo $form->textField($model,'id_marital_status', array('class'=>'form-control', 'value'=>$model->idMaritalStatus->name)); ?>
+                                                 </div>
+                                            </div>
+                                         
+                                            <div class="contenidos_columnas">
+                                                 <div class="secundario letra_empleado">
+                                                     <label class="control-label">Correo Personal</label>
+                                                        <?php echo $form->textField($model,'email_personal', array('class'=>'form-control', 'value'=>$model->email_personal)); ?>
+                                                 </div>
+                                                <div class="secundario letra_empleado">
+                                                    <label class="control-label">Correo Corporativo</label>
+                                                        <?php echo $form->textField($model,'email_company', array('class'=>'form-control', 'value'=>$model->email_company)); ?>
+                                                 </div>
+                                            </div>
+                                             <div class="contenidos_columnas">
+                                                 <div class="secundario letra_empleado">
+                                                    <label class="control-label">Skype</label>
+                                                        <?php echo $form->textField($model,'skype', array('class'=>'form-control', 'value'=>$model->skype)); ?>
+                                                 </div>
+                                                <div class="secundario letra_empleado">
+                                                    <label class="control-label">Teléfono Celular</label>
+                                                        <?php echo $form->textField($model,'cellphone', array('class'=>'form-control', 'value'=>$model->cellphone)); ?>
+                                                 </div>
+                                            </div>
+                                             <div class="contenidos_columnas">
+                                                 <div class="secundario letra_empleado">
+                                                     <label class="control-label">Teléfono de Habitación</label>
+                                                        <?php echo $form->textField($model,'home_phone', array('class'=>'form-control', 'value'=>$model->home_phone)); ?>
+                                                 </div>
+                                                <div class="secundario letra_empleado">
+                                                    <label class="control-label">Extensión de Oficina</label>
+                                                        <?php echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
+                                                 </div>
+                                            </div>
+                                            
+                                        </div>
                                       
-                                       <div class="margiv-top-10">
-                                          <a href="#" class="btn green">Guardar</a>
-<!--                                          <a href="#" class="btn default">Cancelar</a>-->
-                                       </div>
-                                      <?php $this->endWidget(); ?>
+                                    
                                  </div>
+                                  
+                                  <?php 
+                                    $htmlOptions=array(
+                                        "ajax"=>array(
+                                            "url"=>$this->createUrl("StateByCountry"),
+                                            "type"=>"POST",
+                                            "data"=>"#Employee_id_country",
+                                            "update"=>"#Employee_id_states",
+                                        
+                                        ),
+                                        "class"=>"form-control",
+                                    );
+                                  
+                                  ?>
+                                  
                                  <div id="tab_2-2" class="tab-pane">
                                        <div class="form-group">
                                           <label class="control-label">País</label>
-                                          <?php echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
+                                           <?php echo $form->dropDownList($model,'id_country',$model->getCountry(),$htmlOptions); ?>
+                                          <?php //echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Estado</label>
-                                          <?php echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
+                                            <?php echo $form->dropDownList($model,'id_states',$model->getState(), array("class"=>"form-control")); ?>
+                                          <?php //echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Cuidad</label>
-                                          <?php //echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
+                                          <?php echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Calle/Avenida</label>
@@ -349,516 +388,16 @@
                                        </div>
                                    
                                  </div>
-                              
-                                 <div id="tab_4-4" class="tab-pane">
-                                    <form action="#" class="">
-                                       <table class="table table-bordered table-striped">
-                                          <tr>
-                                             <td>
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus..
-                                             </td>
-                                             <td>
-                                                <label class="uniform-inline">
-                                                <input type="radio" name="optionsRadios1" value="option1" />
-                                                Yes
-                                                </label>
-                                                <label class="uniform-inline">
-                                                <input type="radio" name="optionsRadios1" value="option2" checked />
-                                                No
-                                                </label>
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <td>
-                                                Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-                                             </td>
-                                             <td>
-                                                <label class="uniform-inline">
-                                                <input type="checkbox" value="" /> Yes
-                                                </label>
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <td>
-                                                Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-                                             </td>
-                                             <td>
-                                                <label class="uniform-inline">
-                                                <input type="checkbox" value="" /> Yes
-                                                </label>
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <td>
-                                                Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-                                             </td>
-                                             <td>
-                                                <label class="uniform-inline">
-                                                <input type="checkbox" value="" /> Yes
-                                                </label>
-                                             </td>
-                                          </tr>
-                                       </table>
-                                       <!--end profile-settings-->
-                                       <div class="margin-top-10">
-                                          <a href="#" class="btn green">Save Changes</a>
-                                          <a href="#" class="btn default">Cancel</a>
+                                     <div>
+                                          <input type="submit" value="enviar" class="btn blue button-submit centrar_botones"/>  
+<!--                                          <a href="#" class="btn default">Cancelar</a>-->
                                        </div>
-                                    </form>
-                                 </div>
+                                      <?php $this->endWidget(); ?>
                               </div>
                            </div>
                            <!--end col-md-9-->                                   
                         </div>
                      </div>
-                     <!--end tab-pane-->
-                     <div class="tab-pane" id="tab_1_4">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="add-portfolio">
-                                 <span>502 Items sold this week</span>
-                                 <a href="#" class="btn icn-only green">Add a new Project <i class="m-icon-swapright m-icon-white"></i></a>                          
-                              </div>
-                           </div>
-                        </div>
-                        <!--end add-portfolio-->
-                        <div class="row portfolio-block">
-                           <div class="col-md-5">
-                              <div class="portfolio-text">
-                                 <img src="assets/img/profile/portfolio/logo_metronic.jpg" alt="" />
-                                 <div class="portfolio-text-info">
-                                    <h4>Metronic - Responsive Template</h4>
-                                    <p>Lorem ipsum dolor sit consectetuer adipiscing elit.</p>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-md-5">
-                              <div class="portfolio-info">
-                                 Today Sold
-                                 <span>187</span>
-                              </div>
-                              <div class="portfolio-info">
-                                 Total Sold
-                                 <span>1789</span>
-                              </div>
-                              <div class="portfolio-info">
-                                 Earns
-                                 <span>$37.240</span>
-                              </div>
-                           </div>
-                           <div class="col-md-2">
-                              <div class="portfolio-btn">
-                                 <a href="#" class="btn bigicn-only"><span>Manage</span></a>                      
-                              </div>
-                           </div>
-                        </div>
-                        <!--end row-->
-                        <div class="row portfolio-block">
-                           <div class="col-md-5 portfolio-text">
-                              <img src="assets/img/profile/portfolio/logo_azteca.jpg" alt="" />
-                              <div class="portfolio-text-info">
-                                 <h4>Metronic - Responsive Template</h4>
-                                 <p>Lorem ipsum dolor sit consectetuer adipiscing elit.</p>
-                              </div>
-                           </div>
-                           <div class="col-md-5">
-                              <div class="portfolio-info">
-                                 Today Sold
-                                 <span>24</span>
-                              </div>
-                              <div class="portfolio-info">
-                                 Total Sold
-                                 <span>660</span>
-                              </div>
-                              <div class="portfolio-info">
-                                 Earns
-                                 <span>$7.060</span>
-                              </div>
-                           </div>
-                           <div class="col-md-2 portfolio-btn">
-                              <a href="#" class="btn bigicn-only"><span>Manage</span></a>                      
-                           </div>
-                        </div>
-                        <!--end row-->
-                        <div class="row portfolio-block">
-                           <div class="col-md-5 portfolio-text">
-                              <img src="assets/img/profile/portfolio/logo_conquer.jpg" alt="" />
-                              <div class="portfolio-text-info">
-                                 <h4>Metronic - Responsive Template</h4>
-                                 <p>Lorem ipsum dolor sit consectetuer adipiscing elit.</p>
-                              </div>
-                           </div>
-                           <div class="col-md-5" style="overflow:hidden;">
-                              <div class="portfolio-info">
-                                 Today Sold
-                                 <span>24</span>
-                              </div>
-                              <div class="portfolio-info">
-                                 Total Sold
-                                 <span>975</span>
-                              </div>
-                              <div class="portfolio-info">
-                                 Earns
-                                 <span>$21.700</span>
-                              </div>
-                           </div>
-                           <div class="col-md-2 portfolio-btn">
-                              <a href="#" class="btn bigicn-only"><span>Manage</span></a>                      
-                           </div>
-                        </div>
-                        <!--end row-->
-                     </div>
-                     <!--end tab-pane-->
-                     <div class="tab-pane" id="tab_1_6">
-                        <div class="row">
-                           <div class="col-md-3">
-                              <ul class="ver-inline-menu tabbable margin-bottom-10">
-                                 <li class="active">
-                                    <a data-toggle="tab" href="#tab_1">
-                                    <i class="icon-briefcase"></i> 
-                                    General Questions
-                                    </a> 
-                                    <span class="after"></span>                                    
-                                 </li>
-                                 <li><a data-toggle="tab" href="#tab_2"><i class="icon-group"></i> Membership</a></li>
-                                 <li><a data-toggle="tab" href="#tab_3"><i class="icon-leaf"></i> Terms Of Service</a></li>
-                                 <li><a data-toggle="tab" href="#tab_1"><i class="icon-info-sign"></i> License Terms</a></li>
-                                 <li><a data-toggle="tab" href="#tab_2"><i class="icon-tint"></i> Payment Rules</a></li>
-                                 <li><a data-toggle="tab" href="#tab_3"><i class="icon-plus"></i> Other Questions</a></li>
-                              </ul>
-                           </div>
-                           <div class="col-md-9">
-                              <div class="tab-content">
-                                 <div id="tab_1" class="tab-pane active">
-                                    <div id="accordion1" class="panel-group">
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_1">
-                                                1. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_1" class="panel-collapse collapse  in">
-                                             <div class="panel-body">
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_2">
-                                                2. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_2" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch   et.
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-success">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_3">
-                                                3. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_3" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch   et.
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-warning">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_4">
-                                                4. Wolf moon officia aute, non cupidatat skateboard dolor brunch ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_4" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-danger">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_5">
-                                                5. Leggings occaecat craft beer farm-to-table, raw denim aesthetic ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_5" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_6">
-                                                6. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_6" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_7">
-                                                7. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion1_7" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div id="tab_2" class="tab-pane">
-                                    <div id="accordion2" class="panel-group">
-                                       <div class="panel panel-warning">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_1">
-                                                1. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_1" class="panel-collapse collapse  in">
-                                             <div class="panel-body">
-                                                <p>
-                                                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                </p>
-                                                <p>
-                                                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                </p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-danger">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_2">
-                                                2. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_2" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch   et.
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-success">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_3">
-                                                3. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_3" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch   et.
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_4">
-                                                4. Wolf moon officia aute, non cupidatat skateboard dolor brunch ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_4" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_5">
-                                                5. Leggings occaecat craft beer farm-to-table, raw denim aesthetic ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_5" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_6">
-                                                6. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_6" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion2_7">
-                                                7. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion2_7" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div id="tab_3" class="tab-pane">
-                                    <div id="accordion3" class="panel-group">
-                                       <div class="panel panel-danger">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_1">
-                                                1. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_1" class="panel-collapse collapse  in">
-                                             <div class="panel-body">
-                                                <p>
-                                                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. 
-                                                </p>
-                                                <p>
-                                                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. 
-                                                </p>
-                                                <p>
-                                                   Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                </p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-success">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_2">
-                                                2. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_2" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch   et.
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_3">
-                                                3. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_3" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch   et.
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_4">
-                                                4. Wolf moon officia aute, non cupidatat skateboard dolor brunch ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_4" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_5">
-                                                5. Leggings occaecat craft beer farm-to-table, raw denim aesthetic ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_5" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_6">
-                                                6. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_6" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                             <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_7">
-                                                7. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft ?
-                                                </a>
-                                             </h4>
-                                          </div>
-                                          <div id="accordion3_7" class="panel-collapse collapse">
-                                             <div class="panel-body">
-                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!--end tab-pane-->
                   </div>
                </div>
                <!--END TABS-->
@@ -921,4 +460,5 @@
                         </div>
                      </div>
           </div>
-                 
+         
+      

@@ -105,6 +105,13 @@ abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"
     width: 55%;
   
 }
+.div_tabla_editar_empleados{
+    display: table;
+    border-spacing: 2px;
+    margin-left: 0%;
+    width: 100%;
+  
+}
 
 
 .contenidos_columnas{
@@ -122,7 +129,8 @@ abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"
 }
 .principal {
 
-  margin-left: 80%;   
+  margin-left: 60%;
+
   width: 200%;
 
 }
@@ -138,4 +146,8 @@ abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"
 .letra_empleado{
     
     color: #045FB4;
+}
+
+.centar_botones{
+     margin-left: 60%;
 }

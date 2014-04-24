@@ -12,7 +12,6 @@
  * @property string $first_name
  * @property string $last_name
  * @property string $date_birth
- * @property string $nationality
  * @property string $identity_card
  * @property string $address_room
  * @property string $email_personal
@@ -24,6 +23,7 @@
  * @property integer $id_country
  * @property integer $id_gender
  * @property integer $id_states
+ * @property integer $id_nationality
  *
  * The followings are the available model relations:
  * @property EducationEmployee[] $educationEmployees
@@ -37,7 +37,8 @@
  * @property MaritalStatus $idMaritalStatus
  * @property Gender $idGender
  * @property Country $idCountry
- * @property StatesEmployee $idStates
+ * @property States $idStates
+ * @property Nationality $idNationality
  * @property LanguageEmployee[] $languageEmployees
  */
 class Employee extends CActiveRecord
@@ -58,11 +59,11 @@ class Employee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_position, id_supervisor, id_education, id_marital_status, id_country, id_gender, id_states', 'numerical', 'integerOnly'=>true),
-			array('first_name, last_name, date_birth, nationality, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric', 'safe'),
+			array('id_position, id_supervisor, id_education, id_marital_status, id_country, id_gender, id_states, id_nationality', 'numerical', 'integerOnly'=>true),
+			array('first_name, last_name, date_birth, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, nationality, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_country, id_gender, id_states', 'safe', 'on'=>'search'),
+			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_country, id_gender, id_states, id_nationality', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -85,7 +86,8 @@ class Employee extends CActiveRecord
 			'idMaritalStatus' => array(self::BELONGS_TO, 'MaritalStatus', 'id_marital_status'),
 			'idGender' => array(self::BELONGS_TO, 'Gender', 'id_gender'),
 			'idCountry' => array(self::BELONGS_TO, 'Country', 'id_country'),
-			'idStates' => array(self::BELONGS_TO, 'StatesEmployee', 'id_states'),
+			'idStates' => array(self::BELONGS_TO, 'States', 'id_states'),
+			'idNationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
 			'languageEmployees' => array(self::HAS_MANY, 'LanguageEmployee', 'id_employee'),
 		);
 	}
@@ -104,7 +106,6 @@ class Employee extends CActiveRecord
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'date_birth' => 'Date Birth',
-			'nationality' => 'Nationality',
 			'identity_card' => 'Identity Card',
 			'address_room' => 'Address Room',
 			'email_personal' => 'Email Personal',
@@ -116,6 +117,7 @@ class Employee extends CActiveRecord
 			'id_country' => 'Id Country',
 			'id_gender' => 'Id Gender',
 			'id_states' => 'Id States',
+			'id_nationality' => 'Id Nationality',
 		);
 	}
 
@@ -145,7 +147,6 @@ class Employee extends CActiveRecord
 		$criteria->compare('first_name',$this->first_name,true);
 		$criteria->compare('last_name',$this->last_name,true);
 		$criteria->compare('date_birth',$this->date_birth,true);
-		$criteria->compare('nationality',$this->nationality,true);
 		$criteria->compare('identity_card',$this->identity_card,true);
 		$criteria->compare('address_room',$this->address_room,true);
 		$criteria->compare('email_personal',$this->email_personal,true);
@@ -157,6 +158,7 @@ class Employee extends CActiveRecord
 		$criteria->compare('id_country',$this->id_country);
 		$criteria->compare('id_gender',$this->id_gender);
 		$criteria->compare('id_states',$this->id_states);
+		$criteria->compare('id_nationality',$this->id_nationality);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -173,4 +175,32 @@ class Employee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        /**
+         * 
+         */
+        
+        
+         public function getMaritalStatus() {
+            return  CHtml::ListData(MaritalStatus::model()->findAll(),"id","name");
+        }
+       
+        public function getCurrency() {
+            return  CHtml::ListData(Currency::model()->findAll(),"id","name"); 
+        }
+        
+        public function getLanguaje() {
+            return  CHtml::ListData(Language::model()->findAll(),"id","name"); 
+        }
+        
+        public function getNationality() {
+            return  CHtml::ListData(Nationality::model()->findAll(),"id","name"); 
+        }
+        public function getCountry() {
+            return  CHtml::ListData(Country::model()->findAll(),"id","name"); 
+        }
+         public function getState() {
+            return  CHtml::ListData(States::model()->findAll(),"id","name"); 
+        }
 }

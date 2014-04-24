@@ -1382,3 +1382,11 @@ Bootstrap Panel
      -moz-box-shadow: none !important;
           box-shadow: none !important;
 }
+
+
+
+
+.centrar_botones{
+    margin-top: 3%;
+     margin-left: 15%;
+}
