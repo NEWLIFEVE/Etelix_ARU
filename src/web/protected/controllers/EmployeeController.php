@@ -4,63 +4,60 @@ class EmployeeController extends Controller
 {
 	public function actionIndex()
 	{
-		
-        $model=  Employee::model();
-        $employee=$model->findAll();
-        $this->render('index', array('employee'=>$employee));
-        
+        $id=Yii::app()->user->id;
+        $model = Employee::model()->findByPk($id);
+          if (isset($_POST['Employee'])){
             
-           // $this->render('index');
-	}
-        
-        
-        public function actionView($id){
-           $model = Employee::model()->findByPk($id);
-           $this->render('detalle', array('model'=>$model));
-          
-        }
-        
-        public function actionCreate(){
-            $model= new Employee();
-            $language= new LanguageEmployee();
-            $education= new EducationEmployee();
-            
-                if (isset($_POST['Employee'], $_POST['LanguageEmployee'], $_POST['EducationEmployee'])){
-                   
-                    $model->attributes=$_POST['Employee'];
-                    $language->attributes=$_POST['LanguageEmployee'];
-                    $education->attributes=$_POST['EducationEmployee'];
-          
-                    var_dump($_POST['EducationEmployee']);
-                    echo $_POST['EducationEmployee'];
-                    
-//                    if($model->save())
-//                        $language->id_employee=$model->id;
-//                        $education->id_employee=$model->id;
-//                        $language->save();
-//                        $education->save();
-//                        $this->redirect(array('view','id'=>$model->id));
-                }
-         
-            $this->render('create',array('model'=>$model));
-        }
-        
- 
+             $model->attributes=$_POST['Employee'];
+             if ($model->save())
+                    $this->redirect(array('index','id'=>$model->id));
+         }
+        $this->render('index', array('model'=>$model));
+    	}
 
-        // Uncomment the following methods and override them if needed
-	/*
+	
+	
 	public function filters()
 	{
 		// return the filter configuration for this controller, e.g.:
 		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
+			'accessControl', // perform access control for CRUD operations
+			
 		);
 	}
-
+        
+        
+        public function accessRules()
+	{
+		return array(        
+                   array(
+                       'allow',
+                       'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
+                       'users'=>array(
+                           Yii::app()->user->name
+                            )
+                       )
+		);
+	}
+        
+        
+        public function actionStateByCountry(){
+           $country = $_POST['Employee']['id_country'];
+           $listado_states= States::model()->findAll("id_country=:country",array(':country'=>$country));
+           foreach ($listado_states as $data)
+               echo "<option value=\"{$data->id}\">{$data->name}</option>";
+           
+        }
+        
+         public function actionCountryByCity(){
+           $states = $_POST['Employee']['id_states'];
+       
+           $listado_city= City::model()->findAll("id_states=:states",array(':states'=>$states));
+           foreach ($listado_city as $data)
+               echo "<option value=\"{$data->id}\">{$data->name}</option>";
+           
+        }
+        /*
 	public function actions()
 	{
 		// return external action classes, e.g.:

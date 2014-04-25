@@ -381,7 +381,7 @@
                                            <i class='icon-angle-down'></i>
                                            </a>
                                            <ul class='dropdown-menu'>
-                                              <li><a href='/User_Employee/'><i class='icon-user'></i> Mi Perfil</a>
+                                              <li><a href='/Employee/'><i class='icon-user'></i> Mi Perfil</a>
                                               </li>
                                              <!-- <li><a href='page_calendar.html'><i class='icon-calendar'></i> My Calendar</a>
                                               </li>
@@ -431,7 +431,7 @@
                                                    </form>
                                                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
                                                 </li>
-                                                <li class='start active '>
+                                                <li class='start active'>
                                                    <a href='/'>
                                                    <i class='icon-home'></i> 
                                                    <span class='title'>Inicio</span>
@@ -439,39 +439,15 @@
                                                    </a>
                                                 </li>
                                                
-                                             
-                                            
-                                             
-                                               
-                                               
-                                                <li class=''>
-                                                   <a href='javascript:;'>
+                                             <li class='' href='javascript:;'>
+                                                   <a href='Declare/'>
                                                    <i class='icon-user'></i> 
                                                    <span class='title'>Declarar</span>
-                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
                                                    </a>
-                                                   <ul class='sub-menu'>
-                                                      <li >
-                                                         <a href='/User_Employee/'>
-                                                         Inicio de Jornada Laboral</a>
-                                                      </li>
-                                                      <li>
-                                                         <a href='login_soft.html'>
-                                                         Fin de Jornada Laboral</a>
-                                                      </li>
-                                                      <li >
-                                                         <a href='login_soft.html'>
-                                                         Hora inicio Comer</a>
-                                                      </li>
-                                                       <li >
-                                                         <a href='login_soft.html'>
-                                                         Hora fin Comer</a>
-                                                      </li>
-                                                   </ul>
                                                 </li>
-                                              
-                                            
-                                              
+                                             
+
                                              </ul>
                                              <!-- END SIDEBAR MENU -->
                                           </div>
