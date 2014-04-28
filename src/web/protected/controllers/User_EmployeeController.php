@@ -46,8 +46,8 @@ class User_EmployeeController extends Controller
         
         
         public function actionStateByCountry(){
-      $moyt->attributes=$_POST['Employee'];
-      echo $moyt;
+              $moyt->attributes=$_POST['Employee'];
+              echo $moyt;
            $listado_states= States::model()->findAll("id_country=:country",array(':country'=>1));
            foreach ($listado_states as $data)
                echo "<option value=\"{$data->id}\">{$data->name}</option>";

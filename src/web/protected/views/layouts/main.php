@@ -440,7 +440,7 @@
                                                 </li>
                                                
                                              <li class='' href='javascript:;'>
-                                                   <a href='Declare/'>
+                                                   <a href='/Declare'>
                                                    <i class='icon-user'></i> 
                                                    <span class='title'>Declarar</span>
                                                    <span class='selected'></span>
@@ -563,7 +563,10 @@
    
    <!-- END PAGE LEVEL PLUGINS -->
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-   <script src="/themes/metronic/scripts/form-components.js"></script>  
+   <script src="/themes/metronic/scripts/form-components.js"></script> 
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js" />
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js"></script>
+
      <!-- END PAGE LEVEL SCRIPTS -->
 
    

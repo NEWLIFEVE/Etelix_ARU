@@ -4,10 +4,27 @@ class DeclareController extends Controller
 {
 	public function actionIndex()
 	{
+                $id=Yii::app()->user->id;
+                $fe=date('Ymd');
+             
+                $model = EventEmployee:: getWorkday($id, $fe);
+//                var_dump($model);
 		$this->render('index');
+                
 	}
+        
+        
+        public function actionCreate(){
+            
+            
+        }
+        
+        
+        
+       
+     
 
-	// Uncomment the following methods and override them if needed
+        // Uncomment the following methods and override them if needed
 	/*
 	public function filters()
 	{

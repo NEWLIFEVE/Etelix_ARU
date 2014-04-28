@@ -88,7 +88,7 @@
                                     <span class="desc"><i class="icon-ok"></i>Fin de Jornada Laboral</span>   
                                     </a> 
                                  </li>
-                               
+
                               </ul>
                               <div id="bar" class="progress progress-striped" role="progressbar">
                                  <div class="progress-bar progress-bar-success"></div>
@@ -102,81 +102,67 @@
                                   
 <!--                                 COLOCAR  INICIO DEL FORMULARIO EN AJAX PARA GUARDAR DATOS Y PODER MODIFICAR LAS HORAS DE CADA ACCION -->
                                   
+                                   <?php 
+                                    $htmlOptions=array(
+                                        "ajax"=>array(
+                                            "url"=>$this->createUrl("StateByCountry"),
+                                            "type"=>"POST",
+                                            "data"=>"js:$('#submit_form').serialize()",
+                                            "update"=>"#Employee_id_states",
+                                        
+                                        ),
+                                        "class"=>"form-control",
+                                    );
                                   
+                                  ?>
                                   
                                   
                                  <div class="tab-pane active" id="tab1">
-                                   
-                                     <?php  $inijo= date("Y-m-d h:i:s");?>
-                                     <input class="form-control input-medium" id="inicio_jornada" type="hidden" value="<?php echo $inijo; ?>" />
+
                                  </div>
                                  <div class="tab-pane" id="tab2">
                                      <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                     <?php echo $inijo; ?>
-                                     <input class="form-control input-medium" id="inicio_jornada" type="hidden" value="<?php echo $inijo; ?>" />
-                                    
+                                     <?php echo $form->textField(EventEmployee::model(),'time_start_day', array('class'=>'form-control input-medium')); ?>
+                                     <!--<input class="form-control input-medium" id="inicio_jornada" type="text" value="" name="inicio_jornada" />-->
+
                                  </div>
                                  <div class="tab-pane" id="tab3">
-                                   
-                                     
                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                         <input class="form-control input-medium" id="inicio_jornada" type="hidden" value="<?php echo $inijo; ?>" />
+                                          <?php //echo $form->textField(EventEmployee::model(),'time_start_day', array('class'=>'form-control input-small')); ?>
+                                         <input class="form-control input-medium" id="jornada1" type="text" value="" name="jornada1" />
+                                        
                                      </div> 
                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Inicio de Descanso</label>
-                                         <input class="form-control input-medium" id="inicio_descanso" type="hidden" value="<?php   ?>" />
+                                         <?php echo $form->textField(EventEmployee::model(),'time_start_rest', array('class'=>'form-control input-medium')); ?>
+                                         <!--<input class="form-control input-medium" id="descanso" type="text" value="" name="descanso" />-->
+                                         
                                      </div> 
                                  </div>
-
                                  <div class="tab-pane" id="tab4">
                                       <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                         <input class="form-control input-medium" id="inicio_jornada" type="hidden" value="<?php  echo $inijo;  ?>" />
+                                        <input class="form-control input-medium" id="jornada2" type="text" value="" name="jornada2" />
+                                         <!--<p class="form-control-static" data-display="jornada1"></p>-->
                                      </div> 
                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Inicio de Descanso</label>
-                                         <input class="form-control input-medium" id="inicio_descanso" type="hidden" value="<?php ?>" />
+                                          <input class="form-control input-medium" id="desc1" type="text" value="" name="desc1" />
+                                          <!--<p class="form-control-static" data-display="descanso"></p>-->
                                      </div> 
                                        <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Fin de Descanso</label>
-                                         <input class="form-control input-medium" id="fin_descanso" type="hidden" value="<?php ?>" />
-                                     </div> 
-                                  
+                                          <?php echo $form->textField(EventEmployee::model(),'time_end_rest', array('class'=>'form-control input-medium')); ?>
+                                         <!--<input class="form-control input-medium" id="fin_descanso" type="text" value="" name="fin_descanso" />-->
+                                         <!--<p class="form-control-static" data-display="fin_descanso"></p>-->
+                                        </div> 
+                       
 <!--                                     <a class="btn blue" data-toggle="modal" href="#responsive">Detalle de Jornada Laboral</a>-->
                                  </div>
                                   
                                   
-                                  <div class="tab-pane" id="tab5">
-                                    <h3 class="block">Confirmar Jornada Laboral</h3>
-                                    
-                                         <div class="form-group">
-                                               <label class="control-label col-md-3">Inicio de Jornada Laboral</label>
-                                                  <div class="div_tabla_editar_empleados">
-                                             <div class="contenidos_columnas">
-                                                 <div class="secundario letra_empleado">
-                                                    <label class="control-label">Inicio de Jornada Laboral</label>
-                                                        <?php //echo $form->textField($model,'skype', array('class'=>'form-control', 'value'=>$model->skype)); ?>
-                                                 </div>
-                                                <div class="secundario letra_empleado">
-                                                    <label class="control-label">Fin de Jornada Laboral</label>
-                                                        <?php //echo $form->textField($model,'cellphone', array('class'=>'form-control', 'value'=>$model->cellphone)); ?>
-                                                 </div>
-                                            </div>
-                                             <div class="contenidos_columnas">
-                                                 <div class="secundario letra_empleado">
-                                                    <label class="control-label">Inicio reposo y comida</label>
-                                                        <?php //echo $form->textField($model,'skype', array('class'=>'form-control', 'value'=>$model->skype)); ?>
-                                                 </div>
-                                                <div class="secundario letra_empleado">
-                                                    <label class="control-label">Fin de reposo y comida</label>
-                                                        <?php //echo $form->textField($model,'cellphone', array('class'=>'form-control', 'value'=>$model->cellphone)); ?>
-                                                 </div>
-                                            </div>
-                                        </div>
-                                            
-                                        </div>
-                                  </div>
+                                 
                                  </div>
                                                          
                 
@@ -188,9 +174,12 @@
 <!--                                       <a href="javascript:;" class="btn default button-previous">
                                        <i class="m-icon-swapleft"></i> Atrás
                                        </a>-->
-                                       <a href="javascript:;" class="btn blue button-next">
-                                       Siguiente <i class="m-icon-swapright m-icon-white"></i>
+                                        <a href="javascript:;"><i class=""></i>
+                                            <input type="button" value="Siguiente" onclick="gettime()" class="btn blue button-next"/>
+                                             
                                        </a>
+                                         
+                                               
                                         
                                           
                                        <input type="submit" value="Guardar" class="btn blue button-submit"/>                          
@@ -221,7 +210,7 @@
                                        <div class="col-md-6">
                                            
                                            
-                                            <form action="#" role="form">
+<!--                                            <form action="#" role="form">
                                        <div class="form-group">
                                         
                                        
@@ -230,7 +219,7 @@
                                        </div>
                                    
                                     </form>
-                                         
+                                         -->
                                         
                                        </div>
                                        
