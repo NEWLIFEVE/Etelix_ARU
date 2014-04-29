@@ -5,17 +5,14 @@
  *
  * The followings are the available columns in table 'event_employee':
  * @property integer $id
- * @property integer $id_type_event
  * @property integer $id_employee
- * @property string $time_start_day
- * @property string $time_start_rest
- * @property string $time_end_rest
- * @property string $time_end_day
  * @property string $date
+ * @property string $time_event
+ * @property integer $id_type_event
  *
  * The followings are the available model relations:
- * @property TypeEvent $idTypeEvent
  * @property Employee $idEmployee
+ * @property TypeEvent $idTypeEvent
  */
 class EventEmployee extends CActiveRecord
 {
@@ -35,11 +32,11 @@ class EventEmployee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_type_event, id_employee', 'numerical', 'integerOnly'=>true),
-			array('time_start_day, time_start_rest, time_end_rest, time_end_day, date', 'safe'),
+			array('id_employee, id_type_event', 'numerical', 'integerOnly'=>true),
+			array('date, time_event', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_type_event, id_employee, time_start_day, time_start_rest, time_end_rest, time_end_day, date', 'safe', 'on'=>'search'),
+			array('id, id_employee, date, time_event, id_type_event', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +48,8 @@ class EventEmployee extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idTypeEvent' => array(self::BELONGS_TO, 'TypeEvent', 'id_type_event'),
 			'idEmployee' => array(self::BELONGS_TO, 'Employee', 'id_employee'),
+			'idTypeEvent' => array(self::BELONGS_TO, 'TypeEvent', 'id_type_event'),
 		);
 	}
 
@@ -63,13 +60,10 @@ class EventEmployee extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_type_event' => 'Id Type Event',
 			'id_employee' => 'Id Employee',
-			'time_start_day' => 'Time Start Day',
-			'time_start_rest' => 'Time Start Rest',
-			'time_end_rest' => 'Time End Rest',
-			'time_end_day' => 'Time End Day',
 			'date' => 'Date',
+			'time_event' => 'Time Event',
+			'id_type_event' => 'Id Type Event',
 		);
 	}
 
@@ -92,13 +86,10 @@ class EventEmployee extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_type_event',$this->id_type_event);
 		$criteria->compare('id_employee',$this->id_employee);
-		$criteria->compare('time_start_day',$this->time_start_day,true);
-		$criteria->compare('time_start_rest',$this->time_start_rest,true);
-		$criteria->compare('time_end_rest',$this->time_end_rest,true);
-		$criteria->compare('time_end_day',$this->time_end_day,true);
 		$criteria->compare('date',$this->date,true);
+		$criteria->compare('time_event',$this->time_event,true);
+		$criteria->compare('id_type_event',$this->id_type_event);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -115,55 +106,4 @@ class EventEmployee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-        
-        
-        /**
-         * 
-         */
-        
-        
-        public static function getWorkday($id, $fe){
-            $array=array();
-    
-            $fecha= self::model()->findAll('id_employee=:id AND date=:date', array(':id'=>$id, ':date'=>$fe));
-            var_dump($fecha);
-              foreach ($fecha as $value){
-                 
-                   if($array[]=$value->time_start_day!== NULL){
-                      echo "datos comienzo de jornada";
-                      
-                      if ($array[]=$value->time_start_rest!== NULL){
-                          echo "comienzo de descanso";
-                          
-                           if ($array[]=$value->time_end_rest !== NULL){
-                               echo "fin de descanso";
-                               
-                                if ($array[]=$value->time_end_day !==NULL){
-                                    echo "fin de jornada ";
-                                } 
-                                else {
-                                    echo "no hay datos de fin de jornada";
-                                }
-                           }
-                           
-                           else{
-                               echo "no hay datos de fin de descanso";
-                           }
-                          
-                      }
-                      
-                      else{
-                          echo "no hay datos de comienzo de descanso";
-                      }
- 
-                  }
-                  
-                  else{
-                      echo "no hay datos de comienzo de jornada";
-                  }
-  
-              }
-
-            //return $fecha;
-        }
 }

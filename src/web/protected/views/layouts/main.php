@@ -440,7 +440,7 @@
                                                 </li>
                                                
                                              <li class='' href='javascript:;'>
-                                                   <a href='/Declare'>
+                                                   <a href='/EventEmployee/Create'>
                                                    <i class='icon-user'></i> 
                                                    <span class='title'>Declarar</span>
                                                    <span class='selected'></span>

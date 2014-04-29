@@ -43,7 +43,7 @@ var FormWizard = function () {
                 }
             });
 
-            var form = $('#submit_form');
+            var form = $('#event-employee-form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -279,8 +279,8 @@ var FormWizard = function () {
                 },
 
                 submitHandler: function (form) {
-                    success.show();
-                    error.hide();
+//                    success.show();
+//                    error.hide();
                     form.submit();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
                 }
@@ -367,9 +367,26 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#form_wizard_1').find('.progress-bar').css({
+                    var prueba=$('#EventEmployee_time_start_day').val();
+                    
+                        $('#form_wizard_1').find('.progress-bar').css({
                         width: $percent + '%'
                     });
+//                   if (prueba==""){
+//                          $('#form_wizard_1').find('.progress-bar').css({
+//                        width: 25 + '%'
+//                    });
+//                   }
+//                   
+//                   else {
+//                        $('#form_wizard_1').find('.progress-bar').css({
+//                        width: 50 + '%'
+//                    });
+//                       
+//                   }
+                   
+                   
+                   
                 }
             });
 

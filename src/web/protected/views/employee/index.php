@@ -129,13 +129,13 @@
                                                     <td class="letra_empleado">Primer Nombre</td>
                                                    <td><?php echo $model->first_name;?></td>
                                                    <td class="letra_empleado">Segundo Nombre</td>
-                                                   <td></td>
+                                                   <td><?php echo $model->secon_name;?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Primer Apellido</td>
                                                    <td><?php echo $model->last_name;?></td>
                                                    <td class="letra_empleado">Segundo Apellido</td>
-                                                   <td></td>
+                                                   <td><?php echo $model->secon_last_name;?></td>
                                                   
                                                 </tr>
                                                 <tr>
@@ -277,7 +277,7 @@
                                                   </div>
                                                   <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Nombre</label>
-                                                        <?php //echo $form->textField($model,'last_name', array('class'=>'form-control input-medium', 'value'=>$model->last_name)); ?>
+                                                        <?php echo $form->textField($model,'secon_name', array('class'=>'form-control input-medium', 'value'=>$model->secon_name)); ?>
                                                   </div>
                                             </div>
                                              <div class="contenidos_columnas ">
@@ -287,7 +287,7 @@
                                                  </div>
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Apellido</label>
-                                                         <?php //echo $form->textField($model,'last_name', array('class'=>'form-control input-medium', 'value'=>$model->last_name)); ?>
+                                                         <?php echo $form->textField($model,'secon_last_name', array('class'=>'form-control input-medium', 'value'=>$model->secon_last_name)); ?>
                                                  </div>
                                             </div>
                                             <div class="contenidos_columnas">
