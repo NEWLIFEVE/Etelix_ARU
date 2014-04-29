@@ -5,6 +5,7 @@ class DeclareController extends Controller
 	public function actionIndex()
 	{
                 $id=Yii::app()->user->id;
+<<<<<<< HEAD
                 $date=date('Ymd');
           
                 
@@ -52,6 +53,10 @@ class DeclareController extends Controller
 //                var_dump($jornada_empleado);
                  
                  
+=======
+                $fe=date('Ymd');
+             
+>>>>>>> 559aa2417ef57aa0108c20e995f2ed07d5c9a523
 //                $model = EventEmployee:: getWorkday($id, $fe);
 //                var_dump($model);
 //		$this->render('index');
