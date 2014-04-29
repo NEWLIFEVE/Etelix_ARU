@@ -126,7 +126,7 @@ class EventEmployee extends CActiveRecord
             $array=array();
     
             $fecha= self::model()->findAll('id_employee=:id AND date=:date', array(':id'=>$id, ':date'=>$fe));
-            var_dump($fecha);
+//            var_dump($fecha);
               foreach ($fecha as $value){
                  
                    if($array[]=$value->time_start_day!== NULL){

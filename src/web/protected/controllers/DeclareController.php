@@ -7,7 +7,7 @@ class DeclareController extends Controller
                 $id=Yii::app()->user->id;
                 $fe=date('Ymd');
              
-                $model = EventEmployee:: getWorkday($id, $fe);
+//                $model = EventEmployee:: getWorkday($id, $fe);
 //                var_dump($model);
 		$this->render('index');
                 
