@@ -111,4 +111,58 @@ class EventEmployee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+<<<<<<< HEAD
+=======
+       
+        
+        /**
+         * 
+         */
+        
+        
+        public static function getWorkday($id, $fe){
+            $array=array();
+    
+            $fecha= self::model()->findAll('id_employee=:id AND date=:date', array(':id'=>$id, ':date'=>$fe));
+//            var_dump($fecha);
+              foreach ($fecha as $value){
+                 
+                   if($array[]=$value->time_start_day!== NULL){
+                      echo "datos comienzo de jornada";
+                      
+                      if ($array[]=$value->time_start_rest!== NULL){
+                          echo "comienzo de descanso";
+                          
+                           if ($array[]=$value->time_end_rest !== NULL){
+                               echo "fin de descanso";
+                               
+                                if ($array[]=$value->time_end_day !==NULL){
+                                    echo "fin de jornada ";
+                                } 
+                                else {
+                                    echo "no hay datos de fin de jornada";
+                                }
+                           }
+                           
+                           else{
+                               echo "no hay datos de fin de descanso";
+                           }
+                          
+                      }
+                      
+                      else{
+                          echo "no hay datos de comienzo de descanso";
+                      }
+ 
+                  }
+                  
+                  else{
+                      echo "no hay datos de comienzo de jornada";
+                  }
+  
+              }
+
+            //return $fecha;
+        }
+>>>>>>> 223ec4637df0e0e27a45a6ec9e3a77b535476317
 }
