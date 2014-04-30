@@ -106,10 +106,7 @@ class EventEmployee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-<<<<<<< HEAD
-=======
-        
-        
+             
         /**
          * 
          */
@@ -159,5 +156,4 @@ class EventEmployee extends CActiveRecord
 
             //return $fecha;
         }
->>>>>>> 559aa2417ef57aa0108c20e995f2ed07d5c9a523
 }
