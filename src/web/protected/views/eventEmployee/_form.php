@@ -6,7 +6,7 @@
 
    <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'event-employee-form',
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 
@@ -117,16 +117,16 @@
 
                                  <div class="tab-pane" id="tab2">
                                      <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                     <?php echo $form->textField(EventEmployee::model(),'time_event', array('class'=>'form-control input-medium')); ?>
+                                     <?php echo $form->textField(EventEmployee::model(),'hour_event', array('class'=>'form-control input-medium')); ?>
                                      <!--<input class="form-control input-medium" id="inicio_jornada" type="text" value="" name="inicio_jornada" />-->
-
+                                      <input type="text" name="evento_inicio" id="evento_inicio" value="1" />  
                                  </div>
                                  <div class="tab-pane" id="tab3">
                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                          <?php echo $form->textField(EventEmployee::model(),'id_type_event', array('class'=>'form-control input-small')); ?>
-                                         <input class="form-control input-medium" id="jornada1" type="text" value="" name="jornada1" />
-                                        
+                                         
+                                         <!--<input class="form-control input-medium" id="jornada1" type="text" value="" name="jornada1" />-->
+                                         <!--<input type="text" name="evento_descanso_ini" id="evento_descanso_ini" value="2" />--> 
                                      </div> 
                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Inicio de Descanso</label>
@@ -147,12 +147,13 @@
                                        <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Fin de Descanso</label>
                                           <?php //echo $form->textField(EventEmployee::model(),'time_end_rest', array('class'=>'form-control input-medium')); ?>
+                                         <!--<input type="text" name="evento_descanso_fin" id="evento_descanso_fin" value="3" />--> 
                                         </div> 
                                         
                                       <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado">Fin de Jornada Laboral</label>
                                           <?php //echo $form->textField(EventEmployee::model(),'time_end_day', array('class'=>'form-control input-medium')); ?>
-                                     
+                                         <!--<input type="text" name="evento_jornada_fin" id="evento_jornada_fin" value="4" />--> 
                                         </div> 
                                    
                                     
@@ -168,7 +169,7 @@
                               <div class="row">
                                  <div class="col-md-12">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <a class="btn blue " data-toggle="modal" href="#responsive" onclick="gettime()"><i class="">Declarar</i>
+                                        <a id="declare" class="btn blue " data-toggle="modal" href="#responsive"><i class="">Declarar</i>
                                            
                                         </a>
                                     </div>
@@ -195,11 +196,19 @@
                                  </div>
                               </div>
                               <div class="modal-footer">
-                                  <a href="javascript:;"><i class=""></i>
-                                            <input type="button" value="Siguiente"  class="btn blue button-next "  data-dismiss="modal"/></a>
-                                            <button type="button" class="btn green" data-dismiss="modal">Cancelar</button>
-                                            <?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Save', array('class'=>'btn green')); ?>
-                              </div>
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Atras"  class="btn blue button-previous"  data-dismiss="modal"/></a>
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Cancelar"  class="btn green button-cancelar"  data-dismiss="modal"/></a>
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Puesto de Trabajo" id="puesto_trabajo" class="btn blue button-next declare"  data-dismiss="modal"/></a>
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Remoto" id="remoto" class="btn blue button-next declare"  data-dismiss="modal"/></a>  
+                                 
+                                            <?php //echo CHtml::submitButton($model->isNewRecord ? 'Puesto de Trabajo' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(1)')); ?>
+                                            <?php //echo CHtml::submitButton($model->isNewRecord ? 'Remoto' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(2)')); ?>
+                                            <?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Save', array('class'=>'btn green button-submit')); ?>
+                                            
+                                            
+                                            
+                                           
+                              </div>            
                            </div>
                         </div>
                      </div>

@@ -308,29 +308,43 @@ var FormWizard = function () {
 
             var handleTitle = function(tab, navigation, index) {
                 var total = navigation.find('li').length;
+                
                 var current = index + 1;
+                
                 // set wizard title
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
                 // set done steps
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
+                    console.log(index);
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
                     $('#form_wizard_1').find('.button-previous').hide();
+                     $('#form_wizard_1').find('.button-next1').show();
+                     $('#form_wizard_1').find('.button-next').show();
+                      $('#form_wizard_1').find('.button-cancelar').hide();
+                       $('#form_wizard_1').find('.button-submit').hide();
+                    
                 } else {
                     $('#form_wizard_1').find('.button-previous').show();
+                     $('#form_wizard_1').find('.button-next1').hide();
+//                     $('#form_wizard_1').find('.button-next').hide();
+                     $('#form_wizard_1').find('.button-cancelar').show();
+                     $('#form_wizard_1').find('.button-submit').show();
                 }
 
                 if (current >= total) {
-                    $('#form_wizard_1').find('.button-next').hide();
-                    $('#form_wizard_1').find('.button-submit').show();
-                    displayConfirm();
-                } else {
                     $('#form_wizard_1').find('.button-next').show();
                     $('#form_wizard_1').find('.button-submit').hide();
+                   
+                    displayConfirm();
+                } else {
+                   
+                    $('#form_wizard_1').find('.button-submit').show();
+                 
                 }
                 App.scrollTo($('.page-title'));
             }

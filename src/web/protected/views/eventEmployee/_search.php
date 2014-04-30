@@ -27,13 +27,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'time_event'); ?>
-		<?php echo $form->textField($model,'time_event'); ?>
+		<?php echo $form->label($model,'hour_event'); ?>
+		<?php echo $form->textField($model,'hour_event'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'id_type_event'); ?>
 		<?php echo $form->textField($model,'id_type_event'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'id_location'); ?>
+		<?php echo $form->textField($model,'id_location'); ?>
 	</div>
 
 	<div class="row buttons">
