@@ -1,13 +1,13 @@
 <?php
 
-class EventEmployeeController extends Controller
+class UserController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-     
+
 	/**
 	 * @return array action filters
 	 */
@@ -28,7 +28,7 @@ class EventEmployeeController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','prot','check'),
+				'actions'=>array('index','view','update','admin','updatepass'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,15 +62,14 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionCreate()
 	{
-//		$model= new EventEmployee();
+		$model=new User;
 
-                $id=Yii::app()->user->id;
-                $date= date('Ymd');
-                $model=  EventEmployee::getWorkday($id, $date);
-                
-		if(isset($_POST['EventEmployee']))
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['EventEmployee'];
+			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -92,9 +91,9 @@ class EventEmployeeController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['EventEmployee']))
+		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['EventEmployee'];
+			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -123,7 +122,7 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('EventEmployee');
+		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -134,10 +133,10 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new EventEmployee('search');
+		$model=new User('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['EventEmployee']))
-			$model->attributes=$_GET['EventEmployee'];
+		if(isset($_GET['User']))
+			$model->attributes=$_GET['User'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -148,12 +147,12 @@ class EventEmployeeController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return EventEmployee the loaded model
+	 * @return User the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=EventEmployee::model()->findByPk($id);
+		$model=User::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -161,66 +160,45 @@ class EventEmployeeController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param EventEmployee $model the model to be validated
+	 * @param User $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='event-employee-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
         
+        
         /**
-         * funcion para verificar por medio de la fecha los eventos donde esta el usuario 
+         * 
+         * 
          */
         
-        
-        
-        public function actionCheck(){
-         
-           $id=Yii::app()->user->id;
-           $date= date('Ymd');
-           $getevente=  EventEmployee::getWorkday($id, $date);
-        
-                
-          if ($getevente!=NULL){
+        public function actionUpdatepass(){
+            $id=Yii::app()->user->id;  
+            $model=new User;
+
+            if(isset($_POST['User']))
+                {
+                    $model=User::model()->findByPk($id);
+                    $model->attributes=$_POST['User'];
+                    $model->save();
+                    
+                }
+            
+            
            
-              $this->render('Check',array(
-			'geteve'=>$getevente,
+            $this->render('viewpass',array(
+			'model'=>$model,
 		));
-              
-          }
+            
           
-       
             
         }
-
-
-
-
-
-
-
-
-
-
-//        
-//        function actionprot(){
-//            var_dump($_GET['date']);
-//            var_dump($_GET['event_startwork']);
-//            var_dump($_GET['id']);
-//            var_dump($_GET['date_event']);
-//           
-//            $model=new EventEmployee;
-//            $model->hour_event=$_GET['date'];
-//            $model->id_type_event=$_GET['event_startwork'];
-//            $model->date=$_GET['date_event'];
-//            $model->id_employee=$_GET['id'];
-//            $model->save();
-//            
-//            
-//            
-//        }
+        
+        
+     
 }

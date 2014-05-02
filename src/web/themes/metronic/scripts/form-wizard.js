@@ -331,13 +331,13 @@ var FormWizard = function () {
                 } else {
                     $('#form_wizard_1').find('.button-previous').show();
                      $('#form_wizard_1').find('.button-next1').hide();
-//                     $('#form_wizard_1').find('.button-next').hide();
+                     $('#form_wizard_1').find('.button-next').show();
                      $('#form_wizard_1').find('.button-cancelar').show();
                      $('#form_wizard_1').find('.button-submit').show();
                 }
 
                 if (current >= total) {
-                    $('#form_wizard_1').find('.button-next').show();
+                    $('#form_wizard_1').find('.button-next').hide();
                     $('#form_wizard_1').find('.button-submit').hide();
                    
                     displayConfirm();
