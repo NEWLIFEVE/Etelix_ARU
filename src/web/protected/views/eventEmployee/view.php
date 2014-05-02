@@ -24,7 +24,8 @@ $this->menu=array(
 		'id',
 		'id_employee',
 		'date',
-		'time_event',
+		'hour_event',
 		'id_type_event',
+		'id_location',
 	),
 )); ?>

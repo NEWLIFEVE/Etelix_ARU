@@ -4,46 +4,98 @@
  * and open the template in the editor.
  */
 
+ var $ARU={};
 
-
-
-function gettime() {
-
-var time_start = $('#EventEmployee_time_start_day').val();
-var rest_start = $('#EventEmployee_time_start_rest').val();
-var rest_end = $('#EventEmployee_time_end_rest').val();
-var day_end = $('#EventEmployee_time_end_day').val();
-
-
-            if ((time_start==0) && (rest_start==0)&& (rest_end==0) ){
-                var d = new Date();
-                document.getElementById("EventEmployee_time_start_day").value=d.toLocaleTimeString();
-                document.getElementById("jornada1").value=d.toLocaleTimeString();
-                document.getElementById("jornada2").value=d.toLocaleTimeString();
+/**
+ * Modulo encargado de interaccion en interfaz
+ */
+$ARU.UI=(function(){
+    var tab=null;
+    
+     function init()
+    {
+        declare();
+        location();
+    }
+    
+    function declare()
+    {
+        
+        $('a#declare').on('click',function()
+        {
+            tab=$('.tab-pane').filter(function(){return $(this).attr('class')=='tab-pane active'}).attr('id');
+            console.log(tab);
+        });
+    }
+    
+    
+    
+    function location()
+    {
+        $('input.declare').on('click',function(){
+           
+            //Se desde que ubicacion trabajan
+            var location=this.value;
+            //Ahora se que tab estan declarando
             
-                
-            }
-            
-            if ((time_start!=="") && (rest_start==0)){
-                var d = new Date();
-                document.getElementById("EventEmployee_time_start_rest").value=d.toLocaleTimeString();
-                document.getElementById("desc1").value=d.toLocaleTimeString();
-                document.getElementById("desc2").value=d.toLocaleTimeString();
-            }
-            
-            if ((time_start!=="") && (rest_start!=="") &&(rest_end==0)){
-                var d = new Date();
-                document.getElementById("EventEmployee_time_end_rest").value=d.toLocaleTimeString();
-                
-            }
-            
-             if ((time_start!=="") && (rest_start!=="") &&(rest_end!=="")&& (day_end==0)){
-                 var d = new Date();
-                 document.getElementById("EventEmployee_time_end_day").value=d.toLocaleTimeString();
-               
-                
-            }
-          
-          
+           console.log(tab);
+           gettime();
+//           $ARU.AJAX.getEventTime("GET","/EventEmployee/prot",""); 
+           
 
-}
+        });
+    }
+    
+    function gettime()
+    {
+             var d = new Date();
+             var day_event=d.getDate();
+             var month_event=d.getMonth()+1;
+             var year_event=d.getFullYear();
+             var date_event=year_event+'-'+month_event+'-'+day_event;
+             return date_event;
+    }
+    
+    
+   
+    return {
+        init:init
+    };
+})();
+
+/**
+ * Modulo encargado dela interaccion con servidor a traves de AJAX
+ */
+$ARU.AJAX=(function(){
+    
+    
+    function getEventTime(type, action, formulario){
+        
+        $.ajax({ type: type,   
+                  url: action,   
+                data: formulario,
+                                  })
+    }
+    
+    
+    
+    /**
+	 * Inicializa las funciones del submodulo
+	 * @access public
+	 */
+	function init()
+	{
+		_getEventTime();
+	}
+
+     return {
+        init:init
+    };
+    
+})();
+
+
+
+$(document).on('ready',function(){
+   $ARU.UI.init(); 
+});

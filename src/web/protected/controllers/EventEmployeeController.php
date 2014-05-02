@@ -28,7 +28,7 @@ class EventEmployeeController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','prot'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -170,4 +170,22 @@ class EventEmployeeController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        
+        function actionprot(){
+            var_dump($_GET['date']);
+            var_dump($_GET['event_startwork']);
+            var_dump($_GET['id']);
+            var_dump($_GET['date_event']);
+           
+            $model=new EventEmployee;
+            $model->hour_event=$_GET['date'];
+            $model->id_type_event=$_GET['event_startwork'];
+            $model->date=$_GET['date_event'];
+            $model->id_employee=$_GET['id'];
+            $model->save();
+            
+            
+            
+        }
 }

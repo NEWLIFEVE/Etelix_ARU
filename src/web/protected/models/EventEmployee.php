@@ -7,12 +7,14 @@
  * @property integer $id
  * @property integer $id_employee
  * @property string $date
- * @property string $time_event
+ * @property string $hour_event
  * @property integer $id_type_event
+ * @property integer $id_location
  *
  * The followings are the available model relations:
  * @property Employee $idEmployee
  * @property TypeEvent $idTypeEvent
+ * @property Location $idLocation
  */
 class EventEmployee extends CActiveRecord
 {
@@ -32,11 +34,11 @@ class EventEmployee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_employee, id_type_event', 'numerical', 'integerOnly'=>true),
-			array('date, time_event', 'safe'),
+			array('id_employee, id_type_event, id_location', 'numerical', 'integerOnly'=>true),
+			array('date, hour_event', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_employee, date, time_event, id_type_event', 'safe', 'on'=>'search'),
+			array('id, id_employee, date, hour_event, id_type_event, id_location', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,6 +52,7 @@ class EventEmployee extends CActiveRecord
 		return array(
 			'idEmployee' => array(self::BELONGS_TO, 'Employee', 'id_employee'),
 			'idTypeEvent' => array(self::BELONGS_TO, 'TypeEvent', 'id_type_event'),
+			'idLocation' => array(self::BELONGS_TO, 'Location', 'id_location'),
 		);
 	}
 
@@ -62,8 +65,9 @@ class EventEmployee extends CActiveRecord
 			'id' => 'ID',
 			'id_employee' => 'Id Employee',
 			'date' => 'Date',
-			'time_event' => 'Time Event',
+			'hour_event' => 'Hour Event',
 			'id_type_event' => 'Id Type Event',
+			'id_location' => 'Id Location',
 		);
 	}
 
@@ -88,8 +92,9 @@ class EventEmployee extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('id_employee',$this->id_employee);
 		$criteria->compare('date',$this->date,true);
-		$criteria->compare('time_event',$this->time_event,true);
+		$criteria->compare('hour_event',$this->hour_event,true);
 		$criteria->compare('id_type_event',$this->id_type_event);
+		$criteria->compare('id_location',$this->id_location);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -106,7 +111,6 @@ class EventEmployee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-             
         /**
          * 
          */
