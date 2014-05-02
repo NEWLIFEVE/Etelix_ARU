@@ -1,4 +1,4 @@
-<?php
+<?php //
 /* @var $this EventEmployeeController */
 /* @var $model EventEmployee */
 /* @var $form CActiveForm */
@@ -11,6 +11,26 @@
 
 
 <?php date_default_timezone_set("America/Caracas" ) ;?>
+<?php
+
+
+
+
+ $div = "";
+ foreach ($model as $key => $value)
+                   {
+                     $evento= $value['event'];
+                     $hora= $value['hour'];
+                 
+                     $div.="<div class='form-group'>
+                             <label class='control-label col-md-3 letra_empleado'>".$model[$key]['hour']."</label>
+                            </div> ";
+//                    var_dump($value);
+                   
+                   }
+
+?>
+
 <div class="row">
             <div class="col-md-12">
                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
@@ -93,73 +113,61 @@
 
                               <div class="tab-content">
 
-                                 <div class="tab-pane active" id="tab1">
+<!--                                 <div class="tab-pane active" id="tab1">
 
                         <div class="form">
     
-                                <?php echo $form->errorSummary($model); ?>
+                                <?php //echo $form->errorSummary($model); ?>
 
                                     <div class="row">
                                             <?php //echo $form->labelEx($model,'id_employee'); ?>
-                                            <?php echo $form->hiddenField($model,'id_employee', array('value'=>Yii::app()->user->id)); ?>
+                                            <?php //echo $form->hiddenField($model,'id_employee', array('value'=>Yii::app()->user->id)); ?>
                                             <?php //echo $form->error($model,'id_employee'); ?>
                                     </div>
 
                                     <div class="row">
                                             <?php //echo $form->labelEx($model,'date'); ?>
-                                            <?php echo $form->hiddenField($model,'date', array('value'=>date('Ymd'))); ?>
+                                            <?php //echo $form->hiddenField($model,'date', array('value'=>date('Ymd'))); ?>
                                             <?php //echo $form->error($model,'date'); ?>
                                     </div>
 
-                       </div><!-- form -->
+                       </div> form 
 
                                  </div>
 
                                  <div class="tab-pane" id="tab2">
-                                     <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                     <?php echo $form->textField(EventEmployee::model(),'hour_event', array('class'=>'form-control input-medium')); ?>
-                                     <!--<input class="form-control input-medium" id="inicio_jornada" type="text" value="" name="inicio_jornada" />-->
-                                      <input type="text" name="evento_inicio" id="evento_inicio" value="1" />  
+                                     <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
+                                   
                                  </div>
                                  <div class="tab-pane" id="tab3">
                                      <div class="form-group">
-                                         <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                         
-                                         <!--<input class="form-control input-medium" id="jornada1" type="text" value="" name="jornada1" />-->
-                                         <!--<input type="text" name="evento_descanso_ini" id="evento_descanso_ini" value="2" />--> 
+                                         <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
+    
                                      </div> 
                                      <div class="form-group">
-                                         <label class="control-label col-md-3 letra_empleado">Inicio de Descanso</label>
-                                         <?php //echo $form->textField(EventEmployee::model(),'time_start_rest', array('class'=>'form-control input-medium')); ?>
-                                         <!--<input class="form-control input-medium" id="descanso" type="text" value="" name="descanso" />-->
-                                         
+                                         <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[1]['hour']; ?></label>
+ 
                                      </div> 
-                                 </div>
-                                 <div class="tab-pane" id="tab4">
-                                      <div class="form-group">
-                                         <label class="control-label col-md-3 letra_empleado">Inicio de Jornada Laboral</label>
-                                        <!--<input class="form-control input-medium" id="jornada2" type="text" value="" name="jornada2" />-->
+                                 </div>-->
+                                 <div class="" id="">
+                                     <?php echo $div;?>
+<!--                                      <div class="form-group">
+                                         <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
+                                        
                                      </div> 
                                      <div class="form-group">
-                                         <label class="control-label col-md-3 letra_empleado">Inicio de Descanso</label>
-                                          <!--<input class="form-control input-medium" id="desc1" type="text" value="" name="desc1" />-->
+                                         <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[1]['hour']; ?></label>
+                                         
                                      </div> 
                                        <div class="form-group">
-                                         <label class="control-label col-md-3 letra_empleado">Fin de Descanso</label>
-                                          <?php //echo $form->textField(EventEmployee::model(),'time_end_rest', array('class'=>'form-control input-medium')); ?>
-                                         <!--<input type="text" name="evento_descanso_fin" id="evento_descanso_fin" value="3" />--> 
+                                         <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[2]['hour']; ?></label>
+                                
                                         </div> 
                                         
                                       <div class="form-group">
-                                         <label class="control-label col-md-3 letra_empleado">Fin de Jornada Laboral</label>
-                                          <?php //echo $form->textField(EventEmployee::model(),'time_end_day', array('class'=>'form-control input-medium')); ?>
-                                         <!--<input type="text" name="evento_jornada_fin" id="evento_jornada_fin" value="4" />--> 
-                                        </div> 
-                                   
-                                    
-
-                                    
-
+                                         <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[1]['hour']; ?></label>
+                                      
+                                        </div> -->
                                  </div>
 
                                  </div>
@@ -203,7 +211,7 @@
                                  
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Puesto de Trabajo' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(1)')); ?>
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Remoto' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(2)')); ?>
-                                            <?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Save', array('class'=>'btn green button-submit')); ?>
+                                            <?php //echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Save', array('class'=>'btn green button-submit')); ?>
                                             
                                             
                                             
@@ -219,4 +227,7 @@
                   </div>
                </div>
             </div>
+             
+
+             
            <?php $this->endWidget(); ?></div>

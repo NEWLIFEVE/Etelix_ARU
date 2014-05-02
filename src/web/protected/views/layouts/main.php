@@ -392,7 +392,7 @@
                                               <li class='divider'></li>
                                               <li><a href='javascript:;' id='trigger_fullscreen'><i class='icon-move'></i> Full Screen</a>
                                               </li>-->
-                                              <li><a href='extra_lock.html'><i class='icon-lock'></i> Cambiar Contraseña</a>
+                                              <li><a href='/User/Updatepass'><i class='icon-lock'></i> Cambiar Contraseña</a>
                                               </li>
                                               <li><a href='/site/logout'><i class='icon-key'></i> Log Out</a>
                                               </li>
