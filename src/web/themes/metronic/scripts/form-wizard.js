@@ -307,17 +307,20 @@ var FormWizard = function () {
             }
 
             var handleTitle = function(tab, navigation, index) {
+             
                 var total = navigation.find('li').length;
+                var contbd=$('#contador').val();
                 
-                var current = index + 1;
+                var current = 0 + 1;
                 
                 // set wizard title
-                $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
+                $('.step-title', $('#form_wizard_1')).text('Paso ' + (contbd + 1) + ' de ' + total);
                 // set done steps
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
-                for (var i = 0; i < index; i++) {
-                    console.log(index);
+                for (var i = 0; i < contbd; i++) {
+              
+                   
                     jQuery(li_list[i]).addClass("done");
                 }
 
@@ -356,9 +359,9 @@ var FormWizard = function () {
                 onTabClick: function (tab, navigation, index, clickedIndex) {
                     success.hide();
                     error.hide();
-                    if (form.valid() == false) {
+//                    if (form.valid() == false) {}
                         return false;
-                    }
+                    
                     handleTitle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
@@ -379,7 +382,10 @@ var FormWizard = function () {
                 },
                 onTabShow: function (tab, navigation, index) {
                     var total = navigation.find('li').length;
-                    var current = index + 1;
+                    var contbd=$('#contador').val();
+                    
+                    var cont=contbd-1;
+                    var current = cont + 1;
                     var $percent = (current / total) * 100;
                     var prueba=$('#EventEmployee_time_start_day').val();
                     

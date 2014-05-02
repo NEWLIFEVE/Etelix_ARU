@@ -10,7 +10,6 @@
 )); ?>
 
 
-<?php date_default_timezone_set("America/Caracas" ) ;?>
 <?php
 
 
@@ -21,13 +20,16 @@
                    {
                      $evento= $value['event'];
                      $hora= $value['hour'];
-                 
-                     $div.="<div class='form-group'>
+              
+                     $div.="<div class='form-group' id='tab".$key."'>
                              <label class='control-label col-md-3 letra_empleado'>".$model[$key]['hour']."</label>
+                            
                             </div> ";
-//                    var_dump($value);
-                   
+                     
+                    
+                    
                    }
+                   
 
 ?>
 
@@ -113,7 +115,7 @@
 
                               <div class="tab-content">
 
-<!--                                 <div class="tab-pane active" id="tab1">
+                                 <div class="tab-pane active" id="tab1">
 
                         <div class="form">
     
@@ -131,7 +133,7 @@
                                             <?php //echo $form->error($model,'date'); ?>
                                     </div>
 
-                       </div> form 
+                       </div>
 
                                  </div>
 
@@ -148,10 +150,11 @@
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[1]['hour']; ?></label>
  
                                      </div> 
-                                 </div>-->
-                                 <div class="" id="">
+                                 </div>
+                                 <div class="" id="tab4">
                                      <?php echo $div;?>
-<!--                                      <div class="form-group">
+                                     <input type="hidden" value="<?php  echo $contador=count($model); ?>" id="contador"/>
+                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
                                         
                                      </div> 
@@ -167,7 +170,7 @@
                                       <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[1]['hour']; ?></label>
                                       
-                                        </div> -->
+                                        </div> 
                                  </div>
 
                                  </div>
