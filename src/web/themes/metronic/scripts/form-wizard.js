@@ -42,6 +42,9 @@ var FormWizard = function () {
                     return m;
                 }
             });
+            
+       
+          
 
             var form = $('#event-employee-form');
             var error = $('.alert-danger', form);
@@ -314,35 +317,33 @@ var FormWizard = function () {
 
             var handleTitle = function(tab, navigation, index) {
             
-
+                alert (index);
                 var total = navigation.find('li').length;
+               
                 var contbd=$('#contador').val();
-                var contot=contbd-1;
-                var continde=contot+index;
-                alert (continde);
-                var current = 0 + 1;
-                
+               
+                var current = index + 1;
+               
                 
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
        
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
-                for (var i = 0; i < index; i++) {
               
- 
-                    jQuery(li_list[i]).addClass("done");
-                  
+                for (var i = 0; i < index; i++) {
+                    jQuery(li_list[i]).addClass("done");                
                 }
 
                 if (current == 1) {
                     $('#form_wizard_1').find('.button-previous').hide();
-                     $('#form_wizard_1').find('.button-next1').show();
-                     $('#form_wizard_1').find('.button-next').show();
-                      $('#form_wizard_1').find('.button-cancelar').hide();
-                       $('#form_wizard_1').find('.button-submit').hide();
+                    $('#form_wizard_1').find('.button-next1').show();
+                    $('#form_wizard_1').find('.button-next').show();
+                    $('#form_wizard_1').find('.button-cancelar').hide();
+                    $('#form_wizard_1').find('.button-submit').hide();
                     
                 } else {
-                    $('#form_wizard_1').find('.button-previous').show();
+                 
+                     $('#form_wizard_1').find('.button-previous').show();
                      $('#form_wizard_1').find('.button-next1').hide();
                      $('#form_wizard_1').find('.button-next').show();
                      $('#form_wizard_1').find('.button-cancelar').show();
@@ -357,12 +358,10 @@ var FormWizard = function () {
                 } else {
                    
                     $('#form_wizard_1').find('.button-submit').show();
-                 
                 }
                 App.scrollTo($('.page-title'));
             }
 
-            // default form wizard
             $('#form_wizard_1').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
@@ -370,17 +369,17 @@ var FormWizard = function () {
                     success.hide();
                     error.hide();
 //                    if (form.valid() == false) {}
-                        return false;
+                        return false;//para desactivar que el usuario pueda navegar con los botones de arriba
                     
                     handleTitle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
-
-                    if (form.valid() == false) {
-                        return false;
-                    }
+//
+//                    if (form.valid() == false) {
+//                        return false;
+//                    }
 
                     handleTitle(tab, navigation, index);
                 },
@@ -402,21 +401,6 @@ var FormWizard = function () {
                         $('#form_wizard_1').find('.progress-bar').css({
                         width: $percent + '%'
                     });
-//                   if (prueba==""){
-//                          $('#form_wizard_1').find('.progress-bar').css({
-//                        width: 25 + '%'
-//                    });
-//                   }
-//                   
-//                   else {
-//                        $('#form_wizard_1').find('.progress-bar').css({
-//                        width: 50 + '%'
-//                    });
-//                       
-//                   }
-                   
-                   
-                   
                 }
             });
 

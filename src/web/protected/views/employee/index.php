@@ -212,8 +212,14 @@
                                                 <tr>
                                                    <td class="letra_empleado">Calle/Avenida</td>
                                                    <td><?php echo $model->address_room;?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                   <td class="letra_empleado">Edificio</td>
+                                                   <td><?php echo $model->edifice;?></td>    
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Piso</td>
+                                                   <td><?php echo $model->floor;?></td>
+                                                   <td class="letra_empleado">Casa/Nro de Casa</td>
+                                                    <td><?php echo $model->house;?></td>   
                                                 </tr>
                                              </tbody>
                                           </table>
@@ -398,7 +404,22 @@
                                           <label class="control-label">Calle/Avenida</label>
                                           <?php echo $form->textField($model,'address_room', array('class'=>'form-control', 'value'=>$model->address_room)); ?>
                                        </div>
+                                     
+                                     <div class="form-group">
+                                          <label class="control-label">Edificio</label>
+                                          <?php echo $form->textField($model,'edifice', array('class'=>'form-control', 'value'=>$model->edifice)); ?>
+                                       </div>
+                                     
+                                      <div class="form-group">
+                                          <label class="control-label">Piso</label>
+                                          <?php echo $form->textField($model,'floor', array('class'=>'form-control', 'value'=>$model->floor)); ?>
+                                       </div>
                                    
+                                     
+                                      <div class="form-group">
+                                          <label class="control-label">Casa/Nro de Casa</label>
+                                          <?php echo $form->textField($model,'house', array('class'=>'form-control', 'value'=>$model->house)); ?>
+                                       </div>
                                  </div>
                                      <div>
                                           <input type="submit" value="enviar" class="btn blue button-submit centrar_botones"/>  
