@@ -563,7 +563,8 @@
    
    <!-- END PAGE LEVEL PLUGINS -->
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-   <script src="/themes/metronic/scripts/form-components.js"></script> 
+   <script src="/themes/metronic/scripts/form-components.js"></script>
+   <script src="/themes/metronic/scripts/form-validation.js"></script> 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js" />
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js"></script>
 
@@ -576,6 +577,7 @@
         Login.init();
         FormWizard.init();
         FormComponents.init();
+        FormValidation.init();
       });
    </script>
 </body>

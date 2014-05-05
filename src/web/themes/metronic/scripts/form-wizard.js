@@ -137,6 +137,12 @@ var FormWizard = function () {
                   
                       required: true
                     },
+                    
+                    'User[password]': {
+                        minlength: 5,
+                        required: true
+                    },
+                    
                     rpassword: {
                         minlength: 5,
                         required: true,
@@ -307,21 +313,25 @@ var FormWizard = function () {
             }
 
             var handleTitle = function(tab, navigation, index) {
-             
+            
+
                 var total = navigation.find('li').length;
                 var contbd=$('#contador').val();
-                
+                var contot=contbd-1;
+                var continde=contot+index;
+                alert (continde);
                 var current = 0 + 1;
                 
-                // set wizard title
-                $('.step-title', $('#form_wizard_1')).text('Paso ' + (contbd + 1) + ' de ' + total);
-                // set done steps
+                
+                $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
+       
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
-                for (var i = 0; i < contbd; i++) {
+                for (var i = 0; i < index; i++) {
               
-                   
+ 
                     jQuery(li_list[i]).addClass("done");
+                  
                 }
 
                 if (current == 1) {
@@ -387,7 +397,7 @@ var FormWizard = function () {
                     var cont=contbd-1;
                     var current = cont + 1;
                     var $percent = (current / total) * 100;
-                    var prueba=$('#EventEmployee_time_start_day').val();
+                 
                     
                         $('#form_wizard_1').find('.progress-bar').css({
                         width: $percent + '%'
@@ -418,11 +428,7 @@ var FormWizard = function () {
                
             }).hide();
             
-            
-           $('div.hacerUnaNota, div.quitaNota').click('on',function()
-{
-    $('div.hacerUnaNota, div.quitaNota, div.contratoFormTextArea').toggle('fast');
-});
+
         }
 
     };

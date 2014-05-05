@@ -25,9 +25,6 @@
                              <label class='control-label col-md-3 letra_empleado'>".$model[$key]['hour']."</label>
                             
                             </div> ";
-                     
-                    
-                    
                    }
                    
 
@@ -153,7 +150,7 @@
                                  </div>
                                  <div class="" id="tab4">
                                      <?php echo $div;?>
-                                     <input type="hidden" value="<?php  echo $contador=count($model); ?>" id="contador"/>
+                                     <input type="text" value="<?php  echo $contador=count($model); ?>" id="contador"/>
                                       <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
                                         

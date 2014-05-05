@@ -215,9 +215,6 @@
                                                    <td></td>
                                                    <td></td>
                                                 </tr>
-                                                
-                                                 
-                                               
                                              </tbody>
                                           </table>
                                           </div>
@@ -277,7 +274,7 @@
                                                   </div>
                                                   <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Nombre</label>
-                                                        <?php echo $form->textField($model,'secon_name', array('class'=>'form-control input-medium', 'value'=>$model->secon_name)); ?>
+                                                        <?php echo $form->textField($model,'secon_name', array('class'=>'form-control input-xmedium', 'value'=>$model->secon_name)); ?>
                                                   </div>
                                             </div>
                                              <div class="contenidos_columnas ">
@@ -287,7 +284,7 @@
                                                  </div>
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Apellido</label>
-                                                         <?php echo $form->textField($model,'secon_last_name', array('class'=>'form-control input-medium', 'value'=>$model->secon_last_name)); ?>
+                                                         <?php echo $form->textField($model,'secon_last_name', array('class'=>'form-control input-xmedium', 'value'=>$model->secon_last_name)); ?>
                                                  </div>
                                             </div>
                                             <div class="contenidos_columnas">
