@@ -177,26 +177,31 @@ class UserController extends Controller
          * 
          */
         
-        public function actionUpdatepass(){
+        public function actionUpdatePass(){
             $id=Yii::app()->user->id;  
             $model=new User;
 
             if(isset($_POST['User']))
                 {
-                    $model=User::model()->findByPk($id);
-                    $model->attributes=$_POST['User'];
-                    $model->save();
+                    $last_pass=($_POST['User']['confir_pass']);
+                    $validate_pass=User::model()->getPass($last_pass);
+                            if ($validate_pass!=NULL){
+                                 $model=User::model()->findByPk($id);
+                                 $model->attributes=$_POST['User'];
+                                 $model->save();
+                                 $this->redirect(array('Updatepass'));
+                            }
                     
+                            else {
+                                echo "contraseña no valida";    
+                            }
+
                 }
-            
-            
-           
+
             $this->render('viewpass',array(
 			'model'=>$model,
 		));
-            
-          
-            
+
         }
         
         

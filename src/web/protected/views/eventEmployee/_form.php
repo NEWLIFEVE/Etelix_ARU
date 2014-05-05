@@ -10,7 +10,6 @@
 )); ?>
 
 
-<?php date_default_timezone_set("America/Caracas" ) ;?>
 <?php
 
 
@@ -21,13 +20,13 @@
                    {
                      $evento= $value['event'];
                      $hora= $value['hour'];
-                 
-                     $div.="<div class='form-group'>
+              
+                     $div.="<div class='form-group' id='tab".$key."'>
                              <label class='control-label col-md-3 letra_empleado'>".$model[$key]['hour']."</label>
+                            
                             </div> ";
-//                    var_dump($value);
-                   
                    }
+                   
 
 ?>
 
@@ -79,7 +78,7 @@
 
                         <div class="form-wizard">
                            <div class="form-body">
-                              <ul class="nav nav-pills nav-justified steps">
+                              <ul class="nav nav-pills nav-justified steps" id="naivig">
                                  <li>
                                     <a href="#tab1" data-toggle="tab" class="step">
                                     <span class="number">1</span>
@@ -113,7 +112,7 @@
 
                               <div class="tab-content">
 
-<!--                                 <div class="tab-pane active" id="tab1">
+                                 <div class="tab-pane active" id="tab1">
 
                         <div class="form">
     
@@ -131,15 +130,15 @@
                                             <?php //echo $form->error($model,'date'); ?>
                                     </div>
 
-                       </div> form 
+                       </div>
 
                                  </div>
 
-                                 <div class="tab-pane" id="tab2">
+<!--                                 <div class="tab-pane" id="tab2">
                                      <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
                                    
-                                 </div>
-                                 <div class="tab-pane" id="tab3">
+                                 </div>-->
+<!--                                 <div class="tab-pane" id="tab3">
                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
     
@@ -149,8 +148,9 @@
  
                                      </div> 
                                  </div>-->
-                                 <div class="" id="">
+                                 <div class="" id="tab4">
                                      <?php echo $div;?>
+                                     <input type="hidden" value="<?php  echo $contador=count($model); ?>" id="contador"/>
 <!--                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
                                         

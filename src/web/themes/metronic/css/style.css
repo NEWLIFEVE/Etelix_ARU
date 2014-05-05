@@ -4136,3 +4136,29 @@ Responsive Flip Scroll Tables
   .flip-scroll th:last-child,
   .flip-scroll td:last-child { border-bottom: 1px solid #ddd; }
 }
+
+
+
+#contenedor {
+  display: table;
+  border-spacing: 5px;
+  margin-left: 30%;
+
+}
+#contenidos {
+  display: table-row;
+}
+#principal, #secundario{
+  display: table-cell;
+}
+#principal {
+  width: 60%;
+}
+#secundario{
+  width: 20%;
+}
+
+#secundariosed{
+    margin-left: 60%; 
+  width: 40%;
+}

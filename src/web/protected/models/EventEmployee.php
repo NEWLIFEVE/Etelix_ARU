@@ -18,7 +18,8 @@
  */
 class EventEmployee extends CActiveRecord
 {
-	/**
+    public $confir_pass;
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()

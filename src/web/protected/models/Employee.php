@@ -27,13 +27,11 @@
  * @property integer $id_city
  * @property string $secon_name
  * @property string $secon_last_name
+ * @property string $edifice
+ * @property string $house
+ * @property string $floor
  *
  * The followings are the available model relations:
- * @property EducationEmployee[] $educationEmployees
- * @property EventEmployee[] $eventEmployees
- * @property User[] $users
- * @property ChildrenEmployee[] $childrenEmployees
- * @property EmergencyReference[] $emergencyReferences
  * @property Position $idPosition
  * @property Employee $idSupervisor
  * @property Employee[] $employees
@@ -44,6 +42,11 @@
  * @property Nationality $idNationality
  * @property City $idCity
  * @property Country $idCountry
+ * @property EducationEmployee[] $educationEmployees
+ * @property EventEmployee[] $eventEmployees
+ * @property User[] $users
+ * @property ChildrenEmployee[] $childrenEmployees
+ * @property EmergencyReference[] $emergencyReferences
  * @property LanguageEmployee[] $languageEmployees
  */
 class Employee extends CActiveRecord
@@ -65,10 +68,10 @@ class Employee extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_position, id_supervisor, id_education, id_marital_status, id_country, id_gender, id_states, id_nationality, id_city', 'numerical', 'integerOnly'=>true),
-			array('first_name, last_name, date_birth, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, secon_name, secon_last_name', 'safe'),
+			array('first_name, last_name, date_birth, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, secon_name, secon_last_name, edifice, house, floor', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_country, id_gender, id_states, id_nationality, id_city, secon_name, secon_last_name', 'safe', 'on'=>'search'),
+			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, address_room, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_country, id_gender, id_states, id_nationality, id_city, secon_name, secon_last_name, edifice, house, floor', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,11 +83,6 @@ class Employee extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'educationEmployees' => array(self::HAS_MANY, 'EducationEmployee', 'id_employee'),
-			'eventEmployees' => array(self::HAS_MANY, 'EventEmployee', 'id_employee'),
-			'users' => array(self::HAS_MANY, 'User', 'id_employee'),
-			'childrenEmployees' => array(self::HAS_MANY, 'ChildrenEmployee', 'id_employee'),
-			'emergencyReferences' => array(self::HAS_MANY, 'EmergencyReference', 'id_employee'),
 			'idPosition' => array(self::BELONGS_TO, 'Position', 'id_position'),
 			'idSupervisor' => array(self::BELONGS_TO, 'Employee', 'id_supervisor'),
 			'employees' => array(self::HAS_MANY, 'Employee', 'id_supervisor'),
@@ -95,6 +93,11 @@ class Employee extends CActiveRecord
 			'idNationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
 			'idCity' => array(self::BELONGS_TO, 'City', 'id_city'),
 			'idCountry' => array(self::BELONGS_TO, 'Country', 'id_country'),
+			'educationEmployees' => array(self::HAS_MANY, 'EducationEmployee', 'id_employee'),
+			'eventEmployees' => array(self::HAS_MANY, 'EventEmployee', 'id_employee'),
+			'users' => array(self::HAS_MANY, 'User', 'id_employee'),
+			'childrenEmployees' => array(self::HAS_MANY, 'ChildrenEmployee', 'id_employee'),
+			'emergencyReferences' => array(self::HAS_MANY, 'EmergencyReference', 'id_employee'),
 			'languageEmployees' => array(self::HAS_MANY, 'LanguageEmployee', 'id_employee'),
 		);
 	}
@@ -128,6 +131,9 @@ class Employee extends CActiveRecord
 			'id_city' => 'Id City',
 			'secon_name' => 'Secon Name',
 			'secon_last_name' => 'Secon Last Name',
+			'edifice' => 'Edifice',
+			'house' => 'House',
+			'floor' => 'Floor',
 		);
 	}
 
@@ -172,6 +178,9 @@ class Employee extends CActiveRecord
 		$criteria->compare('id_city',$this->id_city);
 		$criteria->compare('secon_name',$this->secon_name,true);
 		$criteria->compare('secon_last_name',$this->secon_last_name,true);
+		$criteria->compare('edifice',$this->edifice,true);
+		$criteria->compare('house',$this->house,true);
+		$criteria->compare('floor',$this->floor,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -189,9 +198,7 @@ class Employee extends CActiveRecord
 		return parent::model($className);
 	}
         
-        
-        
-        
+          
         /**
          * 
          * 
@@ -222,4 +229,6 @@ class Employee extends CActiveRecord
          public function getcity() {
             return  CHtml::ListData(City::model()->findAll(),"id","name"); 
         }
+        
+        
 }
