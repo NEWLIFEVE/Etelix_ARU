@@ -83,8 +83,10 @@ $ARU.AJAX=(function(){
                  url: action,   
                  data: formulario,
                 success:function(data){
-                    
-                    console.log(data);
+                    result=JSON.parse(data);
+                    id=result.event;
+                    console.log(id);
+                    $('div#tab'+id+' label').html(result.hour);
                     
                 }
          })

@@ -215,6 +215,7 @@ class EventEmployeeController extends Controller
         
         if(isset($_GET['location']) && isset($_GET['date_event']) && isset($_GET['time_event']))
         {
+            $last=null;
             $id = Yii::app()->user->id;
             $date = date('Ymd');
             $eventos = EventEmployee::getWorkday($id, $date);
@@ -236,7 +237,7 @@ class EventEmployeeController extends Controller
                 $model->id_employee = $id;
                 $model->id_location = Location::getId($_GET['location']);
                 if($model->save())
-                    echo 'succes';
+                    echo json_encode(array('event'=>$model->id_type_event,'hour'=>$model->hour_event));
                 else
                     echo 'fallo';
             }
