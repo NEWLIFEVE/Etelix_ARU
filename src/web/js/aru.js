@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+
+
+
  var $ARU={};
 
 /**
@@ -16,6 +19,9 @@ $ARU.UI=(function(){
     {
         declare();
         location();
+        loadIndex();
+       
+        
     }
     
     function declare()
@@ -31,8 +37,9 @@ $ARU.UI=(function(){
     
     function location()
     {
-        $('input.declare').on('click',function(){
-           
+        
+      
+        $('input.declare').on('click',function(){  
             //Se desde que ubicacion trabajan
             var location=this.value;
             //Ahora se que tab estan declarando
@@ -62,6 +69,16 @@ $ARU.UI=(function(){
              }
     }
     
+    function loadIndex(){
+        
+      
+        
+    }
+    
+  
+    
+    
+    
     
    
     return {
@@ -86,11 +103,26 @@ $ARU.AJAX=(function(){
                     result=JSON.parse(data);
                     id=result.event;
                     console.log(id);
+                    $('#contador').val(id);
                     $('div#tab'+id+' label').html(result.hour);
-                    
+                  
+                  
+                   
+                   
+                   
+                     var current = id + 1;
+                     var $percent = (current / 4) * 100;
+                     
+                       $('#form_wizard_1').find('.progress-bar').css({
+                        width: $percent + '%'
+                    });
                 }
          })
     }
+    
+    
+    
+ 
 
     /**
 	 * Inicializa las funciones del submodulo
@@ -112,4 +144,6 @@ $ARU.AJAX=(function(){
 
 $(document).on('ready',function(){
    $ARU.UI.init(); 
+  
+   
 });

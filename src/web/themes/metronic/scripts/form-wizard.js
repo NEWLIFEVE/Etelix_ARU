@@ -44,8 +44,11 @@ var FormWizard = function () {
             });
             
        
-          
-
+        
+            $('#form_wizard_1').find('#aceptar').hide();
+            
+   
+            
             var form = $('#event-employee-form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
@@ -317,48 +320,52 @@ var FormWizard = function () {
 
             var handleTitle = function(tab, navigation, index) {
             
-//                alert (index);
+
                 var total = navigation.find('li').length;
                
                 var contbd=$('#contador').val();
-               
+              
                 var current = index + 1;
                
-                
+              
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
        
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
               
-                for (var i = 0; i < index; i++) {
+                for (var i = 0; i < contbd; i++) {
                     jQuery(li_list[i]).addClass("done");                
                 }
 
-                if (current == 1) {
-//                    $('#form_wizard_1').find('.button-previous').hide();
-//                    $('#form_wizard_1').find('.button-next1').show();                    
-                    $('#form_wizard_1').find('.button-acept').hide();
-                    $('#form_wizard_1').find('.button-next').show();
-//                    $('#form_wizard_1').find('.button-submit').hide();
+                if (current == 0) {
+                    
+                    $('#form_wizard_1').find('#puesto_trabajo').hide();
+                    $('#form_wizard_1').find('#aceptar').show();
+                    $('#form_wizard_1').find('#remoto').hide();
+
                     
                 } else {
-                 
-                     $('#form_wizard_1').find('.button-previous').show();
-                     $('#form_wizard_1').find('.button-next1').hide();
-                     $('#form_wizard_1').find('.button-next').show();
-                     $('#form_wizard_1').find('.button-cancelar').show();
-                     $('#form_wizard_1').find('.button-submit').show();
+              
+                     $('#form_wizard_1').find('#aceptar').show();
+                     $('#form_wizard_1').find('#puesto_trabajo').hide();
+                     $('#form_wizard_1').find('#remoto').hide();
+                     $('#form_wizard_1').find('.btdeclare').show();
                 }
 
                 if (current >= total) {
-                    $('#form_wizard_1').find('.button-next').hide();
+                    $('#form_wizard_1').find('.button-next').show();
                     $('#form_wizard_1').find('.button-submit').hide();
-                   
-                    displayConfirm();
+                   $('#form_wizard_1').find('.btdeclare').show();
+                    
                 } else {
                    
                     $('#form_wizard_1').find('.button-submit').show();
+                    $('#form_wizard_1').find('.button-next').hide();
+                    $('#form_wizard_1').find('.btdeclare').show();
+                    
                 }
+                
+              
                 App.scrollTo($('.page-title'));
             }
 

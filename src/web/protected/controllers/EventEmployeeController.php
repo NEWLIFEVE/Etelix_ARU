@@ -80,7 +80,7 @@ class EventEmployeeController extends Controller
                 $id=Yii::app()->user->id;
                 $date= date('Ymd');
                 $eventos=  EventEmployee::getWorkday($id, $date);
-                
+ 
 //		if(isset($_POST['EventEmployee']))
 //		{
 //			$model->attributes=$_POST['EventEmployee'];
@@ -244,5 +244,14 @@ class EventEmployeeController extends Controller
         }else{
             echo 'no set';
         }
+    }
+    
+    
+    function actionInformacion(){
+        
+            $id = Yii::app()->user->id;
+            $date = date('Ymd');
+            $eventos = EventEmployee::getWorkday($id, $date);
+            echo json_encode($eventos);
     }
 }

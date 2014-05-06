@@ -192,7 +192,7 @@ for($i=1;$i<5;$i++)
                               <div class="row">
                                  <div class="col-md-12">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <a id="declare" class="btn blue " data-toggle="modal" href="#responsive"><i class="">Declarar</i>
+                                        <a id="declare" class="btn blue btdeclare " data-toggle="modal" href="#responsive"><i class="">Declarar</i>
                                            
                                         </a>
                                     </div>
@@ -216,13 +216,13 @@ for($i=1;$i<5;$i++)
                                     </div>
                                  </div>
                               </div>
-                              <div class="modal-footer">
+                              <div class="modal-footer" id="modale">
                                   <!--<a href="javascript:;"><i class=""></i><input type="button" value="Atras"  class="btn blue button-previous"  data-dismiss="modal"/></a>-->
                                   <!--<a href="javascript:;"><i class=""></i><input type="button" value="Cancelar"  class="btn green button-cancelar"  data-dismiss="modal"/></a>-->
-                                  <a href="javascript:;"><i class=""></i><input type="button" value="Aceptar" id="aceptar" class="btn blue button-acept declare"  data-dismiss="modal"/></a> 
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Aceptar" id="aceptar" class="btn blue button-next declare"  data-dismiss="modal"/></a> 
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Trabajo" id="puesto_trabajo" class="btn blue button-next declare"  data-dismiss="modal"/></a>
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Remoto" id="remoto" class="btn blue button-next declare"  data-dismiss="modal"/></a>  
-                                   
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Aceptar" id="aceptar_fin" class="btn blue button-submit declare"  data-dismiss="modal"/></a>  
                                  
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Puesto de Trabajo' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(1)')); ?>
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Remoto' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(2)')); ?>

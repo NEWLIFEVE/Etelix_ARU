@@ -102,7 +102,7 @@ class Location extends CActiveRecord
 		{
 			$location=self::model()->find('name=:name',array(':name'=>$name));
 			if($location!=null) return $location->id;
-			else return false;
+			else return null;
 		}
 	}
 }
