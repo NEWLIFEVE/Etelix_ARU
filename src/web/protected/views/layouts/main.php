@@ -37,7 +37,7 @@
 
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/style-responsive.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/plugins.css" />
-   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/themes/default.css" />
+   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/themes/light.css" />
 
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/pages/login-soft.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/custom.css" />
@@ -58,12 +58,12 @@
    
    
    
-   
+
    
    
 
    <!-- END THEME STYLES -->
-   <link rel="shortcut icon" href="favicon.ico" />
+   <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -381,7 +381,7 @@
                                            <i class='icon-angle-down'></i>
                                            </a>
                                            <ul class='dropdown-menu'>
-                                              <li><a href='extra_profile.html'><i class='icon-user'></i> My Profile</a>
+                                              <li><a href='/Employee/'><i class='icon-user'></i> Mi Perfil</a>
                                               </li>
                                              <!-- <li><a href='page_calendar.html'><i class='icon-calendar'></i> My Calendar</a>
                                               </li>
@@ -392,7 +392,7 @@
                                               <li class='divider'></li>
                                               <li><a href='javascript:;' id='trigger_fullscreen'><i class='icon-move'></i> Full Screen</a>
                                               </li>-->
-                                              <li><a href='extra_lock.html'><i class='icon-lock'></i> Lock Screen</a>
+                                              <li><a href='/User/Updatepass'><i class='icon-lock'></i> Cambiar Contraseña</a>
                                               </li>
                                               <li><a href='/site/logout'><i class='icon-key'></i> Log Out</a>
                                               </li>
@@ -431,7 +431,7 @@
                                                    </form>
                                                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
                                                 </li>
-                                                <li class='start active '>
+                                                <li class='start active'>
                                                    <a href='/'>
                                                    <i class='icon-home'></i> 
                                                    <span class='title'>Inicio</span>
@@ -439,35 +439,15 @@
                                                    </a>
                                                 </li>
                                                
-                                             
-                                            
-                                             
-                                               
-                                               
-                                                <li class=''>
-                                                   <a href='javascript:;'>
+                                             <li class='' href='javascript:;'>
+                                                   <a href='/EventEmployee/Create'>
                                                    <i class='icon-user'></i> 
-                                                   <span class='title'>Usuarios</span>
-                                                   <span class='arrow '></span>
+                                                   <span class='title'>Declarar</span>
+                                                   <span class='selected'></span>
                                                    </a>
-                                                   <ul class='sub-menu'>
-                                                      <li >
-                                                         <a href='/employee/'>
-                                                         Datos Empleados</a>
-                                                      </li>
-                                                      <li >
-                                                         <a href='login_soft.html'>
-                                                         Programación de Jornada Laboral</a>
-                                                      </li>
-                                                      <li >
-                                                         <a href='login_soft.html'>
-                                                         Programación de Guardías</a>
-                                                      </li>
-                                                   </ul>
                                                 </li>
-                                              
-                                            
-                                              
+                                             
+
                                              </ul>
                                              <!-- END SIDEBAR MENU -->
                                           </div>
@@ -583,12 +563,13 @@
    
    <!-- END PAGE LEVEL PLUGINS -->
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-   <script src="/themes/metronic/scripts/form-components.js"></script>  
+   <script src="/themes/metronic/scripts/form-components.js"></script>
+   <script src="/themes/metronic/scripts/form-validation.js"></script> 
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js" />
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js"></script>
+
      <!-- END PAGE LEVEL SCRIPTS -->
-   
-   
-   
-   
+
    
    <script>
       jQuery(document).ready(function() {     
@@ -596,6 +577,7 @@
         Login.init();
         FormWizard.init();
         FormComponents.init();
+        FormValidation.init();
       });
    </script>
 </body>

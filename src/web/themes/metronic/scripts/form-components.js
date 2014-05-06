@@ -521,7 +521,7 @@ var FormComponents = function () {
         $("#mask_date2").inputmask("d/m/y", {
             "placeholder": "dd/mm/yyyy"
         }); //multi-char placeholder
-        $("#cellphone").inputmask("mask", {
+        $("#cellphone1").inputmask("mask", {
             "mask": "(9999) 999-9999"
         });//specifying fn & options
         
@@ -551,7 +551,7 @@ var FormComponents = function () {
             "greedy": false
         }); // ~ mask "9" or mask "99" or ... mask "9999999999"
         
-        $("#mask_ci").inputmask({
+        $("#mask_c").inputmask({
             "mask": "9",
             "repeat": 10,
             "greedy": false

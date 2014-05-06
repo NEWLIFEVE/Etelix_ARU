@@ -9,12 +9,12 @@ var FormWizard = function () {
             }
 
             function format(state) {
-                if (!state.id) return state.text; // optgroup
-                return "<img class='flag' src='/themes/metronic/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
+                if (!state.id1) return state.text; // optgroup
+                return "<img class='flag' src='/themes/metronic/img/flags/" + state.id1.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
             }
 
-            $("#country_list").select2({
-                placeholder: "Select",
+            $("#Employee_id_country").select2({
+                placeholder: "Seleccione el País",
                 allowClear: true,
                 formatResult: format,
                 formatSelection: format,
@@ -22,8 +22,31 @@ var FormWizard = function () {
                     return m;
                 }
             });
+            
+             $("#Employee_id_states").select2({
+                placeholder: "Seleccione el Estado",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+            
+             $("#Employee_id_city").select2({
+                placeholder: "Seleccione el Estado",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+            
+       
+          
 
-            var form = $('#submit_form');
+            var form = $('#event-employee-form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -34,32 +57,33 @@ var FormWizard = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
                     //account
-                    first_name: {
-                        minlength: 5,
+                    'Employee[first_name]': {
+                    
                         required: true
                     },
-                    last_name: {
-                        minlength: 5,
+                    'Employee[last_name]': {
+                      
                         required: true
                     },
                     
-                     identity_card: {
+                     'Employee[identity_card]': {
                         minlength: 7,
                         required: true,
                    
                     },
                     
-                    date_birth: {
+                    'Employee[date_birth]': {
+                        
+                        required: true,
+                        date: true
+                    },
+                    
+                    'Employee[nationality]': {
                       
                         required: true
                     },
                     
-                    nationality: {
-                      
-                        required: true
-                    },
-                    
-                     state_marital: {
+                     'Employee[state_marital]': {
                   
                         required: true
                     },
@@ -67,6 +91,38 @@ var FormWizard = function () {
                     level_education: {
                   
                         required: true
+                    },
+                    
+                    
+                    id_profession: {
+                  
+                        required: true
+                    },
+                    
+                    
+                      date_start: {
+                        date: true,  
+                        required: true
+                    },
+                    
+                     date_end: {
+                        date: true,  
+                        required: true
+                    },
+                    
+                     id_course: {
+                        
+                        required: false
+                    },
+                    
+                    date_start_cur: {
+                        
+                        required: false
+                    },
+                    
+                    date_end_cur: {
+                        
+                        required: false
                     },
                     
                      mask_cuenta: {
@@ -84,6 +140,12 @@ var FormWizard = function () {
                   
                       required: true
                     },
+                    
+                    'User[password]': {
+                        minlength: 5,
+                        required: true
+                    },
+                    
                     rpassword: {
                         minlength: 5,
                         required: true,
@@ -93,20 +155,24 @@ var FormWizard = function () {
                     fullname: {
                         required: true
                     },
-                    email: {
+                    'Employee[email_personal]': {
                         required: true,
                         email: true
                     },
                     
-                     email_company: {
+                     'Employee[email_company]': {
                         required: true,
                         email: true
                     },
-                    cellphone: {
+                    'Employee[cellphone]': {
                         required: true
                     },
                     
-                     officephone: {
+                    'Employee[officephone]': {
+                        required: true
+                    },
+                    
+                     'Employee[home_phone]': {
                         required: true
                     },
                     
@@ -146,6 +212,14 @@ var FormWizard = function () {
                     },
                     //payment
                     card_name: {
+                        required: true
+                    },
+                    
+                    type_acount: {
+                        required: true
+                    },
+                    
+                    type_currency: {
                         required: true
                     },
                     acount_number: {
@@ -214,8 +288,9 @@ var FormWizard = function () {
                 },
 
                 submitHandler: function (form) {
-                    success.show();
-                    error.hide();
+//                    success.show();
+//                    error.hide();
+                    form.submit();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
                 }
 
@@ -241,53 +316,70 @@ var FormWizard = function () {
             }
 
             var handleTitle = function(tab, navigation, index) {
+            
+//                alert (index);
                 var total = navigation.find('li').length;
+               
+                var contbd=$('#contador').val();
+               
                 var current = index + 1;
-                // set wizard title
-                $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
-                // set done steps
+               
+                
+                $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
+       
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
+              
                 for (var i = 0; i < index; i++) {
-                    jQuery(li_list[i]).addClass("done");
+                    jQuery(li_list[i]).addClass("done");                
                 }
 
                 if (current == 1) {
-                    $('#form_wizard_1').find('.button-previous').hide();
+//                    $('#form_wizard_1').find('.button-previous').hide();
+//                    $('#form_wizard_1').find('.button-next1').show();                    
+                    $('#form_wizard_1').find('.button-acept').hide();
+                    $('#form_wizard_1').find('.button-next').show();
+//                    $('#form_wizard_1').find('.button-submit').hide();
+                    
                 } else {
-                    $('#form_wizard_1').find('.button-previous').show();
+                 
+                     $('#form_wizard_1').find('.button-previous').show();
+                     $('#form_wizard_1').find('.button-next1').hide();
+                     $('#form_wizard_1').find('.button-next').show();
+                     $('#form_wizard_1').find('.button-cancelar').show();
+                     $('#form_wizard_1').find('.button-submit').show();
                 }
 
                 if (current >= total) {
                     $('#form_wizard_1').find('.button-next').hide();
-                    $('#form_wizard_1').find('.button-submit').show();
+                    $('#form_wizard_1').find('.button-submit').hide();
+                   
                     displayConfirm();
                 } else {
-                    $('#form_wizard_1').find('.button-next').show();
-                    $('#form_wizard_1').find('.button-submit').hide();
+                   
+                    $('#form_wizard_1').find('.button-submit').show();
                 }
                 App.scrollTo($('.page-title'));
             }
 
-            // default form wizard
             $('#form_wizard_1').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
                     success.hide();
                     error.hide();
-                    if (form.valid() == false) {
-                        return false;
-                    }
+//                    if (form.valid() == false) {}
+                        return false;//para desactivar que el usuario pueda navegar con los botones de arriba
+                    
                     handleTitle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
-
-                    if (form.valid() == false) {
-                        return false;
-                    }
+//
+//                    if (form.valid() == false) {
+//                        return false;
+//                    }
 
                     handleTitle(tab, navigation, index);
                 },
@@ -299,9 +391,14 @@ var FormWizard = function () {
                 },
                 onTabShow: function (tab, navigation, index) {
                     var total = navigation.find('li').length;
-                    var current = index + 1;
+                    var contbd=$('#contador').val();
+                    
+                    var cont=contbd-1;
+                    var current = cont + 1;
                     var $percent = (current / total) * 100;
-                    $('#form_wizard_1').find('.progress-bar').css({
+                 
+                    
+                        $('#form_wizard_1').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
@@ -309,8 +406,13 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                alert('Finished! Hope you like it :)');
+              
+       
+               
+               
             }).hide();
+            
+
         }
 
     };

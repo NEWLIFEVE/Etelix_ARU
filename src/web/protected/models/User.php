@@ -23,6 +23,9 @@
  */
 class User extends CActiveRecord
 {
+    
+    public $confir_pass;
+    public $confir_pass1;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -126,4 +129,25 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        /**
+         * 
+         * funcion para verificar el pass actual
+         */
+        
+        
+        public function getPass($pass){
+            $id=Yii::app()->user->id;
+            if ($pass!=NULL){
+                 $verificar_pass=self::model()->find('id=:id AND password=:pass',array(':id'=>$id, ':pass'=>$pass));
+                 return $verificar_pass;
+            }
+            
+            else{
+                return false; 
+            }
+            
+            
+        }
 }

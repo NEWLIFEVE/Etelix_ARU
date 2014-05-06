@@ -11,6 +11,7 @@ class UserIdentity extends CUserIdentity
         private $_id;
 	const ERROR_EMAIL_INVALID=3;
 	const ERROR_STATUS_INACTIV=4;
+        private $id_rol;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -23,7 +24,7 @@ class UserIdentity extends CUserIdentity
 	{
            if (strpos($this->username,"@")) {
 			$user= User::model()->findByAttributes(array('email'=>$this->username));
-                      //CVarDumper::dump($user);
+                     
 		} else {
 			$user= User::model()->findByAttributes(array('username'=>$this->username));
                          
@@ -37,17 +38,25 @@ class UserIdentity extends CUserIdentity
 		}
 		else if($this->password!==$user->password)
 		{
-                        echo $this->password;    
+                       
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		}
 		
 		else 
 		{
+                  
 			$this->_id=$user->id;
+                        $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
                     
 		}
 		return $this->errorCode;
 	}
+        
+         public function getId()
+    {
+        return $this->_id;
+     
+    }
 }

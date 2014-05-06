@@ -1,3 +1,5 @@
+src/web/protected/config/gii.php
+src/web/protected/config/db.php
 src/web/assets/*
 !assets/.gitignore
 src/web/protected/runtime/*
