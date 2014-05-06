@@ -24,24 +24,37 @@ class EventEmployeeController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	public function accessRules()
+//	public function accessRules()
+//	{
+//		return array(
+//			array('allow',  // allow all users to perform 'index' and 'view' actions
+//				'actions'=>array('index','view','prot','check'),
+//				'users'=>array('*'),
+//			),
+//			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+//				'actions'=>array('create','update'),
+//				'users'=>array('@'),
+//			),
+//			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+//				'actions'=>array('admin','delete'),
+//				'users'=>array('admin'),
+//			),
+//			array('deny',  // deny all users
+//				'users'=>array('*'),
+//			),
+//		);
+//	}
+                public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','prot','check'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+           
+		return array(        
+                   array(
+                       'allow',
+                       'actions'=>Rol::getActions('EventEmployee', Yii::app()->user->id),
+                       'users'=>array(
+                           Yii::app()->user->name
+                            )
+                       )
 		);
 	}
 
@@ -66,17 +79,17 @@ class EventEmployeeController extends Controller
 
                 $id=Yii::app()->user->id;
                 $date= date('Ymd');
-                $model=  EventEmployee::getWorkday($id, $date);
+                $eventos=  EventEmployee::getWorkday($id, $date);
                 
-		if(isset($_POST['EventEmployee']))
-		{
-			$model->attributes=$_POST['EventEmployee'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+//		if(isset($_POST['EventEmployee']))
+//		{
+//			$model->attributes=$_POST['EventEmployee'];
+//			if($model->save())
+//				$this->redirect(array('view','id'=>$model->id));
+//		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'eventos'=>$eventos,
 		));
 	}
 
@@ -196,31 +209,39 @@ class EventEmployeeController extends Controller
        
             
         }
-
-
-
-
-
-
-
-
-
-
-//        
-//        function actionprot(){
-//            var_dump($_GET['date']);
-//            var_dump($_GET['event_startwork']);
-//            var_dump($_GET['id']);
-//            var_dump($_GET['date_event']);
-//           
-//            $model=new EventEmployee;
-//            $model->hour_event=$_GET['date'];
-//            $model->id_type_event=$_GET['event_startwork'];
-//            $model->date=$_GET['date_event'];
-//            $model->id_employee=$_GET['id'];
-//            $model->save();
-//            
-//            
-//            
-//        }
+        
+    public function actionDeclarar()
+    {
+        
+        if(isset($_GET['location']) && isset($_GET['date_event']) && isset($_GET['time_event']))
+        {
+            $id = Yii::app()->user->id;
+            $date = date('Ymd');
+            $eventos = EventEmployee::getWorkday($id, $date);
+            if ($eventos!=false){
+                $last=end($eventos);
+                if($last['event']<4){
+                    $type_event = $last['event']+1;
+                    $aux=TRUE;
+                }
+            }else{
+                $type_event = 1;
+                $aux=TRUE;
+            }
+            if($aux){
+                $model = new EventEmployee();
+                $model->hour_event = $_GET['time_event'];
+                $model->id_type_event = $type_event;
+                $model->date = $_GET['date_event'];
+                $model->id_employee = $id;
+                $model->id_location = Location::getId($_GET['location']);
+                if($model->save())
+                    echo 'succes';
+                else
+                    echo 'fallo';
+            }
+        }else{
+            echo 'no set';
+        }
+    }
 }

@@ -19,8 +19,7 @@ $ARU.UI=(function(){
     }
     
     function declare()
-    {
-        
+    {        
         $('a#declare').on('click',function()
         {
             tab=$('.tab-pane').filter(function(){return $(this).attr('class')=='tab-pane active'}).attr('id');
@@ -39,8 +38,8 @@ $ARU.UI=(function(){
             //Ahora se que tab estan declarando
             
            console.log(tab);
-           gettime();
-//           $ARU.AJAX.getEventTime("GET","/EventEmployee/prot",""); 
+           
+           $ARU.AJAX.getEventTime("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+gettime().date_event+"&time_event="+gettime().time_event); 
            
 
         });
@@ -52,8 +51,15 @@ $ARU.UI=(function(){
              var day_event=d.getDate();
              var month_event=d.getMonth()+1;
              var year_event=d.getFullYear();
+             var hour_event=d.getHours();
+             var minutes_event=d.getMinutes();
+             var seconds_event=d.getSeconds();
              var date_event=year_event+'-'+month_event+'-'+day_event;
-             return date_event;
+             var time_event=hour_event+':'+minutes_event+':'+seconds_event;
+             return {
+                 date_event:date_event,
+                 time_event:time_event
+             }
     }
     
     
@@ -70,15 +76,20 @@ $ARU.AJAX=(function(){
     
     
     function getEventTime(type, action, formulario){
-        
+        console.log(type);
+        console.log(action);
+        console.log(formulario);
         $.ajax({ type: type,   
-                  url: action,   
-                data: formulario,
-                                  })
+                 url: action,   
+                 data: formulario,
+                success:function(data){
+                    
+                    console.log(data);
+                    
+                }
+         })
     }
-    
-    
-    
+
     /**
 	 * Inicializa las funciones del submodulo
 	 * @access public
@@ -89,7 +100,8 @@ $ARU.AJAX=(function(){
 	}
 
      return {
-        init:init
+        init:init,
+        getEventTime:getEventTime
     };
     
 })();

@@ -16,16 +16,24 @@
 
 
  $div = "";
- foreach ($model as $key => $value)
+ 
+ if($eventos!=false){
+ foreach ($eventos as $key => $value)
                    {
                      $evento= $value['event'];
                      $hora= $value['hour'];
               
                      $div.="<div class='form-group' id='tab".$key."'>
-                             <label class='control-label col-md-3 letra_empleado'>".$model[$key]['hour']."</label>
+                             <label class='control-label col-md-3 letra_empleado'>".$eventos[$key]['hour']."</label>
                             
                             </div> ";
                    }
+ }else{
+     $div.="<div class='form-group' id='tab1'>
+                             <label class='control-label col-md-3 letra_empleado'></label>
+                            
+                            </div> ";
+ }
                    
 
 ?>
@@ -150,7 +158,7 @@
                                  </div>-->
                                  <div class="" id="tab4">
                                      <?php echo $div;?>
-                                     <input type="hidden" value="<?php  echo $contador=count($model); ?>" id="contador"/>
+                                     <input type="hidden" value="<?php  echo $contador=count($eventos); ?>" id="contador"/>
 <!--                                      <div class="form-group">
                                          <label class="control-label col-md-3 letra_empleado"><?php  //echo $model[0]['hour']; ?></label>
                                         
@@ -195,9 +203,7 @@
                                  <div class="scroller" style="height:100px" data-always-visible="1" data-rail-visible1="1" tabindex="-1">
                                     <div class="row">
                                        <div class="col-md-6">
-                                      
-                                    
-                                       
+                                      ¿Esta seguro que desea Declarar? 
                                        </div>
                                     
                                     </div>
@@ -206,7 +212,7 @@
                               <div class="modal-footer">
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Atras"  class="btn blue button-previous"  data-dismiss="modal"/></a>
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Cancelar"  class="btn green button-cancelar"  data-dismiss="modal"/></a>
-                                  <a href="javascript:;"><i class=""></i><input type="button" value="Puesto de Trabajo" id="puesto_trabajo" class="btn blue button-next declare"  data-dismiss="modal"/></a>
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Trabajo" id="puesto_trabajo" class="btn blue button-next declare"  data-dismiss="modal"/></a>
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Remoto" id="remoto" class="btn blue button-next declare"  data-dismiss="modal"/></a>  
                                  
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Puesto de Trabajo' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(1)')); ?>

@@ -116,26 +116,22 @@ class EventEmployee extends CActiveRecord
         /**
          * 
          */
-        public static function getWorkday($id, $date){
-            $array=array();
-   
-         $fecha= self::model()->findAll('id_employee=:id AND date=:date ORDER BY id_type_event ASC', array(':id'=>$id, ':date'=>$date));
-        
-          
-           if ($fecha!=NULL){ 
-                    foreach ($fecha as $value)
-                    {
-                        $array[]=array(
-                            'event'=>$value->id_type_event,
-                            'hour'=>$value->hour_event
-                        );
-                    }
-                    return $array;
-          }
-          else
-          {
-            return false;
-          }
+        public static function getWorkday($id, $date)
+        {
+            $eventos = array();
+            $model = self::model()->findAll('id_employee=:id AND date=:date ORDER BY id_type_event ASC', array(':id' => $id, ':date' => $date));
+
+            if ($model != NULL) {
+                foreach ($model as $value) {
+                    $eventos[] = array(
+                        'event' => $value->id_type_event,
+                        'hour' => $value->hour_event
+                    );
+                }
+                return $eventos;
+            } else {
+                return false;
+            }
         }
 
 }

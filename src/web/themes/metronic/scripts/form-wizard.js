@@ -317,7 +317,7 @@ var FormWizard = function () {
 
             var handleTitle = function(tab, navigation, index) {
             
-                alert (index);
+//                alert (index);
                 var total = navigation.find('li').length;
                
                 var contbd=$('#contador').val();
