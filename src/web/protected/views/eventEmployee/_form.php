@@ -217,10 +217,12 @@ for($i=1;$i<5;$i++)
                                  </div>
                               </div>
                               <div class="modal-footer">
-                                  <a href="javascript:;"><i class=""></i><input type="button" value="Atras"  class="btn blue button-previous"  data-dismiss="modal"/></a>
-                                  <a href="javascript:;"><i class=""></i><input type="button" value="Cancelar"  class="btn green button-cancelar"  data-dismiss="modal"/></a>
+                                  <!--<a href="javascript:;"><i class=""></i><input type="button" value="Atras"  class="btn blue button-previous"  data-dismiss="modal"/></a>-->
+                                  <!--<a href="javascript:;"><i class=""></i><input type="button" value="Cancelar"  class="btn green button-cancelar"  data-dismiss="modal"/></a>-->
+                                  <a href="javascript:;"><i class=""></i><input type="button" value="Aceptar" id="aceptar" class="btn blue button-acept declare"  data-dismiss="modal"/></a> 
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Trabajo" id="puesto_trabajo" class="btn blue button-next declare"  data-dismiss="modal"/></a>
                                   <a href="javascript:;"><i class=""></i><input type="button" value="Remoto" id="remoto" class="btn blue button-next declare"  data-dismiss="modal"/></a>  
+                                   
                                  
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Puesto de Trabajo' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(1)')); ?>
                                             <?php //echo CHtml::submitButton($model->isNewRecord ? 'Remoto' : 'Save', array('class'=>'btn blue button-next', 'onclick'=>'getdatos(2)')); ?>

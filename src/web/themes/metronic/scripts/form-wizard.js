@@ -335,11 +335,11 @@ var FormWizard = function () {
                 }
 
                 if (current == 1) {
-                    $('#form_wizard_1').find('.button-previous').hide();
-                    $('#form_wizard_1').find('.button-next1').show();
+//                    $('#form_wizard_1').find('.button-previous').hide();
+//                    $('#form_wizard_1').find('.button-next1').show();                    
+                    $('#form_wizard_1').find('.button-acept').hide();
                     $('#form_wizard_1').find('.button-next').show();
-                    $('#form_wizard_1').find('.button-cancelar').hide();
-                    $('#form_wizard_1').find('.button-submit').hide();
+//                    $('#form_wizard_1').find('.button-submit').hide();
                     
                 } else {
                  
