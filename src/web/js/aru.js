@@ -23,7 +23,6 @@ $ARU.UI=(function(){
         $('a#declare').on('click',function()
         {
             tab=$('.tab-pane').filter(function(){return $(this).attr('class')=='tab-pane active'}).attr('id');
-            console.log(tab);
         });
     }
     
@@ -36,9 +35,7 @@ $ARU.UI=(function(){
             //Se desde que ubicacion trabajan
             var location=this.value;
             //Ahora se que tab estan declarando
-            
-           console.log(tab);
-           
+                       
            $ARU.AJAX.getEventTime("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+gettime().date_event+"&time_event="+gettime().time_event); 
            
 
@@ -61,35 +58,48 @@ $ARU.UI=(function(){
                  time_event:time_event
              }
     }
+
+    /**
+     * Funcion encargada de aumentar el tamano de la barra en el momento de declarar
+     */
+    function progressBar(num)
+    {
+        var percentage=num*25;
+        $('div.progress-bar-success').css('width',percentage+'%');
+    }
     
     
    
     return {
-        init:init
+        init:init,
+        progressBar:progressBar
     };
 })();
 
 /**
  * Modulo encargado dela interaccion con servidor a traves de AJAX
  */
-$ARU.AJAX=(function(){
-    
-    
-    function getEventTime(type, action, formulario){
-        console.log(type);
-        console.log(action);
-        console.log(formulario);
-        $.ajax({ type: type,   
-                 url: action,   
-                 data: formulario,
-                success:function(data){
-                    result=JSON.parse(data);
-                    id=result.event;
-                    console.log(id);
-                    $('div#tab'+id+' label').html(result.hour);
-                    
-                }
-         })
+$ARU.AJAX=(function()
+{
+    /**
+     * @param type
+     * @param action
+     * @param formulario
+     */    
+    function getEventTime(type, action, formulario)
+    {
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                id=result.event;
+                $ARU.UI.progressBar(id);
+                $('div#tab'+id+' label').html(result.hour);
+            }
+         });
     }
 
     /**
