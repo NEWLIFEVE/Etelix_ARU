@@ -65,7 +65,7 @@
                               
                                  
                                     <ul class="list-inline">
-                                       <li><i class="icon-map-marker"></i><?php echo $model->idCountry->name;?></li>
+                                       <li><i class="icon-map-marker"></i><?php //echo $model->idCountry->name;?></li>
                                        <li><i class="icon-calendar"></i><?php echo $model->date_birth;?></li>
                                        <li><i class="icon-briefcase"></i> Design</li>
                                        <li><i class="icon-envelope"></i><?php echo $model->email_personal;?></li>
@@ -198,28 +198,28 @@
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Pais</td>
-                                                   <td><?php echo $model->idCountry->name;?></td>
+                                                   <td><?php //echo $model->idCountry->name;?></td>
                                                    <td class="letra_empleado">Estado</td>
-                                                   <td><?php echo $model->idStates->name;?></td>
+                                                   <td><?php //echo $model->idStates->name;?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Cuidad</td>
-                                                   <td><?php echo $model->idCity->name;?></td>
+                                                   <td><?php //echo $model->idCity->name;?></td>
                                                    <td></td>
                                                    <td></td>
                                                   
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Calle/Avenida</td>
-                                                   <td><?php echo $model->address_room;?></td>
+                                                   <td><?php //echo $model->address_room;?></td>
                                                    <td class="letra_empleado">Edificio</td>
-                                                   <td><?php echo $model->edifice;?></td>    
+                                                   <td><?php //echo $model->edifice;?></td>    
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Piso</td>
-                                                   <td><?php echo $model->floor;?></td>
+                                                   <td><?php //echo $model->floor;?></td>
                                                    <td class="letra_empleado">Casa/Nro de Casa</td>
-                                                    <td><?php echo $model->house;?></td>   
+                                                    <td><?php //echo $model->house;?></td>   
                                                 </tr>
                                              </tbody>
                                           </table>
@@ -387,38 +387,38 @@
                                  <div id="tab_2-2" class="tab-pane">
                                        <div class="form-group">
                                           <label class="control-label">País</label>
-                                           <?php echo $form->dropDownList($model,'id_country',$model->getCountry(),$htmlOptions); ?>
+                                           <?php echo $form->dropDownList(Country::model(),'code',$model->getCountry(),$htmlOptions); ?>
                                           <?php //echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Estado</label>
-                                            <?php echo $form->dropDownList($model,'id_states',$model->getState(), $htmlOptions1); ?>
+                                            <?php //echo $form->dropDownList(States::model(),'id_states',$model->getState(), $htmlOptions1); ?>
                                           <?php //echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Cuidad</label>
-                                           <?php echo $form->dropDownList($model,'id_city',$model->getCity(),array("class"=>"form-control")); ?>
+                                           <?php //echo $form->dropDownList($model,'id_city',$model->getCity(),array("class"=>"form-control")); ?>
                                           <?php //echo $form->textField($model,'id_city', array('class'=>'form-control', 'value'=>$model->idCity->name)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Calle/Avenida</label>
-                                          <?php echo $form->textField($model,'address_room', array('class'=>'form-control', 'value'=>$model->address_room)); ?>
+                                          <?php //echo $form->textField($model,'address_room', array('class'=>'form-control', 'value'=>$model->address_room)); ?>
                                        </div>
                                      
                                      <div class="form-group">
                                           <label class="control-label">Edificio</label>
-                                          <?php echo $form->textField($model,'edifice', array('class'=>'form-control', 'value'=>$model->edifice)); ?>
+                                          <?php //echo $form->textField($model,'edifice', array('class'=>'form-control', 'value'=>$model->edifice)); ?>
                                        </div>
                                      
                                       <div class="form-group">
                                           <label class="control-label">Piso</label>
-                                          <?php echo $form->textField($model,'floor', array('class'=>'form-control', 'value'=>$model->floor)); ?>
+                                          <?php //echo $form->textField($model,'floor', array('class'=>'form-control', 'value'=>$model->floor)); ?>
                                        </div>
                                    
                                      
                                       <div class="form-group">
                                           <label class="control-label">Casa/Nro de Casa</label>
-                                          <?php echo $form->textField($model,'house', array('class'=>'form-control', 'value'=>$model->house)); ?>
+                                          <?php //echo $form->textField($model,'house', array('class'=>'form-control', 'value'=>$model->house)); ?>
                                        </div>
                                  </div>
                                      <div>

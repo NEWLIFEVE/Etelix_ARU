@@ -95,8 +95,13 @@ class Location extends CActiveRecord
 		return parent::model($className);
 	}
         
-        	
-        public static function getId($name)
+    /**
+     * @access public
+     * @static
+     * @param string $name
+     * @return int con el id del tipo de evento buscado
+     */    	
+    public static function getId($name)
 	{
 		if($name!=null)
 		{

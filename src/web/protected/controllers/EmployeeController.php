@@ -27,27 +27,30 @@ class EmployeeController extends Controller
 	}
         
         
-        public function accessRules()
+    public function accessRules()
 	{
-		return array(        
-                   array(
-                       'allow',
-                       'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
-                       'users'=>array(
-                           Yii::app()->user->name
-                            )
-                       )
-		);
+		return array(
+            array(
+                'allow',
+                'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
+                'users'=>array(
+                    Yii::app()->user->name
+                    )
+                )
+            );
 	}
-        
-        
-        public function actionStateByCountry(){
-           $country = $_POST['Employee']['id_country'];
-           $listado_states= States::model()->findAll("id_country=:country",array(':country'=>$country));
-           foreach ($listado_states as $data)
-               echo "<option value=\"{$data->id}\">{$data->name}</option>";
-           
-        }
+
+    /**
+     *
+     */    
+    public function actionStateByCountry()
+    {
+       $country = $_POST['Employee']['code'];
+       $listado_states= States::model()->findAll("id_country=:country",array(':country'=>$country));
+       foreach ($listado_states as $data)
+           echo "<option value=\"{$data->id}\">{$data->name}</option>";
+       
+    }
         
          public function actionCountryByCity(){
            $states = $_POST['Employee']['id_states'];
