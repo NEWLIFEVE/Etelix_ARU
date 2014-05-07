@@ -109,4 +109,10 @@ class City extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+                 
+        public static function getListCityState($state)
+	{
+            return CHtml::listData(self::model()->findAll('id_state=:state',array(':state'=>$state)), 'id', 'name');
+	}
 }

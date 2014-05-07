@@ -44,6 +44,10 @@ class Employee extends CActiveRecord
 {
     public $country;
     public $state;
+    public $city;
+    public $line1;
+    public $line2;
+    public $zip;
 	/**
 	 * @return string the associated database table name
 	 */
