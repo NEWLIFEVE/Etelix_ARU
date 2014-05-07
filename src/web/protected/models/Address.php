@@ -5,15 +5,14 @@
  *
  * The followings are the available columns in table 'address':
  * @property integer $id
- * @property integer $id_employee
  * @property integer $id_city
  * @property string $address_line_1
  * @property string $address_line_2
  * @property string $zip
  *
  * The followings are the available model relations:
- * @property Employee $idEmployee
  * @property City $idCity
+ * @property AddressEmployee[] $addressEmployees
  */
 class Address extends CActiveRecord
 {
@@ -33,13 +32,13 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_employee, id_city, address_line_1', 'required'),
-			array('id_employee, id_city', 'numerical', 'integerOnly'=>true),
+			array('id_city, address_line_1', 'required'),
+			array('id_city', 'numerical', 'integerOnly'=>true),
 			array('address_line_1, address_line_2', 'length', 'max'=>250),
 			array('zip', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_employee, id_city, address_line_1, address_line_2, zip', 'safe', 'on'=>'search'),
+			array('id, id_city, address_line_1, address_line_2, zip', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +50,8 @@ class Address extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idEmployee' => array(self::BELONGS_TO, 'Employee', 'id_employee'),
 			'idCity' => array(self::BELONGS_TO, 'City', 'id_city'),
+			'addressEmployees' => array(self::HAS_MANY, 'AddressEmployee', 'id_address'),
 		);
 	}
 
@@ -63,7 +62,6 @@ class Address extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_employee' => 'Id Employee',
 			'id_city' => 'Id City',
 			'address_line_1' => 'Address Line 1',
 			'address_line_2' => 'Address Line 2',
@@ -90,7 +88,6 @@ class Address extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_employee',$this->id_employee);
 		$criteria->compare('id_city',$this->id_city);
 		$criteria->compare('address_line_1',$this->address_line_1,true);
 		$criteria->compare('address_line_2',$this->address_line_2,true);
@@ -111,4 +108,13 @@ class Address extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public static function getAddressByUser($id)
+        {
+            $idAddress = AddressEmployee::model()->find('end_date IS NULL and id_employee =:id',array(':id'=>$id))->id_address;
+            if ($idAddress!=NULL)
+            {
+                return self::model()->findByPk($idAddress);
+            }
+        }
 }

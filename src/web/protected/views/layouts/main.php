@@ -381,7 +381,7 @@
                                            <i class='icon-angle-down'></i>
                                            </a>
                                            <ul class='dropdown-menu'>
-                                              <li><a href='/Employee/'><i class='icon-user'></i> Mi Perfil</a>
+                                              <li><a href='/Employee/infoEmployee'><i class='icon-user'></i> Mi Perfil</a>
                                               </li>
                                              <!-- <li><a href='page_calendar.html'><i class='icon-calendar'></i> My Calendar</a>
                                               </li>
