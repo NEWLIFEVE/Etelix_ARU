@@ -454,7 +454,7 @@
                                           if(empty($Address->idCity->name))
                                            echo $form->dropDownList($Employee,'city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
                                           else
-                                           echo $form->dropDownList($Employee,'city',array('empty'=>$Address->idCity->name),array("class"=>"form-control"));
+                                           echo $form->dropDownList($Employee,'city',array($Address->id_city=>$Address->idCity->name),array("class"=>"form-control"));
                                           ?>
                                          
                                        </div>   

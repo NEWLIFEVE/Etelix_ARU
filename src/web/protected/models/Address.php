@@ -110,24 +110,27 @@ class Address extends CActiveRecord
 	}
         
         public static function getAddressByUser($id)
-        {
-          
-            $idAddress = AddressEmployee::model()->find('end_date IS NULL and id_employee =:id',array(':id'=>$id));
-                
-            
-            
-            
-            if ($idAddress!=NULL)
-            {
-               
-                return self::model()->findByPk($idAddress->id_address);
-            }
-            
-            else {
-                
+        {          
+            $AddressEmployee = AddressEmployee::model()->find('end_date IS NULL AND id_employee =:id',array(':id'=>$id));
+            if ($AddressEmployee!=NULL)
+            {     
+                return self::model()->findByPk($AddressEmployee->id_address);
+            }          
+            else {                
                 return NULL;
-            }
-         
-          
+            }                  
         }
+        
+        public static function checkAddress($line1,$line2,$zip,$id_city)
+        {
+            $Address = self::model()->find('address_line_1 =:line1 AND address_line_2 =:line2 AND zip =:zip AND id_city =:id_city',array(':line1'=>$line1,':line2'=>$line2,':zip'=>$zip,':id_city'=>$id_city,));            
+            if ($Address!=NULL)
+            {     
+                return $Address->id;
+            }          
+            else {                
+                return NULL;
+            }  
+            
+        } 
 }
