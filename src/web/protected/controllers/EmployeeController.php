@@ -6,11 +6,22 @@ class EmployeeController extends Controller
 	{
         $id=Yii::app()->user->id;
         $model = Employee::model()->findByPk($id);
+        $address= Address::model()->findByPk($id);
+      
           if (isset($_POST['Employee'])){
+              var_dump($_POST['Employee']);
+//            $line1=$_POST['Employee']['line1'];
+//            $line2=$_POST['Employee']['line2'];
+//            $zip=$_POST['Employee']['zip'];
+//            $country=$_POST['Employee']['country'];
+//            $state=$_POST['Employee']['state'];
+//            $city=$_POST['Employee']['city'];
             
-             $model->attributes=$_POST['Employee'];
-             if ($model->save())
-                    $this->redirect(array('index','id'=>$model->id));
+
+           
+//             $model->attributes=$_POST['Employee'];
+//             if ($model->save())
+//                    $this->redirect(array('index','id'=>$model->id));
          }
         $this->render('index', array('model'=>$model));
     	}

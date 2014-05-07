@@ -197,29 +197,31 @@
                                              </thead>-->
                                              <tbody>
                                                 <tr>
-                                                    <td class="letra_empleado">Pais</td>
+                                                    <td class="letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
                                                    <td><?php //echo $model->idCountry->name;?></td>
-                                                   <td class="letra_empleado">Estado</td>
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
                                                    <td><?php //echo $model->idStates->name;?></td>
                                                 </tr>
                                                 <tr>
-                                                   <td class="letra_empleado">Cuidad</td>
+                                                   <td class="letra_empleado">Códigos Postal</td>
                                                    <td><?php //echo $model->idCity->name;?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                          
                                                   
                                                 </tr>
                                                 <tr>
-                                                   <td class="letra_empleado">Calle/Avenida</td>
+                                                   <td class="letra_empleado">País</td>
                                                    <td><?php //echo $model->address_room;?></td>
-                                                   <td class="letra_empleado">Edificio</td>
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Estado/Provincia/Región</td>
                                                    <td><?php //echo $model->edifice;?></td>    
                                                 </tr>
                                                 <tr>
-                                                   <td class="letra_empleado">Piso</td>
+                                                   <td class="letra_empleado">Ciudad</td>
                                                    <td><?php //echo $model->floor;?></td>
-                                                   <td class="letra_empleado">Casa/Nro de Casa</td>
-                                                    <td><?php //echo $model->house;?></td>   
+                                                     
                                                 </tr>
                                              </tbody>
                                           </table>
