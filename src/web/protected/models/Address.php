@@ -111,10 +111,23 @@ class Address extends CActiveRecord
         
         public static function getAddressByUser($id)
         {
-            $idAddress = AddressEmployee::model()->find('end_date IS NULL and id_employee =:id',array(':id'=>$id))->id_address;
+          
+            $idAddress = AddressEmployee::model()->find('end_date IS NULL and id_employee =:id',array(':id'=>$id));
+                
+            
+            
+            
             if ($idAddress!=NULL)
             {
-                return self::model()->findByPk($idAddress);
+               
+                return self::model()->findByPk($idAddress->id_address);
             }
+            
+            else {
+                
+                return NULL;
+            }
+         
+          
         }
 }

@@ -21,7 +21,7 @@ class EmployeeController extends Controller
                 $addressEmployee->id_address = $address->id;
                 $addressEmployee->start_date = date("Y-m-d");
                 if($addressEmployee->save()){}
-//                 $this->redirect(array('infoEmployee','id'=>$Employee->id));
+                 $this->redirect(array('infoEmployee','id'=>$Employee->id));
             }
               
 //            $address->id_employee=1;     
