@@ -66,8 +66,7 @@ class EmployeeController extends Controller
         public function actionStateByCountry()
         {
             
-            $dato = '<option value="empty">Seleccione uno</option>
-                    <option value="new">Nuevo..</option>';
+            $dato = '<option value="empty">Seleccione uno</option>';
             $data = State::getListStateCountry($_POST['Employee']['country']);
             foreach($data as $value=>$name)
             {
@@ -75,6 +74,19 @@ class EmployeeController extends Controller
             }
             echo $dato;
        
+        }
+                
+        public function actionCityByState(){
+            
+            $dato = '<option value="empty">Seleccione uno</option>';
+            $data = City::getListCityState($_POST['Employee']['state']);
+            foreach($data as $value=>$name)
+            {
+                $dato.= "<option value='$value'>".CHtml::encode($name)."</option>";
+            }
+            echo $dato;
+           
+           
         }
 
         /*

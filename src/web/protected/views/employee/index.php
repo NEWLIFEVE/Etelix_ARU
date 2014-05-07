@@ -378,7 +378,7 @@
                                             "url"=>CController::createUrl("Employee/CityByState"),
                                             "type"=>"POST",
                                             "data"=>"js:$('#submit_form').serialize()",
-                                            "update"=>"#Employee_id_city",
+                                            "update"=>"#Employee_city",
                                         
                                         ),
                                         "class"=>"form-control",
@@ -387,41 +387,35 @@
                                   ?>
                                   
                                  <div id="tab_2-2" class="tab-pane">
+                                         <div class="form-group">
+                                          <label class="control-label letra_empleado">Apartment, suite, unit, building, floor, etc.</label>
+                                          <?php echo $form->textField($model,'line1', array('class'=>'form-control', 'value'=>$model->line1)); ?>
+                                       </div>
+                                     
+                                     <div class="form-group">
+                                          <label class="control-label letra_empleado">Street address, P.O. box, company name, c/o</label>
+                                          <?php echo $form->textField($model,'line2', array('class'=>'form-control', 'value'=>$model->line2)); ?>
+                                       </div>
+                                     
+                                      <div class="form-group">
+                                          <label class="control-label letra_empleado">Zip code</label>
+                                          <?php echo $form->textField($model,'zip', array('class'=>'form-control', 'value'=>$model->zip)); ?>
+                                       </div>
                                        <div class="form-group">
-                                          <label class="control-label">País</label>
+                                          <label class="control-label letra_empleado">Country</label>
                                            <?php echo $form->dropDownList($model,'country',Country::model()->getCountry(),$ajaxState); ?>
                                           <?php //echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
                                        </div>
                                      <div class="form-group">
-                                          <label class="control-label">Estado</label>
-                                            <?php echo $form->dropDownList($model,'state', array('empty'=>'Seleccionar Pais'),$ajaxCity); ?>
+                                          <label class="control-label letra_empleado">State/Province/Region</label>
+                                            <?php echo $form->dropDownList($model,'state', array('empty'=>'Select a COuntry'),$ajaxCity); ?>
                                           <?php //echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
                                        </div>
                                      <div class="form-group">
-                                          <label class="control-label">Cuidad</label>
-                                           <?php //echo $form->dropDownList($model,'id_city',$model->getCity(),array("class"=>"form-control")); ?>
+                                          <label class="control-label letra_empleado">City</label>
+                                           <?php echo $form->dropDownList($model,'city',array('empty'=>'Select a State'),array("class"=>"form-control")); ?>
                                           <?php //echo $form->textField($model,'id_city', array('class'=>'form-control', 'value'=>$model->idCity->name)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Calle/Avenida</label>
-                                          <?php //echo $form->textField($model,'address_room', array('class'=>'form-control', 'value'=>$model->address_room)); ?>
-                                       </div>
-                                     
-                                     <div class="form-group">
-                                          <label class="control-label">Edificio</label>
-                                          <?php //echo $form->textField($model,'edifice', array('class'=>'form-control', 'value'=>$model->edifice)); ?>
-                                       </div>
-                                     
-                                      <div class="form-group">
-                                          <label class="control-label">Piso</label>
-                                          <?php //echo $form->textField($model,'floor', array('class'=>'form-control', 'value'=>$model->floor)); ?>
-                                       </div>
-                                   
-                                     
-                                      <div class="form-group">
-                                          <label class="control-label">Casa/Nro de Casa</label>
-                                          <?php //echo $form->textField($model,'house', array('class'=>'form-control', 'value'=>$model->house)); ?>
-                                       </div>
+                                       </div>   
                                  </div>
                                      <div>
                                           <input type="submit" value="enviar" class="btn blue button-submit centrar_botones"/>  
