@@ -61,15 +61,15 @@
                            <div class="col-md-9">
                               <div class="row">
                                  <div class="col-md-8 profile-info">
-                                    <h1><?php echo $model->first_name;?> <?php echo $model->last_name;?></h1>
+                                    <h1><?php echo $Employee->first_name;?> <?php echo $Employee->last_name;?></h1>
                               
                                  
                                     <ul class="list-inline">
-                                       <li><i class="icon-map-marker"></i><?php //echo $model->idCountry->name;?></li>
-                                       <li><i class="icon-calendar"></i><?php echo $model->date_birth;?></li>
+                                       <li><i class="icon-map-marker"></i><?php //echo $Employee->idCountry->name;?></li>
+                                       <li><i class="icon-calendar"></i><?php echo $Employee->date_birth;?></li>
                                        <li><i class="icon-briefcase"></i> Design</li>
-                                       <li><i class="icon-envelope"></i><?php echo $model->email_personal;?></li>
-                                        <li><i class="icon-skype"></i><?php echo $model->skype;?></li>
+                                       <li><i class="icon-envelope"></i><?php echo $Employee->email_personal;?></li>
+                                        <li><i class="icon-skype"></i><?php echo $Employee->skype;?></li>
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->
                                     </ul>
                                  </div>
@@ -127,53 +127,53 @@
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Primer Nombre</td>
-                                                   <td><?php echo $model->first_name;?></td>
+                                                   <td><?php echo $Employee->first_name;?></td>
                                                    <td class="letra_empleado">Segundo Nombre</td>
-                                                   <td><?php echo $model->secon_name;?></td>
+                                                   <td><?php echo $Employee->secon_name;?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Primer Apellido</td>
-                                                   <td><?php echo $model->last_name;?></td>
+                                                   <td><?php echo $Employee->last_name;?></td>
                                                    <td class="letra_empleado">Segundo Apellido</td>
-                                                   <td><?php echo $model->secon_last_name;?></td>
+                                                   <td><?php echo $Employee->secon_last_name;?></td>
                                                   
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Fecha de Nacimiento</td>
-                                                   <td><?php echo $model->date_birth;?></td>
+                                                   <td><?php echo $Employee->date_birth;?></td>
                                                    <td class="letra_empleado">Documento de Identidad</td>
-                                                   <td><?php echo $model->identity_card;?></td>
+                                                   <td><?php echo $Employee->identity_card;?></td>
                                                 </tr>
                                                 
                                                  <tr>
                                                    <td class="letra_empleado">Nacionalidad</td>
-                                                   <td><?php echo $model->idNationality->name;?></td>
+                                                   <td><?php echo $Employee->idNationality->name;?></td>
                                                    <td class="letra_empleado">Estado Civil</td>
-                                                   <td><?php echo $model->idMaritalStatus->name;?></td>
+                                                   <td><?php echo $Employee->idMaritalStatus->name;?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Correo Personal</td>
-                                                   <td><?php echo $model->email_personal;?></td>
+                                                   <td><?php echo $Employee->email_personal;?></td>
                                                    <td class="letra_empleado">Correo Corporativo</td>
-                                                   <td><?php echo $model->email_company;?></td>
+                                                   <td><?php echo $Employee->email_company;?></td>
                                                 </tr>
                                                 
                                                  <tr>
                                                    <td class="letra_empleado">Skype</td>
-                                                   <td><?php echo $model->skype;?></td>
+                                                   <td><?php echo $Employee->skype;?></td>
                                                    <td></td>
                                                    <td></td>
                                                 </tr>
                                                 
                                                 <tr>
                                                    <td class="letra_empleado">Teléfono Celular</td>
-                                                   <td><?php echo $model->cellphone;?></td>
+                                                   <td><?php echo $Employee->cellphone;?></td>
                                                    <td class="letra_empleado">Teléfono De Habitación</td>
-                                                   <td><?php echo $model->home_phone;?></td>
+                                                   <td><?php echo $Employee->home_phone;?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Extensión de Oficina</td>
-                                                   <td><?php echo $model->extension_numeric;?></td>
+                                                   <td><?php echo $Employee->extension_numeric;?></td>
                                                    <td></td>
                                                    <td></td>
                                                 </tr>
@@ -197,29 +197,31 @@
                                              </thead>-->
                                              <tbody>
                                                 <tr>
-                                                    <td class="letra_empleado">Pais</td>
-                                                   <td><?php //echo $model->idCountry->name;?></td>
-                                                   <td class="letra_empleado">Estado</td>
-                                                   <td><?php //echo $model->idStates->name;?></td>
+                                                    <td class="letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
+                                                    <td><?php echo $Address->address_line_1;?></td>
                                                 </tr>
                                                 <tr>
-                                                   <td class="letra_empleado">Cuidad</td>
-                                                   <td><?php //echo $model->idCity->name;?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                   <td class="letra_empleado">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
+                                                   <td><?php echo $Address->address_line_2;?></td>
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Códigos Postal</td>
+                                                   <td><?php echo $Address->zip;?></td>
+                                          
                                                   
                                                 </tr>
                                                 <tr>
-                                                   <td class="letra_empleado">Calle/Avenida</td>
-                                                   <td><?php //echo $model->address_room;?></td>
-                                                   <td class="letra_empleado">Edificio</td>
-                                                   <td><?php //echo $model->edifice;?></td>    
+                                                   <td class="letra_empleado">País</td>
+                                                   <td><?php //echo $Employee->address_room;?></td>
                                                 </tr>
                                                 <tr>
-                                                   <td class="letra_empleado">Piso</td>
-                                                   <td><?php //echo $model->floor;?></td>
-                                                   <td class="letra_empleado">Casa/Nro de Casa</td>
-                                                    <td><?php //echo $model->house;?></td>   
+                                                   <td class="letra_empleado">Estado/Provincia/Región</td>
+                                                   <td><?php //echo $Employee->edifice;?></td>    
+                                                </tr>
+                                                <tr>
+                                                   <td class="letra_empleado">Ciudad</td>
+                                                   <td><?php //echo $Employee->floor;?></td>
+                                                     
                                                 </tr>
                                              </tbody>
                                           </table>
@@ -276,33 +278,33 @@
                                                 
                                                   <div class="secundario">
                                                     <label class="control-label letra_empleado">Primer Nombre</label>
-                                                        <?php echo $form->textField($model,'first_name', array('class'=>'form-control input-xmedium ', 'value'=>$model->first_name)); ?>
+                                                        <?php echo $form->textField($Employee,'first_name', array('class'=>'form-control input-xmedium ', 'value'=>$Employee->first_name)); ?>
                                                   </div>
                                                   <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Nombre</label>
-                                                        <?php echo $form->textField($model,'secon_name', array('class'=>'form-control input-xmedium', 'value'=>$model->secon_name)); ?>
+                                                        <?php echo $form->textField($Employee,'secon_name', array('class'=>'form-control input-xmedium', 'value'=>$Employee->secon_name)); ?>
                                                   </div>
                                             </div>
                                              <div class="contenidos_columnas ">
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Primer Apellido</label>
-                                                         <?php echo $form->textField($model,'last_name', array('class'=>'form-control input-xmedium', 'value'=>$model->last_name)); ?>
+                                                         <?php echo $form->textField($Employee,'last_name', array('class'=>'form-control input-xmedium', 'value'=>$Employee->last_name)); ?>
                                                  </div>
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Apellido</label>
-                                                         <?php echo $form->textField($model,'secon_last_name', array('class'=>'form-control input-xmedium', 'value'=>$model->secon_last_name)); ?>
+                                                         <?php echo $form->textField($Employee,'secon_last_name', array('class'=>'form-control input-xmedium', 'value'=>$Employee->secon_last_name)); ?>
                                                  </div>
                                             </div>
                                             <div class="contenidos_columnas">
                                                 
                                                  <div class="secundario letra_empleado">
                                                      <label class="control-label">Fecha de Nacimiento</label>
-                                                         <?php echo $form->textField($model,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci')); ?>
-                                                        <?php //echo $form->textField($model,'date_birth', array('class'=>'form-control', 'value'=>$model->date_birth)); ?>
+                                                         <?php echo $form->textField($Employee,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci')); ?>
+                                                        <?php //echo $form->textField($Employee,'date_birth', array('class'=>'form-control', 'value'=>$Employee->date_birth)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                      <label class="control-label">Documento de Identidad</label>
-                                                        <?php echo $form->textField($model,'identity_card', array('class'=>'form-control input-xmedium', 'value'=>$model->identity_card,'id'=>'mask_number')); ?>
+                                                        <?php echo $form->textField($Employee,'identity_card', array('class'=>'form-control input-xmedium', 'value'=>$Employee->identity_card,'id'=>'mask_number')); ?>
                                                  </div>
                                               
                                             </div>
@@ -310,44 +312,44 @@
                                              <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado">
                                                      <label class="control-label">Nacionalidad</label>
-                                                        <?php echo $form->dropDownList($model,'id_nationality',$model->getNationality(), array("class"=>"form-control")); ?>
-                                                        <?php //echo $form->textField($model,'nationality', array('class'=>'form-control', 'value'=>$model->nationality)); ?>
+                                                        <?php echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array("class"=>"form-control")); ?>
+                                                        <?php //echo $form->textField($Employee,'nationality', array('class'=>'form-control', 'value'=>$Employee->nationality)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                       <label class="control-label">Estado Civil</label>
-                                                      <?php echo $form->dropDownList($model,'id_marital_status',$model->getMaritalStatus(), array("class"=>"form-control")); ?>
-                                                        <?php //echo $form->textField($model,'id_marital_status', array('class'=>'form-control', 'value'=>$model->idMaritalStatus->name)); ?>
+                                                      <?php echo $form->dropDownList($Employee,'id_marital_status',$Employee->getMaritalStatus(), array("class"=>"form-control")); ?>
+                                                        <?php //echo $form->textField($Employee,'id_marital_status', array('class'=>'form-control', 'value'=>$Employee->idMaritalStatus->name)); ?>
                                                  </div>
                                             </div>
                                          
                                             <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado">
                                                      <label class="control-label">Correo Personal</label>
-                                                        <?php echo $form->textField($model,'email_personal', array('class'=>'form-control', 'value'=>$model->email_personal)); ?>
+                                                        <?php echo $form->textField($Employee,'email_personal', array('class'=>'form-control', 'value'=>$Employee->email_personal)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                     <label class="control-label">Correo Corporativo</label>
-                                                        <?php echo $form->textField($model,'email_company', array('class'=>'form-control', 'value'=>$model->email_company)); ?>
+                                                        <?php echo $form->textField($Employee,'email_company', array('class'=>'form-control', 'value'=>$Employee->email_company)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Skype</label>
-                                                        <?php echo $form->textField($model,'skype', array('class'=>'form-control', 'value'=>$model->skype)); ?>
+                                                        <?php echo $form->textField($Employee,'skype', array('class'=>'form-control', 'value'=>$Employee->skype)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                     <label class="control-label">Teléfono Celular</label>
-                                                        <?php echo $form->textField($model,'cellphone', array('class'=>'form-control', 'value'=>$model->cellphone)); ?>
+                                                        <?php echo $form->textField($Employee,'cellphone', array('class'=>'form-control', 'value'=>$Employee->cellphone)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado">
                                                      <label class="control-label">Teléfono de Habitación</label>
-                                                        <?php echo $form->textField($model,'home_phone', array('class'=>'form-control', 'value'=>$model->home_phone)); ?>
+                                                        <?php echo $form->textField($Employee,'home_phone', array('class'=>'form-control', 'value'=>$Employee->home_phone)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                     <label class="control-label">Extensión de Oficina</label>
-                                                        <?php echo $form->textField($model,'extension_numeric', array('class'=>'form-control', 'value'=>$model->extension_numeric)); ?>
+                                                        <?php echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control', 'value'=>$Employee->extension_numeric)); ?>
                                                  </div>
                                             </div>
                                             
@@ -376,7 +378,7 @@
                                             "url"=>CController::createUrl("Employee/CityByState"),
                                             "type"=>"POST",
                                             "data"=>"js:$('#submit_form').serialize()",
-                                            "update"=>"#Employee_id_city",
+                                            "update"=>"#Employee_city",
                                         
                                         ),
                                         "class"=>"form-control",
@@ -385,41 +387,35 @@
                                   ?>
                                   
                                  <div id="tab_2-2" class="tab-pane">
+                                         <div class="form-group">
+                                          <label class="control-label letra_empleado">Apartment, suite, unit, building, floor, etc.</label>
+                                          <?php echo $form->textField($Employee,'line1', array('class'=>'form-control', 'value'=>$Employee->line1)); ?>
+                                       </div>
+                                     
+                                     <div class="form-group">
+                                          <label class="control-label letra_empleado">Street address, P.O. box, company name, c/o</label>
+                                          <?php echo $form->textField($Employee,'line2', array('class'=>'form-control', 'value'=>$Employee->line2)); ?>
+                                       </div>
+                                     
+                                      <div class="form-group">
+                                          <label class="control-label letra_empleado">Zip code</label>
+                                          <?php echo $form->textField($Employee,'zip', array('class'=>'form-control', 'value'=>$Employee->zip)); ?>
+                                       </div>
                                        <div class="form-group">
-                                          <label class="control-label">País</label>
-                                           <?php echo $form->dropDownList($model,'country',Country::model()->getCountry(),$ajaxState); ?>
-                                          <?php //echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
+                                          <label class="control-label letra_empleado">Country</label>
+                                           <?php echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState); ?>
+                                          <?php //echo $form->textField($Employee,'id_country', array('class'=>'form-control', 'value'=> $Employee->idCountry->name)); ?>
                                        </div>
                                      <div class="form-group">
-                                          <label class="control-label">Estado</label>
-                                            <?php echo $form->dropDownList($model,'state', array('empty'=>'Seleccionar Pais'),$ajaxCity); ?>
-                                          <?php //echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
+                                          <label class="control-label letra_empleado">State/Province/Region</label>
+                                            <?php echo $form->dropDownList($Employee,'state', array('empty'=>'Select a COuntry'),$ajaxCity); ?>
+                                          <?php //echo $form->textField($Employee,'id_states', array('class'=>'form-control', 'value'=> $Employee->idStates->name)); ?>
                                        </div>
                                      <div class="form-group">
-                                          <label class="control-label">Cuidad</label>
-                                           <?php //echo $form->dropDownList($model,'id_city',$model->getCity(),array("class"=>"form-control")); ?>
-                                          <?php //echo $form->textField($model,'id_city', array('class'=>'form-control', 'value'=>$model->idCity->name)); ?>
-                                       </div>
-                                     <div class="form-group">
-                                          <label class="control-label">Calle/Avenida</label>
-                                          <?php //echo $form->textField($model,'address_room', array('class'=>'form-control', 'value'=>$model->address_room)); ?>
-                                       </div>
-                                     
-                                     <div class="form-group">
-                                          <label class="control-label">Edificio</label>
-                                          <?php //echo $form->textField($model,'edifice', array('class'=>'form-control', 'value'=>$model->edifice)); ?>
-                                       </div>
-                                     
-                                      <div class="form-group">
-                                          <label class="control-label">Piso</label>
-                                          <?php //echo $form->textField($model,'floor', array('class'=>'form-control', 'value'=>$model->floor)); ?>
-                                       </div>
-                                   
-                                     
-                                      <div class="form-group">
-                                          <label class="control-label">Casa/Nro de Casa</label>
-                                          <?php //echo $form->textField($model,'house', array('class'=>'form-control', 'value'=>$model->house)); ?>
-                                       </div>
+                                          <label class="control-label letra_empleado">City</label>
+                                           <?php echo $form->dropDownList($Employee,'city',array('empty'=>'Select a State'),array("class"=>"form-control")); ?>
+                                          <?php //echo $form->textField($Employee,'id_city', array('class'=>'form-control', 'value'=>$Employee->idCity->name)); ?>
+                                       </div>   
                                  </div>
                                      <div>
                                           <input type="submit" value="enviar" class="btn blue button-submit centrar_botones"/>  

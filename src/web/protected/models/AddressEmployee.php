@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "address".
+ * This is the model class for table "address_employee".
  *
- * The followings are the available columns in table 'address':
+ * The followings are the available columns in table 'address_employee':
  * @property integer $id
- * @property integer $id_city
- * @property string $address_line_1
- * @property string $address_line_2
- * @property string $zip
+ * @property integer $id_address
+ * @property integer $id_employee
+ * @property string $start_date
+ * @property string $end_date
  *
  * The followings are the available model relations:
- * @property City $idCity
- * @property AddressEmployee[] $addressEmployees
+ * @property Employee $idEmployee
+ * @property Address $idAddress
  */
-class Address extends CActiveRecord
+class AddressEmployee extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'address';
+		return 'address_employee';
 	}
 
 	/**
@@ -32,13 +32,12 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_city, address_line_1', 'required'),
-			array('id_city', 'numerical', 'integerOnly'=>true),
-			array('address_line_1, address_line_2', 'length', 'max'=>250),
-			array('zip', 'length', 'max'=>10),
+			array('id_address, id_employee, start_date', 'required'),
+			array('id_address, id_employee', 'numerical', 'integerOnly'=>true),
+			array('end_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_city, address_line_1, address_line_2, zip', 'safe', 'on'=>'search'),
+			array('id, id_address, id_employee, start_date, end_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,8 +49,8 @@ class Address extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idCity' => array(self::BELONGS_TO, 'City', 'id_city'),
-			'addressEmployees' => array(self::HAS_MANY, 'AddressEmployee', 'id_address'),
+			'idEmployee' => array(self::BELONGS_TO, 'Employee', 'id_employee'),
+			'idAddress' => array(self::BELONGS_TO, 'Address', 'id_address'),
 		);
 	}
 
@@ -62,10 +61,10 @@ class Address extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_city' => 'Id City',
-			'address_line_1' => 'Address Line 1',
-			'address_line_2' => 'Address Line 2',
-			'zip' => 'Zip',
+			'id_address' => 'Id Address',
+			'id_employee' => 'Id Employee',
+			'start_date' => 'Start Date',
+			'end_date' => 'End Date',
 		);
 	}
 
@@ -88,10 +87,10 @@ class Address extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_city',$this->id_city);
-		$criteria->compare('address_line_1',$this->address_line_1,true);
-		$criteria->compare('address_line_2',$this->address_line_2,true);
-		$criteria->compare('zip',$this->zip,true);
+		$criteria->compare('id_address',$this->id_address);
+		$criteria->compare('id_employee',$this->id_employee);
+		$criteria->compare('start_date',$this->start_date,true);
+		$criteria->compare('end_date',$this->end_date,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -102,19 +101,10 @@ class Address extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Address the static model class
+	 * @return AddressEmployee the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-        
-        public static function getAddressByUser($id)
-        {
-            $idAddress = AddressEmployee::model()->find('end_date IS NULL and id_employee =:id',array(':id'=>$id))->id_address;
-            if ($idAddress!=NULL)
-            {
-                return self::model()->findByPk($idAddress);
-            }
-        }
 }
