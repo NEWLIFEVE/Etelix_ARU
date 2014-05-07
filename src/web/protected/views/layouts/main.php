@@ -565,7 +565,7 @@
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    <script src="/themes/metronic/scripts/form-components.js"></script>
    <script src="/themes/metronic/scripts/form-validation.js"></script> 
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js" />
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js" /> -->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js"></script>
 
      <!-- END PAGE LEVEL SCRIPTS -->

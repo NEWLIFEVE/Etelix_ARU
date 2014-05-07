@@ -321,21 +321,21 @@ var FormWizard = function () {
             var handleTitle = function(tab, navigation, index) {
             
 
-                var total = navigation.find('li').length;
+                //var total = navigation.find('li').length;
                
-                var contbd=$('#contador').val();
+                //var contbd=$('#contador').val();
               
-                var current = index + 1;
+                //var current = index + 1;
                
-              
-                $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
+              //console.log(current);
+                //$('.step-title', $('#form_wizard_1')).text('Paso ' + current + ' de ' + total);
        
-                jQuery('li', $('#form_wizard_1')).removeClass("done");
-                var li_list = navigation.find('li');
+                /*jQuery('li', $('#form_wizard_1')).removeClass("done");
+                var li_list = navigation.find('li');*/
               
-                for (var i = 0; i < contbd; i++) {
+                /*for (var i = 0; i < contbd; i++) {
                     jQuery(li_list[i]).addClass("done");                
-                }
+                }*/
 
                 if (current == 0) {
                     
@@ -381,14 +381,12 @@ var FormWizard = function () {
                     handleTitle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
-                    success.hide();
-                    error.hide();
-//
-//                    if (form.valid() == false) {
-//                        return false;
-//                    }
-
-                    handleTitle(tab, navigation, index);
+                    var previus=index-1;
+                    var total = navigation.find('li').length;
+                    var current = index + 1;
+                    tab.parent().find('li:eq('+previus+')').addClass("done");
+                    $('.step-title', $('#form_wizard_1')).text('Paso ' + current + ' de ' + total);
+                    //handleTitle(tab, navigation, index);
                 },
                 onPrevious: function (tab, navigation, index) {
                     success.hide();
@@ -402,12 +400,23 @@ var FormWizard = function () {
                     
                     var cont=contbd-1;
                     var current = cont + 1;
-                    var $percent = (current / total) * 100;
-                 
-                    
+                       
+                },
+                onInit:function(tab, navigation,index){
+                    $activeTab=$('ul.steps li.active');
+                    $index=$activeTab.index()+1;
+                    $element=$('ul.steps li.active');
+                    if($index>1){
+                        var percentage=100/navigation.find('li').length;
                         $('#form_wizard_1').find('.progress-bar').css({
-                        width: $percent + '%'
+                        width: percentage + '%'
                     });
+                    }else{
+                        $('#form_wizard_1').find('.progress-bar').css({
+                        width: '0%'
+                    });
+                    }
+                    
                 }
             });
 
