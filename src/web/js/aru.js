@@ -17,11 +17,43 @@ $ARU.UI=(function(){
     
      function init()
     {
+        loadIndex();
         declare();
         location();
-        loadIndex();
        
         
+    }
+
+    /**
+     * carga al principio de la interfaz de declarar la jornada de trabajo
+     */
+    function loadIndex()
+    {
+        $('#declare_day').bootstrapWizard(
+        {
+            nextSelector:'.button-next',
+            previousSelector:'.button-previous',
+            onTabClick:function(tab,navigation,index,clickedIndex)
+            {
+                return false;//para desactivar que el usuario pueda navegar con los botones de arriba
+            },
+            onNext:function(tab,navigation,index)
+            {
+                var previus=index-1;
+                var total=navigation.find('li').length;
+                var current=index+1;
+                tab.parent().find('li:eq('+previus+')').addClass("done");
+                $('.step-title', $('#declare_day')).text('Paso '+current+' de '+total);
+                _progressBar('#declare_day',current);
+            },
+            onInit:function(tab, navigation,index)
+            {
+                $activeTab=$('ul.steps li.active');
+                $index=$activeTab.index();
+                $element=$('ul.steps li.active');
+                _progressBar('#declare_day',$index+1);
+            }
+        });
     }
     
     function declare()
@@ -68,22 +100,18 @@ $ARU.UI=(function(){
 
     /**
      * Funcion encargada de aumentar el tamano de la barra en el momento de declarar
-     * Esta funcion depende exclusivamente de los ids de los eventos de declaracion, es decir,
-     * los eventos tienen ids del 1 al 4, en caso de que se cambien estos numeros este metodo deja de ser efectivo.
+     * @param string obj es el id del elemento donde se va a buscar la barra
+     * @param int index
+     * @return void
      */
-    function progressBar(num)
+    function _progressBar(obj,index)
     {
-        var sons=$('ul.steps').children().length;
-        var fact=100/sons;
-        var percentage=num*fact;
-        $('div.progress-bar-success').css('width',percentage+'%');
+        var percentage=null;
+        if(index!=0) percentage=100/$(obj).find('ul.steps').find('li').length*index;
+        else percentage=100;
+        $(obj).find('.progress-bar').css('width',percentage+'%');
     }
     
-    function loadIndex(){
-        
-      
-        
-    }
     
   
     
@@ -92,8 +120,7 @@ $ARU.UI=(function(){
     
    
     return {
-        init:init,
-        progressBar:progressBar
+        init:init
     };
 })();
 
@@ -119,7 +146,6 @@ $ARU.AJAX=(function()
             {
                 result=JSON.parse(data);
                 id=result.event;
-                $ARU.UI.progressBar(id);
                 $('div#tab'+id+' label').html(result.hour);
             }
          });
