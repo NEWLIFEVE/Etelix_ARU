@@ -73,7 +73,9 @@ $ARU.UI=(function(){
      */
     function progressBar(num)
     {
-        var percentage=num*25;
+        var sons=$('ul.steps').children().length;
+        var fact=100/sons;
+        var percentage=num*fact;
         $('div.progress-bar-success').css('width',percentage+'%');
     }
     
