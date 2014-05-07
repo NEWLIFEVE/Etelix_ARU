@@ -18,8 +18,7 @@ $ARU.UI=(function(){
      function init()
     {
         loadIndex();
-        declare();
-        location();
+        _location();
        
         
     }
@@ -29,6 +28,9 @@ $ARU.UI=(function(){
      */
     function loadIndex()
     {
+        $('#declare').on('click',function(){
+            tab=$('#declare_day').find('ul.steps').find('li.active').index()+1;
+        });
         $('#declare_day').bootstrapWizard(
         {
             nextSelector:'.button-next',
@@ -45,57 +47,20 @@ $ARU.UI=(function(){
                 tab.parent().find('li:eq('+previus+')').addClass("done");
                 $('.step-title', $('#declare_day')).text('Paso '+current+' de '+total);
                 _progressBar('#declare_day',current);
+                _buttons(tab, navigation, index);
             },
-            onInit:function(tab, navigation,index)
+            onInit:function(tab,navigation,index)
             {
                 $activeTab=$('ul.steps li.active');
                 $index=$activeTab.index();
                 $element=$('ul.steps li.active');
+                var total=navigation.find('li').length;
+                var current=$index+1;
+                $('.step-title', $('#declare_day')).text('Paso '+current+' de '+total);
                 _progressBar('#declare_day',$index+1);
+                _buttons(tab, navigation, $index);
             }
         });
-    }
-    
-    function declare()
-    {        
-        $('a#declare').on('click',function()
-        {
-            tab=$('.tab-pane').filter(function(){return $(this).attr('class')=='tab-pane active'}).attr('id');
-        });
-    }
-    
-    
-    
-    function location()
-    {
-        
-      
-        $('input.declare').on('click',function(){  
-            //Se desde que ubicacion trabajan
-            var location=this.value;
-            //Ahora se que tab estan declarando
-                       
-           $ARU.AJAX.getEventTime("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+gettime().date_event+"&time_event="+gettime().time_event); 
-           
-
-        });
-    }
-    
-    function gettime()
-    {
-             var d = new Date();
-             var day_event=d.getDate();
-             var month_event=d.getMonth()+1;
-             var year_event=d.getFullYear();
-             var hour_event=d.getHours();
-             var minutes_event=d.getMinutes();
-             var seconds_event=d.getSeconds();
-             var date_event=year_event+'-'+month_event+'-'+day_event;
-             var time_event=hour_event+':'+minutes_event+':'+seconds_event;
-             return {
-                 date_event:date_event,
-                 time_event:time_event
-             }
     }
 
     /**
@@ -111,14 +76,88 @@ $ARU.UI=(function(){
         else percentage=100;
         $(obj).find('.progress-bar').css('width',percentage+'%');
     }
-    
-    
-  
-    
-    
-    
-    
-   
+    /**
+     *
+     */ 
+    function _location()
+    {
+        var current=null;
+        $('input.button-next,input.button-submit').on('click',function()
+        {
+            var location=this.value;
+            $ARU.AJAX.sendEvent("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+_gettime().date_event+"&time_event="+_gettime().time_event);
+        });
+    }
+    /**
+     *
+     */
+    function _gettime()
+    {
+        var d = new Date();
+        var day_event=d.getDate();
+        var month_event=d.getMonth()+1;
+        var year_event=d.getFullYear();
+        var hour_event=d.getHours();
+        var minutes_event=d.getMinutes();
+        var seconds_event=d.getSeconds();
+        var date_event=year_event+'-'+month_event+'-'+day_event;
+        var time_event=hour_event+':'+minutes_event+':'+seconds_event;
+        return {
+            date_event:date_event,
+            time_event:time_event
+        }
+    }
+
+    /**
+     *
+     */
+    function _buttons(tab, navigation, index)
+    {
+        switch(index)
+        {
+            case 0:
+                $('#declare_day').find('#puesto_trabajo').show();
+                $('#declare_day').find('#remoto').show();
+                $('#declare_day').find('#aceptar').hide();
+                $('#declare_day').find('#fin').hide();
+                $('#declare_day').find('div#start_time').show();
+                $('#declare_day').find('div#start_break').hide();
+                $('#declare_day').find('div#end_break').hide();
+                $('#declare_day').find('div#end_time').hide();
+                break;
+            case 1:
+                $('#declare_day').find('#puesto_trabajo').hide();
+                $('#declare_day').find('#remoto').hide();
+                $('#declare_day').find('#aceptar').show();
+                $('#declare_day').find('#fin').hide();
+                $('#declare_day').find('div#start_time').hide();
+                $('#declare_day').find('div#start_break').show();
+                $('#declare_day').find('div#end_break').hide();
+                $('#declare_day').find('div#end_time').hide();
+                break;
+            case 2:
+                $('#declare_day').find('#puesto_trabajo').hide();
+                $('#declare_day').find('#remoto').hide();
+                $('#declare_day').find('#aceptar').show();
+                $('#declare_day').find('#fin').hide();
+                $('#declare_day').find('div#start_time').hide();
+                $('#declare_day').find('div#start_break').hide();
+                $('#declare_day').find('div#end_break').show();
+                $('#declare_day').find('div#end_time').hide();
+                break;
+            case 3:
+                $('#declare_day').find('#puesto_trabajo').hide();
+                $('#declare_day').find('#remoto').hide();
+                $('#declare_day').find('#aceptar').hide();
+                $('#declare_day').find('#fin').show();
+                $('#declare_day').find('div#start_time').hide();
+                $('#declare_day').find('div#start_break').hide();
+                $('#declare_day').find('div#end_break').hide();
+                $('#declare_day').find('div#end_time').show();
+                break;
+        }
+    }
+       
     return {
         init:init
     };
@@ -136,7 +175,7 @@ $ARU.AJAX=(function()
      * @param action
      * @param formulario
      */    
-    function getEventTime(type, action, formulario)
+    function sendEvent(type, action, formulario)
     {
         $.ajax({
             type:type,
@@ -152,22 +191,13 @@ $ARU.AJAX=(function()
 
     }
     
-    
-    
- 
-
     /**
 	 * Inicializa las funciones del submodulo
 	 * @access public
 	 */
-	function init()
-	{
-		_getEventTime();
-	}
 
      return {
-        init:init,
-        getEventTime:getEventTime
+        sendEvent:sendEvent
     };
     
 })();
@@ -175,7 +205,5 @@ $ARU.AJAX=(function()
 
 
 $(document).on('ready',function(){
-   $ARU.UI.init(); 
-  
-   
+   $ARU.UI.init();    
 });

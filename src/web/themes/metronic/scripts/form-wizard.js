@@ -350,7 +350,7 @@ var FormWizard=function()
                 });
             }
 
-            var handleTitle=function(tab, navigation, index)
+            /*var handleTitle=function(tab, navigation, index)
             {
                 if(current==0)
                 {    
@@ -379,7 +379,7 @@ var FormWizard=function()
                     $('#form_wizard_1').find('.btdeclare').show();   
                 }
                 App.scrollTo($('.page-title'));
-            }
+            }*/
 
             /*$('#form_wizard_1').bootstrapWizard(
             {
