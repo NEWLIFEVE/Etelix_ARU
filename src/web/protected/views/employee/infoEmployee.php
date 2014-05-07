@@ -65,7 +65,7 @@
                               
                                  
                                     <ul class="list-inline">
-                                       <li><i class="icon-map-marker"></i><?php //echo $Employee->idCountry->name;?></li>
+                                       <li><i class="icon-map-marker"></i><?php if (!empty($Address->idCity->idState->idCountry->name)){echo $Address->idCity->idState->idCountry->name;}?></li>
                                        <li><i class="icon-calendar"></i><?php echo $Employee->date_birth;?></li>
                                        <li><i class="icon-briefcase"></i> Design</li>
                                        <li><i class="icon-envelope"></i><?php echo $Employee->email_personal;?></li>
@@ -198,29 +198,27 @@
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
-                                                    <td><?php echo $Address->address_line_1;?></td>
+                                                    <td><?php if (!empty($Address->address_line_1)){echo $Address->address_line_1;}?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
-                                                   <td><?php echo $Address->address_line_2;?></td>
+                                                   <td><?php if (!empty($Address->address_line_2)){echo $Address->address_line_2; }?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Códigos Postal</td>
-                                                   <td><?php echo $Address->zip;?></td>
-                                          
-                                                  
+                                                   <td><?php if (!empty($Address->zip)){echo $Address->zip; } ?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">País</td>
-                                                   <td><?php //echo $Employee->address_room;?></td>
+                                                   <td><?php if (!empty($Address->idCity->idState->idCountry->name)){echo $Address->idCity->idState->idCountry->name;}?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Estado/Provincia/Región</td>
-                                                   <td><?php //echo $Employee->edifice;?></td>    
+                                                   <td><?php  if (!empty($Address->idCity->idState->name)){echo $Address->idCity->idState->name;}?></td>    
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Ciudad</td>
-                                                   <td><?php //echo $Employee->floor;?></td>
+                                                   <td><?php if (!empty($Address->idCity->name)){echo $Address->idCity->name;}?></td>
                                                      
                                                 </tr>
                                              </tbody>
@@ -358,6 +356,14 @@
                                     
                                  </div>
                                   
+                                <?php  if (!empty($Address->idCity->idState->idCountry->name)){
+                                    $pais=$Address->idCity->idState->idCountry->name;
+                                            }
+                                        else {
+                                            $pais="seleccione País";
+                                            }   
+                                    ?>
+                                  
                                   <?php 
                                     $ajaxState=array(
                                         "ajax"=>array(
@@ -368,6 +374,7 @@
                                         
                                         ),
                                         "class"=>"form-control",
+                                        "empty"=>$pais,
                                     );
                                   
                                   ?>
@@ -382,39 +389,74 @@
                                         
                                         ),
                                         "class"=>"form-control",
+                                        
                                     );
                                   
                                   ?>
                                   
+                               
+                                  
                                  <div id="tab_2-2" class="tab-pane">
                                          <div class="form-group">
-                                          <label class="control-label letra_empleado">Apartment, suite, unit, building, floor, etc.</label>
-                                          <?php echo $form->textField($Employee,'line1', array('class'=>'form-control', 'value'=>$Employee->line1)); ?>
+                                          <label class="control-label letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</label>
+                                          <?php 
+                                              if(empty($Address->address_line_1))
+                                                echo $form->textField($Employee,'line1', array('class'=>'form-control','value'=>''));
+                                              else
+                                                echo $form->textField($Employee,'line1', array('class'=>'form-control','value'=>$Address->address_line_1));
+                                          ?>
                                        </div>
-                                     
                                      <div class="form-group">
-                                          <label class="control-label letra_empleado">Street address, P.O. box, company name, c/o</label>
-                                          <?php echo $form->textField($Employee,'line2', array('class'=>'form-control', 'value'=>$Employee->line2)); ?>
+                                          <label class="control-label letra_empleado">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</label>
+                                          
+                                           <?php 
+                                              if(empty($Address->address_line_2))
+                                                echo $form->textField($Employee,'line2', array('class'=>'form-control','value'=>''));
+                                              else
+                                                echo $form->textField($Employee,'line2', array('class'=>'form-control','value'=>$Address->address_line_2));
+                                             ?>
                                        </div>
                                      
                                       <div class="form-group">
-                                          <label class="control-label letra_empleado">Zip code</label>
-                                          <?php echo $form->textField($Employee,'zip', array('class'=>'form-control', 'value'=>$Employee->zip)); ?>
+                                          <label class="control-label letra_empleado">Códigos Postal</label>
+                                             <?php 
+                                          if(empty($Address->zip))
+                                            echo $form->textField($Employee,'zip', array('class'=>'form-control','value'=>''));
+                                          else
+                                            echo $form->textField($Employee,'zip', array('class'=>'form-control','value'=>$Address->zip));
+                                          ?>
                                        </div>
                                        <div class="form-group">
-                                          <label class="control-label letra_empleado">Country</label>
-                                           <?php echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState); ?>
-                                          <?php //echo $form->textField($Employee,'id_country', array('class'=>'form-control', 'value'=> $Employee->idCountry->name)); ?>
+                                          <label class="control-label letra_empleado">País</label>
+                                          
+                                             <?php 
+                                          if(empty($Address->idCity->idState->idCountry->name))
+                                            echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState);
+                                          else
+                                            echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState);
+                                          ?>
+                                          
                                        </div>
                                      <div class="form-group">
-                                          <label class="control-label letra_empleado">State/Province/Region</label>
-                                            <?php echo $form->dropDownList($Employee,'state', array('empty'=>'Select a COuntry'),$ajaxCity); ?>
-                                          <?php //echo $form->textField($Employee,'id_states', array('class'=>'form-control', 'value'=> $Employee->idStates->name)); ?>
+                                          <label class="control-label letra_empleado">Estado/Provincia/Región</label>
+                                             <?php 
+                                          if(empty($Address->idCity->idState->name))
+                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione Un Estado/Provincia/Región'),$ajaxCity);
+                                          else
+                                            echo $form->dropDownList($Employee,'state', array('empty'=>$Address->idCity->idState->name),$ajaxCity);
+                                          ?>
+                                        
                                        </div>
                                      <div class="form-group">
-                                          <label class="control-label letra_empleado">City</label>
-                                           <?php echo $form->dropDownList($Employee,'city',array('empty'=>'Select a State'),array("class"=>"form-control")); ?>
-                                          <?php //echo $form->textField($Employee,'id_city', array('class'=>'form-control', 'value'=>$Employee->idCity->name)); ?>
+                                          <label class="control-label letra_empleado">Ciudad</label>
+                                          
+                                             <?php 
+                                          if(empty($Address->idCity->name))
+                                           echo $form->dropDownList($Employee,'city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
+                                          else
+                                           echo $form->dropDownList($Employee,'city',array('empty'=>$Address->idCity->name),array("class"=>"form-control"));
+                                          ?>
+                                         
                                        </div>   
                                  </div>
                                      <div>
