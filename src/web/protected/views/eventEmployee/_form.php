@@ -58,7 +58,7 @@ for($i=1;$i<5;$i++)
                 <div class="form-wizard">
                     <div class="form-body">
                         <ul class="nav nav-pills nav-justified steps" id="naivig">
-                            <li>
+                            <li class="<?php if(isset($eventos[0]['hour'])) echo 'done';if(!isset($eventos[0]['hour'])) echo 'active';?>">
                                 <a href="#tab1" data-toggle="tab" class="step">
                                     <span class="number">1</span>
                                     <span class="desc">
@@ -66,7 +66,7 @@ for($i=1;$i<5;$i++)
                                     </span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="<?php if(isset($eventos[1]['hour'])) echo 'done';if(!isset($eventos[1]['hour']) && isset($eventos[0]['hour'])) echo 'active';?>">
                                 <a href="#tab2" data-toggle="tab" class="step">
                                     <span class="number">2</span>
                                     <span class="desc">
@@ -74,7 +74,7 @@ for($i=1;$i<5;$i++)
                                     </span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="<?php if(isset($eventos[2]['hour'])) echo 'done';if(!isset($eventos[2]['hour']) && isset($eventos[1]['hour'])) echo 'active';?>">
                                 <a href="#tab3" data-toggle="tab" class="step">
                                     <span class="number">3</span>
                                     <span class="desc">
@@ -82,7 +82,7 @@ for($i=1;$i<5;$i++)
                                     </span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="<?php if(isset($eventos[3]['hour'])) echo 'done';if(!isset($eventos[3]['hour']) && isset($eventos[2]['hour'])) echo 'active';?>">
                                 <a href="#tab4" data-toggle="tab" class="step">
                                     <span class="number">4</span>
                                     <span class="desc">
