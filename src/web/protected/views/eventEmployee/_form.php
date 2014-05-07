@@ -103,7 +103,7 @@ for($i=1;$i<5;$i++)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <a id="declare" class="btn blue btdeclare " data-toggle="modal" href="#responsive">
+                                    <a id="declare" class="btn blue btdeclare" data-toggle="modal" href="#responsive">
                                         <i class="">Declarar</i>
                                     </a>
                                 </div>
@@ -120,34 +120,29 @@ for($i=1;$i<5;$i++)
                                 <div class="modal-body">
                                     <div class="scroller" style="height:100px" data-always-visible="1" data-rail-visible1="1" tabindex="0">
                                         <div class="row">
-                                            <div class="col-md-6">¿Esta seguro que desea Declarar?</div>
+                                            <div class="col-md-6" id="start_time">Indique donde esta inciando su jornada laboral</div>
+                                            <div class="col-md-6" id="start_break">¿Esta seguro que desea declarar el inicio del descanso?</div>
+                                            <div class="col-md-6" id="end_break">¿Esta seguro que desea declarar el fin del descanso?</div>
+                                            <div class="col-md-6" id="end_time">¿Esta seguro que desea declarar el fin de jornada?</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer" id="modale">
-                                    <!--<a href="javascript:;">
-                                        <i class=""></i>
-                                        <input type="button" value="Atras"  class="btn blue button-previous"  data-dismiss="modal"/>
-                                    </a>-->
-                                    <!--<a href="javascript:;">
-                                        <i class=""></i>
-                                        <input type="button" value="Cancelar"  class="btn green button-cancelar"  data-dismiss="modal"/>
-                                    </a>-->
                                     <a href="javascript:;">
                                         <i class=""></i>
-                                        <input type="button" value="Aceptar" id="aceptar" class="btn blue button-next declare"  data-dismiss="modal"/>
+                                        <input type="button" value="Aceptar" id="aceptar" class="btn blue button-next"  data-dismiss="modal"/>
                                     </a>
                                     <a href="javascript:;">
                                         <i class=""></i>
-                                        <input type="button" value="Trabajo" id="puesto_trabajo" class="btn blue button-next declare"  data-dismiss="modal"/>
+                                        <input type="button" value="Puesto de Trabajo" id="puesto_trabajo" class="btn blue button-next"  data-dismiss="modal"/>
                                     </a>
                                     <a href="javascript:;">
                                         <i class=""></i>
-                                        <input type="button" value="Remoto" id="remoto" class="btn blue button-next declare"  data-dismiss="modal"/>
+                                        <input type="button" value="Remoto" id="remoto" class="btn blue button-next"  data-dismiss="modal"/>
                                     </a>
                                     <a href="javascript:;">
                                         <i class=""></i>
-                                        <input type="button" value="Aceptar" id="aceptar_fin" class="btn blue button-submit declare"  data-dismiss="modal"/>
+                                        <input type="button" value="Aceptar" id="fin" class="btn blue button-submit"  data-dismiss="modal"/>
                                     </a>
                                 </div>
                             </div>
