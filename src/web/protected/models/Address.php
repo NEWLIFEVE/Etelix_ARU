@@ -1,27 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "city".
+ * This is the model class for table "address".
  *
- * The followings are the available columns in table 'city':
+ * The followings are the available columns in table 'address':
  * @property integer $id
- * @property string $name
- * @property string $country
- * @property string $state
- * @property integer $id_state
+ * @property integer $id_employee
+ * @property integer $id_city
+ * @property string $address_line_1
+ * @property string $address_line_2
+ * @property string $zip
  *
  * The followings are the available model relations:
- * @property State $idState
- * @property Address[] $addresses
+ * @property Employee $idEmployee
+ * @property City $idCity
  */
-class City extends CActiveRecord
+class Address extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'city';
+		return 'address';
 	}
 
 	/**
@@ -32,14 +33,13 @@ class City extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, country, state', 'required'),
-			array('id_state', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>35),
-			array('country', 'length', 'max'=>3),
-			array('state', 'length', 'max'=>20),
+			array('id_employee, id_city, address_line_1', 'required'),
+			array('id_employee, id_city', 'numerical', 'integerOnly'=>true),
+			array('address_line_1, address_line_2', 'length', 'max'=>250),
+			array('zip', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, country, state, id_state', 'safe', 'on'=>'search'),
+			array('id, id_employee, id_city, address_line_1, address_line_2, zip', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +51,8 @@ class City extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idState' => array(self::BELONGS_TO, 'State', 'id_state'),
-			'addresses' => array(self::HAS_MANY, 'Address', 'id_city'),
+			'idEmployee' => array(self::BELONGS_TO, 'Employee', 'id_employee'),
+			'idCity' => array(self::BELONGS_TO, 'City', 'id_city'),
 		);
 	}
 
@@ -63,10 +63,11 @@ class City extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'country' => 'Country',
-			'state' => 'State',
-			'id_state' => 'Id State',
+			'id_employee' => 'Id Employee',
+			'id_city' => 'Id City',
+			'address_line_1' => 'Address Line 1',
+			'address_line_2' => 'Address Line 2',
+			'zip' => 'Zip',
 		);
 	}
 
@@ -89,10 +90,11 @@ class City extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('country',$this->country,true);
-		$criteria->compare('state',$this->state,true);
-		$criteria->compare('id_state',$this->id_state);
+		$criteria->compare('id_employee',$this->id_employee);
+		$criteria->compare('id_city',$this->id_city);
+		$criteria->compare('address_line_1',$this->address_line_1,true);
+		$criteria->compare('address_line_2',$this->address_line_2,true);
+		$criteria->compare('zip',$this->zip,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -103,7 +105,7 @@ class City extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return City the static model class
+	 * @return Address the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

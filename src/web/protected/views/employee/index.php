@@ -357,12 +357,12 @@
                                  </div>
                                   
                                   <?php 
-                                    $htmlOptions=array(
+                                    $ajaxState=array(
                                         "ajax"=>array(
-                                            "url"=>$this->createUrl("StateByCountry"),
                                             "type"=>"POST",
+                                            "url"=>CController::createUrl("Employee/StateByCountry"),
                                             "data"=>"js:$('#submit_form').serialize()",
-                                            "update"=>"#Employee_id_states",
+                                            "update"=>"#Employee_state",
                                         
                                         ),
                                         "class"=>"form-control",
@@ -371,9 +371,9 @@
                                   ?>
                                   
                                    <?php 
-                                    $htmlOptions1=array(
+                                    $ajaxCity=array(
                                         "ajax"=>array(
-                                            "url"=>$this->createUrl("CountryByCity"),
+                                            "url"=>CController::createUrl("Employee/CityByState"),
                                             "type"=>"POST",
                                             "data"=>"js:$('#submit_form').serialize()",
                                             "update"=>"#Employee_id_city",
@@ -387,12 +387,12 @@
                                  <div id="tab_2-2" class="tab-pane">
                                        <div class="form-group">
                                           <label class="control-label">País</label>
-                                           <?php echo $form->dropDownList(Country::model(),'code',$model->getCountry(),$htmlOptions); ?>
+                                           <?php echo $form->dropDownList($model,'country',Country::model()->getCountry(),$ajaxState); ?>
                                           <?php //echo $form->textField($model,'id_country', array('class'=>'form-control', 'value'=> $model->idCountry->name)); ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label">Estado</label>
-                                            <?php //echo $form->dropDownList(States::model(),'id_states',$model->getState(), $htmlOptions1); ?>
+                                            <?php echo $form->dropDownList($model,'state', array('empty'=>'Seleccionar Pais'),$ajaxCity); ?>
                                           <?php //echo $form->textField($model,'id_states', array('class'=>'form-control', 'value'=> $model->idStates->name)); ?>
                                        </div>
                                      <div class="form-group">

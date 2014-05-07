@@ -42,6 +42,8 @@
  */
 class Employee extends CActiveRecord
 {
+    public $country;
+    public $state;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -194,14 +196,5 @@ class Employee extends CActiveRecord
         public function getNationality() {
             return  CHtml::ListData(Nationality::model()->findAll(),"id","name"); 
         }
-        public function getCountry() {
-            return  CHtml::ListData(Country::model()->findAll(),"code","name"); 
-        }
-         public function getState() {
-            return  CHtml::ListData(States::model()->findAll(),"id_country"); 
-        }
         
-         public function getcity() {
-            return  CHtml::ListData(City::model()->findAll(),"id","name"); 
-        }
 }

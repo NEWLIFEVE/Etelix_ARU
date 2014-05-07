@@ -4,11 +4,16 @@
  * This is the model class for table "country".
  *
  * The followings are the available columns in table 'country':
- * @property integer $id
+ * @property string $code
  * @property string $name
+ * @property string $continent
+ * @property string $region
+ * @property string $local_name
+ * @property integer $capital
+ * @property string $code_short
  *
  * The followings are the available model relations:
- * @property Employee[] $employees
+ * @property State[] $states
  */
 class Country extends CActiveRecord
 {
@@ -28,10 +33,17 @@ class Country extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'safe'),
+			array('code, name, region, local_name, code_short', 'required'),
+			array('capital', 'numerical', 'integerOnly'=>true),
+			array('code', 'length', 'max'=>3),
+			array('name', 'length', 'max'=>52),
+			array('region', 'length', 'max'=>26),
+			array('local_name', 'length', 'max'=>45),
+			array('code_short', 'length', 'max'=>2),
+			array('continent', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('code, name, continent, region, local_name, capital, code_short', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,7 +55,7 @@ class Country extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'employees' => array(self::HAS_MANY, 'Employee', 'id_country'),
+			'states' => array(self::HAS_MANY, 'State', 'id_country'),
 		);
 	}
 
@@ -53,8 +65,13 @@ class Country extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'code' => 'Code',
 			'name' => 'Name',
+			'continent' => 'Continent',
+			'region' => 'Region',
+			'local_name' => 'Local Name',
+			'capital' => 'Capital',
+			'code_short' => 'Code Short',
 		);
 	}
 
@@ -76,8 +93,13 @@ class Country extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('code',$this->code,true);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('continent',$this->continent,true);
+		$criteria->compare('region',$this->region,true);
+		$criteria->compare('local_name',$this->local_name,true);
+		$criteria->compare('capital',$this->capital);
+		$criteria->compare('code_short',$this->code_short,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -94,4 +116,9 @@ class Country extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getCountry() {
+            return  CHtml::ListData(Country::model()->findAll(),"code","name"); 
+        }
+        
 }

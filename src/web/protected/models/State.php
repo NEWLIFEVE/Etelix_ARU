@@ -1,25 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "states".
+ * This is the model class for table "state".
  *
- * The followings are the available columns in table 'states':
+ * The followings are the available columns in table 'state':
  * @property integer $id
- * @property integer $id_country
+ * @property string $id_country
  * @property string $name
  *
  * The followings are the available model relations:
- * @property Employee[] $employees
+ * @property City[] $cities
  * @property Country $idCountry
  */
-class States extends CActiveRecord
+class State extends CActiveRecord
 {
+    public $country;
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'states';
+		return 'state';
 	}
 
 	/**
@@ -30,8 +31,9 @@ class States extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_country', 'numerical', 'integerOnly'=>true),
-			array('name', 'safe'),
+			array('id_country, name', 'required'),
+			array('id_country', 'length', 'max'=>3),
+			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, id_country, name', 'safe', 'on'=>'search'),
@@ -46,7 +48,7 @@ class States extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'employees' => array(self::HAS_MANY, 'Employee', 'id_states'),
+			'cities' => array(self::HAS_MANY, 'City', 'id_state'),
 			'idCountry' => array(self::BELONGS_TO, 'Country', 'id_country'),
 		);
 	}
@@ -82,7 +84,7 @@ class States extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_country',$this->id_country);
+		$criteria->compare('id_country',$this->id_country,true);
 		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
@@ -94,10 +96,16 @@ class States extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return States the static model class
+	 * @return State the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
+        
+         public static function getListStateCountry($country)
+	{
+            return CHtml::listData(self::model()->findAll('id_country=:country',array(':country'=>$country)), 'id', 'name');
+	}
+        
 }
