@@ -40,26 +40,21 @@ class EmployeeController extends Controller
             );
 	}
 
-    /**
-     *
-     */    
-    public function actionStateByCountry()
-    {
-       $country = $_POST['Employee']['code'];
-       $listado_states= States::model()->findAll("id_country=:country",array(':country'=>$country));
-       foreach ($listado_states as $data)
-           echo "<option value=\"{$data->id}\">{$data->name}</option>";
+
+        public function actionStateByCountry()
+        {
+            
+            $dato = '<option value="empty">Seleccione uno</option>
+                    <option value="new">Nuevo..</option>';
+            $data = State::getListStateCountry($_POST['Employee']['country']);
+            foreach($data as $value=>$name)
+            {
+                $dato.= "<option value='$value'>".CHtml::encode($name)."</option>";
+            }
+            echo $dato;
        
-    }
-        
-         public function actionCountryByCity(){
-           $states = $_POST['Employee']['id_states'];
-       
-           $listado_city= City::model()->findAll("id_states=:states",array(':states'=>$states));
-           foreach ($listado_city as $data)
-               echo "<option value=\"{$data->id}\">{$data->name}</option>";
-           
         }
+
         /*
 	public function actions()
 	{

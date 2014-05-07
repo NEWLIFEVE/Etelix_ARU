@@ -6,10 +6,13 @@
  * The followings are the available columns in table 'city':
  * @property integer $id
  * @property string $name
- * @property integer $id_states
+ * @property string $country
+ * @property string $state
+ * @property integer $id_state
  *
  * The followings are the available model relations:
- * @property States $idStates
+ * @property State $idState
+ * @property Address[] $addresses
  */
 class City extends CActiveRecord
 {
@@ -29,11 +32,14 @@ class City extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_states', 'numerical', 'integerOnly'=>true),
-			array('name', 'safe'),
+			array('name, country, state', 'required'),
+			array('id_state', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>35),
+			array('country', 'length', 'max'=>3),
+			array('state', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, id_states', 'safe', 'on'=>'search'),
+			array('id, name, country, state, id_state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +51,8 @@ class City extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idStates' => array(self::BELONGS_TO, 'States', 'id_states'),
+			'idState' => array(self::BELONGS_TO, 'State', 'id_state'),
+			'addresses' => array(self::HAS_MANY, 'Address', 'id_city'),
 		);
 	}
 
@@ -57,7 +64,9 @@ class City extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'id_states' => 'Id States',
+			'country' => 'Country',
+			'state' => 'State',
+			'id_state' => 'Id State',
 		);
 	}
 
@@ -81,7 +90,9 @@ class City extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('id_states',$this->id_states);
+		$criteria->compare('country',$this->country,true);
+		$criteria->compare('state',$this->state,true);
+		$criteria->compare('id_state',$this->id_state);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
