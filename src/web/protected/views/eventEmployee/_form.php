@@ -42,7 +42,7 @@ for($i=1;$i<5;$i++)
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet box blue" id="form_wizard_1">
+        <div class="portlet box blue" id="declare_day">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-reorder"></i>Jornada Laboral - <span class="step-title">Paso 1 de 4</span>
