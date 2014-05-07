@@ -400,17 +400,23 @@ var FormWizard = function () {
                     
                     var cont=contbd-1;
                     var current = cont + 1;
-                    var $percent = (current / total) * 100;
-                 
-                    
-                        $('#form_wizard_1').find('.progress-bar').css({
-                        width: $percent + '%'
-                    });
+                       
                 },
                 onInit:function(tab, navigation,index){
                     $activeTab=$('ul.steps li.active');
                     $index=$activeTab.index()+1;
                     $element=$('ul.steps li.active');
+                    if($index>1){
+                        var percentage=100/navigation.find('li').length;
+                        $('#form_wizard_1').find('.progress-bar').css({
+                        width: percentage + '%'
+                    });
+                    }else{
+                        $('#form_wizard_1').find('.progress-bar').css({
+                        width: '0%'
+                    });
+                    }
+                    
                 }
             });
 
