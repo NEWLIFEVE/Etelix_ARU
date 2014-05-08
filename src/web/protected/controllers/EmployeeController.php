@@ -10,7 +10,8 @@ class EmployeeController extends Controller {
             $Employee = new Employee;
         else
             $Address = Address::getAddressByUser($Employee->id);
-
+        
+        $Address = new Address;
         /* Funcion que valida que el empleado tenga una direccion asignada, y devuelve los datos de la misma */
         $Address = Address::getAddressByUser($Employee->id);
         /* Reviso que el form este seteado */
@@ -20,6 +21,7 @@ class EmployeeController extends Controller {
                 $User = User::model()->findByPk($idUser);
                 $User->id_employee = $Employee->id;
                 $User->save();
+                
                 /* Funcion que se encarga de validar que la direccion ya exista */
                 $checkAddress = Address::checkAddress($_POST['Employee']['line1'], $_POST['Employee']['line2'], $_POST['Employee']['zip'], $_POST['Employee']['city']);
                 /* si no existe la cre y guardo el id, si ya existe guardo el id, retornado en la funcion */
@@ -48,8 +50,8 @@ class EmployeeController extends Controller {
                     $AddressEmployee->id_employee = $Employee->id;
                     $AddressEmployee->id_address = $idAddress;
                     $AddressEmployee->start_date = date("Y-m-d");
-                    if ($AddressEmployee->save())
-                        $this->redirect(array('infoEmployee', 'id' => $Employee->id));
+                    if ($AddressEmployee->save()){}
+//                        $this->redirect(array('infoEmployee', 'id' => $Employee->id));
                 }else {
                     
                 }

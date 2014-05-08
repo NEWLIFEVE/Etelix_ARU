@@ -21,8 +21,8 @@
  * @property string $extension_numeric
  * @property integer $id_gender
  * @property integer $id_nationality
- * @property string $secon_name
- * @property string $secon_last_name
+ * @property string $second_name
+ * @property string $second_last_name
  * @property string $image_rute
  *
  * The followings are the available model relations:
@@ -67,10 +67,10 @@ class Employee extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_position, id_supervisor, id_education, id_marital_status, id_gender, id_nationality', 'numerical', 'integerOnly'=>true),
-			array('first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, secon_name, secon_last_name', 'safe'),
+			array('first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, second_name, second_last_name', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_gender, id_nationality, secon_name, secon_last_name, image_rute', 'safe', 'on'=>'search'),
+			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_gender, id_nationality, second_name, second_last_name, image_rute', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -122,8 +122,8 @@ class Employee extends CActiveRecord
 			'extension_numeric' => 'Extension Numeric',
 			'id_gender' => 'Id Gender',
 			'id_nationality' => 'Id Nationality',
-			'secon_name' => 'Secon Name',
-			'secon_last_name' => 'Secon Last Name',
+			'second_name' => 'Secon Name',
+			'second_last_name' => 'Secon Last Name',
 			'image_rute' => 'Imagen',
 		);
 	}
@@ -163,8 +163,8 @@ class Employee extends CActiveRecord
 		$criteria->compare('extension_numeric',$this->extension_numeric,true);
 		$criteria->compare('id_gender',$this->id_gender);
 		$criteria->compare('id_nationality',$this->id_nationality);
-		$criteria->compare('secon_name',$this->secon_name,true);
-		$criteria->compare('secon_last_name',$this->secon_last_name,true);
+		$criteria->compare('second_name',$this->second_name,true);
+		$criteria->compare('second_last_name',$this->second_last_name,true);
 		$criteria->compare('image_rute',$this->image_rute,true);
 
 		return new CActiveDataProvider($this, array(
