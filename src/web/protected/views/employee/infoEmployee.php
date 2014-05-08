@@ -433,9 +433,9 @@
                                           
                                              <?php 
                                           if(empty($Address->idCity->idState->idCountry->name))
-                                            echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState);
+                                            echo $form->dropDownList($Employee,'country',Country::getCountry(),$ajaxState);
                                           else
-                                            echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState);
+                                            echo $form->dropDownList($Employee,'country',Country::getCountry(),$ajaxState);
                                           ?>
                                           
                                        </div>
@@ -443,7 +443,7 @@
                                           <label class="control-label letra_empleado">Estado/Provincia/Región</label>
                                              <?php 
                                           if(empty($Address->idCity->idState->name))
-                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione Un Estado/Provincia/Región'),$ajaxCity);
+                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione un Pais'),$ajaxCity);
                                           else
                                             echo $form->dropDownList($Employee,'state', array('empty'=>$Address->idCity->idState->name),$ajaxCity);
                                           ?>
