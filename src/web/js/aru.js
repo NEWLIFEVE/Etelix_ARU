@@ -19,7 +19,8 @@ $ARU.UI=(function(){
     {
         loadIndex();
         _location();
-//        SelectCountry();
+        getphoto();
+
 
     }
 
@@ -162,26 +163,68 @@ $ARU.UI=(function(){
         }
     }
     
-    
     /**
      * 
+     * funcion para enviar la captura de la foto a la accion 
      */
     
-//    function SelectCountry(){
-//        
-//          $("#Employee_country").select2(
-//            {
-//                placeholder: "Seleccione el País",
-//                allowClear: true,
-//                formatResult: format,
-//                formatSelection: format,
-//                escapeMarkup:function(m)
-//                {
-//                    return m;
-//                }
-//            });
-//    }
-//       
+        function attachphoto(){
+            
+                  var settings = {
+                            url: "/file/uploadjquery",
+                            dragDrop:false,
+                            showDone: false,
+                            fileName: "myfile",
+                            allowedTypes:"pdf,gif,jpeg,png,jpg,xlsx,xls,txt,cap,pcap,csv",	
+                            returnType:"json",
+                            showFileCounter:false,
+                                 onSuccess:function(files,data,xhr)
+                            {
+                                 $('div.ajax-file-upload-filename:last').attr('name', data[0]); 
+                            },
+                            showDelete:false,
+                            deleteCallback: function(data,pd){
+                                for(var i=0;i<data.length;i++)
+                                {
+                                    $.post("/file/deletejquery",{op:"delete",name:data[i]},
+                                    function(resp, textStatus, jqXHR)
+                                    {
+                                        //Show Message  
+                                        $("#status").html("");      
+                                    });
+                                 }      
+                                pd.statusbar.remove(); //You choice to hide/not.
+                            }
+                        }
+
+ var uploadphoto = $("#mulitplefileuploader").uploadFile(settings); 
+        }
+    
+    
+    
+    
+    /**
+     * funcion para capturar el evento de la foto
+     */
+    
+        function getphoto(){
+            $('a #').on('click',function(){
+     alert ("hola");
+            attachphoto();
+            
+            
+            
+            
+        });
+            
+        }
+    
+    
+    
+    
+    
+    
+    
     return {
         init:init
     };
