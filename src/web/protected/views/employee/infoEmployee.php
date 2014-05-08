@@ -129,13 +129,13 @@
                                                     <td class="letra_empleado">Primer Nombre</td>
                                                     <td><?php if (is_null($Employee->first_name)){} else{echo $Employee->first_name;}?></td>
                                                    <td class="letra_empleado">Segundo Nombre</td>
-                                                   <td><?php if (is_null($Employee->secon_name)){} else{echo $Employee->secon_name;}?></td>
+                                                   <td><?php if (is_null($Employee->second_name)){} else{echo $Employee->second_name;}?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Primer Apellido</td>
                                                    <td><?php if (is_null($Employee->last_name)){} else{echo $Employee->last_name;}?></td>
                                                    <td class="letra_empleado">Segundo Apellido</td>
-                                                   <td><?php if (is_null($Employee->secon_last_name)){} else{echo $Employee->secon_last_name;}?></td>
+                                                   <td><?php if (is_null($Employee->second_last_name)){} else{echo $Employee->second_last_name;}?></td>
                                                   
                                                 </tr>
                                                 <tr>
@@ -283,7 +283,7 @@
                                                   </div>
                                                   <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Nombre</label>
-                                                      <?php if(empty($Employee->secon_name))echo $form->textField($Employee,'secon_name', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'secon_name', array('class'=>'form-control','value'=>$Employee->secon_name));?>
+                                                      <?php if(empty($Employee->second_name))echo $form->textField($Employee,'second_name', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'second_name', array('class'=>'form-control','value'=>$Employee->second_name));?>
                                                   </div>
                                             </div>
                                              <div class="contenidos_columnas ">
@@ -293,7 +293,7 @@
                                                  </div>
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Apellido</label>
-                                                     <?php if(empty($Employee->secon_last_name))echo $form->textField($Employee,'secon_last_name', array('class'=>'form-control','value'=>''));else echo $form->textField($Employee,'secon_last_name', array('class'=>'form-control','value'=>$Employee->secon_last_name));?>
+                                                     <?php if(empty($Employee->second_last_name))echo $form->textField($Employee,'second_last_name', array('class'=>'form-control','value'=>''));else echo $form->textField($Employee,'second_last_name', array('class'=>'form-control','value'=>$Employee->second_last_name));?>
                                                  </div>
                                             </div>
                                             <div class="contenidos_columnas">
@@ -337,7 +337,7 @@
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                     <label class="control-label">Teléfono Celular</label>
-                                                      <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
+                                                      <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
@@ -431,9 +431,9 @@
                                           
                                              <?php 
                                           if(empty($Address->idCity->idState->idCountry->name))
-                                            echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState);
+                                            echo $form->dropDownList($Employee,'country',Country::getCountry(),$ajaxState);
                                           else
-                                            echo $form->dropDownList($Employee,'country',Country::model()->getCountry(),$ajaxState);
+                                            echo $form->dropDownList($Employee,'country',Country::getCountry(),$ajaxState);
                                           ?>
                                           
                                        </div>
@@ -441,7 +441,7 @@
                                           <label class="control-label letra_empleado">Estado/Provincia/Región</label>
                                              <?php 
                                           if(empty($Address->idCity->idState->name))
-                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione Un Estado/Provincia/Región'),$ajaxCity);
+                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione un Pais'),$ajaxCity);
                                           else
                                             echo $form->dropDownList($Employee,'state', array('empty'=>$Address->idCity->idState->name),$ajaxCity);
                                           ?>

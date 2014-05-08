@@ -117,7 +117,7 @@ class Country extends CActiveRecord
 		return parent::model($className);
 	}
         
-        public function getCountry() {
+        public static function getCountry() {
             return  CHtml::ListData(Country::model()->findAll(),"code","name"); 
         }
         
