@@ -21,22 +21,22 @@ var FormWizard=function()
             /**
              *
              */
-            $("#Employee_id_country").select2(
-            {
-                placeholder: "Seleccione el País",
-                allowClear: true,
-                formatResult: format,
-                formatSelection: format,
-                escapeMarkup:function(m)
-                {
-                    return m;
-                }
-            });
+//            $("#Employee_country").select2(
+//            {
+//                placeholder: "Seleccione el País",
+//                allowClear: true,
+//                formatResult: format,
+//                formatSelection: format,
+//                escapeMarkup:function(m)
+//                {
+//                    return m;
+//                }
+//            });
 
             /**
              *
              */
-            $("#Employee_id_states").select2(
+            $("#Employee_state").select2(
             {
                 placeholder: "Seleccione el Estado",
                 allowClear: true,
@@ -51,7 +51,7 @@ var FormWizard=function()
             /**
              *
              */
-            $("#Employee_id_city").select2(
+            $("#Employee_city").select2(
             {
                 placeholder: "Seleccione el Estado",
                 allowClear: true,

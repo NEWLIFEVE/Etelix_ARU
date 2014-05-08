@@ -20,8 +20,7 @@ $ARU.UI=(function(){
         loadIndex();
         declare();
         location();
-       
-        
+
     }
 
     /**
@@ -53,6 +52,10 @@ $ARU.UI=(function(){
                 $element=$('ul.steps li.active');
                 _progressBar('#declare_day',$index+1);
             }
+            
+            
+            
+            
         });
     }
     
@@ -97,6 +100,9 @@ $ARU.UI=(function(){
                  time_event:time_event
              }
     }
+    
+  
+    
 
     /**
      * Funcion encargada de aumentar el tamano de la barra en el momento de declarar
@@ -177,5 +183,4 @@ $ARU.AJAX=(function()
 $(document).on('ready',function(){
    $ARU.UI.init(); 
   
-   
 });
