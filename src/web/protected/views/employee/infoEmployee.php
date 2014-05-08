@@ -507,6 +507,7 @@
                                                            
                                                            <div class="option-panel right">
                                                                      <div id="mulitplefileuploader">Add file</div>
+                                                                     <div id="area-add-file"></div>
                                                             </div>
                                                           <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->
                                                        </div>

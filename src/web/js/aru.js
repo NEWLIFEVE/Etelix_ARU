@@ -171,7 +171,7 @@ $ARU.UI=(function(){
         function attachphoto(){
             
                   var settings = {
-                            url: "/file/uploadjquery",
+                            url: "/Employee/Photo",
                             dragDrop:false,
                             showDone: false,
                             fileName: "myfile",
@@ -208,8 +208,8 @@ $ARU.UI=(function(){
      */
     
         function getphoto(){
-            $('a #').on('click',function(){
-     alert ("hola");
+            $('a').on('click',function(){
+   
             attachphoto();
             
             
