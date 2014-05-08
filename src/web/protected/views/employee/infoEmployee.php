@@ -278,33 +278,62 @@
                                                 
                                                   <div class="secundario">
                                                     <label class="control-label letra_empleado">Primer Nombre</label>
-                                                        <?php echo $form->textField($Employee,'first_name', array('class'=>'form-control input-xmedium ', 'value'=>$Employee->first_name)); ?>
+                                                      <?php 
+                                                            if(empty($Employee->first_name))
+                                                                echo $form->textField($Employee,'first_name', array('class'=>'form-control','value'=>''));
+                                                            else
+                                                                echo $form->textField($Employee,'first_name', array('class'=>'form-control','value'=>$Employee->first_name));
+                                                        ?>
                                                   </div>
                                                   <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Nombre</label>
-                                                        <?php echo $form->textField($Employee,'secon_name', array('class'=>'form-control input-xmedium', 'value'=>$Employee->secon_name)); ?>
+                                                      <?php 
+                                                            if(empty($Employee->secon_name))
+                                                                echo $form->textField($Employee,'secon_name', array('class'=>'form-control','value'=>''));
+                                                            else
+                                                                echo $form->textField($Employee,'secon_name', array('class'=>'form-control','value'=>$Employee->secon_name));
+                                                       ?>
                                                   </div>
                                             </div>
                                              <div class="contenidos_columnas ">
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Primer Apellido</label>
-                                                         <?php echo $form->textField($Employee,'last_name', array('class'=>'form-control input-xmedium', 'value'=>$Employee->last_name)); ?>
+                                                    <?php 
+                                                            if(empty($Employee->last_name))
+                                                                echo $form->textField($Employee,'last_name', array('class'=>'form-control','value'=>''));
+                                                            else
+                                                                echo $form->textField($Employee,'last_name', array('class'=>'form-control','value'=>$Employee->last_name));
+                                                       ?>
                                                  </div>
                                                  <div class="secundario letra_empleado">
                                                     <label class="control-label">Segundo Apellido</label>
-                                                         <?php echo $form->textField($Employee,'secon_last_name', array('class'=>'form-control input-xmedium', 'value'=>$Employee->secon_last_name)); ?>
+                                                     <?php 
+                                                            if(empty($Employee->secon_last_name))
+                                                                echo $form->textField($Employee,'secon_last_name', array('class'=>'form-control','value'=>''));
+                                                            else
+                                                                echo $form->textField($Employee,'secon_last_name', array('class'=>'form-control','value'=>$Employee->secon_last_name));
+                                                       ?>
                                                  </div>
                                             </div>
                                             <div class="contenidos_columnas">
                                                 
                                                  <div class="secundario letra_empleado">
                                                      <label class="control-label">Fecha de Nacimiento</label>
-                                                         <?php echo $form->textField($Employee,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci')); ?>
-                                                        <?php //echo $form->textField($Employee,'date_birth', array('class'=>'form-control', 'value'=>$Employee->date_birth)); ?>
+                                                     <?php 
+                                                            if(empty($Employee->date_birth))
+                                                                 echo $form->textField($Employee,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci'));
+                                                            else
+                                                                echo $form->textField($Employee,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci'));
+                                                       ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                      <label class="control-label">Documento de Identidad</label>
-                                                        <?php echo $form->textField($Employee,'identity_card', array('class'=>'form-control input-xmedium', 'value'=>$Employee->identity_card,'id'=>'mask_number')); ?>
+                                                      <?php 
+                                                            if(empty($Employee->identity_card))
+                                                                echo $form->textField($Employee,'identity_card', array('class'=>'form-control','value'=>''));
+                                                            else
+                                                                echo $form->textField($Employee,'identity_card', array('class'=>'form-control','value'=>$Employee->identity_card,'id'=>'mask_number'));
+                                                       ?>
                                                  </div>
                                               
                                             </div>
@@ -312,7 +341,14 @@
                                              <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado">
                                                      <label class="control-label">Nacionalidad</label>
-                                                        <?php echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array("class"=>"form-control")); ?>
+                                                        <?php 
+                                                            if(empty($Employee->id_nationality))
+                                                                echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array('empty'=>'Seleccione una Opción','class'=>'form-control'));
+                                                            else
+                                                                echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array("class"=>"form-control"));
+                                                       ?>
+                                                     
+                                                        <?php //echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array("class"=>"form-control")); ?>
                                                         <?php //echo $form->textField($Employee,'nationality', array('class'=>'form-control', 'value'=>$Employee->nationality)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado">
