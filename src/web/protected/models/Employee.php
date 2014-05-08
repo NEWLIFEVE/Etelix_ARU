@@ -23,6 +23,7 @@
  * @property integer $id_nationality
  * @property string $secon_name
  * @property string $secon_last_name
+ * @property string $image_rute
  *
  * The followings are the available model relations:
  * @property EducationEmployee[] $educationEmployees
@@ -48,6 +49,7 @@ class Employee extends CActiveRecord
     public $line1;
     public $line2;
     public $zip;
+    public $imagen;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -68,7 +70,7 @@ class Employee extends CActiveRecord
 			array('first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, secon_name, secon_last_name', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_gender, id_nationality, secon_name, secon_last_name', 'safe', 'on'=>'search'),
+			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_gender, id_nationality, secon_name, secon_last_name, image_rute', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -122,6 +124,7 @@ class Employee extends CActiveRecord
 			'id_nationality' => 'Id Nationality',
 			'secon_name' => 'Secon Name',
 			'secon_last_name' => 'Secon Last Name',
+			'image_rute' => 'Imagen',
 		);
 	}
 
@@ -162,6 +165,7 @@ class Employee extends CActiveRecord
 		$criteria->compare('id_nationality',$this->id_nationality);
 		$criteria->compare('secon_name',$this->secon_name,true);
 		$criteria->compare('secon_last_name',$this->secon_last_name,true);
+		$criteria->compare('image_rute',$this->image_rute,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

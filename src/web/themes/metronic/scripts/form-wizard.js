@@ -68,7 +68,7 @@ var FormWizard=function()
              */
             $('#form_wizard_1').find('#aceptar').hide();
 
-            var form = $('#event-employee-form');
+            var form = $('#submit_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 

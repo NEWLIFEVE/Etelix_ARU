@@ -556,6 +556,10 @@
    <script type="text/javascript" src="/themes/metronic/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
    <script type="text/javascript" src="/themes/metronic/plugins/jquery-multi-select/js/jquery.quicksearch.js"></script>   
    <script src="/themes/metronic/plugins/jquery.pwstrength.bootstrap/src/pwstrength.js" type="text/javascript" ></script>
+   
+    <script src="/themes/metronic/plugins/jquery.uploadfile.js" type="text/javascript" ></script>
+    
+    
    <script src="/themes/metronic/plugins/bootstrap-switch/static/js/bootstrap-switch.min.js" type="text/javascript" ></script>
    <script src="/themes/metronic/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript" ></script>
    <script src="/themes/metronic/plugins/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript" ></script>
