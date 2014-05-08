@@ -1,3 +1,5 @@
+<?php // echo $_SERVER['REMOTE_ADDR']; ?>
+
 <div class="row">
             <div class="col-md-12">
                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
@@ -127,53 +129,53 @@
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Primer Nombre</td>
-                                                   <td><?php echo $Employee->first_name;?></td>
+                                                    <td><?php if (is_null($Employee->first_name)){} else{echo $Employee->first_name;}?></td>
                                                    <td class="letra_empleado">Segundo Nombre</td>
-                                                   <td><?php echo $Employee->secon_name;?></td>
+                                                   <td><?php if (is_null($Employee->secon_name)){} else{echo $Employee->secon_name;}?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Primer Apellido</td>
-                                                   <td><?php echo $Employee->last_name;?></td>
+                                                   <td><?php if (is_null($Employee->last_name)){} else{echo $Employee->last_name;}?></td>
                                                    <td class="letra_empleado">Segundo Apellido</td>
-                                                   <td><?php echo $Employee->secon_last_name;?></td>
+                                                   <td><?php if (is_null($Employee->secon_last_name)){} else{echo $Employee->secon_last_name;}?></td>
                                                   
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Fecha de Nacimiento</td>
-                                                   <td><?php echo $Employee->date_birth;?></td>
+                                                   <td><?php if (is_null($Employee->date_birth)){} else{echo $Employee->date_birth;}?></td>
                                                    <td class="letra_empleado">Documento de Identidad</td>
-                                                   <td><?php echo $Employee->identity_card;?></td>
+                                                   <td><?php if (is_null($Employee->identity_card)){} else{echo $Employee->identity_card;}?></td>
                                                 </tr>
                                                 
                                                  <tr>
                                                    <td class="letra_empleado">Nacionalidad</td>
-                                                   <td><?php echo $Employee->idNationality->name;?></td>
+                                                   <td><?php if (is_null($Employee->idNationality->name)){} else{echo $Employee->idNationality->name;}?></td>
                                                    <td class="letra_empleado">Estado Civil</td>
-                                                   <td><?php echo $Employee->idMaritalStatus->name;?></td>
+                                                   <td><?php if (is_null($Employee->idMaritalStatus->name)){} else{echo $Employee->idMaritalStatus->name;}?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Correo Personal</td>
-                                                   <td><?php echo $Employee->email_personal;?></td>
+                                                   <td><?php if (is_null($Employee->email_personal)){} else{echo $Employee->email_personal;}?></td>
                                                    <td class="letra_empleado">Correo Corporativo</td>
-                                                   <td><?php echo $Employee->email_company;?></td>
+                                                   <td><?php if (is_null($Employee->email_company)){} else{echo $Employee->email_company;}?></td>
                                                 </tr>
                                                 
                                                  <tr>
                                                    <td class="letra_empleado">Skype</td>
-                                                   <td><?php echo $Employee->skype;?></td>
+                                                   <td><?php if (is_null( $Employee->skype)){} else{echo $Employee->skype;}?></td>
                                                    <td></td>
                                                    <td></td>
                                                 </tr>
                                                 
                                                 <tr>
                                                    <td class="letra_empleado">Teléfono Celular</td>
-                                                   <td><?php echo $Employee->cellphone;?></td>
+                                                   <td><?php if (is_null( $Employee->cellphone)){} else{echo $Employee->cellphone;}?></td>
                                                    <td class="letra_empleado">Teléfono De Habitación</td>
-                                                   <td><?php echo $Employee->home_phone;?></td>
+                                                   <td><?php if (is_null( $Employee->home_phone)){} else{echo $Employee->home_phone;}?></td>
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Extensión de Oficina</td>
-                                                   <td><?php echo $Employee->extension_numeric;?></td>
+                                                   <td><?php if (is_null( $Employee->extension_numeric)){} else{echo $Employee->extension_numeric;}?></td>
                                                    <td></td>
                                                    <td></td>
                                                 </tr>

@@ -18,15 +18,9 @@ $ARU.UI=(function(){
      function init()
     {
         loadIndex();
-<<<<<<< HEAD
-        declare();
-        location();
-
-=======
         _location();
-       
-        
->>>>>>> 37a7089a9c688196e61ccd10543398c6ca89dbec
+//        SelectCountry();
+
     }
 
     /**
@@ -72,55 +66,7 @@ $ARU.UI=(function(){
             
         });
     }
-<<<<<<< HEAD
-    
-    function declare()
-    {        
-        $('a#declare').on('click',function()
-        {
-            tab=$('.tab-pane').filter(function(){return $(this).attr('class')=='tab-pane active'}).attr('id');
-        });
-    }
-    
-    
-    
-    function location()
-    {
-        
-      
-        $('input.declare').on('click',function(){  
-            //Se desde que ubicacion trabajan
-            var location=this.value;
-            //Ahora se que tab estan declarando
-                       
-           $ARU.AJAX.getEventTime("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+gettime().date_event+"&time_event="+gettime().time_event); 
-           
-
-        });
-    }
-    
-    function gettime()
-    {
-             var d = new Date();
-             var day_event=d.getDate();
-             var month_event=d.getMonth()+1;
-             var year_event=d.getFullYear();
-             var hour_event=d.getHours();
-             var minutes_event=d.getMinutes();
-             var seconds_event=d.getSeconds();
-             var date_event=year_event+'-'+month_event+'-'+day_event;
-             var time_event=hour_event+':'+minutes_event+':'+seconds_event;
-             return {
-                 date_event:date_event,
-                 time_event:time_event
-             }
-    }
-    
-  
-    
-=======
->>>>>>> 37a7089a9c688196e61ccd10543398c6ca89dbec
-
+ 
     /**
      * Funcion encargada de aumentar el tamano de la barra en el momento de declarar
      * @param string obj es el id del elemento donde se va a buscar la barra
@@ -143,13 +89,13 @@ $ARU.UI=(function(){
         $('input.button-next,input.button-submit').on('click',function()
         {
             var location=this.value;
-            $ARU.AJAX.sendEvent("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+_gettime().date_event+"&time_event="+_gettime().time_event);
+            $ARU.AJAX.sendEvent("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+_getTime().date_event+"&time_event="+_getTime().time_event);
         });
     }
     /**
      *
      */
-    function _gettime()
+    function _getTime()
     {
         var d = new Date();
         var day_event=d.getDate();
@@ -215,7 +161,27 @@ $ARU.UI=(function(){
                 break;
         }
     }
-       
+    
+    
+    /**
+     * 
+     */
+    
+//    function SelectCountry(){
+//        
+//          $("#Employee_country").select2(
+//            {
+//                placeholder: "Seleccione el País",
+//                allowClear: true,
+//                formatResult: format,
+//                formatSelection: format,
+//                escapeMarkup:function(m)
+//                {
+//                    return m;
+//                }
+//            });
+//    }
+//       
     return {
         init:init
     };
@@ -263,10 +229,5 @@ $ARU.AJAX=(function()
 
 
 $(document).on('ready',function(){
-<<<<<<< HEAD
    $ARU.UI.init(); 
-  
-=======
-   $ARU.UI.init();    
->>>>>>> 37a7089a9c688196e61ccd10543398c6ca89dbec
 });

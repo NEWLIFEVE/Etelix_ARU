@@ -21,17 +21,17 @@ var FormWizard=function()
             /**
              *
              */
-//            $("#Employee_country").select2(
-//            {
-//                placeholder: "Seleccione el País",
-//                allowClear: true,
-//                formatResult: format,
-//                formatSelection: format,
-//                escapeMarkup:function(m)
-//                {
-//                    return m;
-//                }
-//            });
+            $("#Employee_country").select2(
+            {
+                placeholder: "Seleccione el País",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup:function(m)
+                {
+                    return m;
+                }
+            });
 
             /**
              *
