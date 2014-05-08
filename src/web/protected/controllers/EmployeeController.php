@@ -4,10 +4,10 @@ class EmployeeController extends Controller
 {
 	public function actionInfoEmployee()
 	{
-        $idEmployee=Yii::app()->user->id;
-        $Employee = Employee::model()->findByPk($idEmployee);
+        $idUser=Yii::app()->user->id;
+        $Employee = Employee::getEmployee($idUser);
         /*Funcion que valida que el empleado tenga una direccion asignada, y devuelve los datos de la misma*/
-        $Address = Address::getAddressByUser($idEmployee);
+        $Address = Address::getAddressByUser($Employee->id);
         /*Reviso que el form este seteado*/
           if (isset($_POST['Employee'])){
               /*Funcion que se encarga de validar que la direccion ya exista*/
@@ -25,7 +25,7 @@ class EmployeeController extends Controller
              }
              /**/
              /*Funcion que valida que el usuario efectivamente tenga asignada esa direccion en especifico*/
-            $checkAddressEmployee = AddressEmployee::checkAddressByUser($idEmployee, $idAddress);
+            $checkAddressEmployee = AddressEmployee::checkAddressByUser($Employee->id, $idAddress);
             /*si es */
             if (is_null($checkAddressEmployee)){
                 if ($Address!=NULL){
@@ -34,7 +34,7 @@ class EmployeeController extends Controller
                 $OldAddressEmployee->save();
                 }
                 $AddressEmployee= new AddressEmployee;
-                $AddressEmployee->id_employee = $idEmployee;
+                $AddressEmployee->id_employee = $Employee->id;
                 $AddressEmployee->id_address = $idAddress;
                 $AddressEmployee->start_date = date("Y-m-d");
                 if($AddressEmployee->save())
@@ -43,7 +43,7 @@ class EmployeeController extends Controller
 //                $checkAddressEmployee->end_date = date("Y-m-d");
 //                if($checkAddressEmployee->save()){
 //                    $addressEmployee= new AddressEmployee;
-//                    $addressEmployee->id_employee = $idEmployee;
+//                    $addressEmployee->id_employee = $Employee->id;
 //                    $addressEmployee->id_address = $idAddress;
 //                    $addressEmployee->start_date = date("Y-m-d");
 //                    if($addressEmployee->save())

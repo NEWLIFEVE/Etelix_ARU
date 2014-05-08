@@ -19,8 +19,8 @@ $ARU.UI=(function(){
     {
         loadIndex();
         _location();
-       
-        
+//        SelectCountry();
+
     }
 
     /**
@@ -60,9 +60,13 @@ $ARU.UI=(function(){
                 _progressBar('#declare_day',$index+1);
                 _buttons(tab, navigation, $index);
             }
+            
+            
+            
+            
         });
     }
-
+ 
     /**
      * Funcion encargada de aumentar el tamano de la barra en el momento de declarar
      * @param string obj es el id del elemento donde se va a buscar la barra
@@ -85,13 +89,13 @@ $ARU.UI=(function(){
         $('input.button-next,input.button-submit').on('click',function()
         {
             var location=this.value;
-            $ARU.AJAX.sendEvent("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+_gettime().date_event+"&time_event="+_gettime().time_event);
+            $ARU.AJAX.sendEvent("GET","/EventEmployee/Declarar","tab="+tab+"&location="+location+"&date_event="+_getTime().date_event+"&time_event="+_getTime().time_event);
         });
     }
     /**
      *
      */
-    function _gettime()
+    function _getTime()
     {
         var d = new Date();
         var day_event=d.getDate();
@@ -157,7 +161,27 @@ $ARU.UI=(function(){
                 break;
         }
     }
-       
+    
+    
+    /**
+     * 
+     */
+    
+//    function SelectCountry(){
+//        
+//          $("#Employee_country").select2(
+//            {
+//                placeholder: "Seleccione el País",
+//                allowClear: true,
+//                formatResult: format,
+//                formatSelection: format,
+//                escapeMarkup:function(m)
+//                {
+//                    return m;
+//                }
+//            });
+//    }
+//       
     return {
         init:init
     };
@@ -205,5 +229,5 @@ $ARU.AJAX=(function()
 
 
 $(document).on('ready',function(){
-   $ARU.UI.init();    
+   $ARU.UI.init(); 
 });
