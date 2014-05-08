@@ -4,39 +4,53 @@ class EmployeeController extends Controller
 {
 	public function actionInfoEmployee()
 	{
-        $id=Yii::app()->user->id;
-        $Employee = Employee::model()->findByPk($id);
-        $Address = Address::getAddressByUser($id);
-        $address= new Address;
-      
+        $idUser=Yii::app()->user->id;
+        $Employee = Employee::getEmployee($idUser);
+        /*Funcion que valida que el empleado tenga una direccion asignada, y devuelve los datos de la misma*/
+        $Address = Address::getAddressByUser($Employee->id);
+        /*Reviso que el form este seteado*/
           if (isset($_POST['Employee'])){
-             
-            $address->address_line_1=$_POST['Employee']['line1'];
-            $address->address_line_2=$_POST['Employee']['line2'];
-            $address->zip=$_POST['Employee']['zip'];
-            $address->id_city=$_POST['Employee']['city'];
-            if($address->save()){
-                $addressEmployee= new AddressEmployee;
-                $addressEmployee->id_employee = $id;
-                $addressEmployee->id_address = $address->id;
-                $addressEmployee->start_date = date("Y-m-d");
-                if($addressEmployee->save()){}
+              /*Funcion que se encarga de validar que la direccion ya exista*/
+              $checkAddress = Address::checkAddress($_POST['Employee']['line1'], $_POST['Employee']['line2'], $_POST['Employee']['zip'], $_POST['Employee']['city']);
+             /*si no existe la cre y guardo el id, si ya existe guardo el id, retornado en la funcion*/
+              if (is_null($checkAddress)){
+                $NewAddress= new Address;
+                $NewAddress->address_line_1=$_POST['Employee']['line1'];
+                $NewAddress->address_line_2=$_POST['Employee']['line2'];
+                $NewAddress->zip=$_POST['Employee']['zip'];
+                $NewAddress->id_city=$_POST['Employee']['city'];
+                if($NewAddress->save())$idAddress=$NewAddress->id;
+             }else{
+                 $idAddress=$checkAddress;
+             }
+             /**/
+             /*Funcion que valida que el usuario efectivamente tenga asignada esa direccion en especifico*/
+            $checkAddressEmployee = AddressEmployee::checkAddressByUser($Employee->id, $idAddress);
+            /*si es */
+            if (is_null($checkAddressEmployee)){
+                if ($Address!=NULL){
+                $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address',array(':address'=>$Address->id));
+                $OldAddressEmployee->end_date = date("Y-m-d");
+                $OldAddressEmployee->save();
+                }
+                $AddressEmployee= new AddressEmployee;
+                $AddressEmployee->id_employee = $Employee->id;
+                $AddressEmployee->id_address = $idAddress;
+                $AddressEmployee->start_date = date("Y-m-d");
+                if($AddressEmployee->save())
                  $this->redirect(array('infoEmployee','id'=>$Employee->id));
-            }
-              
-//            $address->id_employee=1;     
-//            $address->address_line_1="hola";
-//            $address->address_line_2="como estas";
-//            $address->id_city=1;
-//            $address->zip=0121;
-           // $address->save();
-          
-            
+            }else{
+//                $checkAddressEmployee->end_date = date("Y-m-d");
+//                if($checkAddressEmployee->save()){
+//                    $addressEmployee= new AddressEmployee;
+//                    $addressEmployee->id_employee = $Employee->id;
+//                    $addressEmployee->id_address = $idAddress;
+//                    $addressEmployee->start_date = date("Y-m-d");
+//                    if($addressEmployee->save())
+//                    $this->redirect(array('infoEmployee','id'=>$Employee->id));
+//                }
+            } 
 
-           
-//             $model->attributes=$_POST['Employee'];
-//             if ($model->save())
-//                    $this->redirect(array('index','id'=>$model->id));
          }
         $this->render('infoEmployee', array('Employee'=>$Employee,'Address'=>$Address));
     	}

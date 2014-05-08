@@ -179,6 +179,11 @@ class Employee extends CActiveRecord
 		return parent::model($className);
 	}
         
+        public static function getEmployee ($idUser)
+        {
+              $idEmployee = User::getIdEmployee($idUser);
+              if ($idEmployee!=NULL) return self::model()->findByPk($idEmployee); else return NULL;
+        }
         
         /**
          * 

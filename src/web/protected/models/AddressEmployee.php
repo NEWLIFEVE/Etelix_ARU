@@ -107,4 +107,17 @@ class AddressEmployee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public static function checkAddressByUser($idEmployee,$idAddress)
+        {          
+            $AddressEmployee = AddressEmployee::model()->find('end_date IS NULL AND id_employee =:idEmploye AND id_address =:idAddress',array(':idEmploye'=>$idEmployee,':idAddress'=>$idAddress));
+            if ($AddressEmployee!=NULL)
+            {     
+                return $AddressEmployee;
+            }          
+            else {   
+                
+                return NULL;
+            }                  
+        }      
 }
