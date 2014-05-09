@@ -49,7 +49,7 @@
                            <div class="col-md-3">
                               <ul class="list-unstyled profile-nav">
                                   
-                                 <?php if (!empty($Employee->image_rute)){ $Employee_load=$Employee->image_rute;} else $Employee_load="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image"; ?>
+                                 <?php if (!empty($Employee->image_rute)){ $Employee_load=$Employee->image_rute;} else $Employee_load="themes/metronic/img/profile/profile.jpg"; ?>
                                  <li><img src="/<?php echo $Employee_load ?>" class="img-responsive" alt="" /> 
                                       <a data-toggle="modal" href="#cambio_photo" id="photo">Cambiar Imagen</a>
                                     
@@ -484,14 +484,14 @@
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                  <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
                               </div>
-                              <div class="modal-body">
+                              <div class="modal-body" align="center">
                                  <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
                                     <div class="row">
                                        <div class="col-md-6"> 
                                       <form action="#" role="form">
                                             <div class="form-group">
                                                     <div class="thumbnail" style="width: 310px;">
-                                                        <div id="foto" name="foto"></div>
+                                                        <div id="foto" name="foto"><img src="/themes/metronic/img/profile/profile.jpg" height="100" width="100"</div>
                                                     </div>
                                                     <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
                                                        <div class="input-group input-group-fixed">
