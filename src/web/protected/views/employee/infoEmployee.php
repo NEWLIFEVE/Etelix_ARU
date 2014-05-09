@@ -67,7 +67,7 @@
                                     <ul class="list-inline">
                                        <li><i class="icon-map-marker"></i><?php if (!empty($Address->idCity->idState->idCountry->name)){echo $Address->idCity->idState->idCountry->name;}?></li>
                                        <li><i class="icon-calendar"></i><?php echo $Employee->date_birth;?></li>
-                                       <li><i class="icon-briefcase"></i> Design</li>
+<!--                                       <li><i class="icon-briefcase"></i> Design</li>-->
                                        <li><i class="icon-envelope"></i><?php echo $Employee->email_personal;?></li>
                                         <li><i class="icon-skype"></i><?php echo $Employee->skype;?></li>
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->
@@ -337,7 +337,7 @@
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                     <label class="control-label">Teléfono Celular</label>
-                                                      <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
+                                                      <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
@@ -385,7 +385,7 @@
                                             "url"=>CController::createUrl("Employee/CityByState"),
                                             "type"=>"POST",
                                             "data"=>"js:$('#submit_form').serialize()",
-                                            "update"=>"#Employee_city",
+                                            "update"=>"#Address_id_city",
                                         
                                         ),
                                         "class"=>"form-control",
@@ -400,30 +400,30 @@
                                          <div class="form-group">
                                           <label class="control-label letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</label>
                                           <?php 
-                                              if(empty($Address->address_line_1))
-                                                echo $form->textField($Employee,'line1', array('class'=>'form-control','value'=>''));
-                                              else
-                                                echo $form->textField($Employee,'line1', array('class'=>'form-control','value'=>$Address->address_line_1));
+//                                              if(empty($Address->address_line_1))
+//                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
+//                                              else
+                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>$Address->address_line_1));
                                           ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label letra_empleado">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</label>
                                           
                                            <?php 
-                                              if(empty($Address->address_line_2))
-                                                echo $form->textField($Employee,'line2', array('class'=>'form-control','value'=>''));
-                                              else
-                                                echo $form->textField($Employee,'line2', array('class'=>'form-control','value'=>$Address->address_line_2));
+//                                              if(empty($Address->address_line_2))
+//                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
+//                                              else
+                                                echo $form->textField($Address,'address_line_2', array('class'=>'form-control','value'=>$Address->address_line_2));
                                              ?>
                                        </div>
                                      
                                       <div class="form-group">
                                           <label class="control-label letra_empleado">Códigos Postal</label>
                                              <?php 
-                                          if(empty($Address->zip))
-                                            echo $form->textField($Employee,'zip', array('class'=>'form-control','value'=>''));
-                                          else
-                                            echo $form->textField($Employee,'zip', array('class'=>'form-control','value'=>$Address->zip));
+//                                          if(empty($Address->zip))
+//                                            echo $form->textField($Address,'zip', array('class'=>'form-control','value'=>''));
+//                                          else
+                                            echo $form->textField($Address,'zip', array('class'=>'form-control','value'=>$Address->zip));
                                           ?>
                                        </div>
                                        <div class="form-group">
@@ -452,9 +452,9 @@
                                           
                                              <?php 
                                           if(empty($Address->idCity->name))
-                                           echo $form->dropDownList($Employee,'city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
+                                           echo $form->dropDownList($Address,'id_city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
                                           else
-                                           echo $form->dropDownList($Employee,'city',array($Address->id_city=>$Address->idCity->name),array("class"=>"form-control"));
+                                           echo $form->dropDownList($Address,'id_city',array($Address->id_city=>$Address->idCity->name),array("class"=>"form-control"));
                                           ?>
                                          
                                        </div>   

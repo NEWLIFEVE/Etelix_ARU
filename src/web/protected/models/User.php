@@ -156,4 +156,11 @@ class User extends CActiveRecord
             $model = self::model()->findByPk($idUser);
             if ($model!=NULL) return $model->id_employee; else return NULL;          
         }
+        
+        public static function assignEmployee($idUser,$idEmployee)  
+        {
+            $model = self::model()->findByPk($idUser);
+            $model->id_employee = $idEmployee;
+            $model->save();
+        }
 }

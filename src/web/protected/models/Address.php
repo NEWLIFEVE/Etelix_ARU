@@ -109,15 +109,20 @@ class Address extends CActiveRecord
 		return parent::model($className);
 	}
         
-        public static function getAddressByUser($id)
+        public static function getAddressByEmployee($id)
         {          
             $AddressEmployee = AddressEmployee::model()->find('end_date IS NULL AND id_employee =:id',array(':id'=>$id));
-            if ($AddressEmployee!=NULL) return self::model()->findByPk($AddressEmployee->id_address); else return NULL;                 
+            if ($AddressEmployee!=NULL) return self::model()->findByPk($AddressEmployee->id_address); else return new self;                 
         }
         
-        public static function checkAddress($line1,$line2,$zip,$id_city)
+        public static function checkAddress($Address)
         {
-            $Address = self::model()->find('address_line_1 =:line1 AND address_line_2 =:line2 AND zip =:zip AND id_city =:id_city',array(':line1'=>$line1,':line2'=>$line2,':zip'=>$zip,':id_city'=>$id_city,));            
+            $Address = self::model()->find('address_line_1 =:line1 AND address_line_2 =:line2 AND zip =:zip AND id_city =:id_city',array(':line1'=>$Address['address_line_1'],':line2'=>$Address['address_line_2'],':zip'=>$Address['zip'],':id_city'=>$Address['id_city']));            
             if ($Address!=NULL) return $Address->id; else return NULL;  
         } 
+        
+        public static function validAddressForm($Address)
+        {
+            if ($Address['address_line_1']!=NULL && $Address['address_line_2']!=NULL && $Address['zip']!=NULL && $Address['id_city']!=NULL) return TRUE; else return NULL;  
+        }
 }
