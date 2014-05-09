@@ -178,52 +178,38 @@ $ARU.UI=(function(){
                             allowedTypes:"pdf,gif,jpeg,png,jpg,xlsx,xls,txt,cap,pcap,csv",	
                             returnType:"json",
                             showFileCounter:false,
-                                 onSuccess:function(files,data,xhr)
+                            multiple:false,
+                            Success:function(files,data,xhr)
                             {
-                                 $('div.ajax-file-upload-filename:last').attr('name', data[0]); 
+                                
+                                //$('div.ajax-file-upload-filename:last').attr('name', data[0]); 
                             },
-                            showDelete:false,
+                            showDelete:true,
                             deleteCallback: function(data,pd){
                                 for(var i=0;i<data.length;i++)
                                 {
-                                    $.post("/file/deletejquery",{op:"delete",name:data[i]},
-                                    function(resp, textStatus, jqXHR)
-                                    {
-                                        //Show Message  
-                                        $("#status").html("");      
-                                    });
-                                 }      
-                                pd.statusbar.remove(); //You choice to hide/not.
-                            }
+                                    $.post("/Employee/deletejquery",{op:"delete",name:data[i]},
+                                     function(resp, textStatus, jqXHR)
+                                {
+                                     //Show Message  
+                                    $("#status").html("borrado");      
+                                });
+                                }      
+                                    pd.statusbar.remove(); //You choice to hide/not.
+                                }
                         }
-
- var uploadphoto = $("#mulitplefileuploader").uploadFile(settings); 
-        }
-    
-    
-    
-    
+                    var uploadphoto = $("#mulitplefileuploader").uploadFile(settings); 
+                }
+  
     /**
      * funcion para capturar el evento de la foto
      */
     
         function getphoto(){
-            $('a').on('click',function(){
-   
-            attachphoto();
-            
-            
-            
-            
-        });
-            
-        }
-    
-    
-    
-    
-    
-    
+            $('a#photo').on('click',function(){
+                attachphoto();
+             });
+         }
     
     return {
         init:init

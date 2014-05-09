@@ -49,7 +49,7 @@
                            <div class="col-md-3">
                               <ul class="list-unstyled profile-nav">
                                  <li><img src="/themes/metronic/img/profile/profile-img.png" class="img-responsive" alt="" /> 
-                                      <a data-toggle="modal" href="#cambio_photo" id="cambio_">Cambiar Imagen</a>
+                                      <a data-toggle="modal" href="#cambio_photo" id="photo">Cambiar Imagen</a>
                                     
                                  </li>
 <!--                                 <li><a href="#">Projects</a></li>
@@ -489,7 +489,7 @@
                                       <form action="#" role="form">
                                             <div class="form-group">
                                                     <div class="thumbnail" style="width: 310px;">
-                                                       <img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                                                        <div id="foto" name="foto"></div>
                                                     </div>
                                                     <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
                                                        <div class="input-group input-group-fixed">
@@ -497,25 +497,28 @@
                                                           <span class="uneditable-input">
                                                           <i class="icon-file fileupload-exists"></i> 
                                                           <span class="fileupload-preview"></span>
+                                                        
                                                           </span>
                                                           </span>
-                                                          <span class="btn default btn-file">
-                                                          <span class="fileupload-new"><i class="icon-paper-clip"></i> Select file</span>
-                                                          <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
-<!--                                                           <?php //echo CHtml::activeFileField($Employee, 'imagen'); ?> -->
-                                                          </span>
-                                                           
+
                                                            <div class="option-panel right">
-                                                                     <div id="mulitplefileuploader">Add file</div>
-                                                                     <div id="area-add-file"></div>
+                                                               <div id="mulitplefileuploader" >Cargar Foto</div>
+                                                                 
+                                                                    <div id="status"></div>
+                                                            </div>
+                                                            <div class="option-panel right">
+                                                              
+                                                                    <div id="area-add-file"></div>
+                                                                  
                                                             </div>
                                                           <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->
                                                        </div>
                                                     </div>
+                                                 
                                             </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>
-                                                    <input type="submit" value="enviar" id="enviar_foto" class="btn blue  centrar_botones"/> 
+<!--                                                    <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>-->
+                                                    <!--<input type="submit" value="enviar" id="enviar_foto" class="btn blue  centrar_botones"/>--> 
                                                 </div>
                                           
                                          

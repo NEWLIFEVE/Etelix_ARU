@@ -99,7 +99,7 @@ class EmployeeController extends Controller {
         echo $dato;
     }
 
-<<<<<<< HEAD
+
         /*
 	public function actions()
 	{
@@ -122,53 +122,80 @@ class EmployeeController extends Controller {
         
         function actionPhoto(){
             
-           $output_dir = "metronic/";
-           
-            if(isset($_FILES["myfile"]))
-        {
-            $ret = array();
-
-            $error =$_FILES["myfile"]["error"];
-            //You need to handle  both cases
-            //If Any browser does not support serializing of multiple files using FormData() 
-            if(!is_array($_FILES["myfile"]["name"])) //single file
-            {                           
-                $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
-                move_uploaded_file($_FILES["myfile"]["tmp_name"],$output_dir.$fileName);
-                $ret[]= $fileName;
-            }
-            else  //Multiple files, file[]
-            {
-            	$fileCount = count($_FILES["myfile"]["name"]);
-              	for($i=0; $i < $fileCount; $i++)
-              	{
-                    $fileName = uniqid() . '-' . $_FILES["myfile"]["name"][$i];
-                    move_uploaded_file($_FILES["myfile"]["tmp_name"][$i],$output_dir.$fileName);
-                    $ret[]= $fileName;
-              	}
+            $output_dir = "themes/metronic/img/profile/";
+            $nameUser = Yii::app()->user->name;
+            $folder_name=$nameUser."/";
+            $direccion=$output_dir.$folder_name;
+            
+             $idUser = Yii::app()->user->id;
+             $Emplomodel = Employee::model()->findByPk($idUser);
+              echo json_encode($Emplomodel);
+             
+            if (file_exists($direccion)){
+                if(isset($_FILES["myfile"]))
+                    {
+                        $ret = array();
+                        $error =$_FILES["myfile"]["error"];
+                        if(!is_array($_FILES["myfile"]["name"])) //single file
+                            {                           
+                                $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
+                                move_uploaded_file($_FILES["myfile"]["tmp_name"],$direccion.$fileName);
+ 
+                                  
+                                  
+                                 
+                         
+ 
+                            }   
+                    }
             }
             
-            echo json_encode($ret);
+            else{
+                mkdir($direccion, 0700);
+                if(isset($_FILES["myfile"]))
+                    {
+                        $ret = array();
+                        $error =$_FILES["myfile"]["error"];
+                        if(!is_array($_FILES["myfile"]["name"])) //single file
+                            {                           
+                                $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
+                                move_uploaded_file($_FILES["myfile"]["tmp_name"],$direccion.$fileName);
+                              
+                               
+                            }   
+                    }
+            }
+            
+ 
+//
+//            foreach ($ret as $value){
+//                echo $value;
+//            }
+//            echo json_encode($ret);
          }
            
            
            
             
+        
+        
+        
+          public function actionDeletejquery()
+    {
+        $output_dir = "themes/metronic/img/profile/";
+        if(isset($_POST["op"]) && $_POST["op"] == "delete" && isset($_POST['name']))
+        {
+            $fileName =$_POST['name'];
+            $filePath = $output_dir. $fileName;
+            if (file_exists($filePath)) 
+            {
+            	unlink($filePath);
+            }
+        	echo "Deleted File ".$fileName."<br>";
         }
+    }
 }
-=======
-    /*
-      public function actions()
-      {
-      // return external action classes, e.g.:
-      return array(
-      'action1'=>'path.to.ActionClass',
-      'action2'=>array(
-      'class'=>'path.to.AnotherActionClass',
-      'propertyName'=>'propertyValue',
-      ),
-      );
-      }
-     */
-}
->>>>>>> 8fa2c1635f5b4478746c55eda343c0490ce17795
+
+   
+
+
