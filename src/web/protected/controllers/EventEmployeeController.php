@@ -76,10 +76,11 @@ class EventEmployeeController extends Controller
 	public function actionCreate()
 	{
 //		$model= new EventEmployee();
-
-                $id=Yii::app()->user->id;
+            
+                $Employee = Employee::getEmployee(Yii::app()->user->id);
+                if($Employee!=NULL){
                 $date= date('Ymd');
-                $eventos=  EventEmployee::getWorkday($id, $date);
+                $eventos=  EventEmployee::getWorkday($Employee->id, $date);
  
 //		if(isset($_POST['EventEmployee']))
 //		{
@@ -91,6 +92,11 @@ class EventEmployeeController extends Controller
 		$this->render('create',array(
 			'eventos'=>$eventos,
 		));
+                }else{
+                    $this->render('/site/index',array(
+			'eventos'=>NULL,
+                        ));
+                }
 	}
 
 	/**
@@ -216,9 +222,9 @@ class EventEmployeeController extends Controller
         if(isset($_GET['location']) && isset($_GET['date_event']) && isset($_GET['time_event']))
         {
             $last=null;
-            $id = Yii::app()->user->id;
+            $idEmployee = Employee::getEmployee(Yii::app()->user->id)->id;
             $date = date('Ymd');
-            $eventos = EventEmployee::getWorkday($id, $date);
+            $eventos = EventEmployee::getWorkday($idEmployee, $date);
             if ($eventos!=false){
                 $last=end($eventos);
                 if($last['event']<4){
@@ -234,7 +240,7 @@ class EventEmployeeController extends Controller
                 $model->hour_event = $_GET['time_event'];
                 $model->id_type_event = $type_event;
                 $model->date = $_GET['date_event'];
-                $model->id_employee = $id;
+                $model->id_employee = $idEmployee;
                 $model->id_location = Location::getId($_GET['location']);
                 if($model->save())
                     echo json_encode(array('event'=>$model->id_type_event,'hour'=>$model->hour_event));
@@ -249,9 +255,9 @@ class EventEmployeeController extends Controller
     
     function actionInformacion(){
         
-            $id = Yii::app()->user->id;
+            $idEmployee = Employee::getEmployee(Yii::app()->user->id)->id;
             $date = date('Ymd');
-            $eventos = EventEmployee::getWorkday($id, $date);
+            $eventos = EventEmployee::getWorkday($idEmployee, $date);
             echo json_encode($eventos);
     }
 }
