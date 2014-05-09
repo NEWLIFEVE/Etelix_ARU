@@ -188,6 +188,10 @@ class Employee extends CActiveRecord
               if ($idEmployee!=NULL) return self::model()->findByPk($idEmployee); else return NULL;
         }
         
+        public static function getImage($idUser){
+            $idEmployee = User::getIdEmployee($idUser);
+            if ($idEmployee!=NULL) return self::model()->findByPk($idEmployee)->image_rute; else return NULL;
+        }
         /**
          * 
          * 
