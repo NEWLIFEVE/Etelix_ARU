@@ -151,11 +151,7 @@ class EmployeeController extends Controller {
                     }
                 }
             }
-//
-//            foreach ($ret as $value){
-//                echo $value;
-//            }
-//            echo json_encode($ret);
+
         }else{
             echo json_encode('dataFail');
         }

@@ -48,7 +48,9 @@
                         <div class="row">
                            <div class="col-md-3">
                               <ul class="list-unstyled profile-nav">
-                                 <li><img src="/themes/metronic/img/profile/profile-img.png" class="img-responsive" alt="" /> 
+                                  
+                                 <?php if (!empty($Employee->image_rute)){ $Employee_load=$Employee->image_rute;} else $Employee_load="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image"; ?>
+                                 <li><img src="/<?php echo $Employee_load ?>" class="img-responsive" alt="" /> 
                                       <a data-toggle="modal" href="#cambio_photo" id="photo">Cambiar Imagen</a>
                                     
                                  </li>
