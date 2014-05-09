@@ -166,22 +166,22 @@
                                                  <tr>
                                                    <td class="letra_empleado">Skype</td>
                                                    <td><?php if (is_null( $Employee->skype)){} else{echo $Employee->skype;}?></td>
-                                                   <td class="letra_empleado">imagen</td>
-                                                   <td><?php if (is_null( $Employee->image_rute)){} else{echo $Employee->image_rute;}?></td>
+                                                   <td class="letra_empleado">Teléfono Celular</td>
+                                                   <td><?php if (is_null( $Employee->cellphone)){} else{echo $Employee->cellphone;}?></td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                   <td class="letra_empleado">Teléfono Celular</td>
-                                                   <td><?php if (is_null( $Employee->cellphone)){} else{echo $Employee->cellphone;}?></td>
                                                    <td class="letra_empleado">Teléfono De Habitación</td>
                                                    <td><?php if (is_null( $Employee->home_phone)){} else{echo $Employee->home_phone;}?></td>
-                                                </tr>
-                                                <tr>
                                                    <td class="letra_empleado">Extensión de Oficina</td>
-                                                   <td><?php if (is_null( $Employee->extension_numeric)){} else{echo $Employee->extension_numeric;}?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                   <td><?php if (is_null( $Employee->extension_numeric)){} else{echo $Employee->extension_numeric;}?></td>  
                                                 </tr>
+<!--                                                <tr>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                </tr>-->
                                                
                                              </tbody>
                                           </table>
