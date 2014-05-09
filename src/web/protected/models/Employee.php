@@ -49,7 +49,6 @@ class Employee extends CActiveRecord
     public $line1;
     public $line2;
     public $zip;
-    public $imagen;
 	/**
 	 * @return string the associated database table name
 	 */

@@ -179,9 +179,9 @@ $ARU.UI=(function(){
                             returnType:"json",
                             showFileCounter:false,
                             multiple:false,
-                            Success:function(files,data,xhr)
+                            onSuccess:function(files,data,xhr)
                             {
-                                
+                                alert(data);
                                 //$('div.ajax-file-upload-filename:last').attr('name', data[0]); 
                             },
                             showDelete:true,
@@ -199,6 +199,7 @@ $ARU.UI=(function(){
                                 }
                         }
                     var uploadphoto = $("#mulitplefileuploader").uploadFile(settings); 
+                    
                 }
   
     /**
@@ -208,6 +209,7 @@ $ARU.UI=(function(){
         function getphoto(){
             $('a#photo').on('click',function(){
                 attachphoto();
+                
              });
          }
     

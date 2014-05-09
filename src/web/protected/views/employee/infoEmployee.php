@@ -164,8 +164,8 @@
                                                  <tr>
                                                    <td class="letra_empleado">Skype</td>
                                                    <td><?php if (is_null( $Employee->skype)){} else{echo $Employee->skype;}?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                   <td class="letra_empleado">imagen</td>
+                                                   <td><?php if (is_null( $Employee->image_rute)){} else{echo $Employee->image_rute;}?></td>
                                                 </tr>
                                                 
                                                 <tr>

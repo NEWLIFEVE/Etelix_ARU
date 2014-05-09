@@ -118,67 +118,50 @@ class EmployeeController extends Controller {
          * funcion para guardar la imagen del empleado
          */
         
-        function actionPhoto(){
+        function actionPhoto() {
+
+        $Employee = Employee::getEmployee(Yii::app()->user->id);
+        if ($Employee != NULL) {
             
-            $output_dir = "themes/metronic/img/profile/";
-            $nameUser = Yii::app()->user->name;
-            $folder_name=$nameUser."/";
-            $direccion=$output_dir.$folder_name;
-            
-             $idUser = Yii::app()->user->id;
-             $Emplomodel = Employee::model()->findByPk($idUser);
-              echo json_encode($Emplomodel);
-             
-            if (file_exists($direccion)){
-                if(isset($_FILES["myfile"]))
-                    {
-                        $ret = array();
-                        $error =$_FILES["myfile"]["error"];
-                        if(!is_array($_FILES["myfile"]["name"])) //single file
-                            {                           
-                                $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
-                                move_uploaded_file($_FILES["myfile"]["tmp_name"],$direccion.$fileName);
- 
-                                  
-                                  
-                                 
-                         
- 
-                            }   
+            $direccion = "themes/metronic/img/profile/".Yii::app()->user->name. "/";
+
+            if (file_exists($direccion)) {
+                if (isset($_FILES["myfile"])) {
+                    $ret = array();
+                    $error = $_FILES["myfile"]["error"];
+                    if (!is_array($_FILES["myfile"]["name"])) { //single file
+                        $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
+                        move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
+                        $Employee->image_rute = $direccion.$fileName;
+                        if($Employee->save()) echo json_encode('successUpdate'); else echo json_encode('imageRuteFail');
+
                     }
-            }
-            
-            else{
+                }
+            } else {
                 mkdir($direccion, 0700);
-                if(isset($_FILES["myfile"]))
-                    {
-                        $ret = array();
-                        $error =$_FILES["myfile"]["error"];
-                        if(!is_array($_FILES["myfile"]["name"])) //single file
-                            {                           
-                                $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
-                                move_uploaded_file($_FILES["myfile"]["tmp_name"],$direccion.$fileName);
-                              
-                               
-                            }   
+                if (isset($_FILES["myfile"])) {
+                    $ret = array();
+                    $error = $_FILES["myfile"]["error"];
+                    if (!is_array($_FILES["myfile"]["name"])) { //single file
+                        $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
+                        move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
+                        $Employee->image_rute = $direccion.$fileName;
+                        if($Employee->save()) echo json_encode('successNew'); else echo json_encode('imageRuteFail');
+                        
                     }
+                }
             }
-            
- 
 //
 //            foreach ($ret as $value){
 //                echo $value;
 //            }
 //            echo json_encode($ret);
-         }
-           
-           
-           
-            
-        
-        
-        
-          public function actionDeletejquery()
+        }else{
+            echo json_encode('dataFail');
+        }
+    }
+
+    public function actionDeletejquery()
     {
         $output_dir = "themes/metronic/img/profile/";
         if(isset($_POST["op"]) && $_POST["op"] == "delete" && isset($_POST['name']))
