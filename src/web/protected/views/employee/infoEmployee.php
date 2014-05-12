@@ -430,30 +430,17 @@
                                                         <?php if (is_null($Employee->image_rute)){$sinfoto="themes/metronic/img/profile/profile.jpg";} else{$sinfoto=$Employee->image_rute;} ?>
                                                         <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"</div>
                                                     </div>
-                                                    <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="margin-top-10 ">
                                                        <div class="input-group input-group-fixed">
-                                                          <span class="input-group-btn">
-                                                          <span class="uneditable-input">
-                                                          <i class="icon-file fileupload-exists"></i> 
-                                                          <span class="fileupload-preview"></span>
-                                                        
-                                                          </span>
-                                                          </span>
-
                                                            <div class="option-panel right">
-                                                               <div id="mulitplefileuploader" >Cargar Foto</div>
-                                                                 
-                                                                    <!--<div id="status"></div>-->
+                                                               <div id="mulitplefileuploader" class="btn blue">Cargar Foto</div>
+                                                             
                                                             </div>
-                                                            <div class="option-panel right">
-                                                              
-                                                                    <!--<div id="area-add-file"></div>-->
-                                                                  
-                                                            </div>
+                                                            <div class="option-panel right"></div>
                                                           <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->
                                                        </div>
                                                     </div>
-                                                 
+                                                  <div id="filename"></div>
                                             </div>
                                                 <div class="modal-footer">
 <!--                                                    <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>-->
