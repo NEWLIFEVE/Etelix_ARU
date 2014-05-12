@@ -434,7 +434,6 @@
                                                        <div class="input-group input-group-fixed">
                                                            <div class="option-panel right">
                                                                <div id="mulitplefileuploader">Cargar Foto</div>
-                                                             
                                                             </div>
                                                             <div class="option-panel right"></div>
                                                        </div>

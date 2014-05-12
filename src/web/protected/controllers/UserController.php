@@ -183,11 +183,11 @@ class UserController extends Controller
 
             if(isset($_POST['User']))
                 {
-                    $last_pass=($_POST['User']['confir_pass']);
+                    $last_pass=  md5($_POST['User']['confir_pass']); 
                     $validate_pass=User::model()->getPass($last_pass);
                             if ($validate_pass!=NULL){
                                  $model=User::model()->findByPk($id);
-                                 $model->attributes=$_POST['User'];
+                                 $model->password= md5($_POST['User']['password']);
                                  $model->save();
                                  $this->redirect(array('Updatepass', array('exito'=>'exito')));
                             }
