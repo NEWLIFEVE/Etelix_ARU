@@ -376,7 +376,7 @@
 
                                         <li class='dropdown user'>
                                            <a href='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown' data-close-others='true'>
-                                           <img style='width: 29px;' alt='' src='/".Employee::getImage(Yii::app()->user->id)."'/>
+                                           <img class='sizephotoemployee' alt='' id='photomain' src='/".Employee::getImage(Yii::app()->user->id)."'/>
                                            <span class='username'>".Yii::app()->user->name."</span>
                                            <i class='icon-angle-down'></i>
                                            </a>

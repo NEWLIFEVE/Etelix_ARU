@@ -259,7 +259,7 @@
 
         function createCutomInputFile(obj, group, s, uploadLabel) {
 
-            var fileUploadId = "ajax-upload-id-" + (new Date().getTime());
+            var fileUploadId = "ajax-upload-idp" + (new Date().getTime());
 
             var form = $("<form method='" + s.method + "' action='" + s.url + "' enctype='" + s.enctype + "'></form>");
             var fileInputStr = "<input type='file' id='" + fileUploadId + "' name='" + s.fileName + "'/>";

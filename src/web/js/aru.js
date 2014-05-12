@@ -181,8 +181,13 @@ $ARU.UI=(function(){
                             multiple:false,
                             onSuccess:function(files,data,xhr)
                             {
-                                alert(data);
-                                //$('div.ajax-file-upload-filename:last').attr('name', data[0]); 
+                                alert(data[0]);
+                               
+                                $("#filename").html(files);
+                                $("#foto").attr('src',"/"+data[1]);
+                                $("#load_photo").attr('src',"/"+data[1]);
+                                $("#photomain").attr('src',"/"+data[1]);
+//                                $('div.ajax-file-upload-filename:last').attr('name', file); 
                             },
                             showDelete:true,
                             deleteCallback: function(data,pd){
@@ -198,7 +203,7 @@ $ARU.UI=(function(){
                                     pd.statusbar.remove(); //You choice to hide/not.
                                 }
                         }
-                    var uploadphoto = $("#mulitplefileuploader").uploadFile(settings); 
+                   $("#mulitplefileuploader").uploadFile(settings); 
                     
                 }
   

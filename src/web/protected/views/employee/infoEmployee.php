@@ -5,18 +5,6 @@
                   Perfil
                </h3>
                <ul class="page-breadcrumb breadcrumb">
-<!--                  <li class="btn-group">
-                     <button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                     <span>Actions</span> <i class="icon-angle-down"></i>
-                     </button>
-                     <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                     </ul>
-                  </li>-->
                   <li>
                      <i class="icon-home"></i>
                      <a href="index.html">Inicio</a> 
@@ -40,8 +28,6 @@
                   <ul class="nav nav-tabs">
                      <li class="active"><a href="#tab_1_1" data-toggle="tab">Datos del Perfil</a></li>
                      <li><a href="#tab_1_3" data-toggle="tab">Modificar Perfil</a></li>
-<!--                     <li><a href="#tab_1_4" data-toggle="tab">Dirección de Habitación</a></li>-->
-                     
                   </ul>
                   <div class="tab-content">
                      <div class="tab-pane active" id="tab_1_1">
@@ -50,7 +36,7 @@
                               <ul class="list-unstyled profile-nav">
                                   
                                  <?php if (!empty($Employee->image_rute)){ $Employee_load=$Employee->image_rute;} else $Employee_load="themes/metronic/img/profile/profile.jpg"; ?>
-                                 <li><img src="/<?php echo $Employee_load ?>" class="img-responsive" alt="" /> 
+                                 <li><img id ="load_photo" src="/<?php echo $Employee_load ?>" class="img-responsive" alt="" /> 
                                       <a data-toggle="modal" href="#cambio_photo" id="photo">Cambiar Imagen</a>
                                     
                                  </li>
@@ -76,38 +62,7 @@
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->
                                     </ul>
                                  </div>
-                                 <!--end col-md-8-->
-<!--                                 <div class="col-md-4">
-                                    <div class="portlet sale-summary">
-                                       <div class="portlet-title">
-                                          <div class="caption">Sales Summary</div>
-                                          <div class="tools">
-                                             <a class="reload" href="javascript:;"></a>
-                                          </div>
-                                       </div>
-                                       <div class="portlet-body">
-                                          <ul class="list-unstyled">
-                                             <li>
-                                                <span class="sale-info">TODAY SOLD <i class="icon-img-up"></i></span> 
-                                                <span class="sale-num">23</span>
-                                             </li>
-                                             <li>
-                                                <span class="sale-info">WEEKLY SALES <i class="icon-img-down"></i></span> 
-                                                <span class="sale-num">87</span>
-                                             </li>
-                                             <li>
-                                                <span class="sale-info">TOTAL SOLD</span> 
-                                                <span class="sale-num">2377</span>
-                                             </li>
-                                             <li>
-                                                <span class="sale-info">EARNS</span> 
-                                                <span class="sale-num">$37.990</span>
-                                             </li>
-                                          </ul>
-                                       </div>
-                                    </div>
-                                 </div>-->
-                                 <!--end col-md-4-->
+                        
                               </div>
                               <!--end row-->
                               <div class="tabbable tabbable-custom tabbable-custom-profile">
@@ -119,14 +74,7 @@
                                     <div class="tab-pane active" id="tab_1_11">
                                        <div class="portlet-body">
                                           <table class="table table-striped table-bordered table-advance table-hover">
-<!--                                             <thead>
-                                                <tr>
-                                                   <th><i class="icon-briefcase"></i> Company</th>
-                                                   <th class="hidden-xs"><i class="icon-question-sign"></i> Descrition</th>
-                                                   <th><i class="icon-bookmark"></i> Amount</th>
-                                                   <th></th>
-                                                </tr>
-                                             </thead>-->
+
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Primer Nombre</td>
@@ -191,16 +139,9 @@
                                     <!--tab-pane-->
                                     <div class="tab-pane" id="tab_1_22">
                                        <div class="tab-pane active" id="tab_1_1_1">
-                                          <div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
+                                          <div class="scroller" data-height="210px" data-always-visible="1" data-rail-visible1="1">
                                              <table class="table table-striped table-bordered table-advance table-hover">
-<!--                                             <thead>
-                                                <tr>
-                                                   <th><i class="icon-briefcase"></i> Company</th>
-                                                   <th class="hidden-xs"><i class="icon-question-sign"></i> Descrition</th>
-                                                   <th><i class="icon-bookmark"></i> Amount</th>
-                                                   <th></th>
-                                                </tr>
-                                             </thead>-->
+
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
@@ -224,8 +165,7 @@
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Ciudad</td>
-                                                   <td><?php if (!empty($Address->idCity->name)){echo $Address->idCity->name;}?></td>
-                                                     
+                                                   <td><?php if (!empty($Address->idCity->name)){echo $Address->idCity->name;}?></td> 
                                                 </tr>
                                              </tbody>
                                           </table>
@@ -354,9 +294,7 @@
                                                  </div>
                                             </div>
                                             
-                                        </div>
-                                      
-                                    
+                                        </div> 
                                  </div>
                                   
                                 <?php  if (!empty($Address->idCity->idState->idCountry->name)){
@@ -396,9 +334,7 @@
                                     );
                                   
                                   ?>
-                                  
-                               
-                                  
+
                                  <div id="tab_2-2" class="tab-pane">
                                          <div class="form-group">
                                           <label class="control-label letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</label>
@@ -492,50 +428,33 @@
                                       <form action="#" role="form">
                                             <div class="form-group">
                                                     <div class="thumbnail" style="width: 310px;">
-                                                        <div id="foto" name="foto"><img src="/themes/metronic/img/profile/profile.jpg" height="100" width="100"</div>
+                                                        <?php if (is_null($Employee->image_rute)){$sinfoto="themes/metronic/img/profile/profile.jpg";} else{$sinfoto=$Employee->image_rute;} ?>
+                                                        <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"</div>
                                                     </div>
-                                                    <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="margin-top-10 ">
                                                        <div class="input-group input-group-fixed">
-                                                          <span class="input-group-btn">
-                                                          <span class="uneditable-input">
-                                                          <i class="icon-file fileupload-exists"></i> 
-                                                          <span class="fileupload-preview"></span>
-                                                        
-                                                          </span>
-                                                          </span>
-
                                                            <div class="option-panel right">
-                                                               <div id="mulitplefileuploader" >Cargar Foto</div>
-                                                                 
-                                                                    <div id="status"></div>
+                                                               <div id="mulitplefileuploader" class="btn blue">Cargar Foto</div>
+                                                             
                                                             </div>
-                                                            <div class="option-panel right">
-                                                              
-                                                                    <div id="area-add-file"></div>
-                                                                  
-                                                            </div>
+                                                            <div class="option-panel right"></div>
                                                           <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->
                                                        </div>
                                                     </div>
-                                                 
+                                                  <div id="filename"></div>
                                             </div>
                                                 <div class="modal-footer">
 <!--                                                    <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>-->
                                                     <!--<input type="submit" value="enviar" id="enviar_foto" class="btn blue  centrar_botones"/>--> 
                                                 </div>
-                                          
-                                         
                                         </form>
-                                         
-                                        
                                        </div>
-                                       
                                  </div>
-                              </div>
-                              
+                              </div> 
                            </div>
                         </div>
                      </div>
+          </div>
           </div>
          
       

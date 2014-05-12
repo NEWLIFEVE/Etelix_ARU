@@ -4159,10 +4159,15 @@ Responsive Flip Scroll Tables
 }
 
 #secundariosed{
-    margin-left: 60%; 
+  margin-left: 60%; 
   width: 40%;
 }
 
 .mitad{
      width: 50%;
+}
+
+.sizephotoemployee{
+    
+    width: 29px;
 }
