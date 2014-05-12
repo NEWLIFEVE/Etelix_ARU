@@ -138,7 +138,7 @@
                                     <!--tab-pane-->
                                     <div class="tab-pane" id="tab_1_22">
                                        <div class="tab-pane active" id="tab_1_1_1">
-                                          <div class="scroller" data-height="210px" data-always-visible="1" data-rail-visible1="1">
+                                          <div class="scroller" data-height="50%" data-always-visible="1" data-rail-visible1="1">
                                              <table class="table table-striped table-bordered table-advance table-hover">
 
                                              <tbody>
@@ -433,19 +433,14 @@
                                                     <div class="margin-top-10 ">
                                                        <div class="input-group input-group-fixed">
                                                            <div class="option-panel right">
-                                                               <div id="mulitplefileuploader" class="btn blue">Cargar Foto</div>
+                                                               <div id="mulitplefileuploader">Cargar Foto</div>
                                                              
                                                             </div>
                                                             <div class="option-panel right"></div>
-                                                          <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->
                                                        </div>
                                                     </div>
                                                   <div id="filename"></div>
                                             </div>
-                                                <div class="modal-footer">
-<!--                                                    <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>-->
-                                                    <!--<input type="submit" value="enviar" id="enviar_foto" class="btn blue  centrar_botones"/>--> 
-                                                </div>
                                         </form>
                                        </div>
                                  </div>
@@ -453,7 +448,7 @@
                            </div>
                         </div>
                      </div>
-          </div>
+                </div>
           </div>
          
       
