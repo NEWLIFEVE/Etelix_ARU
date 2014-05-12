@@ -427,7 +427,8 @@
                                       <form action="#" role="form">
                                             <div class="form-group">
                                                     <div class="thumbnail" style="width: 310px;">
-                                                        <div name="foto"><img id="foto" src="/themes/metronic/img/profile/profile.jpg" height="200" width="200"</div>
+                                                        <?php if (is_null($Employee->image_rute)){$sinfoto="themes/metronic/img/profile/profile.jpg";} else{$sinfoto=$Employee->image_rute;} ?>
+                                                        <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"</div>
                                                     </div>
                                                     <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
                                                        <div class="input-group input-group-fixed">

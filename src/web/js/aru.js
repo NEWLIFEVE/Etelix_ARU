@@ -182,10 +182,11 @@ $ARU.UI=(function(){
                             onSuccess:function(files,data,xhr)
                             {
                                 alert(data[0]);
-                              
+                               
+                                $("i#fileupload-exists").val(files);
                                 $("#foto").attr('src',"/"+data[1]);
                                 $("#load_photo").attr('src',"/"+data[1]);
-                                //$('div.ajax-file-upload-filename:last').attr('name', data[0]); 
+                                $('div.ajax-file-upload-filename:last').attr('name', file); 
                             },
                             showDelete:true,
                             deleteCallback: function(data,pd){
