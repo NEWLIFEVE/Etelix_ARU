@@ -427,7 +427,7 @@
                                       <form action="#" role="form">
                                             <div class="form-group">
                                                     <div class="thumbnail" style="width: 310px;">
-                                                        <div id="foto" name="foto"><img src="/themes/metronic/img/profile/profile.jpg" height="100" width="100"</div>
+                                                        <div name="foto"><img id="foto" src="/themes/metronic/img/profile/profile.jpg" height="200" width="200"</div>
                                                     </div>
                                                     <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
                                                        <div class="input-group input-group-fixed">
@@ -442,11 +442,11 @@
                                                            <div class="option-panel right">
                                                                <div id="mulitplefileuploader" >Cargar Foto</div>
                                                                  
-                                                                    <div id="status"></div>
+                                                                    <!--<div id="status"></div>-->
                                                             </div>
                                                             <div class="option-panel right">
                                                               
-                                                                    <div id="area-add-file"></div>
+                                                                    <!--<div id="area-add-file"></div>-->
                                                                   
                                                             </div>
                                                           <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->

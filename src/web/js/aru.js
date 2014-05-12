@@ -183,7 +183,7 @@ $ARU.UI=(function(){
                             {
                                 alert(data[0]);
                               
-                               
+                                $("#foto").attr('src',"/"+data[1]);
                                 $("#load_photo").attr('src',"/"+data[1]);
                                 //$('div.ajax-file-upload-filename:last').attr('name', data[0]); 
                             },
