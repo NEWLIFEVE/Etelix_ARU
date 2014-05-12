@@ -133,8 +133,18 @@ class EmployeeController extends Controller {
                         $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
                         move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
                         $Employee->image_rute = $direccion.$fileName;
-                        if($Employee->save()) echo json_encode('successUpdate'); else echo json_encode('imageRuteFail');
-
+                        if($Employee->save()){ 
+                            $namephoto[]='successUpdate'; 
+                            $namephoto[]=$direccion.$fileName; 
+                            echo json_encode($namephoto);
+                            
+                        } 
+                            
+                        else{ 
+                            $namephoto[]='imageRuteFail'; 
+                            $namephoto[]=$direccion.$fileName; 
+                            echo json_encode($namephoto);
+                        }
                     }
                 }
             } else {
@@ -146,8 +156,19 @@ class EmployeeController extends Controller {
                         $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
                         move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
                         $Employee->image_rute = $direccion.$fileName;
-                        if($Employee->save()) echo json_encode('successNew'); else echo json_encode('imageRuteFail');
-                        
+                        if($Employee->save()){
+                            $namephoto[]='successNew'; 
+                            $namephoto[]=$direccion.$fileName; 
+                            echo json_encode($namephoto);
+                           
+                        }
+                    else
+                        { 
+                            $namephoto[]='imageRuteFail'; 
+                            $namephoto[]=$direccion.$fileName; 
+                            echo json_encode($namephoto);
+                       
+                        }
                     }
                 }
             }

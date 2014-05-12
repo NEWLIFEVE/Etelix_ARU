@@ -181,7 +181,10 @@ $ARU.UI=(function(){
                             multiple:false,
                             onSuccess:function(files,data,xhr)
                             {
-                                alert(data);
+                                alert(data[0]);
+                              
+                               
+                                $("#load_photo").attr('src',"/"+data[1]);
                                 //$('div.ajax-file-upload-filename:last').attr('name', data[0]); 
                             },
                             showDelete:true,

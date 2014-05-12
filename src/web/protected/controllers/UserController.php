@@ -189,11 +189,11 @@ class UserController extends Controller
                                  $model=User::model()->findByPk($id);
                                  $model->attributes=$_POST['User'];
                                  $model->save();
-                                 $this->redirect(array('Updatepass'));
+                                 $this->redirect(array('Updatepass', array('exito'=>'exito')));
                             }
                     
                             else {
-                                echo "contraseña no valida";    
+                                $this->redirect(array('Updatepass', array('fallo'=>'fallo contraseña')));    
                             }
 
                 }
