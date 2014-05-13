@@ -75,11 +75,19 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionCreate()
 	{
+		if(Yii::app()->user->id)
+		{
+			echo "existe";
+		}
+		else
+		{
+			echo "no existe";
+		}
 //		$model= new EventEmployee();
 
-                $id=Yii::app()->user->id;
+                /*$id=Yii::app()->user->id;
                 $date= date('Ymd');
-                $eventos=  EventEmployee::getWorkday($id, $date);
+                $eventos=  EventEmployee::getWorkday($id, $date);*/
  
 //		if(isset($_POST['EventEmployee']))
 //		{
@@ -88,9 +96,9 @@ class EventEmployeeController extends Controller
 //				$this->redirect(array('view','id'=>$model->id));
 //		}
 
-		$this->render('create',array(
+		/*$this->render('create',array(
 			'eventos'=>$eventos,
-		));
+		));*/
 	}
 
 	/**
