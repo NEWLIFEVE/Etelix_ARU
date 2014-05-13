@@ -260,101 +260,116 @@
         function createCutomInputFile(obj, group, s, uploadLabel) {
 
             var fileUploadId = "ajax-upload-id-" + (new Date().getTime());
-             var contador=0;
-             var conta=contador+1;
-             alert (conta);
-            var form = $("<form method='" + s.method + "' action='" + s.url + "' enctype='" + s.enctype + "'></form>");
-            var fileInputStr = "<input type='file' class='btn blue' id='" + fileUploadId + "' name='" + s.fileName + "'/>";
-//            if (s.multiple) {
-//                if (s.fileName.indexOf("[]") != s.fileName.length - 2) // if it does not endwith
-//                {
-//                    s.fileName += "[]";
-//                }
-//                fileInputStr = "<input type='file' class='btn blue' id='" + fileUploadId + "' name='" + s.fileName + "' multiple/>";
-//            }
-              var fileInput = $(fileInputStr).appendTo(form);
 
-//            fileInput.change(function () {
-//
-//                obj.errorLog.html("");
-//                var fileExtensions = s.allowedTypes.toLowerCase().split(",");
-//                var fileArray = [];
-//                if (this.files) //support reading files
-//                {
-//                    for (i = 0; i < this.files.length; i++) 
-//                    {
-//                        fileArray.push(this.files[i].name);
-//                    }
-//                   
-//                    if(s.onSelect(this.files) == false)
-//	                	return;
-//                } else {
-//                    var filenameStr = $(this).val();
-//                    var flist = [];
-//                    fileArray.push(filenameStr);
-//                    if (!isFileTypeAllowed(obj, s, filenameStr)) {
-//                        if (s.showError) $("<div style='color:red;'><b>" + filenameStr + "</b> " + s.extErrorStr + s.allowedTypes + "</div>").appendTo(obj.errorLog);
-//                        return;
-//                    }
-//                    //fallback for browser without FileAPI
-//                    flist.push({name:filenameStr,size:'NA'});
-//                    if(s.onSelect(flist) == false)
-//	                	return;
-//
-//                }
-//                uploadLabel.unbind("click");
-//                form.hide();
-//                createCutomInputFile(obj, group, s, uploadLabel);
-//
-//                form.addClass(group);
-//                if (feature.fileapi && feature.formdata) //use HTML5 support and split file submission
-//                {
-//                    form.removeClass(group); //Stop Submitting when.
-//                    var files = this.files;
-//                    serializeAndUploadFiles(s, obj, files);
-//                } else {
-//                    var fileList = "";
-//                    for (var i = 0; i < fileArray.length; i++) {
-//		            	if(s.showFileCounter)
-//        		    		fileList += obj.fileCounter + s.fileCounterStyle + fileArray[i]+"<br>";
-//            			else
-//		            		fileList += fileArray[i]+"<br>";;
-//                        obj.fileCounter++;
-//                    }
-//                    var pd = new createProgressDiv(obj, s);
-//                    pd.filename.html(fileList);
-//                    ajaxFormSubmit(form, s, pd, fileArray, obj);
-//                }
-//
-//
-//
-//            });
+            var form = $("<form method='" + s.method + "' action='" + s.url + "' enctype='" + s.enctype + "'></form>");
+            var fileInputStr = "<input type='file' id='" + fileUploadId + "' name='" + s.fileName + "'/>";
+            if (s.multiple) {
+                if (s.fileName.indexOf("[]") != s.fileName.length - 2) // if it does not endwith
+                {
+                    s.fileName += "[]";
+                }
+                fileInputStr = "<input type='file' id='" + fileUploadId + "' name='" + s.fileName + "' multiple/>";
+            }
+            var fileInput = $(fileInputStr).appendTo(form);
+
+            fileInput.change(function () {
+
+                obj.errorLog.html("");
+                var fileExtensions = s.allowedTypes.toLowerCase().split(",");
+                var fileArray = [];
+                if (this.files) //support reading files
+                {
+                    for (i = 0; i < this.files.length; i++) 
+                    {
+                        fileArray.push(this.files[i].name);
+                    }
+                   
+                    if(s.onSelect(this.files) == false)
+	                	return;
+                } else {
+                    var filenameStr = $(this).val();
+                    var flist = [];
+                    fileArray.push(filenameStr);
+                    if (!isFileTypeAllowed(obj, s, filenameStr)) {
+                        if (s.showError) $("<div style='color:red;'><b>" + filenameStr + "</b> " + s.extErrorStr + s.allowedTypes + "</div>").appendTo(obj.errorLog);
+                        return;
+                    }
+                    //fallback for browser without FileAPI
+                    flist.push({name:filenameStr,size:'NA'});
+                    if(s.onSelect(flist) == false)
+	                	return;
+
+                }
+                uploadLabel.unbind("click");
+                form.hide();
+                createCutomInputFile(obj, group, s, uploadLabel);
+
+                form.addClass(group);
+                if (feature.fileapi && feature.formdata) //use HTML5 support and split file submission
+                {
+                    form.removeClass(group); //Stop Submitting when.
+                    var files = this.files;
+                    serializeAndUploadFiles(s, obj, files);
+                } else {
+                    var fileList = "";
+                    for (var i = 0; i < fileArray.length; i++) {
+		            	if(s.showFileCounter)
+        		    		fileList += obj.fileCounter + s.fileCounterStyle + fileArray[i]+"<br>";
+            			else
+		            		fileList += fileArray[i]+"<br>";;
+                        obj.fileCounter++;
+                    }
+                    var pd = new createProgressDiv(obj, s);
+                    pd.filename.html(fileList);
+                    ajaxFormSubmit(form, s, pd, fileArray, obj);
+                }
+
+
+
+            });
             
-	    form.css({'margin':0,'padding':0});
+	         form.css({'margin':0,'padding':0});
             var uwidth=$(uploadLabel).width()+10;
             if(uwidth == 10)
             	uwidth =120;
             	
             var uheight=uploadLabel.height()+10;
             if(uheight == 10)
-            	uheight = 35;
+            	uheight = 100;
 
-			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default', color:'#ff0000'});
-			fileInput.css({
-                                                'position': 'absolute',
-                                                'cursor':'pointer',  
-                                                'top': '0px',
-                                                'width': uwidth,  
-                                                'height':uheight,
-                                                'left': '30px',
-                                                'z-index': '100',
-                                                'opacity': '0.0',
-//							'filter':'alpha(opacity=0)',
-//							'-ms-filter':"alpha(opacity=0)",
-                                                '-khtml-opacity':'0.0',
-                                                '-moz-opacity':'0.0'
+                        uploadLabel.addClass("btn blue fileinput-button");
+//			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default', background:'#0362FD', color:'#ffffff', height:30});
+			fileInput.css({position: 'absolute','cursor':'pointer',  
+							'top': '5px',
+							'width': uwidth,  
+							'height':uheight,
+							'left': '0px',
+							'z-index': '100',
+							'opacity': '0.0',
+							'filter':'alpha(opacity=0)',
+							'-ms-filter':"alpha(opacity=0)",
+							'-khtml-opacity':'0.0',
+							'-moz-opacity':'0.0'
 							});
 	         form.appendTo(uploadLabel);
+
+            //dont hide it, but move it to 
+           /* form.css({
+                margin: 0,
+                padding: 0,
+                display: 'block',
+                position: 'absolute',
+                left: '50px'
+            });
+           if (navigator.appVersion.indexOf("MSIE ") != -1) //IE Browser
+            {
+                uploadLabel.attr('for', fileUploadId);
+            } else {
+                uploadLabel.click(function () {
+                    fileInput.click();
+                });
+            }*/
+
 
         }
 

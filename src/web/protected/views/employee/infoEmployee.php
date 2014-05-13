@@ -421,33 +421,30 @@
                                  <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
                               </div>
                               <div class="modal-body" align="center">
-                                 <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                                 <div style="height:200%" data-always-visible="1" data-rail-visible1="1">
                                     <div class="row">
                                        <div class="col-md-6"> 
                                       <form action="#" role="form">
                                             <div class="form-group">
-                                                    <div class="thumbnail" style="width: 310px;">
+                                                    <div class="thumbnail" style="width: 310%;">
                                                         <?php if (is_null($Employee->image_rute)){$sinfoto="themes/metronic/img/profile/profile.jpg";} else{$sinfoto=$Employee->image_rute;} ?>
                                                         <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"</div>
                                                     </div>
                                                     <div class="margin-top-10 ">
                                                        <div class="input-group input-group-fixed">
                                                            <div class="option-panel right">
-                                                               <div id="mulitplefileuploader">Cargar Foto</div>
+                                                               <div id="mulitplefileuploader" class="btn default">Cargar Foto</div>
                                                             </div>
-                                                            <div class="option-panel right"></div>
                                                        </div>
                                                     </div>
                                                   <div id="filename"></div>
                                             </div>
-                                        </form>
                                        </div>
+                                    </form>
                                  </div>
                               </div> 
                            </div>
                         </div>
                      </div>
                 </div>
-          </div>
-         
-      
+          </div>    
