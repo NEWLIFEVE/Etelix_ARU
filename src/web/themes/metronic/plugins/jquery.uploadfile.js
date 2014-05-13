@@ -259,7 +259,7 @@
 
         function createCutomInputFile(obj, group, s, uploadLabel) {
 
-            var fileUploadId = "ajax-upload-idp" + (new Date().getTime());
+            var fileUploadId = "ajax-upload-id-" + (new Date().getTime());
 
             var form = $("<form method='" + s.method + "' action='" + s.url + "' enctype='" + s.enctype + "'></form>");
             var fileInputStr = "<input type='file' id='" + fileUploadId + "' name='" + s.fileName + "'/>";
@@ -335,11 +335,12 @@
             	
             var uheight=uploadLabel.height()+10;
             if(uheight == 10)
-            	uheight = 35;
+            	uheight = 100;
 
-			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default'});
+                        uploadLabel.addClass("btn blue fileinput-button");
+//			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default', background:'#0362FD', color:'#ffffff', height:30});
 			fileInput.css({position: 'absolute','cursor':'pointer',  
-							'top': '0px',
+							'top': '5px',
 							'width': uwidth,  
 							'height':uheight,
 							'left': '0px',
@@ -537,4 +538,3 @@
 
 
 }(jQuery));
-

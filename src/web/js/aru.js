@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 
-
-
-
  var $ARU={};
 
 /**
@@ -19,7 +16,7 @@ $ARU.UI=(function(){
     {
         loadIndex();
         _location();
-        getphoto();
+        _attachphoto();
 
 
     }
@@ -168,8 +165,8 @@ $ARU.UI=(function(){
      * funcion para enviar la captura de la foto a la accion 
      */
     
-        function attachphoto(){
-            
+        function _attachphoto(){
+           
                   var settings = {
                             url: "/Employee/Photo",
                             dragDrop:false,
@@ -181,13 +178,12 @@ $ARU.UI=(function(){
                             multiple:false,
                             onSuccess:function(files,data,xhr)
                             {
-                                alert(data[0]);
-                               
+                                console.log(data);
                                 $("#filename").html(files);
                                 $("#foto").attr('src',"/"+data[1]);
                                 $("#load_photo").attr('src',"/"+data[1]);
                                 $("#photomain").attr('src',"/"+data[1]);
-//                                $('div.ajax-file-upload-filename:last').attr('name', file); 
+//                                $('div.ajax-file-upload-filename:last').attr('name', data[0]); 
                             },
                             showDelete:true,
                             deleteCallback: function(data,pd){
@@ -203,20 +199,9 @@ $ARU.UI=(function(){
                                     pd.statusbar.remove(); //You choice to hide/not.
                                 }
                         }
-                   $("#mulitplefileuploader").uploadFile(settings); 
-                    
+                   var uploadObj =$("#mulitplefileuploader").uploadFile(settings); 
                 }
-  
-    /**
-     * funcion para capturar el evento de la foto
-     */
-    
-        function getphoto(){
-            $('a#photo').on('click',function(){
-                attachphoto();
-                
-             });
-         }
+ 
     
     return {
         init:init
