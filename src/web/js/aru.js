@@ -193,7 +193,7 @@ $ARU.UI=(function(){
                                      function(resp, textStatus, jqXHR)
                                 {
                                      //Show Message  
-                                    $("#status").html("borrado");      
+                                    $("#status").html("");      
                                 });
                                 }      
                                     pd.statusbar.remove(); //You choice to hide/not.

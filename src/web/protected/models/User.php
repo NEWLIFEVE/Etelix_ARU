@@ -25,8 +25,8 @@
 class User extends CActiveRecord
 {
     
-    public $confir_pass;
-    public $confir_pass1;
+         public $confir_pass;
+         public $confir_pass1;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -79,7 +79,6 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'activeKey' => 'Active Key',
 			'superuser' => 'Superuser',
-			'status' => 'Status',
 			'id_rol' => 'Id Rol',
 			'create_at' => 'Create At',
 			'lastvist_at' => 'Lastvist At',
@@ -134,7 +133,8 @@ class User extends CActiveRecord
 	}
         
         
-        /**
+        
+   /**
          * 
          * funcion para verificar el pass actual
          */
