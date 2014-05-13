@@ -11,21 +11,22 @@
  * @property string $email
  * @property string $activeKey
  * @property boolean $superuser
- * @property boolean $status
  * @property integer $id_rol
  * @property string $create_at
  * @property string $lastvist_at
+ * @property integer $id_status
  *
  * The followings are the available model relations:
  * @property Rol $idRol
  * @property Employee $idEmployee
+ * @property StatusEmployee $idStatus
  * @property ConnectingTrace[] $connectingTraces
  */
 class User extends CActiveRecord
 {
     
-    public $confir_pass;
-    public $confir_pass1;
+         public $confir_pass;
+         public $confir_pass1;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -42,11 +43,11 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_employee, id_rol', 'numerical', 'integerOnly'=>true),
-			array('username, password, email, activeKey, superuser, status, create_at, lastvist_at', 'safe'),
+			array('id_employee, id_rol, id_status', 'numerical', 'integerOnly'=>true),
+			array('username, password, email, activeKey, superuser, create_at, lastvist_at', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_employee, username, password, email, activeKey, superuser, status, id_rol, create_at, lastvist_at', 'safe', 'on'=>'search'),
+			array('id, id_employee, username, password, email, activeKey, superuser, id_rol, create_at, lastvist_at, id_status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +61,7 @@ class User extends CActiveRecord
 		return array(
 			'idRol' => array(self::BELONGS_TO, 'Rol', 'id_rol'),
 			'idEmployee' => array(self::BELONGS_TO, 'Employee', 'id_employee'),
+			'idStatus' => array(self::BELONGS_TO, 'StatusEmployee', 'id_status'),
 			'connectingTraces' => array(self::HAS_MANY, 'ConnectingTrace', 'id_user'),
 		);
 	}
@@ -77,10 +79,10 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'activeKey' => 'Active Key',
 			'superuser' => 'Superuser',
-			'status' => 'Status',
 			'id_rol' => 'Id Rol',
 			'create_at' => 'Create At',
 			'lastvist_at' => 'Lastvist At',
+			'id_status' => 'Id Status',
 		);
 	}
 
@@ -109,10 +111,10 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('activeKey',$this->activeKey,true);
 		$criteria->compare('superuser',$this->superuser);
-		$criteria->compare('status',$this->status);
 		$criteria->compare('id_rol',$this->id_rol);
 		$criteria->compare('create_at',$this->create_at,true);
 		$criteria->compare('lastvist_at',$this->lastvist_at,true);
+		$criteria->compare('id_status',$this->id_status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -131,7 +133,8 @@ class User extends CActiveRecord
 	}
         
         
-        /**
+        
+   /**
          * 
          * funcion para verificar el pass actual
          */
