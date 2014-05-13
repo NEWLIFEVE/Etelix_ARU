@@ -384,7 +384,7 @@
             this.done = $("<div class='ajax-file-upload-green'>" + s.doneStr + "</div>").appendTo(this.statusbar).hide();
             this.del = $("<div class='ajax-file-upload-red'>" + s.deletelStr + "</div>").appendTo(this.statusbar).hide();
 //            obj.errorLog.after(this.statusbar);
-            $('div#area-add-file').append(this.statusbar);
+            $('div#area-add-file').html(this.statusbar);
 //            setTimeout(function(){$('div#filename').append('<input type="hidden" name="archivo[]" id="archivo[]" value="'+$('div.ajax-file-upload-filename').text()+'">')}, 1000)
             return this;
         }
