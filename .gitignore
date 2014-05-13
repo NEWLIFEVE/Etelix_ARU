@@ -4,3 +4,4 @@ src/web/assets/*
 !assets/.gitignore
 src/web/protected/runtime/*
 nbproject/*
+src/web/themes/metronic/img/profile/*

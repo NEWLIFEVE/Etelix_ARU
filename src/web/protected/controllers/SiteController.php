@@ -29,13 +29,13 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-           if(!Yii::app()->user->isGuest)
-                {
+		if(!Yii::app()->user->isGuest)
+		{
             $this->render('index');
-                }
-                
-            else{
-                   $model = new LoginForm;
+        }
+        else
+        {
+            $model=new LoginForm;
             // if it is ajax validation request
             if(isset($_POST['ajax']) && $_POST['ajax'] === 'login-form')
             {
@@ -47,15 +47,14 @@ class SiteController extends Controller
             {
                 $model->attributes = $_POST['LoginForm'];
                 // validate user input and redirect to the previous page if valid
-                if($model->validate() && $model->login())
-                    $this->redirect('EventEmployee/Create');
+                if($model->validate() && $model->login()=="normal") $this->redirect('EventEmployee/Create');
+                if($model->validate() && $model->login()=="update") $this->redirect('EventEmployee/index');
 //                    $this->redirect(Yii::app()->user->returnUrl);
             }
             // display the login form
             $this->render('login', array('model' => $model));
         }
-                
-            }
+    }
             
             
 	
