@@ -44,9 +44,12 @@ class EventEmployeeController extends Controller
 //			),
 //		);
 //	}
-                public function accessRules()
-	{
-           
+
+	/**
+	 *
+	 */
+	public function accessRules()
+	{       
 		return array(        
                    array(
                        'allow',
@@ -75,28 +78,32 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionCreate()
 	{
-//		$model= new EventEmployee();
-            
-                $Employee = Employee::getEmployee(Yii::app()->user->id);
-                if($Employee!=NULL){
-                $date= date('Ymd');
-                $eventos=  EventEmployee::getWorkday($Employee->id, $date);
- 
-//		if(isset($_POST['EventEmployee']))
-//		{
-//			$model->attributes=$_POST['EventEmployee'];
-//			if($model->save())
-//				$this->redirect(array('view','id'=>$model->id));
-//		}
+		/*if(Yii::app()->user->id)
+		{
+			echo "existe";
+		}
+		else
+		{
+			echo "no existe";
+		}      */
+        $Employee=Employee::getEmployee(Yii::app()->user->id);
+        if($Employee!=NULL)
+        {
+        	$date=date('Ymd');
+        	$eventos=EventEmployee::getWorkday($Employee->id, $date);
 
-		$this->render('create',array(
-			'eventos'=>$eventos,
-		));
-                }else{
-                    $this->render('/site/index',array(
-			'eventos'=>NULL,
-                        ));
-                }
+			$this->render('create',array(
+				'eventos'=>$eventos,
+				)
+			);
+		}
+		else
+		{
+			$this->render('/site/index',array(
+				'eventos'=>NULL,
+				)
+			);
+		}
 	}
 
 	/**
@@ -191,51 +198,51 @@ class EventEmployeeController extends Controller
 		}
 	}
         
-        /**
-         * funcion para verificar por medio de la fecha los eventos donde esta el usuario 
-         */
-        
-        
-        
-        public function actionCheck(){
-         
-           $id=Yii::app()->user->id;
-           $date= date('Ymd');
-           $getevente=  EventEmployee::getWorkday($id, $date);
-        
-                
-          if ($getevente!=NULL){
-           
-              $this->render('Check',array(
-			'geteve'=>$getevente,
-		));
-              
-          }
-          
-       
-            
-        }
-        
+    /**
+     * funcion para verificar por medio de la fecha los eventos donde esta el usuario 
+     */
+    public function actionCheck()
+    {
+    	$id=Yii::app()->user->id;
+    	$date=date('Ymd');
+    	$getevente=EventEmployee::getWorkday($id, $date);
+
+    	if($getevente!=NULL)
+    	{
+    		$this->render('Check',array(
+    			'geteve'=>$getevente,
+    			)
+    		);
+    	}
+    }
+    
+    /**
+     *
+     */    
     public function actionDeclarar()
     {
-        
         if(isset($_GET['location']) && isset($_GET['date_event']) && isset($_GET['time_event']))
         {
             $last=null;
-            $idEmployee = Employee::getEmployee(Yii::app()->user->id)->id;
-            $date = date('Ymd');
-            $eventos = EventEmployee::getWorkday($idEmployee, $date);
-            if ($eventos!=false){
-                $last=end($eventos);
-                if($last['event']<4){
-                    $type_event = $last['event']+1;
+            $idEmployee=Employee::getEmployee(Yii::app()->user->id)->id;
+            $date=date('Ymd');
+            $eventos=EventEmployee::getWorkday($idEmployee, $date);
+            if($eventos!=false)
+            {
+            	$last=end($eventos);
+                if($last['event']<4)
+                {
+                    $type_event=$last['event']+1;
                     $aux=TRUE;
                 }
-            }else{
-                $type_event = 1;
+            }
+            else
+            {
+                $type_event=1;
                 $aux=TRUE;
             }
-            if($aux){
+            if($aux)
+            {
                 $model = new EventEmployee();
                 $model->hour_event = $_GET['time_event'];
                 $model->id_type_event = $type_event;
@@ -247,17 +254,21 @@ class EventEmployeeController extends Controller
                 else
                     echo 'fallo';
             }
-        }else{
+        }
+        else
+        {
             echo 'no set';
         }
     }
     
-    
-    function actionInformacion(){
-        
-            $idEmployee = Employee::getEmployee(Yii::app()->user->id)->id;
-            $date = date('Ymd');
-            $eventos = EventEmployee::getWorkday($idEmployee, $date);
-            echo json_encode($eventos);
+    /**
+     *
+     */
+    public function actionInformacion()
+    {
+    	$idEmployee = Employee::getEmployee(Yii::app()->user->id)->id;
+        $date = date('Ymd');
+        $eventos = EventEmployee::getWorkday($idEmployee, $date);
+        echo json_encode($eventos);
     }
 }

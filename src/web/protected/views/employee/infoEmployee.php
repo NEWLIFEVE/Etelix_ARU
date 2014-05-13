@@ -422,23 +422,26 @@
                                  <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
                               </div>
                               <div class="modal-body" align="center">
-                                 <div style="height:200%" data-always-visible="1" data-rail-visible1="1">
+                                  <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
                                     <div class="row">
-                                       <div class="col-md-6"> 
+                                       <div class="col-md-6" style="width:100%;"> 
                                       <form action="#" role="form">
                                             <div class="form-group">
-                                                    <div class="thumbnail" style="width: 310%;">
+                                               <div class="thumbnail" style="width: 310%;">
                                                         <?php if (is_null($Employee->image_rute)){$sinfoto="themes/metronic/img/profile/profile.jpg";} else{$sinfoto=$Employee->image_rute;} ?>
-                                                        <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"</div>
-                                                    </div>
+                                                        <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"/></div>
                                                     <div class="margin-top-10 ">
                                                        <div class="input-group input-group-fixed">
                                                            <div class="option-panel right">
-                                                               <div id="mulitplefileuploader" class="btn default">Cargar Foto</div>
+                                                               <div id="mulitplefileuploader">Cargar Foto</div>
                                                             </div>
                                                        </div>
                                                     </div>
-                                                  <div id="filename"></div>
+<!--                                                  <div id="filename"></div>-->
+                                                <div id="only-open">
+                                                  <div id="area-add-file"></div>
+                                                  <div id="status"></div>
+                                                </div>
                                             </div>
                                        </div>
                                     </form>

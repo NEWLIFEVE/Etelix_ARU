@@ -29,7 +29,7 @@
                 return {};
             },
             maxFileSize: -1,
-            multiple: true,
+            multiple: false,
             dragDrop: true,
             autoSubmit: true,
             showCancel: true,
@@ -335,12 +335,12 @@
             	
             var uheight=uploadLabel.height()+10;
             if(uheight == 10)
-            	uheight = 100;
+            	uheight = 30;
 
                         uploadLabel.addClass("btn blue fileinput-button");
 //			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default', background:'#0362FD', color:'#ffffff', height:30});
 			fileInput.css({position: 'absolute','cursor':'pointer',  
-							'top': '5px',
+							'top': '0px',
 							'width': uwidth,  
 							'height':uheight,
 							'left': '0px',
@@ -384,7 +384,7 @@
             this.done = $("<div class='ajax-file-upload-green'>" + s.doneStr + "</div>").appendTo(this.statusbar).hide();
             this.del = $("<div class='ajax-file-upload-red'>" + s.deletelStr + "</div>").appendTo(this.statusbar).hide();
 //            obj.errorLog.after(this.statusbar);
-            $('div#area-add-file').append(this.statusbar);
+            $('div#area-add-file').html(this.statusbar);
 //            setTimeout(function(){$('div#filename').append('<input type="hidden" name="archivo[]" id="archivo[]" value="'+$('div.ajax-file-upload-filename').text()+'">')}, 1000)
             return this;
         }
