@@ -11,6 +11,7 @@ class UserIdentity extends CUserIdentity
     private $_id;
 	const ERROR_EMAIL_INVALID=3;
 	const ERROR_STATUS_INACTIV=4;
+	const UPDATE_DATA=5;
     private $id_rol;
 
 	/**
@@ -44,9 +45,21 @@ class UserIdentity extends CUserIdentity
 			}
 		}
 		else if(UserHelp::encrypting($this->password)!==$user->password)
-		{
-                       
+		{     
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+		}
+		else if($user->id_status==2)
+		{
+			$this->erroCode=self::ERROR_STATUS_INACTIV;
+		}
+		else if($user->id_status==3)
+		{
+			$this->_id=$user->id;
+            $this->setState('rol', $user->id_rol);
+			$this->username=$user->username;
+			$this->errorCode=self::UPDATE_DATA;
+			$user->lastvist_at=date('Y-m-d H:m:s P');
+			$user->save();
 		}
 		else 
 		{

@@ -192,6 +192,20 @@ class EmployeeController extends Controller {
         	echo "Deleted File ".$fileName."<br>";
         }
     }
+    
+    
+    /**
+     * 
+     * funcion de prueba para armar la primera vista del usuario
+     */
+    
+    
+    public function actionFirstView(){
+        
+        
+        
+         $this->render('viewfirstemployee');
+    }
 }
 
    
