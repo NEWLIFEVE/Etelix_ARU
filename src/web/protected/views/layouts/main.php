@@ -72,7 +72,16 @@
 
 <div class="container" id="page">
 
-
+           <?php if (is_null(Employee::getImage(Yii::app()->user->id)))
+               {
+                    $photomain="themes/metronic/img/profile/profile.jpg";
+               }
+               
+               else {
+                   
+                    $photomain= Employee::getImage(Yii::app()->user->id);
+               }
+               ?>
 
 	<div id="mainmenu">
 		
@@ -376,7 +385,7 @@
 
                                         <li class='dropdown user'>
                                            <a href='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown' data-close-others='true'>
-                                           <img alt='' src='/themes/metronic/img/avatar1_small.jpg'/>
+                                           <img class='sizephotoemployee' alt='' id='photomain' src='/".$photomain."'/>
                                            <span class='username'>".Yii::app()->user->name."</span>
                                            <i class='icon-angle-down'></i>
                                            </a>

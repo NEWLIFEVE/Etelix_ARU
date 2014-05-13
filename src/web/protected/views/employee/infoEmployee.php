@@ -5,18 +5,6 @@
                   Perfil
                </h3>
                <ul class="page-breadcrumb breadcrumb">
-<!--                  <li class="btn-group">
-                     <button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                     <span>Actions</span> <i class="icon-angle-down"></i>
-                     </button>
-                     <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                     </ul>
-                  </li>-->
                   <li>
                      <i class="icon-home"></i>
                      <a href="index.html">Inicio</a> 
@@ -40,16 +28,16 @@
                   <ul class="nav nav-tabs">
                      <li class="active"><a href="#tab_1_1" data-toggle="tab">Datos del Perfil</a></li>
                      <li><a href="#tab_1_3" data-toggle="tab">Modificar Perfil</a></li>
-<!--                     <li><a href="#tab_1_4" data-toggle="tab">Dirección de Habitación</a></li>-->
-                     
                   </ul>
                   <div class="tab-content">
                      <div class="tab-pane active" id="tab_1_1">
                         <div class="row">
                            <div class="col-md-3">
                               <ul class="list-unstyled profile-nav">
-                                 <li><img src="/themes/metronic/img/profile/profile-img.png" class="img-responsive" alt="" /> 
-                                      <a data-toggle="modal" href="#cambio_photo" id="cambio_">Cambiar Imagen</a>
+                                  
+                                 <?php if (!empty($Employee->image_rute)){ $Employee_load=$Employee->image_rute;} else $Employee_load="themes/metronic/img/profile/profile.jpg"; ?>
+                                 <li><img id ="load_photo" src="/<?php echo $Employee_load ?>" class="img-responsive" alt="" /> 
+                                      <a data-toggle="modal" href="#cambio_photo" id="photo">Cambiar Imagen</a>
                                     
                                  </li>
 <!--                                 <li><a href="#">Projects</a></li>
@@ -67,44 +55,13 @@
                                     <ul class="list-inline">
                                        <li><i class="icon-map-marker"></i><?php if (!empty($Address->idCity->idState->idCountry->name)){echo $Address->idCity->idState->idCountry->name;}?></li>
                                        <li><i class="icon-calendar"></i><?php echo $Employee->date_birth;?></li>
-                                       <li><i class="icon-briefcase"></i> Design</li>
+<!--                                       <li><i class="icon-briefcase"></i> Design</li>-->
                                        <li><i class="icon-envelope"></i><?php echo $Employee->email_personal;?></li>
                                         <li><i class="icon-skype"></i><?php echo $Employee->skype;?></li>
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->
                                     </ul>
                                  </div>
-                                 <!--end col-md-8-->
-<!--                                 <div class="col-md-4">
-                                    <div class="portlet sale-summary">
-                                       <div class="portlet-title">
-                                          <div class="caption">Sales Summary</div>
-                                          <div class="tools">
-                                             <a class="reload" href="javascript:;"></a>
-                                          </div>
-                                       </div>
-                                       <div class="portlet-body">
-                                          <ul class="list-unstyled">
-                                             <li>
-                                                <span class="sale-info">TODAY SOLD <i class="icon-img-up"></i></span> 
-                                                <span class="sale-num">23</span>
-                                             </li>
-                                             <li>
-                                                <span class="sale-info">WEEKLY SALES <i class="icon-img-down"></i></span> 
-                                                <span class="sale-num">87</span>
-                                             </li>
-                                             <li>
-                                                <span class="sale-info">TOTAL SOLD</span> 
-                                                <span class="sale-num">2377</span>
-                                             </li>
-                                             <li>
-                                                <span class="sale-info">EARNS</span> 
-                                                <span class="sale-num">$37.990</span>
-                                             </li>
-                                          </ul>
-                                       </div>
-                                    </div>
-                                 </div>-->
-                                 <!--end col-md-4-->
+                        
                               </div>
                               <!--end row-->
                               <div class="tabbable tabbable-custom tabbable-custom-profile">
@@ -116,14 +73,7 @@
                                     <div class="tab-pane active" id="tab_1_11">
                                        <div class="portlet-body">
                                           <table class="table table-striped table-bordered table-advance table-hover">
-<!--                                             <thead>
-                                                <tr>
-                                                   <th><i class="icon-briefcase"></i> Company</th>
-                                                   <th class="hidden-xs"><i class="icon-question-sign"></i> Descrition</th>
-                                                   <th><i class="icon-bookmark"></i> Amount</th>
-                                                   <th></th>
-                                                </tr>
-                                             </thead>-->
+
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Primer Nombre</td>
@@ -164,8 +114,8 @@
                                                  <tr>
                                                    <td class="letra_empleado">Skype</td>
                                                    <td><?php if (is_null( $Employee->skype)){} else{echo $Employee->skype;}?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                   <td class="letra_empleado">imagen</td>
+                                                   <td><?php if (is_null( $Employee->image_rute)){} else{echo $Employee->image_rute;}?></td>
                                                 </tr>
                                                 
                                                 <tr>
@@ -188,16 +138,9 @@
                                     <!--tab-pane-->
                                     <div class="tab-pane" id="tab_1_22">
                                        <div class="tab-pane active" id="tab_1_1_1">
-                                          <div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
+                                          <div class="scroller" data-height="50%" data-always-visible="1" data-rail-visible1="1">
                                              <table class="table table-striped table-bordered table-advance table-hover">
-<!--                                             <thead>
-                                                <tr>
-                                                   <th><i class="icon-briefcase"></i> Company</th>
-                                                   <th class="hidden-xs"><i class="icon-question-sign"></i> Descrition</th>
-                                                   <th><i class="icon-bookmark"></i> Amount</th>
-                                                   <th></th>
-                                                </tr>
-                                             </thead>-->
+
                                              <tbody>
                                                 <tr>
                                                     <td class="letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
@@ -221,8 +164,7 @@
                                                 </tr>
                                                 <tr>
                                                    <td class="letra_empleado">Ciudad</td>
-                                                   <td><?php if (!empty($Address->idCity->name)){echo $Address->idCity->name;}?></td>
-                                                     
+                                                   <td><?php if (!empty($Address->idCity->name)){echo $Address->idCity->name;}?></td> 
                                                 </tr>
                                              </tbody>
                                           </table>
@@ -337,7 +279,7 @@
                                                  </div>
                                                 <div class="secundario letra_empleado">
                                                     <label class="control-label">Teléfono Celular</label>
-                                                      <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
+                                                      <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
@@ -351,9 +293,7 @@
                                                  </div>
                                             </div>
                                             
-                                        </div>
-                                      
-                                    
+                                        </div> 
                                  </div>
                                   
                                 <?php  if (!empty($Address->idCity->idState->idCountry->name)){
@@ -385,7 +325,7 @@
                                             "url"=>CController::createUrl("Employee/CityByState"),
                                             "type"=>"POST",
                                             "data"=>"js:$('#submit_form').serialize()",
-                                            "update"=>"#Employee_city",
+                                            "update"=>"#Address_id_city",
                                         
                                         ),
                                         "class"=>"form-control",
@@ -393,37 +333,35 @@
                                     );
                                   
                                   ?>
-                                  
-                               
-                                  
+
                                  <div id="tab_2-2" class="tab-pane">
                                          <div class="form-group">
                                           <label class="control-label letra_empleado">Apartamento, Suite, Unidad, Edificio, Piso, Etc</label>
                                           <?php 
-                                              if(empty($Address->address_line_1))
-                                                echo $form->textField($Employee,'line1', array('class'=>'form-control','value'=>''));
-                                              else
-                                                echo $form->textField($Employee,'line1', array('class'=>'form-control','value'=>$Address->address_line_1));
+//                                              if(empty($Address->address_line_1))
+//                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
+//                                              else
+                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>$Address->address_line_1));
                                           ?>
                                        </div>
                                      <div class="form-group">
                                           <label class="control-label letra_empleado">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</label>
                                           
                                            <?php 
-                                              if(empty($Address->address_line_2))
-                                                echo $form->textField($Employee,'line2', array('class'=>'form-control','value'=>''));
-                                              else
-                                                echo $form->textField($Employee,'line2', array('class'=>'form-control','value'=>$Address->address_line_2));
+//                                              if(empty($Address->address_line_2))
+//                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
+//                                              else
+                                                echo $form->textField($Address,'address_line_2', array('class'=>'form-control','value'=>$Address->address_line_2));
                                              ?>
                                        </div>
                                      
                                       <div class="form-group">
                                           <label class="control-label letra_empleado">Códigos Postal</label>
                                              <?php 
-                                          if(empty($Address->zip))
-                                            echo $form->textField($Employee,'zip', array('class'=>'form-control','value'=>''));
-                                          else
-                                            echo $form->textField($Employee,'zip', array('class'=>'form-control','value'=>$Address->zip));
+//                                          if(empty($Address->zip))
+//                                            echo $form->textField($Address,'zip', array('class'=>'form-control','value'=>''));
+//                                          else
+                                            echo $form->textField($Address,'zip', array('class'=>'form-control','value'=>$Address->zip));
                                           ?>
                                        </div>
                                        <div class="form-group">
@@ -452,9 +390,9 @@
                                           
                                              <?php 
                                           if(empty($Address->idCity->name))
-                                           echo $form->dropDownList($Employee,'city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
+                                           echo $form->dropDownList($Address,'id_city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
                                           else
-                                           echo $form->dropDownList($Employee,'city',array($Address->id_city=>$Address->idCity->name),array("class"=>"form-control"));
+                                           echo $form->dropDownList($Address,'id_city',array($Address->id_city=>$Address->idCity->name),array("class"=>"form-control"));
                                           ?>
                                          
                                        </div>   
@@ -482,53 +420,31 @@
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                  <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
                               </div>
-                              <div class="modal-body">
-                                 <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                              <div class="modal-body" align="center">
+                                 <div style="height:200%" data-always-visible="1" data-rail-visible1="1">
                                     <div class="row">
                                        <div class="col-md-6"> 
                                       <form action="#" role="form">
                                             <div class="form-group">
-                                                    <div class="thumbnail" style="width: 310px;">
-                                                       <img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                                                    <div class="thumbnail" style="width: 310%;">
+                                                        <?php if (is_null($Employee->image_rute)){$sinfoto="themes/metronic/img/profile/profile.jpg";} else{$sinfoto=$Employee->image_rute;} ?>
+                                                        <div name="foto"><img id="foto" src="/<?php echo $sinfoto; ?>" height="200" width="200"</div>
                                                     </div>
-                                                    <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="margin-top-10 ">
                                                        <div class="input-group input-group-fixed">
-                                                          <span class="input-group-btn">
-                                                          <span class="uneditable-input">
-                                                          <i class="icon-file fileupload-exists"></i> 
-                                                          <span class="fileupload-preview"></span>
-                                                          </span>
-                                                          </span>
-                                                          <span class="btn default btn-file">
-                                                          <span class="fileupload-new"><i class="icon-paper-clip"></i> Select file</span>
-                                                          <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
-<!--                                                           <?php //echo CHtml::activeFileField($Employee, 'imagen'); ?> -->
-                                                          </span>
-                                                           
                                                            <div class="option-panel right">
-                                                                     <div id="mulitplefileuploader">Add file</div>
+                                                               <div id="mulitplefileuploader" class="btn default">Cargar Foto</div>
                                                             </div>
-                                                          <!--<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>-->
                                                        </div>
                                                     </div>
+                                                  <div id="filename"></div>
                                             </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" data-dismiss="modal" class="btn default">Cerrar</button>
-                                                    <input type="submit" value="enviar" id="enviar_foto" class="btn blue  centrar_botones"/> 
-                                                </div>
-                                          
-                                         
-                                        </form>
-                                         
-                                        
                                        </div>
-                                       
+                                    </form>
                                  </div>
-                              </div>
-                              
+                              </div> 
                            </div>
                         </div>
                      </div>
-          </div>
-         
-      
+                </div>
+          </div>    

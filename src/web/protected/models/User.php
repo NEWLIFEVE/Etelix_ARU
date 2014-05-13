@@ -138,22 +138,28 @@ class User extends CActiveRecord
         
         
         public function getPass($pass){
-            $id=Yii::app()->user->id;
-            if ($pass!=NULL){
-                 $verificar_pass=self::model()->find('id=:id AND password=:pass',array(':id'=>$id, ':pass'=>$pass));
-                 return $verificar_pass;
-            }
-            
-            else{
-                return false; 
-            }
-            
-            
+           
+                $id=Yii::app()->user->id;
+
+                if ($pass!=NULL){
+                     $verificar_pass=self::model()->find('id=:id AND password=:pass',array(':id'=>$id, ':pass'=>$pass));
+                     return $verificar_pass;
+                }
+                else{
+                    return false; 
+                }
         }
         
         public static function getIdEmployee($idUser)
         {
             $model = self::model()->findByPk($idUser);
             if ($model!=NULL) return $model->id_employee; else return NULL;          
+        }
+        
+        public static function assignEmployee($idUser,$idEmployee)  
+        {
+            $model = self::model()->findByPk($idUser);
+            $model->id_employee = $idEmployee;
+            $model->save();
         }
 }

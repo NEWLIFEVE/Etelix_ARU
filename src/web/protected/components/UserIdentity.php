@@ -36,7 +36,7 @@ class UserIdentity extends CUserIdentity
 				$this->errorCode=self::ERROR_USERNAME_INVALID;
 			}
 		}
-		else if($this->password!==$user->password)
+		else if(UserHelp::encrypting($this->password)!==$user->password)
 		{
                        
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;

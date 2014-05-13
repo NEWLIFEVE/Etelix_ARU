@@ -19,53 +19,36 @@
                </ul>
             </div>
          </div>
-
-
-
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-
-
 	<?php echo $form->errorSummary($model); ?>
-
-                    <div id="contenedor">
-                          <div id="contenidos">
-                                <div id="secundario">
+                    <div id="tab_2-2" class="tab-pane">
+                           <div class="form-group">
                                   <?php echo $form->labelEx($model,'Contraseña Actual', array('class'=>'letra_empleado')); ?>
-                                </div>
-                                <div id="principal">
-                                    <?php echo $form->passwordField($model,'confir_pass', array('class'=>'form-control input-medium')) ?>
-                                </div>
-                          </div>
-                          <div id="contenidos">
-                                <div id="secundario">
-                                  <?php echo $form->labelEx($model,'Contraseña Nueva', array('class'=>'letra_empleado')); ?>
-                                </div>
-                                <div id="principal">
-                                  <?php echo $form->passwordField($model,'password', array('class'=>'form-control input-medium')); ?> 
-                                </div>
-                          </div>
-                           <div id="contenidos">
-                                <div id="secundario">
-                                  <?php echo $form->labelEx($model,'Repita la Contraseña', array('class'=>'letra_empleado')); ?>
-                                </div>
-                                <div id="principal">
-                                  <?php echo $form->passwordField($model,'confir_pass1', array('class'=>'form-control input-medium')); ?> 
-                                </div>
-                          </div>
-                         <div id="contenidos">
-                                <div id="secundariosed">
-                                  <?php echo CHtml::submitButton('Cambiar Contraseña', array('class'=>'btn blue')); ?>
-                                </div>
-                          </div>
+                                  <?php echo $form->passwordField($model,'confir_pass', array('class'=>'form-control input-medium')) ?>
+                                  <?php echo $form->error($model,'confir_pass'); ?>
+                            </div>
                     </div>
-
-
-	
-
+                     <div id="tab_2-2" class="tab-pane">
+                           <div class="form-group">
+                                  <?php echo $form->labelEx($model,'Contraseña Nueva', array('class'=>'letra_empleado')); ?>
+                                  <?php echo $form->passwordField($model,'password', array('class'=>'form-control input-medium')) ?>
+                            </div>
+                     </div>
+                     <div id="tab_2-2" class="tab-pane">
+                           <div class="form-group">
+                                  <?php echo $form->labelEx($model,'Repita la Contraseña', array('class'=>'letra_empleado')); ?>
+                                  <?php echo $form->passwordField($model,'confir_pass1', array('class'=>'form-control input-medium')) ?>
+                            </div>
+                     </div>
+                     <div id="tab_2-2" class="tab-pane">
+                           <div class="form-group">
+                                  <?php echo CHtml::submitButton('Cambiar Contraseña', array('class'=>'btn blue')); ?>
+                            </div>
+                     </div>
 <?php $this->endWidget(); ?>
 </div>

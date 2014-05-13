@@ -335,11 +335,12 @@
             	
             var uheight=uploadLabel.height()+10;
             if(uheight == 10)
-            	uheight = 35;
+            	uheight = 100;
 
-			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default'});
+                        uploadLabel.addClass("btn blue fileinput-button");
+//			uploadLabel.css({position: 'relative',overflow:'hidden',cursor:'default', background:'#0362FD', color:'#ffffff', height:30});
 			fileInput.css({position: 'absolute','cursor':'pointer',  
-							'top': '0px',
+							'top': '5px',
 							'width': uwidth,  
 							'height':uheight,
 							'left': '0px',
@@ -537,4 +538,3 @@
 
 
 }(jQuery));
-
