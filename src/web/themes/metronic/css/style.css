@@ -2570,7 +2570,8 @@ Custom tabs
 }
 
 .tabbable-custom .nav-tabs > li.active { 
-  border-top: 3px solid #d12610; 
+  border-top: 3px solid #28b779; 
+  /*border-top: 3px solid #d12610;*/ 
   margin-top: 0; 
   position: relative; 
 }

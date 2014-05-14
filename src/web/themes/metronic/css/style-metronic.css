@@ -1388,5 +1388,6 @@ Bootstrap Panel
 
 .centrar_botones{
     margin-top: 3%;
-     margin-left: 15%;
+    width: 100%
+     /*margin-left: 15%;*/
 }

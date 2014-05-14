@@ -440,15 +440,16 @@
                                                    </form>
                                                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
                                                 </li>
+                                                <!--
                                                 <li class='start active'>
                                                    <a href='/'>
                                                    <i class='icon-home'></i> 
                                                    <span class='title'>Inicio</span>
                                                    <span class='selected'></span>
                                                    </a>
-                                                </li>
+                                                </li>-->
                                                
-                                             <li class='' href='javascript:;'>
+                                             <li class='start active' href='javascript:;'>
                                                    <a href='/EventEmployee/Create'>
                                                    <i class='icon-user'></i> 
                                                    <span class='title'>Declarar</span>

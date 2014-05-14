@@ -14,7 +14,10 @@
                      <a href="#">Empleado</a>
                      <i class="icon-angle-right"></i>
                   </li>
-                  
+                  <li>
+                     <a href="#">Info</a>
+                     <i class="icon-angle-down"></i>
+                  </li>
                </ul>
                <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -399,7 +402,7 @@
                                        </div>   
                                  </div>
                                      <div>
-                                          <input type="submit" value="enviar" class="btn blue button-submit centrar_botones"/>  
+                                          <input type="submit" value="Enviar" class="btn blue button-submit centrar_botones"/>  
 <!--                                          <a href="#" class="btn default">Cancelar</a>-->
                                        </div>
                                       <?php $this->endWidget(); ?>

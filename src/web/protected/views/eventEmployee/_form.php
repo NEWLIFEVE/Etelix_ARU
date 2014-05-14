@@ -22,7 +22,16 @@ for($i=1;$i<5;$i++)
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">Jornada Laboral</h3>
         <ul class="page-breadcrumb breadcrumb">
-            <li>
+             <li>
+                     <i class="icon-home"></i>
+                     <a href="index.html">Inicio</a> 
+                     <i class="icon-angle-right"></i>
+                  </li>
+                  <li>
+                     <a href="#">Declarar</a>
+                     <i class="icon-angle-down"></i>
+                  </li>
+<!--            <li>
                 <i class="icon-home"></i>
                 <a href="/">Inicio</a>
             </li>
@@ -32,7 +41,7 @@ for($i=1;$i<5;$i++)
                     <span></span>
                     <i class="icon-angle-down"></i>
                 </div>
-            </li>
+            </li>-->
         </ul>
         <!-- END PAGE TITLE & BREADCRUMB-->
     </div>
