@@ -165,4 +165,11 @@ class User extends CActiveRecord
             $model->id_employee = $idEmployee;
             $model->save();
         }
+        
+        public static function updateStatus($idUser)  
+        {
+            $model = self::model()->findByPk($idUser);
+            $model->id_status = 1;
+            $model->save();
+        }
 }
