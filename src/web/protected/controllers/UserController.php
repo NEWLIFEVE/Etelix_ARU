@@ -179,29 +179,33 @@ class UserController extends Controller
         
         public function actionUpdatePass(){
             $id=Yii::app()->user->id;  
-            $model=new User;
+            $model=User::model()->findByPk($id);
+            if($model->id_status != 3){
+                if(isset($_POST['User']))
+                    {
+                        $last_pass=  md5($_POST['User']['confir_pass']); 
+                        $validate_pass=User::model()->getPass($last_pass);
+                                if ($validate_pass!=NULL){
+                                     $model=User::model()->findByPk($id);
+                                     $model->password= md5($_POST['User']['password']);
+                                     $model->save();
+                                     $this->redirect(array('Updatepass', array('exito'=>'exito')));
+                                }
 
-            if(isset($_POST['User']))
-                {
-                    $last_pass=  md5($_POST['User']['confir_pass']); 
-                    $validate_pass=User::model()->getPass($last_pass);
-                            if ($validate_pass!=NULL){
-                                 $model=User::model()->findByPk($id);
-                                 $model->password= md5($_POST['User']['password']);
-                                 $model->save();
-                                 $this->redirect(array('Updatepass', array('exito'=>'exito')));
-                            }
-                    
-                            else {
-                                $this->redirect(array('Updatepass', array('fallo'=>'fallo contraseña')));    
-                            }
+                                else {
+                                    $this->redirect(array('Updatepass', array('fallo'=>'fallo contraseña')));    
+                                }
 
-                }
+                    }
 
-            $this->render('viewpass',array(
-			'model'=>$model,
-		));
-
+                $this->render('viewpass',array(
+                            'model'=>$model,
+                    ));
+            }else{
+                $Employee=new Employee;
+                $Address=new Address;
+                $this->render('/employee/viewfirstemployee', array('model'=>$Employee,'Address'=>$Address));
+            }
         }
         
         

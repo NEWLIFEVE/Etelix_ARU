@@ -86,23 +86,29 @@ class EventEmployeeController extends Controller
 		{
 			echo "no existe";
 		}      */
-        $Employee=Employee::getEmployee(Yii::app()->user->id);
-        if($Employee!=NULL)
-        {
-        	$date=date('Ymd');
-        	$eventos=EventEmployee::getWorkday($Employee->id, $date);
+            if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3){
+                $Employee=Employee::getEmployee(Yii::app()->user->id);
+                if($Employee!=NULL)
+                {
+                        $date=date('Ymd');
+                        $eventos=EventEmployee::getWorkday($Employee->id, $date);
 
-			$this->render('create',array(
-				'eventos'=>$eventos,
-				)
-			);
-		}
-		else
-		{
-                    $Employee = new Employee; 
-                    $Address = new Address;
-			$this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
-		}
+                                $this->render('create',array(
+                                        'eventos'=>$eventos,
+                                        )
+                                );
+                        }
+                        else
+                        {
+                            $Employee = new Employee; 
+                            $Address = new Address;
+                                $this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
+                        }
+            }else{
+            $Employee=new Employee;
+            $Address=new Address;
+            $this->render('/employee/viewfirstemployee', array('model'=>$Employee,'Address'=>$Address));
+            }
 	}
 
 	/**
@@ -228,7 +234,7 @@ class EventEmployeeController extends Controller
             $eventos=EventEmployee::getWorkday($idEmployee, $date);
             if($eventos!=false)
             {
-            	$last=end($eventos);
+                $last=end($eventos);
                 if($last['event']<4)
                 {
                     $type_event=$last['event']+1;
