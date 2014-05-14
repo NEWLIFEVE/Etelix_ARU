@@ -88,7 +88,7 @@ class EmployeeController extends Controller {
     }
 
     public function actionCityByState() {
-
+        
         $dato = '<option value="empty">Seleccione uno</option>';
         $data = City::getListCityState($_POST['Employee']['state']);
         foreach ($data as $value => $name) {
@@ -202,9 +202,20 @@ class EmployeeController extends Controller {
     
     public function actionFirstView(){
         
-        
-        
-         $this->render('viewfirstemployee');
+        $model=new Employee;
+        $Address=new Address;
+  
+      if (isset($_POST['Employee'])) {
+
+          $id_civil=$_POST['Employee']['nationality'];
+          $model->id_nationality=$_POST['Employee']['nationality'];
+          $model->attributes = $_POST['Employee'];
+          if ($model->save()){
+              User::updateStatus(Yii::app()->user->id);
+          }
+         
+      }
+         $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
     }
 }
 

@@ -217,8 +217,40 @@ $ARU.UI=(function(){
                 focusInvalid: false, // do not focus the last invalid input
                 rules:
                 {
-                   first_name:{
+                   'Employee[first_name]':{
                        required: true
+                   },
+                   
+                   'Employee[last_name]':{
+                       required: true
+                   },
+                   'Employee[identity_card]':{
+                       required: true
+                   },
+                   'Employee[email_personal]':{
+                       required: true,
+                       email: true
+                   },
+                   'Employee[email_company]':{
+                       required: true,
+                       email: true
+                   },
+                   'Employee[skype]':{
+                       required: true, 
+                   },
+                   'Employee[cellphone]':{
+                       required: true, 
+                   },
+                   
+                   'Address[address_line_1]':{
+                       required: true, 
+                   },
+                   'Address[address_line_2]':{
+                       required: true, 
+                   }
+                   ,
+                   'Address[country]':{
+                       required: true, 
                    }
                     
                 },
@@ -282,6 +314,7 @@ $ARU.UI=(function(){
             });
     
   
+              
           
          }
  
