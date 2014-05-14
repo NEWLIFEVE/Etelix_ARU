@@ -31,7 +31,7 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		if(!Yii::app()->user->isGuest)
 		{
-            $this->render('index');
+            $this->redirect('eventEmployee/Create');
         }
         else
         {

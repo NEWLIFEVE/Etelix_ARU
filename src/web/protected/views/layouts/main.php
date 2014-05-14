@@ -38,6 +38,7 @@
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/style-responsive.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/plugins.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/themes/light.css" />
+   <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/themes/darkblue.css" />-->
 
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/pages/login-soft.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/custom.css" />
@@ -92,7 +93,7 @@
                     $menu="
                         
 
-<div class='header navbar navbar-inverse navbar-fixed-top'>
+<div class='header navbar navbar-inverse page-header navbar-fixed-top'>
                             <div class='header-inner'>
                            
                                     <a class='navbar-brand' href='/'>
