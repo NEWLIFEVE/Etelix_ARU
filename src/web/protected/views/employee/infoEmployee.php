@@ -14,7 +14,10 @@
                      <a href="#">Empleado</a>
                      <i class="icon-angle-right"></i>
                   </li>
-                  
+                  <li>
+                     <a href="#">Info</a>
+                     <i class="icon-angle-down"></i>
+                  </li>
                </ul>
                <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -58,6 +61,7 @@
 <!--                                       <li><i class="icon-briefcase"></i> Design</li>-->
                                        <li><i class="icon-envelope"></i><?php echo $Employee->email_personal;?></li>
                                         <li><i class="icon-skype"></i><?php echo $Employee->skype;?></li>
+                                        <li><i class="icon-phone"></i><?php echo $Employee->cellphone;?></li>
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->
                                     </ul>
                                  </div>
@@ -114,22 +118,22 @@
                                                  <tr>
                                                    <td class="letra_empleado">Skype</td>
                                                    <td><?php if (is_null( $Employee->skype)){} else{echo $Employee->skype;}?></td>
-                                                   <td class="letra_empleado">imagen</td>
-                                                   <td><?php if (is_null( $Employee->image_rute)){} else{echo $Employee->image_rute;}?></td>
+                                                   <td class="letra_empleado">Teléfono Celular</td>
+                                                   <td><?php if (is_null( $Employee->cellphone)){} else{echo $Employee->cellphone;}?></td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                   <td class="letra_empleado">Teléfono Celular</td>
-                                                   <td><?php if (is_null( $Employee->cellphone)){} else{echo $Employee->cellphone;}?></td>
                                                    <td class="letra_empleado">Teléfono De Habitación</td>
                                                    <td><?php if (is_null( $Employee->home_phone)){} else{echo $Employee->home_phone;}?></td>
-                                                </tr>
-                                                <tr>
                                                    <td class="letra_empleado">Extensión de Oficina</td>
-                                                   <td><?php if (is_null( $Employee->extension_numeric)){} else{echo $Employee->extension_numeric;}?></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                   <td><?php if (is_null( $Employee->extension_numeric)){} else{echo $Employee->extension_numeric;}?></td>  
                                                 </tr>
+<!--                                                <tr>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                </tr>-->
                                                
                                              </tbody>
                                           </table>
@@ -398,7 +402,7 @@
                                        </div>   
                                  </div>
                                      <div>
-                                          <input type="submit" value="enviar" class="btn blue button-submit centrar_botones"/>  
+                                          <input type="submit" value="Enviar" class="btn blue button-submit centrar_botones"/>  
 <!--                                          <a href="#" class="btn default">Cancelar</a>-->
                                        </div>
                                       <?php $this->endWidget(); ?>

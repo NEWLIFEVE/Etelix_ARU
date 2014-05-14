@@ -99,10 +99,9 @@ class EventEmployeeController extends Controller
 		}
 		else
 		{
-			$this->render('/site/index',array(
-				'eventos'=>NULL,
-				)
-			);
+                    $Employee = new Employee; 
+                    $Address = new Address;
+			$this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
 		}
 	}
 
