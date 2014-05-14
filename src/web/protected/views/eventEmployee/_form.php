@@ -112,8 +112,8 @@ for($i=1;$i<5;$i++)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <a id="declare" class="btn blue btdeclare" data-toggle="modal" href="#responsive">
-                                        <i class="">Declarar</i>
+                                    <a id="declare" class="btn blue btdeclare centrar_botones" data-toggle="modal" href="#responsive">
+                                        Declarar
                                     </a>
                                 </div>
                             </div>
@@ -124,15 +124,15 @@ for($i=1;$i<5;$i++)
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                    <h4 class="modal-title">Verificar Inicio de Jornada Laboral</h4>
+                                    <h3 class="modal-title">Verificar Declaraciòn</h3>
                                 </div>
                                 <div class="modal-body">
                                     <div class="scroller" style="height:100px" data-always-visible="1" data-rail-visible1="1" tabindex="0">
                                         <div class="row">
-                                            <div class="col-md-6" id="start_time">Indique donde esta inciando su jornada laboral</div>
-                                            <div class="col-md-6" id="start_break">¿Esta seguro que desea declarar el inicio del descanso?</div>
-                                            <div class="col-md-6" id="end_break">¿Esta seguro que desea declarar el fin del descanso?</div>
-                                            <div class="col-md-6" id="end_time">¿Esta seguro que desea declarar el fin de jornada?</div>
+                                            <div class="col-md-6 message-declare" id="start_time"><h4>Indique donde esta inciando su jornada laboral</h4></div>
+                                            <div class="col-md-6 message-declare" id="start_break"><h4>¿Esta seguro que desea declarar el inicio del descanso?</h4></div>
+                                            <div class="col-md-6 message-declare" id="end_break"><h4>¿Esta seguro que desea declarar el fin del descanso?</h4></div>
+                                            <div class="col-md-6 message-declare" id="end_time"><h4>¿Esta seguro que desea declarar el fin de jornada?</h4></div>
                                         </div>
                                     </div>
                                 </div>
