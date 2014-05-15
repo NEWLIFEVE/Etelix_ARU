@@ -64,7 +64,7 @@
                                 
                                  <li>
                                     <a href="#tab4" data-toggle="tab" class="step">
-                                    <span class="number">4</span>
+                                    <span class="number">3</span>
                                     <span class="desc"><i class="icon-ok"></i> Confirmar</span>   
                                     </a> 
                                  </li>
