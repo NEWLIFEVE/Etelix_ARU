@@ -10,7 +10,7 @@ var FormWizard = function () {
 
             function format(state) {
                 if (!state.id) return state.text; // optgroup
-                return "&nbsp;&nbsp;" + state.text;
+                return "&nbsp;&nbsp;" + state.text; //colocar link para las imagenes
             }
 
             $("#Employee_country").select2({
