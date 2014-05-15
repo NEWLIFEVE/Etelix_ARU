@@ -14,11 +14,18 @@ $ARU.UI=(function(){
         _applyMetroSelect();
         _nose();
         _loadFirstView();
+        _handle();
+       
+        
 
 
     }
 
-    function _handleTitle(tab, navigation, index) {
+    
+
+
+    function _handle(tab, navigation, index) {
+     
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
@@ -49,6 +56,7 @@ $ARU.UI=(function(){
             
             function _loadFirstView()
             {
+                
                   $('#form_wizard_1').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
@@ -58,7 +66,7 @@ $ARU.UI=(function(){
                     if (form.valid() == false) {
                         return false;
                     }
-                    _handleTitle(tab, navigation, clickedIndex);
+                    _handle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
                     success.hide();
@@ -68,13 +76,13 @@ $ARU.UI=(function(){
                         return false;
                     }
 
-                    _handleTitle(tab, navigation, index);
+                    _handle(tab, navigation, index);
                 },
                 onPrevious: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
 
-                    _handleTitle(tab, navigation, index);
+                    _handle(tab, navigation, index);
                 },
                 onTabShow: function (tab, navigation, index) {
                     var total = navigation.find('li').length;
@@ -134,10 +142,7 @@ $ARU.UI=(function(){
         });
     }
     
-    function _loadFirstView()
-    {
-        
-    }
+   
  
     /**
      * Funcion encargada de aumentar el tamano de la barra en el momento de declarar

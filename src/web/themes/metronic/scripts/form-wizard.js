@@ -13,7 +13,7 @@ var FormWizard = function () {
                 return "&nbsp;&nbsp;" + state.text; //colocar link para las imagenes
             }
 
-            $("#Employee_country").select2({
+            $("#Employee_country1").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: format,
@@ -24,7 +24,7 @@ var FormWizard = function () {
             });
             
             
-            $("#Employee_state").select2({
+            $("#Employee_state1").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: format,
@@ -34,7 +34,7 @@ var FormWizard = function () {
                 }
             });
             
-            $("#Address_id_city").select2({
+            $("#Address_id_city1").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: format,
