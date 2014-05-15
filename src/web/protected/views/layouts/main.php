@@ -291,7 +291,7 @@
    <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/scripts/app.js"></script>
    <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/scripts/login-soft.js"></script>
    
-    <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/scripts/form-wizard.js"></script>
+    <!--<script src="<?php // echo Yii::app()->baseUrl; ?>/themes/metronic/scripts/form-wizard.js"></script>-->
     
     
     <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
@@ -335,6 +335,8 @@
    <script src="/themes/metronic/scripts/form-validation.js"></script> 
     <!-- <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js" /> -->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.ajax.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/aru.ui.js"></script>
 
      <!-- END PAGE LEVEL SCRIPTS -->
 
@@ -343,9 +345,10 @@
       jQuery(document).ready(function() {     
         App.init();
         Login.init();
-        FormWizard.init();
+//        FormWizard.init();
         FormComponents.init();
         FormValidation.init();
+        $ARU.UI.init();
       });
    </script>
 </body>

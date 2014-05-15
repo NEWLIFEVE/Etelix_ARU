@@ -271,7 +271,7 @@ class EmployeeController extends Controller {
        
        if (Yii::app()->user->isGuest==false){
        $model=User::model()->findByPk(Yii::app()->user->id);
-       Yii::app()->user->logout();
+//       Yii::app()->user->logout();
        $this->render('blockemployee');
        }
        else{
