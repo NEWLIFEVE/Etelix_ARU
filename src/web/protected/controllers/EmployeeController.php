@@ -207,10 +207,14 @@ class EmployeeController extends Controller {
   
       if (isset($_POST['Employee'])) {
 
+          
+     
           $id_civil=$_POST['Employee']['nationality'];
           $model->id_nationality=$_POST['Employee']['nationality'];
           $model->attributes = $_POST['Employee'];
+          $Address->attributes= $_POST['Address'];
           if ($model->save()){
+              $Address->save();
               User::updateStatus(Yii::app()->user->id);
           }
          
