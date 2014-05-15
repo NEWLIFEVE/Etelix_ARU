@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,7 +11,7 @@
  */
 $ARU.UI=(function(){
     var tab=null;
-    
+
      function init()
     {
         loadIndex();
@@ -59,13 +59,13 @@ $ARU.UI=(function(){
                 _progressBar('#declare_day',$index+1);
                 _buttons(tab, navigation, $index);
             }
-            
-            
-            
-            
+
+
+
+
         });
     }
- 
+
     /**
      * Funcion encargada de aumentar el tamano de la barra en el momento de declarar
      * @param string obj es el id del elemento donde se va a buscar la barra
@@ -81,7 +81,7 @@ $ARU.UI=(function(){
     }
     /**
      *
-     */ 
+     */
     function _location()
     {
         var current=null;
@@ -160,20 +160,20 @@ $ARU.UI=(function(){
                 break;
         }
     }
-    
+
     /**
-     * 
-     * funcion para enviar la captura de la foto a la accion 
+     *
+     * funcion para enviar la captura de la foto a la accion
      */
-    
+
         function _attachphoto(){
-           
+
                   var settings = {
                             url: "/Employee/Photo",
                             dragDrop:false,
                             showDone: false,
                             fileName: "myfile",
-                            allowedTypes:"pdf,gif,jpeg,png,jpg,xlsx,xls,txt,cap,pcap,csv",	
+                            allowedTypes:"pdf,gif,jpeg,png,jpg,xlsx,xls,txt,cap,pcap,csv",
                             returnType:"json",
                             showFileCounter:false,
                             multiple:false,
@@ -184,7 +184,7 @@ $ARU.UI=(function(){
                                 $("#foto").attr('src',"/"+data[1]);
                                 $("#load_photo").attr('src',"/"+data[1]);
                                 $("#photomain").attr('src',"/"+data[1]);
-//                                $('div.ajax-file-upload-filename:last').attr('name', data[0]); 
+//                                $('div.ajax-file-upload-filename:last').attr('name', data[0]);
                             },
                             showDelete:true,
                             deleteCallback: function(data,pd){
@@ -193,24 +193,24 @@ $ARU.UI=(function(){
                                     $.post("/Employee/deletejquery",{op:"delete",name:data[i]},
                                      function(resp, textStatus, jqXHR)
                                 {
-                                     //Show Message  
-                                    $("#status").html("");      
+                                     //Show Message
+                                    $("#status").html("");
                                 });
-                                }      
+                                }
                                     pd.statusbar.remove(); //You choice to hide/not.
                                 }
                         }
-                   var uploadObj =$("#mulitplefileuploader").uploadFile(settings); 
+                   var uploadObj =$("#mulitplefileuploader").uploadFile(settings);
                 }
-                
-                
+
+
          function validardatos(){
-             
-             
+
+
              $('#firstview').validate(
             {
-              
-            
+
+
                 doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
                 errorElement: 'span', //default input error message container
                 errorClass: 'help-block', // default input error message class
@@ -220,7 +220,7 @@ $ARU.UI=(function(){
                    first_name:{
                        required: true
                    }
-                    
+
                 },
                 messages:
                 { // custom messages for radio buttons and checkboxes
@@ -246,7 +246,7 @@ $ARU.UI=(function(){
                     }
                 },
                 invalidHandler:function(event,validator)
-                { //display error alert on form submit   
+                { //display error alert on form submit
                     success.hide();
                     error.show();
                     App.scrollTo(error, -200);
@@ -280,12 +280,12 @@ $ARU.UI=(function(){
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
                 }
             });
-    
-  
-          
+
+
+
          }
- 
-    
+
+
     return {
         init:init
     };
@@ -302,7 +302,7 @@ $ARU.AJAX=(function()
      * @param type
      * @param action
      * @param formulario
-     */    
+     */
     function sendEvent(type, action, formulario)
     {
         $.ajax({
@@ -318,7 +318,7 @@ $ARU.AJAX=(function()
          });
 
     }
-    
+
     /**
 	 * Inicializa las funciones del submodulo
 	 * @access public
@@ -327,11 +327,11 @@ $ARU.AJAX=(function()
      return {
         sendEvent:sendEvent
     };
-    
+
 })();
 
 
 
 $(document).on('ready',function(){
-   $ARU.UI.init(); 
+   $ARU.UI.init();
 });
