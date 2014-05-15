@@ -10,10 +10,31 @@ var FormWizard = function () {
 
             function format(state) {
                 if (!state.id) return state.text; // optgroup
-                return "<img class='flag' src='assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
+                return "&nbsp;&nbsp;" + state.text;
             }
 
-            $("#country_list").select2({
+            $("#Employee_country").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+            
+            
+            $("#Employee_state").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+            
+            $("#Address_id_city").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: format,
