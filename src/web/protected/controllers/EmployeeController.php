@@ -265,6 +265,19 @@ class EmployeeController extends Controller {
       }
          $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
     }
+    
+    
+    public function actionBlockEmployee(){
+       
+       if (Yii::app()->user->isGuest==false){
+       $model=User::model()->findByPk(Yii::app()->user->id);
+       Yii::app()->user->logout();
+       $this->render('blockemployee');
+       }
+       else{
+     $this->render('blockeemployee');  
+       }
+    }
 }
 
    

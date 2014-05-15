@@ -17,7 +17,7 @@ $ARU.UI=(function(){
         loadIndex();
         _location();
         _attachphoto();
-        validardatos();
+        inactivo();
 
 
     }
@@ -203,7 +203,26 @@ $ARU.UI=(function(){
                    var uploadObj =$("#mulitplefileuploader").uploadFile(settings); 
                 }
                 
-                
+              
+    
+    
+           function inactivo(){
+               
+                    $(window).mouseout(function()
+                    {
+                        console.log("mover");
+                    });
+                    
+                    $(window).keypress(function()
+                    {
+                        console.log("tecla");
+                    });
+                  
+               }
+    
+    
+    
+    
 //         function validardatos(){
 //             
 //             
@@ -312,11 +331,11 @@ $ARU.UI=(function(){
 //                    //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
 //                }
 //            });
-    
-  
-              
-          
-         }
+//    
+//  
+//              
+//          
+//         }
  
     
     return {
