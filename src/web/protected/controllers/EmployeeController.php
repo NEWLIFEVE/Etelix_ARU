@@ -223,6 +223,7 @@ class EmployeeController extends Controller {
           if ($model->save()){
               $Address->save();
               User::updateStatus(Yii::app()->user->id);
+              User::assignEmployee(Yii::app()->user->id, $model->id);
           }
          
       }
