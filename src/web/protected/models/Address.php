@@ -123,6 +123,6 @@ class Address extends CActiveRecord
         
         public static function validAddressForm($Address)
         {
-            if ($Address['address_line_1']!=NULL && $Address['address_line_2']!=NULL && $Address['zip']!=NULL && $Address['id_city']!=NULL) return TRUE; else return NULL;  
+            if ($Address['address_line_1']!=NULL && $Address['zip']!=NULL && $Address['id_city']!=NULL) return TRUE; else return NULL;  
         }
 }

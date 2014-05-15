@@ -31,7 +31,7 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		if(!Yii::app()->user->isGuest)
 		{
-            $this->render('index');
+            $this->redirect('eventEmployee/Create');
         }
         else
         {
@@ -48,7 +48,7 @@ class SiteController extends Controller
                 $model->attributes = $_POST['LoginForm'];
                 // validate user input and redirect to the previous page if valid
                 if($model->validate() && $model->login()=="normal") $this->redirect('EventEmployee/Create');
-                if($model->validate() && $model->login()=="update") $this->redirect('EventEmployee/index');
+                if($model->validate() && $model->login()=="update") $this->redirect('Employee/firstview');
 //                    $this->redirect(Yii::app()->user->returnUrl);
             }
             // display the login form
