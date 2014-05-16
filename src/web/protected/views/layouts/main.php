@@ -223,7 +223,7 @@
                                                <!-- BEGIN FOOTER -->
                                        <div class='footer'>
                                           <div class='footer-inner'>
-                                             Copyright &copy; <?php echo date('Y'); ?> SACET All Rights Reserved.
+                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved.
                                           </div>
                                           <div class='footer-tools'>
                                              <span class='go-top'>
