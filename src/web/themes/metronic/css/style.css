@@ -3798,7 +3798,7 @@ textarea.placeholder {
 
 .form-control-static {
   font-size: 14px;
-  padding-top: 7px;
+  padding-top: 1px;//margen para la vista del empleado de confirmar los datos
 }
 
 .control-label .required {
@@ -4149,7 +4149,7 @@ Responsive Flip Scroll Tables
 #contenidos {
   display: table-row;
 }
-#principal, #secundario{
+#principal, #secundario, #confirmaemployee{
   display: table-cell;
 }
 #principal {
@@ -4180,4 +4180,9 @@ Responsive Flip Scroll Tables
 
 .photo-dialog{
     width: 24%;
+}
+
+#confirmaemployee{
+     width: 70%;
+    
 }

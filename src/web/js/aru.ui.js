@@ -9,12 +9,11 @@ $ARU.UI=(function(){
         _loadIndex();
         _location();
         _attachphoto();
-        inactivo();
+       
         _validarDatos();
-        _applyMetroSelect();
-        _nose();
+        _applyMetroSelect();   
         _loadFirstView();
-        _handle();
+      
        
         
 
@@ -24,9 +23,19 @@ $ARU.UI=(function(){
     
 
 
-    function _handle(tab, navigation, index) {
-     
+   
+            
+            function _loadFirstView()
+            {
+                
+              
+            var form = $('#submit_form');
+            var error = $('.alert-danger', form);
+            var success = $('.alert-success', form);
+            
+               var handleTitle = function(tab, navigation, index) {
                 var total = navigation.find('li').length;
+                console.log(total);
                 var current = index + 1;
                 // set wizard title
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
@@ -47,17 +56,16 @@ $ARU.UI=(function(){
                     $('#form_wizard_1').find('.button-next').hide();
                     $('#form_wizard_1').find('.button-submit').show();
                     displayConfirm();
+                   
                 } else {
                     $('#form_wizard_1').find('.button-next').show();
                     $('#form_wizard_1').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
-            
-            function _loadFirstView()
-            {
-                
-                  $('#form_wizard_1').bootstrapWizard({
+
+            // default form wizard
+            $('#form_wizard_1').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -66,7 +74,7 @@ $ARU.UI=(function(){
                     if (form.valid() == false) {
                         return false;
                     }
-                    _handle(tab, navigation, clickedIndex);
+                    handleTitle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
                     success.hide();
@@ -76,13 +84,13 @@ $ARU.UI=(function(){
                         return false;
                     }
 
-                    _handle(tab, navigation, index);
+                    handleTitle(tab, navigation, index);
                 },
                 onPrevious: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
 
-                    _handle(tab, navigation, index);
+                    handleTitle(tab, navigation, index);
                 },
                 onTabShow: function (tab, navigation, index) {
                     var total = navigation.find('li').length;
@@ -93,14 +101,43 @@ $ARU.UI=(function(){
                     });
                 }
             });
+              
+              
+              
+              
+              
+                    $('#form_wizard_1').find('.button-previous').hide();
+            $('#form_wizard_1 .button-submit').click(function () {
+//                alert('Finished! Hope you like it :)');
+            }).hide();
+              
+              
+              
+              
+                var displayConfirm = function() {
+                $('#tab3 .form-control-static', form).each(function(){
+                    var input = $('[name="'+$(this).attr("data-display")+'"]', form);
+                    if (input.is(":text") || input.is("textarea")) {
+                        $(this).html(input.val());
+                    } else if (input.is("select")) {
+                        $(this).html(input.find('option:selected').text());
+                    } else if (input.is(":radio") && input.is(":checked")) {
+                        $(this).html(input.attr("data-title"));
+                    } else if ($(this).attr("data-display") == 'payment') {
+                        var payment = [];
+                        $('[name="payment[]"]').each(function(){
+                            payment.push($(this).attr('data-title'));
+                        });
+                        $(this).html(payment.join("<br>"));
+                    }
+                });
+            }
+              
                 
             }
             
             function _nose(){
-                 $('#form_wizard_1').find('.button-previous').hide();
-            $('#form_wizard_1 .button-submit').click(function () {
-//                alert('Finished! Hope you like it :)');
-            }).hide();
+           
             }
     /**
      * carga al principio de la interfaz de declarar la jornada de trabajo
@@ -284,19 +321,19 @@ $ARU.UI=(function(){
               
     
     
-           function inactivo(){
-               
-                    $(window).mouseout(function()
-                    {
-                        console.log("mover");
-                    });
-                    
-                    $(window).keypress(function()
-                    {
-                        console.log("tecla");
-                    });
-                  
-               }
+//           function inactivo(){
+//               
+//                    $(window).mouseout(function()
+//                    {
+//                        console.log("mover");
+//                    });
+//                    
+//                    $(window).keypress(function()
+//                    {
+//                        console.log("tecla");
+//                    });
+//                  
+//               }
              
          function _format(state) {
                 if (!state.id) return state.text; // optgroup
@@ -304,6 +341,24 @@ $ARU.UI=(function(){
             }
             
          function _applyMetroSelect(){
+             
+            
+             
+             $("#Employee_nationality").select2({
+                placeholder: "Select",
+                allowClear: true,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            }); 
+            
+            $("#Employee_id_marital_status").select2({
+                placeholder: "Select",
+                allowClear: true,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            }); 
              
              
 
@@ -341,7 +396,7 @@ $ARU.UI=(function(){
 
          function _validarDatos(){
              
-            var form = $('#firstview');
+            var form = $('#submit_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
              form.validate({
@@ -380,7 +435,7 @@ $ARU.UI=(function(){
                        required: true, 
                    },
                    'Address[address_line_2]':{
-                       required: true, 
+                       required: false, 
                    }
                    ,
                    'Address[country]':{
