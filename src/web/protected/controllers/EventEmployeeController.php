@@ -19,7 +19,10 @@ class EventEmployeeController extends Controller
         return array(
             /*'accessControl', */// perform access control for CRUD operations
             array(
-                'application.filters.UserViewFilter + view, create, update, index, admin, check, declarar, informacion'
+                'application.filters.UserLoginFilter + view, create, update, index, admin, check, declarar, informacion',
+                ),
+            array(
+                'application.filters.UserUpdateFilter + view, create, update, index, admin, check, declarar, informacion',
                 )
             );
     }

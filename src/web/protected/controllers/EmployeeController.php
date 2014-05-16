@@ -13,7 +13,10 @@ class EmployeeController extends Controller
         return array(
             /*'accessControl', */// perform access control for CRUD operations
             array(
-                'application.filters.UserViewFilter + infoEmployee'
+                'application.filters.UserLoginFilter + infoEmployee, firstView',
+                ),
+            array(
+                'application.filters.UserUpdateFilter + infoEmployee',
                 )
             );
     }
