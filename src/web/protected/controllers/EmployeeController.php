@@ -4,7 +4,7 @@ class EmployeeController extends Controller {
 
     public function actionInfoEmployee() 
     {
-        if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3){
+        /*if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3){*/
             $Employee = Employee::getEmployee(Yii::app()->user->id);
             if (is_null($Employee)){ 
                 $Employee = new Employee; 
@@ -57,11 +57,12 @@ class EmployeeController extends Controller {
                 }
             }
             $this->render('infoEmployee', array('Employee' => $Employee, 'Address' => $Address));
-        }else{
+        /*}else{
             $model=new Employee;
             $Address=new Address;
-            $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
-        }
+            $this->redirect('firstView', array('model'=>$model,'Address'=>$Address));
+            //$this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
+        }*/
     }
     
 
@@ -69,6 +70,10 @@ class EmployeeController extends Controller {
         // return the filter configuration for this controller, e.g.:
         return array(
             'accessControl', // perform access control for CRUD operations
+            array(  
+               'application.filters.PruebaFilter + InfoEmployee',  
+               'admin' => false  
+           )
         );
     }
 
