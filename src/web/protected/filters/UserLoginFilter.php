@@ -1,8 +1,8 @@
 <?php
 /** 
- * Esta clase solo filtra el renderizado de vistas
+ * Esta clase solo verifica que este logueado
  */
-class UserViewFilter extends CFilter  
+class UserLoginFilter extends CFilter  
 {  
     public function preFilter($filterChain)  
     {
@@ -15,15 +15,7 @@ class UserViewFilter extends CFilter
     	}
     	else
     	{
-    		if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3)
-    		{
-    			return true;
-    		}
-    		else
-    		{
-            	$request->redirect('/Employee/firstView');
-         		return false;
-        	}
+    		return true;
     	}
     } 
 
