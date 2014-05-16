@@ -421,7 +421,7 @@
    <!-- END LOGIN -->
    <!-- BEGIN COPYRIGHT -->
    <div class="copyright">
-     <font color="white">Copyrigth 2014 by</font> <a id="enlacerenoc" href="http://www.sacet.com.ve/">www.sacet.com.ve</a>
+     <font color="white">Copyrigth 2014 by</font> <a id="enlacerenoc" href="http://www.etelix.com/">www.etelix.com</a>
 			<font color="white"> Legal privacy</font>
    </div>
    
