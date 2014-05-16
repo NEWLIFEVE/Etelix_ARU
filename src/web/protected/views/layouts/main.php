@@ -145,8 +145,8 @@
                                            <ul class='dropdown-menu'>
                                               <li><a href='/Employee/infoEmployee'><i class='icon-user'></i> Mi Perfil</a>
                                               </li>
-                                              <li><a href='/Employee/blockemployee' id='trigger_fullscreen'><i class='icon-lock'></i> Bloquear</a>
-                                              </li>
+                                              <!--<li><a href='/Employee/blockemployee' id='trigger_fullscreen'><i class='icon-lock'></i> Bloquear</a>
+                                              </li> -->
                                               <li><a href='/User/Updatepass'><i class='icon-key '></i> Cambiar Contraseña</a>
                                               </li>
                                               <li><a href='/site/logout'><i class='icon-signout'></i> Log Out</a>

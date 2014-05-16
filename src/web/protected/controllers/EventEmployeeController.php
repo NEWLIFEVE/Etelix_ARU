@@ -241,4 +241,7 @@ class EventEmployeeController extends Controller
         $eventos = EventEmployee::getWorkday($idEmployee, $date);
         echo json_encode($eventos);
     }
+    
+
 }
+
