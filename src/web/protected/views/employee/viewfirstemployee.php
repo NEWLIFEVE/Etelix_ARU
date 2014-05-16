@@ -7,7 +7,7 @@
                <ul class="page-breadcrumb breadcrumb">
                   <li>
                      <i class="icon-home"></i>
-                     <a href="index.html">Inicio</a> 
+                     <a href="#">Inicio</a> 
                      <i class="icon-angle-right"></i>
                   </li>
                   <li>
