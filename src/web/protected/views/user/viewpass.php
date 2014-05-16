@@ -36,19 +36,22 @@
                      <div id="tab_2-2" class="tab-pane">
                            <div class="form-group">
                                   <?php echo $form->labelEx($model,'Contraseña Nueva', array('class'=>'letra_empleado')); ?>
-                                  <?php echo $form->passwordField($model,'password', array('class'=>'form-control input-medium')) ?>
+                                  <?php echo $form->passwordField($model,'pass', array('class'=>'form-control input-medium')) ?>
                             </div>
                      </div>
                      <div id="tab_2-2" class="tab-pane">
                            <div class="form-group">
                                   <?php echo $form->labelEx($model,'Repita la Contraseña', array('class'=>'letra_empleado')); ?>
-                                  <?php echo $form->passwordField($model,'confir_pass1', array('class'=>'form-control input-medium')) ?>
+                                  <?php echo $form->passwordField($model,'confir_pass', array('class'=>'form-control input-medium')) ?>
                             </div>
                      </div>
                      <div id="tab_2-2" class="tab-pane">
                            <div class="form-group">
-                                  <?php echo CHtml::submitButton('Cambiar Contraseña', array('class'=>'btn blue')); ?>
+                                  <?php echo CHtml::Button('Cambiar Contraseña', array('class'=>'btn blue', 'id'=>'chancepass')); ?>
                             </div>
                      </div>
+                        <div id="mensaje">
+
+                        </div>
 <?php $this->endWidget(); ?>
 </div>

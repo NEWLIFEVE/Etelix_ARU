@@ -28,7 +28,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','update','admin','updatepass'),
+				'actions'=>array('index','view','update','admin','updatepass','CambioPass'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -181,23 +181,7 @@ class UserController extends Controller
             $id=Yii::app()->user->id;  
             $model=User::model()->findByPk($id);
             if($model->id_status != 3){
-                if(isset($_POST['User']))
-                    {
-                        $last_pass=  md5($_POST['User']['confir_pass']); 
-                        $validate_pass=User::model()->getPass($last_pass);
-                                if ($validate_pass!=NULL){
-                                     $model=User::model()->findByPk($id);
-                                     $model->password= md5($_POST['User']['password']);
-                                     $model->save();
-                                     $this->redirect(array('Updatepass', array('exito'=>'exito')));
-                                }
-
-                                else {
-                                    $this->redirect(array('Updatepass', array('fallo'=>'fallo contraseña')));    
-                                }
-
-                    }
-
+               
                 $this->render('viewpass',array(
                             'model'=>$model,
                     ));
@@ -206,6 +190,32 @@ class UserController extends Controller
                 $Address=new Address;
                 $this->render('/employee/viewfirstemployee', array('model'=>$Employee,'Address'=>$Address));
             }
+        }
+        
+        
+        public function actionCambioPass(){
+            
+            
+            
+            $id=Yii::app()->user->id;  
+            $model=User::model()->findByPk($id);
+            if($model->id_status != 3){
+                $last_pass=  md5($_GET['confirmar_pass']);
+                
+                    $validate_pass=User::model()->getPass($last_pass);
+                                if ($validate_pass!=NULL){
+                                     $model=User::model()->findByPk($id);
+                                     $model->password= md5( $_GET['pass']);
+                                     $model->save();
+                                     echo json_encode("exito");
+                                }
+
+                                else {
+                                    echo json_encode("contraseña no valida");   
+                                }
+                
+            }
+            
         }
         
         

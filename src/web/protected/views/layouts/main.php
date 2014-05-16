@@ -187,7 +187,7 @@
                                                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
                                                 </li>
                                                 <!--
-                                                <li class='start active'>
+                                                <li class=''>
                                                    <a href='/'>
                                                    <i class='icon-home'></i> 
                                                    <span class='title'>Inicio</span>
@@ -195,14 +195,14 @@
                                                    </a>
                                                 </li>-->
                                                
-                                             <li class='start active' href='javascript:;'>
+                                             <li class='start active' id='create' name='create'>
                                                    <a href='/EventEmployee/Create'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Declarar</span>
                                                    <span class='selected'></span>
                                                    </a>
                                                 </li>
-                                             <li class='' href='javascript:;'>
+                                             <li class=''  id='infoEmployee' name='infoEmployee'>
                                                    <a href='/Employee/infoEmployee'>
                                                    <i class='icon-user'></i> 
                                                    <span class='title'>Empleado</span>

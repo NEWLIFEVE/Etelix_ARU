@@ -24,13 +24,29 @@ $ARU.AJAX=(function()
 
     }
     
+    
+    function sendPass(type,action, formulario){
+        
+         $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                 result=JSON.parse(data);
+                $('#mensaje').html(result);
+            }
+         });
+    }
+    
     /**
 	 * Inicializa las funciones del submodulo
 	 * @access public
 	 */
 
      return {
-        sendEvent:sendEvent
+        sendEvent:sendEvent,
+        sendPass:sendPass
     };
     
 })();

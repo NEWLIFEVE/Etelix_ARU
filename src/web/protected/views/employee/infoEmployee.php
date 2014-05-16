@@ -74,6 +74,7 @@
                                     <li ><a href="#tab_1_22" data-toggle="tab">Dirección de Habitación</a></li>
                                  </ul>
                                  <div class="tab-content">
+                                   
                                     <div class="tab-pane active" id="tab_1_11">
                                        <div class="portlet-body">
                                           <table class="table table-striped table-bordered table-advance table-hover">
@@ -223,76 +224,76 @@
                                             </div>
                                             <div class="contenidos_columnas">
                                                 
-                                                  <div class="secundario">
+                                                  <div class="secundario form-group">
                                                     <label class="control-label letra_empleado">Primer Nombre</label>
                                                       <?php if(empty($Employee->first_name))echo $form->textField($Employee,'first_name', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'first_name', array('class'=>'form-control','value'=>$Employee->first_name)); ?>
                                                   </div>
-                                                  <div class="secundario letra_empleado">
-                                                    <label class="control-label">Segundo Nombre</label>
+                                                  <div class="secundario form-group">
+                                                    <label class="control-label letra_empleado">Segundo Nombre</label>
                                                       <?php if(empty($Employee->second_name))echo $form->textField($Employee,'second_name', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'second_name', array('class'=>'form-control','value'=>$Employee->second_name));?>
                                                   </div>
                                             </div>
-                                             <div class="contenidos_columnas ">
-                                                 <div class="secundario letra_empleado">
-                                                    <label class="control-label">Primer Apellido</label>
+                                             <div class="contenidos_columnas">
+                                                 <div class="secundario form-group">
+                                                    <label class="control-label letra_empleado">Primer Apellido</label>
                                                     <?php if(empty($Employee->last_name))echo $form->textField($Employee,'last_name', array('class'=>'form-control','value'=>''));else echo $form->textField($Employee,'last_name', array('class'=>'form-control','value'=>$Employee->last_name));?>
                                                  </div>
-                                                 <div class="secundario letra_empleado">
-                                                    <label class="control-label">Segundo Apellido</label>
+                                                 <div class="secundario form-group">
+                                                    <label class="control-label letra_empleado">Segundo Apellido</label>
                                                      <?php if(empty($Employee->second_last_name))echo $form->textField($Employee,'second_last_name', array('class'=>'form-control','value'=>''));else echo $form->textField($Employee,'second_last_name', array('class'=>'form-control','value'=>$Employee->second_last_name));?>
                                                  </div>
                                             </div>
                                             <div class="contenidos_columnas">
                                                 
-                                                 <div class="secundario letra_empleado">
-                                                     <label class="control-label">Fecha de Nacimiento</label>
+                                                 <div class="secundario form-group" >
+                                                     <label class="control-label letra_empleado">Fecha de Nacimiento</label>
                                                      <?php if(empty($Employee->date_birth))echo $form->textField($Employee,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci')); else echo $form->textField($Employee,'date_birth', array('class'=>'form-control form-control-inline input-xmedium date-picker', 'id'=>'mask_ci')); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado">
-                                                     <label class="control-label">Documento de Identidad</label>
+                                                <div class="secundario form-group">
+                                                     <label class="control-label letra_empleado">Documento de Identidad</label>
                                                       <?php if(empty($Employee->identity_card))echo $form->textField($Employee,'identity_card', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'identity_card', array('class'=>'form-control','value'=>$Employee->identity_card,'id'=>'mask_number')); ?>
                                                  </div>
                                               
                                             </div>
                                             
                                              <div class="contenidos_columnas">
-                                                 <div class="secundario letra_empleado">
-                                                     <label class="control-label">Nacionalidad</label>
+                                                 <div class="secundario form-group ">
+                                                     <label class="control-label letra_empleado">Nacionalidad</label>
                                                         <?php if(empty($Employee->id_nationality)) echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array('empty'=>'Seleccione una Opción','class'=>'form-control')); else echo $form->dropDownList($Employee,'id_nationality',$Employee->getNationality(), array("class"=>"form-control")); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado">
-                                                      <label class="control-label">Estado Civil</label>
+                                                <div class="secundario form-group">
+                                                      <label class="control-label letra_empleado">Estado Civil</label>
                                                        <?php if(empty($Employee->id_marital_status))echo $form->dropDownList($Employee,'id_marital_status',$Employee->getMaritalStatus(), array('empty'=>'Seleccione una Opción','class'=>'form-control')); else echo $form->dropDownList($Employee,'id_marital_status',$Employee->getMaritalStatus(), array("class"=>"form-control"));?>
                                                  </div>
                                             </div>
                                          
                                             <div class="contenidos_columnas">
-                                                 <div class="secundario letra_empleado">
-                                                     <label class="control-label">Correo Personal</label>
+                                                 <div class="secundario form-group">
+                                                     <label class="control-label letra_empleado">Correo Personal</label>
                                                      <?php if(empty($Employee->email_personal))echo $form->textField($Employee,'email_personal', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'email_personal', array('class'=>'form-control','value'=>$Employee->email_personal)); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado">
-                                                    <label class="control-label">Correo Corporativo</label>
+                                                <div class="secundario form-group">
+                                                    <label class="control-label letra_empleado">Correo Corporativo</label>
                                                      <?php if(empty($Employee->email_company))echo $form->textField($Employee,'email_company', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'email_company', array('class'=>'form-control','value'=>$Employee->email_company)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
-                                                 <div class="secundario letra_empleado">
-                                                    <label class="control-label">Skype</label>
+                                                 <div class="secundario letra_empleado form-group">
+                                                    <label class="control-label ">Skype</label>
                                                      <?php  if(empty($Employee->skype)) echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>''));else echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>$Employee->skype)); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado">
-                                                    <label class="control-label">Teléfono Celular</label>
+                                                <div class="secundario letra_empleado form-group">
+                                                    <label class="control-label ">Teléfono Celular</label>
                                                       <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
                                                  </div>
                                             </div>
                                              <div class="contenidos_columnas">
-                                                 <div class="secundario letra_empleado">
-                                                     <label class="control-label">Teléfono de Habitación</label>
+                                                 <div class="secundario letra_empleado form-group">
+                                                     <label class="control-label form-group">Teléfono de Habitación</label>
                                                       <?php if(empty($Employee->home_phone))echo $form->textField($Employee,'home_phone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'home_phone', array('class'=>'form-control','value'=>$Employee->home_phone)); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado">
-                                                    <label class="control-label">Extensión de Oficina</label>
+                                                <div class="secundario letra_empleado form-group">
+                                                    <label class="control-label form-group">Extensión de Oficina</label>
                                                      <?php if(empty($Employee->extension_numeric))echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control','value'=>$Employee->extension_numeric)); ?>
                                                  </div>
                                             </div>

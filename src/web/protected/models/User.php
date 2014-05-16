@@ -24,9 +24,9 @@
  */
 class User extends CActiveRecord
 {
-    
+        public  $pass;
          public $confir_pass;
-         public $confir_pass1;
+        
 	/**
 	 * @return string the associated database table name
 	 */

@@ -9,15 +9,10 @@ $ARU.UI=(function(){
         _loadIndex();
         _location();
         _attachphoto();
-       
         _validarDatos();
         _applyMetroSelect();   
         _loadFirstView();
-      
-       
-        
-
-
+        chancePass();
     }
 
     
@@ -103,16 +98,11 @@ $ARU.UI=(function(){
             });
               
               
-              
-              
-              
                     $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
 //                alert('Finished! Hope you like it :)');
             }).hide();
-              
-              
-              
+
               
                 var displayConfirm = function() {
                 $('#tab3 .form-control-static', form).each(function(){
@@ -136,9 +126,11 @@ $ARU.UI=(function(){
                 
             }
             
-            function _nose(){
-           
-            }
+        
+      
+        
+        
+        
     /**
      * carga al principio de la interfaz de declarar la jornada de trabajo
      */
@@ -440,6 +432,9 @@ $ARU.UI=(function(){
                    ,
                    'Address[country]':{
                        required: true, 
+                   },
+                   'Address[zip]':{
+                       required: true, 
                    }
                 },
 
@@ -493,6 +488,22 @@ $ARU.UI=(function(){
 //              
 //          
          }
+         
+         
+         function chancePass(){
+             
+            
+             $('#chancepass').on('click',function()
+                {
+                   var confirmar_pass= $("#User_confir_pass").val();
+                   var password1= $("#User_pass").val();
+                      console.log(confirmar_pass);
+                      console.log(password1);
+                      $ARU.AJAX.sendPass("GET","/User/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);
+                                                                    
+                });
+            }
+         
  
     
     return {
