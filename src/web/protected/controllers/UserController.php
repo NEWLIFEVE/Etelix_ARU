@@ -194,9 +194,6 @@ class UserController extends Controller
         
         
         public function actionCambioPass(){
-            
-            
-            
             $id=Yii::app()->user->id;  
             $model=User::model()->findByPk($id);
             if($model->id_status != 3){
@@ -207,11 +204,11 @@ class UserController extends Controller
                                      $model=User::model()->findByPk($id);
                                      $model->password= md5( $_GET['pass']);
                                      $model->save();
-                                     echo json_encode("exito");
+                                     echo json_encode("1");
                                 }
 
                                 else {
-                                    echo json_encode("contraseña no valida");   
+                                    echo json_encode("2");   
                                 }
                 
             }

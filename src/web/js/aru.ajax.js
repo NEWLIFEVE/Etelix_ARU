@@ -34,7 +34,16 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                  result=JSON.parse(data);
-                $('#mensaje').html(result);
+                if (result==1){
+                $('#mensaje').removeClass("rojo");     
+                $('#mensaje').addClass("verde");    
+                $('#mensaje').html("Cambio de Contraseña Valido");
+                }
+                
+                if (result==2){
+                $('#mensaje').addClass("rojo");    
+                $('#mensaje').html("Contraseña No Valida");
+                }
             }
          });
     }
