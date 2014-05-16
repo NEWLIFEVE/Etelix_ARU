@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *
+ */
 class EventEmployeeController extends Controller
 {
 	/**
@@ -9,57 +11,37 @@ class EventEmployeeController extends Controller
 	public $layout='//layouts/column2';
      
 	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
+     *
+     */
+    public function filters()
+    {
+        // return the filter configuration for this controller, e.g.:
+        return array(
+            /*'accessControl', */// perform access control for CRUD operations
+            array(
+                'application.filters.UserLoginFilter + view, create, update, index, admin, check, declarar, informacion',
+                ),
+            array(
+                'application.filters.UserUpdateFilter + view, create, update, index, admin, check, declarar, informacion',
+                )
+            );
+    }
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-//	public function accessRules()
-//	{
-//		return array(
-//			array('allow',  // allow all users to perform 'index' and 'view' actions
-//				'actions'=>array('index','view','prot','check'),
-//				'users'=>array('*'),
-//			),
-//			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-//				'actions'=>array('create','update'),
-//				'users'=>array('@'),
-//			),
-//			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-//				'actions'=>array('admin','delete'),
-//				'users'=>array('admin'),
-//			),
-//			array('deny',  // deny all users
-//				'users'=>array('*'),
-//			),
-//		);
-//	}
-
-	/**
-	 *
-	 */
-	public function accessRules()
-	{       
-		return array(        
-                   array(
-                       'allow',
-                       'actions'=>Rol::getActions('EventEmployee', Yii::app()->user->id),
-                       'users'=>array(
-                           Yii::app()->user->name
-                            )
-                       )
-		);
-	}
+    /**
+     *
+     */
+    public function accessRules()
+    {
+        return array(
+            array(
+                'allow',
+                'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
+                'users'=>array(
+                    Yii::app()->user->name
+                    )
+                )
+            );
+    }
 
 	/**
 	 * Displays a particular model.
@@ -78,37 +60,20 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionCreate()
 	{
-		/*if(Yii::app()->user->id)
-		{
-			echo "existe";
-		}
-		else
-		{
-			echo "no existe";
-		}      */
-            if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3){
-                $Employee=Employee::getEmployee(Yii::app()->user->id);
-                if($Employee!=NULL)
-                {
-                        $date=date('Ymd');
-                        $eventos=EventEmployee::getWorkday($Employee->id, $date);
+        $Employee=Employee::getEmployee(Yii::app()->user->id);
+        if($Employee!=NULL)
+        {
+        	$date=date('Ymd');
+        	$eventos=EventEmployee::getWorkday($Employee->id, $date);
 
-                                $this->render('create',array(
-                                        'eventos'=>$eventos,
-                                        )
-                                );
-                        }
-                        else
-                        {
-                            $Employee = new Employee; 
-                            $Address = new Address;
-                                $this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
-                        }
-            }else{
-            $Employee=new Employee;
-            $Address=new Address;
-            $this->render('/employee/viewfirstemployee', array('model'=>$Employee,'Address'=>$Address));
-            }
+        	$this->render('create',array('eventos'=>$eventos,));
+        }
+        else
+        {
+        	$Employee = new Employee; 
+            $Address = new Address;
+            $this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
+        }
 	}
 
 	/**
