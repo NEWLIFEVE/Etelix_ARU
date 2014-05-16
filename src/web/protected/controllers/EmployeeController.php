@@ -1,190 +1,213 @@
 <?php
-
-class EmployeeController extends Controller {
-
-    public function actionInfoEmployee() 
+/**
+ *
+ */
+class EmployeeController extends Controller
+{
+    /**
+     *
+     */
+    public function filters()
     {
-        if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3){
-            $Employee = Employee::getEmployee(Yii::app()->user->id);
-            if (is_null($Employee)){ 
-                $Employee = new Employee; 
-                $Address = new Address;
-            }else{
-                $Address = Address::getAddressByEmployee($Employee->id);
-            }
-
-            if (isset($_POST['Employee'])) {
-                $Employee->attributes = $_POST['Employee'];
-                if ($Employee->save()) {
-                    User::assignEmployee(Yii::app()->user->id, $Employee->id);
-
-                    if (Address::validAddressForm($_POST['Address'])) {
-
-                        $checkAddress = Address::checkAddress($_POST['Address']);
-
-                        if (is_null($checkAddress)) {
-                            $NewAddress = new Address;
-                            $NewAddress->address_line_1 = $_POST['Address']['address_line_1'];
-                            $NewAddress->address_line_2 = $_POST['Address']['address_line_2'];
-                            $NewAddress->zip = $_POST['Address']['zip'];
-                            $NewAddress->id_city = $_POST['Address']['id_city'];
-                            if ($NewAddress->save())
-                                $idAddress = $NewAddress->id;
-                        }else {
-                            $idAddress = $checkAddress;
-                        }
-
-                        $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($Employee->id, $idAddress);
-                        /* si es */
-                        if (is_null($checkAddressEmployee)) {
-                            if ($Address->id!= NULL) {
-                                $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
-                                $OldAddressEmployee->end_date = date("Y-m-d");
-                                $OldAddressEmployee->save();
-                            }
-                            $AddressEmployee = new AddressEmployee;
-                            $AddressEmployee->id_employee = $Employee->id;
-                            $AddressEmployee->id_address = $idAddress;
-                            $AddressEmployee->start_date = date("Y-m-d");
-                            if ($AddressEmployee->save()) {
-
-                            }
-                            $this->redirect(array('infoEmployee', 'id' => $Employee->id));
-                        } else {
-
-                        }
-                    }
-                }
-            }
-            $this->render('infoEmployee', array('Employee' => $Employee, 'Address' => $Address));
-        }else{
-            $model=new Employee;
-            $Address=new Address;
-            $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
-        }
-    }
-    
-
-    public function filters() {
         // return the filter configuration for this controller, e.g.:
         return array(
-            'accessControl', // perform access control for CRUD operations
-        );
+            /*'accessControl', */// perform access control for CRUD operations
+            array(
+                'application.filters.UserViewFilter + infoEmployee, firstView'
+                )
+            );
     }
 
-    public function accessRules() {
+    /**
+     *
+     */
+    public function accessRules()
+    {
         return array(
             array(
                 'allow',
-                'actions' => Rol::getActions('User_Employee', Yii::app()->user->id),
-                'users' => array(
+                'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
+                'users'=>array(
                     Yii::app()->user->name
+                    )
                 )
-            )
-        );
+            );
     }
 
-    public function actionStateByCountry() {
-
-        $dato = '<option value="empty">Seleccione uno</option>';
-        $data = State::getListStateCountry($_POST['Employee']['country']);
-        foreach ($data as $value => $name) {
-            $dato.= "<option value='$value'>" . CHtml::encode($name) . "</option>";
+    /**
+     *
+     */
+    public function actionInfoEmployee() 
+    {
+        $Employee=Employee::getEmployee(Yii::app()->user->id);
+        if(is_null($Employee))
+        {
+            $Employee = new Employee;
+            $Address = new Address;
         }
-        echo $dato;
-    }
-
-    public function actionCityByState() {
-        
-        $dato = '<option value="empty">Seleccione uno</option>';
-        $data = City::getListCityState($_POST['Employee']['state']);
-        foreach ($data as $value => $name) {
-            $dato.= "<option value='$value'>" . CHtml::encode($name) . "</option>";
+        else
+        {
+            $Address = Address::getAddressByEmployee($Employee->id);
         }
-        echo $dato;
-    }
 
+        if(isset($_POST['Employee']))
+        {
+            $Employee->attributes = $_POST['Employee'];
+            if($Employee->save())
+            {
+                User::assignEmployee(Yii::app()->user->id, $Employee->id);
 
-        /*
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
-        
-        
-        /**
-         * 
-         * funcion para guardar la imagen del empleado
-         */
-        
-        function actionPhoto() {
+                if(Address::validAddressForm($_POST['Address']))
+                {
+                    $checkAddress = Address::checkAddress($_POST['Address']);
 
-        $Employee = Employee::getEmployee(Yii::app()->user->id);
-        if ($Employee != NULL) {
-            
-            $direccion = "themes/metronic/img/profile/".Yii::app()->user->name. "/";
+                    if(is_null($checkAddress))
+                    {
+                        $NewAddress = new Address;
+                        $NewAddress->address_line_1 = $_POST['Address']['address_line_1'];
+                        $NewAddress->address_line_2 = $_POST['Address']['address_line_2'];
+                        $NewAddress->zip = $_POST['Address']['zip'];
+                        $NewAddress->id_city = $_POST['Address']['id_city'];
+                        if($NewAddress->save())
+                            $idAddress = $NewAddress->id;
+                    }
+                    else
+                    {
+                        $idAddress = $checkAddress;
+                    }
 
-            if (file_exists($direccion)) {
-                if (isset($_FILES["myfile"])) {
-                    $ret = array();
-                    $error = $_FILES["myfile"]["error"];
-                    if (!is_array($_FILES["myfile"]["name"])) { //single file
-                        $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
-                        move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
-                        $Employee->image_rute = $direccion.$fileName;
-                        if($Employee->save()){ 
-                            $namephoto[]='successUpdate'; 
-                            $namephoto[]=$direccion.$fileName; 
-                            echo json_encode($namephoto);
-                            
-                        } 
-                            
-                        else{ 
-                            $namephoto[]='imageRuteFail'; 
-                            $namephoto[]=$direccion.$fileName; 
-                            echo json_encode($namephoto);
+                    $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($Employee->id, $idAddress);
+                        /* si es */
+                    if(is_null($checkAddressEmployee))
+                    {
+                        if($Address->id!= NULL)
+                        {
+                            $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
+                            $OldAddressEmployee->end_date = date("Y-m-d");
+                            $OldAddressEmployee->save();
                         }
+                        $AddressEmployee = new AddressEmployee;
+                        $AddressEmployee->id_employee = $Employee->id;
+                        $AddressEmployee->id_address = $idAddress;
+                        $AddressEmployee->start_date = date("Y-m-d");
+                        if($AddressEmployee->save())
+                        {
+
+                        }
+                        $this->redirect(array('infoEmployee', 'id' => $Employee->id));
+                    }
+                    else
+                    {
+
                     }
                 }
-            } else {
-                mkdir($direccion, 0700);
-                if (isset($_FILES["myfile"])) {
+            }
+        }
+        $this->render('infoEmployee', array('Employee' => $Employee, 'Address' => $Address));
+    }
+    
+    /**
+     *
+     */
+    public function actionStateByCountry()
+    {
+        $dato = '<option value="empty">Seleccione uno</option>';
+        $data = State::getListStateCountry($_POST['Employee']['country']);
+        foreach ($data as $value => $name)
+        {
+            $dato.= "<option value='$value'>" . CHtml::encode($name) . "</option>";
+        }
+        echo $dato;
+    }
+
+    /**
+     *
+     */
+    public function actionCityByState()
+    {    
+        $dato = '<option value="empty">Seleccione uno</option>';
+        $data = City::getListCityState($_POST['Employee']['state']);
+        foreach ($data as $value => $name)
+        {
+            $dato.= "<option value='$value'>" . CHtml::encode($name) . "</option>";
+        }
+        echo $dato;
+    }
+
+    /**
+     *
+     * funcion para guardar la imagen del empleado
+     */
+    public function actionPhoto()
+    {
+        $Employee = Employee::getEmployee(Yii::app()->user->id);
+        if($Employee != NULL)
+        {    
+            $direccion = "themes/metronic/img/profile/".Yii::app()->user->name. "/";
+
+            if(file_exists($direccion))
+            {
+                if(isset($_FILES["myfile"]))
+                {
                     $ret = array();
                     $error = $_FILES["myfile"]["error"];
-                    if (!is_array($_FILES["myfile"]["name"])) { //single file
+                    if(!is_array($_FILES["myfile"]["name"]))
+                    { //single file
                         $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
                         move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
                         $Employee->image_rute = $direccion.$fileName;
-                        if($Employee->save()){
-                            $namephoto[]='successNew'; 
+                        if($Employee->save())
+                        { 
+                            $namephoto[]='successUpdate'; 
                             $namephoto[]=$direccion.$fileName; 
-                            echo json_encode($namephoto);
-                           
+                            echo json_encode($namephoto);   
                         }
-                    else
+                        else
                         { 
                             $namephoto[]='imageRuteFail'; 
                             $namephoto[]=$direccion.$fileName; 
                             echo json_encode($namephoto);
-                       
                         }
                     }
                 }
             }
-
-        }else{
+            else
+            {
+                mkdir($direccion, 0700);
+                if(isset($_FILES["myfile"]))
+                {
+                    $ret = array();
+                    $error = $_FILES["myfile"]["error"];
+                    if(!is_array($_FILES["myfile"]["name"]))
+                    { //single file
+                        $fileName = uniqid() . '-' . $_FILES["myfile"]["name"];
+                        move_uploaded_file($_FILES["myfile"]["tmp_name"], $direccion . $fileName);
+                        $Employee->image_rute = $direccion.$fileName;
+                        if($Employee->save())
+                        {
+                            $namephoto[]='successNew'; 
+                            $namephoto[]=$direccion.$fileName; 
+                            echo json_encode($namephoto);  
+                        }
+                        else
+                        { 
+                            $namephoto[]='imageRuteFail'; 
+                            $namephoto[]=$direccion.$fileName; 
+                            echo json_encode($namephoto);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
             echo json_encode('dataFail');
         }
     }
 
+    /**
+     *
+     */
     public function actionDeletejquery()
     {
         $output_dir = "themes/metronic/img/profile/";
@@ -205,77 +228,83 @@ class EmployeeController extends Controller {
      * 
      * funcion de prueba para armar la primera vista del usuario
      */
-    
-    
-    public function actionFirstView(){
-        
+    public function actionFirstView()
+    {    
         $model=new Employee;
         $Address=new Address;
-  
-      if (isset($_POST['Employee'])) {
- 
-          $model->id_nationality=$_POST['Employee']['nationality'];
-          $model->attributes = $_POST['Employee'];
+
+        if(isset($_POST['Employee']))
+        {
+            $model->id_nationality=$_POST['Employee']['nationality'];
+            $model->attributes = $_POST['Employee'];
     
-          if ($model->save()){
-              
-              User::updateStatus(Yii::app()->user->id);
-              User::assignEmployee(Yii::app()->user->id, $model->id);
-              
-              
-              if (Address::validAddressForm($_POST['Address'])) {
+            if($model->save())
+            {
+                User::updateStatus(Yii::app()->user->id);
+                User::assignEmployee(Yii::app()->user->id, $model->id);
 
-                        $checkAddress = Address::checkAddress($_POST['Address']);
+                if(Address::validAddressForm($_POST['Address']))
+                {
+                    $checkAddress = Address::checkAddress($_POST['Address']);
 
-                        if (is_null($checkAddress)) {
-                            $NewAddress = new Address;
-                            $NewAddress->address_line_1 = $_POST['Address']['address_line_1'];
-                            $NewAddress->address_line_2 = $_POST['Address']['address_line_2'];
-                            $NewAddress->zip = $_POST['Address']['zip'];
-                            $NewAddress->id_city = $_POST['Address']['id_city'];
-                            if ($NewAddress->save())
-                                $idAddress = $NewAddress->id;
-                        }else {
-                            $idAddress = $checkAddress;
-                        }
-
-                        $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
-                        /* si es */
-                        if (is_null($checkAddressEmployee)) {
-                            if ($Address->id!= NULL) {
-                                $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
-                                $OldAddressEmployee->end_date = date("Y-m-d");
-                                $OldAddressEmployee->save();
-                            }
-                            $AddressEmployee = new AddressEmployee;
-                            $AddressEmployee->id_employee = $model->id;
-                            $AddressEmployee->id_address = $idAddress;
-                            $AddressEmployee->start_date = date("Y-m-d");
-                            if ($AddressEmployee->save()) {
-
-                            }
-                            $this->redirect(array('infoEmployee', 'id' => $model->id));
-                        } else {
-
-                        }
+                    if(is_null($checkAddress))
+                    {
+                        $NewAddress = new Address;
+                        $NewAddress->address_line_1 = $_POST['Address']['address_line_1'];
+                        $NewAddress->address_line_2 = $_POST['Address']['address_line_2'];
+                        $NewAddress->zip = $_POST['Address']['zip'];
+                        $NewAddress->id_city = $_POST['Address']['id_city'];
+                        if($NewAddress->save())
+                            $idAddress = $NewAddress->id;
                     }
-              
-          }
-         
-      }
-         $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
+                    else
+                    {
+                        $idAddress = $checkAddress;
+                    }
+
+                    $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
+                        /* si es */
+                    if(is_null($checkAddressEmployee))
+                    {
+                        if($Address->id!= NULL)
+                        {
+                            $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
+                            $OldAddressEmployee->end_date = date("Y-m-d");
+                            $OldAddressEmployee->save();
+                        }
+                        $AddressEmployee = new AddressEmployee;
+                        $AddressEmployee->id_employee = $model->id;
+                        $AddressEmployee->id_address = $idAddress;
+                        $AddressEmployee->start_date = date("Y-m-d");
+                        if($AddressEmployee->save())
+                        {
+
+                        }
+                        $this->redirect(array('infoEmployee', 'id' => $model->id));
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }
+        $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
     }
     
-    
-    public function actionBlockEmployee(){
-       
-       if (Yii::app()->user->isGuest==false){
-       $model=User::model()->findByPk(Yii::app()->user->id);
-//       Yii::app()->user->logout();
-       $this->render('blockemployee');
+    /**
+     *
+     */
+    public function actionBlockEmployee()
+    {
+       if(Yii::app()->user->isGuest==false)
+       {
+            $model=User::model()->findByPk(Yii::app()->user->id);
+            $this->render('blockemployee');
        }
-       else{
-     $this->render('blockeemployee');  
+       else
+       {
+            $this->render('blockeemployee');  
        }
     }
 }
