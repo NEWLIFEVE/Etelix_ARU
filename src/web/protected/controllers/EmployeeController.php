@@ -13,7 +13,7 @@ class EmployeeController extends Controller
         return array(
             /*'accessControl', */// perform access control for CRUD operations
             array(
-                'application.filters.UserViewFilter + infoEmployee, firstView'
+                'application.filters.UserViewFilter + infoEmployee'
                 )
             );
     }
@@ -304,7 +304,7 @@ class EmployeeController extends Controller
        }
        else
        {
-            $this->render('blockeemployee');  
+            $this->redirect('/'); 
        }
     }
 }
