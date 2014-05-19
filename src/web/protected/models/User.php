@@ -24,7 +24,8 @@
  */
 class User extends CActiveRecord
 {
-        public  $pass;
+         public $validar_pass;
+         public $pass;
          public $confir_pass;
         
 	/**

@@ -34,15 +34,19 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                  result=JSON.parse(data);
+                console.log(result);
                 if (result==1){
-                $('#mensaje').removeClass("rojo");  
+                $('#mensaje').removeClass("rojo");
+                $('#mensaje').addClass("icon-ok-circle");
                 $('#mensaje').addClass("verde");           
                 $('#mensaje').html("Cambio de Contraseña Valido");
                 }
                 
                 if (result==2){
-                $('#mensaje').removeClass("verde");     
-                $('#mensaje').addClass("rojo");    
+                $('#mensaje').removeClass("icon-ok-circle");
+                $('#mensaje').removeClass("verde");
+                $('#mensaje').addClass("icon-remove-circle"); 
+                $('#mensaje').addClass("rojo");
                 $('#mensaje').html("Contraseña No Valida");
                 }
             }

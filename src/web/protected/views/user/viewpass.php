@@ -22,15 +22,15 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'user-form',
+	'id'=>'submit_form',
 	'enableAjaxValidation'=>false,
 )); ?>
 	<?php echo $form->errorSummary($model); ?>
                     <div id="tab_2-2" class="tab-pane">
                            <div class="form-group">
                                   <?php echo $form->labelEx($model,'Contraseña Actual', array('class'=>'letra_empleado')); ?>
-                                  <?php echo $form->passwordField($model,'confir_pass', array('class'=>'form-control input-medium')) ?>
-                                  <?php echo $form->error($model,'confir_pass'); ?>
+                                  <?php echo $form->passwordField($model,'validar_pass', array('class'=>'form-control input-medium')) ?>
+                                  <?php echo $form->error($model,'validar_pass'); ?>
                             </div>
                     </div>
                      <div id="tab_2-2" class="tab-pane">
@@ -50,8 +50,9 @@
                                   <?php echo CHtml::Button('Cambiar Contraseña', array('class'=>'btn blue', 'id'=>'chancepass')); ?>
                             </div>
                      </div>
-                        <div id="mensaje">
-
-                        </div>
+                            <div id="mensaje">
+                            
+                            </div>
+    
 <?php $this->endWidget(); ?>
 </div>

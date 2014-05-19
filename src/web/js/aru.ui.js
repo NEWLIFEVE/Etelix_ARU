@@ -435,7 +435,24 @@ $ARU.UI=(function(){
                    },
                    'Address[zip]':{
                        required: true, 
-                   }
+                   },
+                   
+                
+                    'User[validar_pass]':{
+                         required: true,
+                         minlength: 5
+                    },
+                   
+                   'User[pass]':{
+                         required: true,
+                         minlength: 5
+                    },
+                    
+                     'User[confir_pass]':{
+                         required: true,
+                         minlength: 5,
+                         equalTo: "#User_pass"  
+                    }
                 },
 
                 errorPlacement: function (error, element) { // render error placement for each input type
@@ -495,7 +512,7 @@ $ARU.UI=(function(){
             
              $('#chancepass').on('click',function()
                 {
-                   var confirmar_pass= $("#User_confir_pass").val();
+                   var confirmar_pass= $("#User_validar_pass").val();
                    var password1= $("#User_pass").val();
                       console.log(confirmar_pass);
                       console.log(password1);

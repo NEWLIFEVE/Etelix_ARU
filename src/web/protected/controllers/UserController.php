@@ -194,6 +194,7 @@ class UserController extends Controller
         
         
         public function actionCambioPass(){
+          
             $id=Yii::app()->user->id;  
             $model=User::model()->findByPk($id);
             if($model->id_status != 3){
