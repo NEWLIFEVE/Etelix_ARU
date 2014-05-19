@@ -310,4 +310,19 @@ class EmployeeController extends Controller
             $this->redirect('/'); 
        }
     }
+    
+    
+    /**
+     * 
+     * funcion para mostrar los usuarios que esten con inicion de session
+     */
+    
+    
+    public function actionSearchEmployee(){
+        
+        $search=  Employee::getIdEmployee();
+        $this->render('SearchEmployee', array('search'=>$search));
+
+        
+    }
 }

@@ -213,4 +213,12 @@ class Employee extends CActiveRecord
             return  CHtml::ListData(Nationality::model()->findAll(),"id","name"); 
         }
         
+        
+        public function getIdEmployee(){
+            
+            $employeeall= self::model()->findAll();
+            return $employeeall;
+        }
+        
+       
 }

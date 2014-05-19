@@ -133,5 +133,13 @@ class EventEmployee extends CActiveRecord
                 return false;
             }
         }
+        
+         public function getSearchemployee(){
+          $consulta="SELECT id_employee FROM event_employee WHERE date='20140519' AND id_type_event='1'";
+        
+          $consut= self::model()->findAllBySql($consulta);
+          var_dump($consut);
+            
+        }
 
 }
