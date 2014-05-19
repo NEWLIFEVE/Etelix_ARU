@@ -151,3 +151,7 @@ abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"
 .centar_botones{
      margin-left: 60%;
 }
+
+
+.img-cambiocontra{display:inline-block;height:auto;max-width:100%;padding:4px;line-height:1.428571429;background-color:#fff;border:1px solid #ff0;border-radius:4px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}
+.cambiocontra{display:inline-block;display:block;height:auto;max-width:100%;padding:4px;line-height:1.428571429;background-color:#fff;border:1px solid #fff;border-radius:4px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.cambiocontra>img{display:block;height:auto;max-width:100%}a.cambiocontra:hover,a.cambiocontra:focus{border-color:#428bca}.cambiocontra>img{margin-right:auto;margin-left:auto}.cambiocontra .caption{padding:9px;color:#333}
