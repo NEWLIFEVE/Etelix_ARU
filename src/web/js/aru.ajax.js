@@ -44,7 +44,7 @@ $ARU.AJAX=(function()
                 $('#mensaje').addClass("icon-ok-circle");
                 $('#mensaje').addClass("verde");           
                 $('#mensaje').html("Cambio de Contraseña Valido");
-                $('#cambio_photo').modal('show');
+                $('#cambio_pass').modal('show');
                 
 
                 }
