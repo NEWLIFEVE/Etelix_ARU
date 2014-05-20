@@ -34,28 +34,7 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                 result=JSON.parse(data);
-                console.log(result);
-                
-               
-                if (result==1){
-                $('#error_contra').removeClass("rojo");
-                $('#error_contra').removeClass("icon-remove-circle"); 
-                $('#error_contra').html("");
-                $('#mensaje').addClass("icon-ok-circle");
-                $('#mensaje').addClass("verde");           
-                $('#mensaje').html("Cambio de Contraseña Exitoso");
-                $('#cambio_pass').modal('show');
-                
-
-                }
-                
-                if (result==2){
-                $('#error_contra').removeClass("icon-ok-circle");
-                $('#error_contra').removeClass("verde");
-                $('#error_contra').addClass("icon-remove-circle"); 
-                $('#error_contra').addClass("rojo");
-                $('#error_contra').html("Contraseña Actual No Valida");
-                }
+                $ARU.UI.successPass(result);
             }
          });
     }
