@@ -12,7 +12,7 @@ $ARU.UI=(function(){
         _validarDatos();
         _applyMetroSelect();   
         _loadFirstView();
-        chancePass();
+        _changePass();
     }
 
     
@@ -507,7 +507,7 @@ $ARU.UI=(function(){
          }
          
          
-         function chancePass(){
+         function _changePass(){
              
             
              $('#chancepass').on('click',function()
@@ -520,10 +520,34 @@ $ARU.UI=(function(){
                                                                     
                 });
             }
+            
+        function successPass(result){
+            
+            switch(result){
+                case "1":
+                    $('#error_contra').removeClass("rojo");
+                    $('#error_contra').removeClass("icon-remove-circle"); 
+                    $('#error_contra').html("");
+                    $('#mensaje').addClass("icon-ok-circle");
+                    $('#mensaje').addClass("verde");           
+                    $('#mensaje').html("<h4>Cambio de Contraseña Exitoso!</h4>");
+                    $('#cambio_pass').modal('show');
+                    break;
+                case "2":
+                    $('#error_contra').removeClass("icon-ok-circle");
+                    $('#error_contra').removeClass("verde");
+                    $('#error_contra').addClass("icon-remove-circle"); 
+                    $('#error_contra').addClass("rojo");
+                    $('#error_contra').html("<h4>Contraseña Actual No Valida</h4>");
+                    break;
+                
+            }
+        }
          
  
     
     return {
-        init:init
+        init:init,
+        successPass:successPass
     };
 })();
