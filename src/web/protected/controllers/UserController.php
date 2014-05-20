@@ -207,7 +207,6 @@ class UserController extends Controller
                                      $model->save();
                                      echo json_encode("1");
                                 }
-
                                 else {
                                     echo json_encode("2");   
                                 }

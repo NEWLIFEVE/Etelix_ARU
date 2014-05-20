@@ -134,12 +134,26 @@ class EventEmployee extends CActiveRecord
             }
         }
         
-         public function getSearchemployee(){
-          $consulta="SELECT id_employee FROM event_employee WHERE date='20140519' AND id_type_event='1'";
-        
-          $consut= self::model()->findAllBySql($consulta);
-          var_dump($consut);
-            
+    public function getSearchStatus($id)
+    {   
+        $evento=false;
+        $consut=self::model()->find('id_employee=:id ORDER BY date DESC, hour_event DESC', array(':id'=>$id));
+        if($consut!=NULL)
+        {
+            $evento=array(
+                'name'=>$consut->idTypeEvent->name,
+                'id_type_event'=>$consut->id_type_event
+                    );
         }
-
+        return $evento;
+   }
+   
+   
+   public function getStilo($id_event)
+   {
+       if ($id_event==1){ return $stilo="label-success";}
+       if ($id_event==2){ return $stilo="label-warning";}
+       if ($id_event==3){ return $stilo="label-info";}
+       if ($id_event==4){ return $stilo="label-danger";}
+   }
 }

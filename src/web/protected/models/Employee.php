@@ -214,9 +214,11 @@ class Employee extends CActiveRecord
         }
         
         
-        public function getIdEmployee(){
-            
-            $employeeall= self::model()->findAll();
+        public function getIdEmployee($limit=null,$offset=null)
+        {    
+            $conditions=null;
+            if($limit!=null && $offset!=null) $conditions="LIMIT ".$limit." OFFSET ".$offset;
+            $employeeall=self::model()->findAll($conditions);
             return $employeeall;
         }
         
