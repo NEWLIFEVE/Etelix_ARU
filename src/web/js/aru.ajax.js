@@ -43,7 +43,7 @@ $ARU.AJAX=(function()
                 $('#error_contra').html("");
                 $('#mensaje').addClass("icon-ok-circle");
                 $('#mensaje').addClass("verde");           
-                $('#mensaje').html("Cambio de Contraseña Valido");
+                $('#mensaje').html("Cambio de Contraseña Exitoso");
                 $('#cambio_pass').modal('show');
                 
 
@@ -54,10 +54,38 @@ $ARU.AJAX=(function()
                 $('#error_contra').removeClass("verde");
                 $('#error_contra').addClass("icon-remove-circle"); 
                 $('#error_contra').addClass("rojo");
-                $('#error_contra').html("Contraseña No Valida");
+                $('#error_contra').html("Contraseña Actual No Valida");
                 }
             }
          });
+    }
+    
+    
+    
+    /**
+     * funcion para buscar los detalles de los empleados
+     * 
+     */
+    
+    function searchEmployee(type,action, formulario)
+    {
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data); 
+                nombre=result.nombre;
+                apellido=result.last_name;
+                nacimiento=result.date_birth;
+                identity_card=result.identity_card;
+                email_personal=result.email_personal;
+                email_company=result.email_company;
+                console.log(email_company);
+                $('#cambio_photo').modal('show');
+            }
+        });
     }
     
     /**
@@ -67,7 +95,8 @@ $ARU.AJAX=(function()
 
      return {
         sendEvent:sendEvent,
-        sendPass:sendPass
+        sendPass:sendPass,
+        searchEmployee:searchEmployee
     };
     
 })();

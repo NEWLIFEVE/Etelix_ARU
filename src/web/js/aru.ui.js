@@ -13,6 +13,7 @@ $ARU.UI=(function(){
         _applyMetroSelect();   
         _loadFirstView();
         chancePass();
+        viewdetalle();
     }
 
     
@@ -507,19 +508,30 @@ $ARU.UI=(function(){
          }
          
          
-         function chancePass(){
-             
-            
+         function chancePass()
+         {
              $('#chancepass').on('click',function()
                 {
                    var confirmar_pass= $("#User_validar_pass").val();
                    var password1= $("#User_pass").val();
                       console.log(confirmar_pass);
                       console.log(password1);
-                      $ARU.AJAX.sendPass("GET","/User/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);
-                                                                    
+                      $ARU.AJAX.sendPass("GET","/User/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
                 });
-            }
+         }
+         
+         function viewdetalle()
+         {
+            
+             $('a#detalle').on('click',function(){
+                 var id=($(this).find('div#emm').text());
+                 console.log(id);
+                 $ARU.AJAX.searchEmployee("GET","/Employee/DinaEmployee","id_employee="+id);
+//               $('#cambio_photo').modal('show');
+                        
+
+                });
+         }
          
  
     

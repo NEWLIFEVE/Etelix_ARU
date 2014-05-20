@@ -314,15 +314,33 @@ class EmployeeController extends Controller
     
     /**
      * 
-     * funcion para mostrar los usuarios que esten con inicion de session
+     * funcion para mostrar los usuarios que esten con inicio de session
      */
     
     
-    public function actionSearchEmployee(){
-        
+    public function actionSearchEmployee()
+    {
         $search=  Employee::getIdEmployee();
-        $this->render('SearchEmployee', array('search'=>$search));
-
-        
+        $this->render('SearchEmployee', array('search'=>$search));  
+    }
+    
+    public function actionDinaEmployee()
+    {
+      
+       $model=Employee::model()->findByPk($_GET['id_employee']);
+       if ($model!=null){
+                echo json_encode(
+                        array(
+                            'nombre'=>$model->first_name,
+                            'last_name'=>$model->last_name,
+                            'date_birth'=>$model->date_birth,
+                            'identity_card'=>$model->identity_card,
+                            'email_personal'=>$model->email_personal,
+                            'email_company'=>$model->email_company,
+                            'cellphone'=>$model->cellphone,
+                            )
+                        );
+       }
+       else{return false;} ;
     }
 }
