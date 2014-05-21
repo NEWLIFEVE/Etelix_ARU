@@ -35,7 +35,7 @@ class EventEmployeeController extends Controller
         return array(
             array(
                 'allow',
-                'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
+                'actions'=>Rol::getActions('EventEmployee', Yii::app()->user->id),
                 'users'=>array(
                     Yii::app()->user->name
                     )

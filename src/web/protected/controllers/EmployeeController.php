@@ -11,12 +11,12 @@ class EmployeeController extends Controller
     {
         // return the filter configuration for this controller, e.g.:
         return array(
-            /*'accessControl', */// perform access control for CRUD operations
+            'accessControl', /// perform access control for CRUD operations
             array(
-                'application.filters.UserLoginFilter + infoEmployee, firstView',
+                'application.filters.UserLoginFilter + infoEmployee, firstView, searchEmployee',/*cuando no estas logeado*/
                 ),
             array(
-                'application.filters.UserUpdateFilter + infoEmployee',
+                'application.filters.UserUpdateFilter + infoEmployee, searchEmployee',
                 )
             );
     }
@@ -29,11 +29,15 @@ class EmployeeController extends Controller
         return array(
             array(
                 'allow',
-                'actions'=>Rol::getActions('User_Employee', Yii::app()->user->id),
+                'actions'=>Rol::getActions('Employee', Yii::app()->user->id),
                 'users'=>array(
                     Yii::app()->user->name
                     )
-                )
+                ),
+            array(
+                'deny', // deny all users
+                'users'=>array('*'),
+                ),
             );
     }
 
@@ -58,7 +62,7 @@ class EmployeeController extends Controller
             $Employee->attributes = $_POST['Employee'];
             if($Employee->save())
             {
-                User::assignEmployee(Yii::app()->user->id, $Employee->id);
+                Users::assignEmployee(Yii::app()->user->id, $Employee->id);
 
                 if(Address::validAddressForm($_POST['Address']))
                 {
@@ -243,8 +247,8 @@ class EmployeeController extends Controller
     
             if($model->save())
             {
-                User::updateStatus(Yii::app()->user->id);
-                User::assignEmployee(Yii::app()->user->id, $model->id);
+                Users::updateStatus(Yii::app()->user->id);
+                Users::assignEmployee(Yii::app()->user->id, $model->id);
 
                 if(Address::validAddressForm($_POST['Address']))
                 {
@@ -302,7 +306,7 @@ class EmployeeController extends Controller
     {
        if(Yii::app()->user->isGuest==false)
        {
-            $model=User::model()->findByPk(Yii::app()->user->id);
+            $model=Users::model()->findByPk(Yii::app()->user->id);
             $this->render('blockemployee');
        }
        else

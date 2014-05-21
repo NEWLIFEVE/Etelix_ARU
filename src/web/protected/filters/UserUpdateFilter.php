@@ -8,7 +8,7 @@ class UserUpdateFilter extends CFilter
     {
     	$request=Yii::app()->getRequest();
         
-		if(User::model()->findByPk(Yii::app()->user->id)->id_status != 3)
+		if(Users::model()->findByPk(Yii::app()->user->id)->id_status != 3)
 		{
 			return true;
 		}

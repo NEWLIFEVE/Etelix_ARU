@@ -106,17 +106,19 @@ class Rol extends CActiveRecord
             if($idUser!=null)
             {
                 $idController=Controllers::model()->find('name=:name',array(':name'=>$controller));
-                foreach (User::model()->findByPk(Yii::app()->user->id)->idRol->actionRols as $values)
+                foreach (Users::model()->findByPk(Yii::app()->user->id)->idRol->actionRols as $values)
                {
                     $actions=ActionController::model()->findAll('id=:id AND id_controller=:id_controller',array(':id'=>$values->id_action_controller,':id_controller'=>$idController->id));
+                    if($actions!=null)
+                    {
+                        foreach ($actions as $key => $value)
+                        {
+                            $array[]=$value->idAction->name;
+                        }
+                    }
+                    
                }
-               if($actions!=null)
-               {
-                   foreach ($actions as $key => $value)
-                   {
-                       $array[]=$value->idAction->name;
-                   }
-               }
+               
            }
            else
            {
