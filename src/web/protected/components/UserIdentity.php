@@ -26,12 +26,12 @@ class UserIdentity extends CUserIdentity
 	{
         if(strpos($this->username,"@"))
         {
-			$user=User::model()->findByAttributes(array('email'=>$this->username));
+			$user=Users::model()->findByAttributes(array('email'=>$this->username));
                      
 		}
 		else
 		{
-			$user=User::model()->findByAttributes(array('username'=>$this->username));             
+			$user=Users::model()->findByAttributes(array('username'=>$this->username));             
 		}
 		if($user===null)
 		{

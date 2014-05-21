@@ -28,7 +28,7 @@
  * The followings are the available model relations:
  * @property EducationEmployee[] $educationEmployees
  * @property EventEmployee[] $eventEmployees
- * @property User[] $users
+ * @property Users[] $users
  * @property ChildrenEmployee[] $childrenEmployees
  * @property EmergencyEmployee[] $emergencyEmployees
  * @property LanguageEmployee[] $languageEmployees
@@ -83,7 +83,7 @@ class Employee extends CActiveRecord
 		return array(
 			'educationEmployees' => array(self::HAS_MANY, 'EducationEmployee', 'id_employee'),
 			'eventEmployees' => array(self::HAS_MANY, 'EventEmployee', 'id_employee'),
-			'users' => array(self::HAS_MANY, 'User', 'id_employee'),
+			'users' => array(self::HAS_MANY, 'Users', 'id_employee'),
 			'childrenEmployees' => array(self::HAS_MANY, 'ChildrenEmployee', 'id_employee'),
 			'emergencyEmployees' => array(self::HAS_MANY, 'EmergencyEmployee', 'id_employee'),
 			'languageEmployees' => array(self::HAS_MANY, 'LanguageEmployee', 'id_employee'),
@@ -184,12 +184,12 @@ class Employee extends CActiveRecord
         
         public static function getEmployee ($idUser)
         {
-              $idEmployee = User::getIdEmployee($idUser);
+              $idEmployee = Users::getIdEmployee($idUser);
               if ($idEmployee!=NULL) return self::model()->findByPk($idEmployee); else return NULL;
         }
         
         public static function getImage($idUser){
-            $idEmployee = User::getIdEmployee($idUser);
+            $idEmployee = Users::getIdEmployee($idUser);
             if ($idEmployee!=NULL) return self::model()->findByPk($idEmployee)->image_rute; else return NULL;
         }
         /**

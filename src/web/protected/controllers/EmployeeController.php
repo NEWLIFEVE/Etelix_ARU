@@ -62,7 +62,7 @@ class EmployeeController extends Controller
             $Employee->attributes = $_POST['Employee'];
             if($Employee->save())
             {
-                User::assignEmployee(Yii::app()->user->id, $Employee->id);
+                Users::assignEmployee(Yii::app()->user->id, $Employee->id);
 
                 if(Address::validAddressForm($_POST['Address']))
                 {
@@ -247,8 +247,8 @@ class EmployeeController extends Controller
     
             if($model->save())
             {
-                User::updateStatus(Yii::app()->user->id);
-                User::assignEmployee(Yii::app()->user->id, $model->id);
+                Users::updateStatus(Yii::app()->user->id);
+                Users::assignEmployee(Yii::app()->user->id, $model->id);
 
                 if(Address::validAddressForm($_POST['Address']))
                 {
@@ -306,7 +306,7 @@ class EmployeeController extends Controller
     {
        if(Yii::app()->user->isGuest==false)
        {
-            $model=User::model()->findByPk(Yii::app()->user->id);
+            $model=Users::model()->findByPk(Yii::app()->user->id);
             $this->render('blockemployee');
        }
        else

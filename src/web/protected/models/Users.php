@@ -22,7 +22,7 @@
  * @property StatusEmployee $idStatus
  * @property ConnectingTrace[] $connectingTraces
  */
-class User extends CActiveRecord
+class Users extends CActiveRecord
 {
          public $validar_pass;
          public $pass;
@@ -33,7 +33,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'users';
 	}
 
 	/**
