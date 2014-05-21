@@ -337,8 +337,7 @@ class EmployeeController extends Controller
     
     public function actionDynamicEmployee()
     {
-      
-       $model=Employee::model()->findByPk($_GET['id_employee']);
+       $model=Employee::getDynamicEmployee($_GET['id_employee']);
        if ($model!=null){
                 echo json_encode(
                         array(
