@@ -2,7 +2,7 @@
             <div class="col-md-12">
                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                <h3 class="page-title">
-                  Empleados Logueados (nombre Opcional)
+                  Empleados Activos
                </h3>
                <ul class="page-breadcrumb breadcrumb">
                   <li>
@@ -11,7 +11,7 @@
                      <i class="icon-angle-right"></i>
                   </li>
                   <li>
-                     <a href="#">Empleado Logueados</a>
+                     <a href="#">Empleado Activos</a>
                      <i class="icon-angle-down"></i>
                   </li>
                  
