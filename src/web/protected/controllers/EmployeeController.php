@@ -331,13 +331,20 @@ class EmployeeController extends Controller
        if ($model!=null){
                 echo json_encode(
                         array(
-                            'nombre'=>$model->first_name,
+                            'name'=>$model->first_name,
+                            'second_name'=>$model->second_name,
                             'last_name'=>$model->last_name,
+                            'second_last_name'=>$model->second_last_name,
                             'date_birth'=>$model->date_birth,
                             'identity_card'=>$model->identity_card,
                             'email_personal'=>$model->email_personal,
                             'email_company'=>$model->email_company,
                             'cellphone'=>$model->cellphone,
+                            'homephone'=>$model->home_phone,
+                            'extension_numeric'=>$model->extension_numeric,
+                            'nationality'=>$model->idNationality->name,
+                            'maritalstatus'=>$model->idMaritalStatus->name,
+                            'imgen_rute'=>$model->image_rute,
                             )
                         );
        }

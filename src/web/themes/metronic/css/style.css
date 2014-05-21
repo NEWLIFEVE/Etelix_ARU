@@ -4181,19 +4181,7 @@ Responsive Flip Scroll Tables
 .photo-dialog{
     width: 24%;
 }
-
-#confirmaemployee{
-     width: 70%;
-    
-}
-
-
-.verde{
-    color:#10a062;
-    
-}
-
-.rojo{
-    color:#FF0000;
-    
-}
+#confirmaemployee{ width: 70%;}
+.verde{color:#10a062; }
+.rojo{color:#FF0000;}
+.margen_detalle_empleado{float: left; margin-right: 20px;}

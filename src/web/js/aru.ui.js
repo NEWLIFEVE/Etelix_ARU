@@ -525,7 +525,7 @@ $ARU.UI=(function(){
             
              $('a#detalle').on('click',function(){
                  var id=($(this).find('div#emm').text());
-                 console.log(id);
+//                 console.log(id);
                  $ARU.AJAX.searchEmployee("GET","/Employee/DinaEmployee","id_employee="+id);
 //               $('#cambio_photo').modal('show');
                         

@@ -446,6 +446,7 @@
                                                   <div id="area-add-file"></div>
                                                   <div id="status"></div>
                                                 </div>
+                                             <div class="modal-footer"></div>
                                             </div>
                                        </div>
                                     </form>

@@ -58,7 +58,7 @@
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                  <td><a href="#cambio_photo" id="detalle"><div id="emm" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
+                                  <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="emm" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
                               </tr>
                                   <?php } ?>
                                
@@ -84,24 +84,116 @@
             </div>
             <!--end tabbable-->           
          </div>
-         
-         <div id="cambio_photo" class="modal fade" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                           <div class="modal-content">
-                              <div class="modal-header">
-                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                 <h4 class="modal-title">Datos del Empleado</h4>
-                              </div>
-                              <div class="modal-body" align="center">
-                                  <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
-                                    <div class="row">
-                                       <div class="col-md-6" style="width:100%;"> 
-                                      <form action="#" role="form">
-                                            <div class="form-group">
-                                               <div class="thumbnail" style="width: 310%;">   
+      <div id="cambio_photo" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-detallemployee">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                 <h4 class="modal-title">Datos del Empleado</h4>
+              </div>
+              <div class="modal-body" align="center">
+                  <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
+                   <div class="row">
+                       <div class="col-md-12"> 
+                           <div class="form-group">
+                               <div class="thumbnail"> 
+                                   <div class="tab-content">
+                                       <div class="row">
+                                           <div class="col-md-12">
+                                               <div class="row" >
+                                                   <div  class="margen_detalle_empleado">
+                                                    <h1><div id="title"></div></h1>
+                                                </div>
+                                                   <div  class="margen_detalle_empleado">
+                                                    <h1><div id="last_name"></div></h1>
+                                                 </div>
+                                              </div>
+                                               <div class="row" >
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active" id="tab_1_11">
+                                                               <div class="portlet-body">
+                                                                  <table class="table table-striped table-bordered table-advance table-hover">
+                                                                     <tbody>
+                                                                    <tr>
+                                                                        <td class="letra_empleado">Primer Nombre</td>
+                                                                        <td><div id="name"></div></td>
+                                                                        <td class="letra_empleado">Segundo Nombre</td>
+                                                                        <td><div id="second_name"></div></td>   
+                                                                    </tr>
+                                                                    <tr>
+                                                                       <td class="letra_empleado">Primer Apellido</td>
+                                                                       <td><div id="titlelast"></div></td>
+                                                                       <td class="letra_empleado">Segundo Apellido</td>
+                                                                       <td><div id="second_last_name"></div></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                       <td class="letra_empleado">Fecha de Nacimiento</td>
+                                                                       <td><div id="date_birth"></div></td>
+                                                                       <td class="letra_empleado">Documento de Identidad</td>
+                                                                       <td><div id="identity_card"></div></td>
+                                                                    </tr>
+
+                                                                     <tr>
+                                                                       <td class="letra_empleado">Nacionalidad</td>
+                                                                       <td><div id="nationality"></div></td>
+                                                                       <td class="letra_empleado">Estado Civil</td>
+                                                                       <td><div id="maritalstatus"></div></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                       <td class="letra_empleado">Correo Personal</td>
+                                                                       <td><div id="email_personal"></div></td>
+                                                                       <td class="letra_empleado">Correo Corporativo</td>
+                                                                       <td><div id="email_company"></div></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                       <td class="letra_empleado">Teléfono De Habitación</td>
+                                                                       <td><div id="homephone"></div></td>
+                                                                       <td class="letra_empleado">Extensión de Oficina</td>
+                                                                       <td><div id="extension_numeric"></div></td>  
+                                                                    </tr>
+
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                    <!--tab-pane-->
+                                    <div class="tab-pane" id="tab_1_22">
+                                       <div class="tab-pane active" id="tab_1_1_1">
+                                          <div class="scroller" data-height="50%" data-always-visible="1" data-rail-visible1="1">
+                                             <table class="table table-striped table-bordered table-advance table-hover">
+
+                                          </table>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!--tab-pane-->
+                                 </div>
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                              </div>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+<!--                                                   <div id="name"></div>
+                                                   <div id="second_name"></div>
+                                                   <div id="last_name"></div>
+                                                   <div id="second_last_name"></div>-->
+                                                   
                                             </div>
                                        </div>
-                                    </form>
+                                    
                                  </div>
                               </div> 
                            </div>
