@@ -14,6 +14,7 @@ $ARU.UI=(function(){
         _loadFirstView();
         _changePass();
         _viewdetalle();
+        
     }
 
     
@@ -513,9 +514,7 @@ $ARU.UI=(function(){
                 {
                    var confirmar_pass= $("#User_validar_pass").val();
                    var password1= $("#User_pass").val();
-                      console.log(confirmar_pass);
-                      console.log(password1);
-                      $ARU.AJAX.sendPass("GET","/User/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
+                   $ARU.AJAX.sendPass("GET","/User/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
                 });
 
          }
@@ -525,11 +524,7 @@ $ARU.UI=(function(){
             
              $('a#detalle').on('click',function(){
                  var id=($(this).find('div#emm').text());
-//                 console.log(id);
-                 $ARU.AJAX.searchEmployee("GET","/Employee/DinaEmployee","id_employee="+id);
-//               $('#cambio_photo').modal('show');
-                        
-
+                 $ARU.AJAX.searchEmployee("GET","/Employee/DynamicEmployee","id_employee="+id);
                 });
          }
             
@@ -558,7 +553,7 @@ $ARU.UI=(function(){
         }
         
         function viewEmployeeModal(){
-            
+           
                 $('#title').html(result.name);
                 $('#name').html(result.name);
                 $('#second_name').html(result.second_name);
@@ -582,6 +577,9 @@ $ARU.UI=(function(){
     
     return {
         init:init,
-        successPass:successPass
+        successPass:successPass,
+        viewEmployeeModal:viewEmployeeModal
+        
+        
     };
 })();
