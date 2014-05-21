@@ -55,26 +55,7 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                 result=JSON.parse(data); 
-              
-                $('#title').html(result.name);
-                $('#name').html(result.name);
-                $('#second_name').html(result.second_name);
-                $('#last_name').html(result.last_name);
-                $('#titlelast').html(result.last_name);
-                $('#second_last_name').html(result.second_last_name);
-                $('#date_birth').html(result.date_birth);
-                $('#identity_card').html(result.identity_card);
-                $('#email_personal').html(result.email_personal);
-                $('#email_company').html(result.email_company);
-                $('#cellphone').html(result.cellphone);
-                $('#homephone').html(result.homephone);
-                $('#extension_numeric').html(result.extension_numeric);
-                $('#nationality').html(result.nationality);
-                $('#maritalstatus').html(result.maritalstatus);
-                $('#imgen_rute').html(result.imgen_rute);
-               console.log(result.date);
-                
-                $('#cambio_photo').modal('show');
+                $ARU.UI.viewEmployeeModal(result);
             }
         });
     }
