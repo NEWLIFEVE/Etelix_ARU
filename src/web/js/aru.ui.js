@@ -524,6 +524,7 @@ $ARU.UI=(function(){
             
              $('a#detalle').on('click',function(){
                  var id=($(this).find('div#emm').text());
+                
                  $ARU.AJAX.searchEmployee("GET","/Employee/DynamicEmployee","id_employee="+id);
                 });
          }
@@ -569,7 +570,20 @@ $ARU.UI=(function(){
                 $('#extension_numeric').html(result.extension_numeric);
                 $('#nationality').html(result.nationality);
                 $('#maritalstatus').html(result.maritalstatus);
-                $('#imgen_rute').html(result.imgen_rute);    
+                $('#address_line_1').html(result.address_line_1); 
+                $('#address_line_2').html(result.address_line_2); 
+                $('#zip').html(result.zip); 
+                $('#country').html(result.country); 
+                $('#state').html(result.state); 
+                $('#city').html(result.city); 
+               
+              if (result.imagen_rute!=null){
+                  $("#photo").attr('src',"/"+result.imagen_rute);
+              }
+              else {
+                 $("#photo").addClass('photo-modal-view-employee');
+                 $("#photo").attr('src',"/themes/metronic/img/profile/profile.jpg");  
+              }
                 $('#cambio_photo').modal('show');
         }
          

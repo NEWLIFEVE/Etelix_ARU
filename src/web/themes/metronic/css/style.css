@@ -4185,3 +4185,11 @@ Responsive Flip Scroll Tables
 .verde{color:#10a062; }
 .rojo{color:#FF0000;}
 .margen_detalle_empleado{float: left; margin-right: 20px;}
+
+
+
+@media only screen and (max-width: 800px) {
+.photo-modal-view-employee{
+   width: 24%;
+}
+}

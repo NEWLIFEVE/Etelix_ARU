@@ -337,7 +337,10 @@ class EmployeeController extends Controller
     
     public function actionDynamicEmployee()
     {
+       
        $model=Employee::getDynamicEmployee($_GET['id_employee']);
+       $Address=Address::getAddressByEmployee($_GET['id_employee']);
+       
        if ($model!=null){
                 echo json_encode(
                         array(
@@ -354,7 +357,16 @@ class EmployeeController extends Controller
                             'extension_numeric'=>$model->extension_numeric,
                             'nationality'=>$model->idNationality->name,
                             'maritalstatus'=>$model->idMaritalStatus->name,
-                            'imgen_rute'=>$model->image_rute,
+                            'imagen_rute'=>$model->image_rute,
+                            'address_line_1'=>$Address->address_line_1,
+                            'address_line_2'=>$Address->address_line_2,
+                            'zip'=>$Address->zip,
+                            'country'=>$Address->idCity->idState->idCountry->name,
+                            'state'=>$Address->idCity->idState->name,
+                            'city'=>$Address->idCity->name,
+                            
+                           
+                            
                             )
                         );
        }

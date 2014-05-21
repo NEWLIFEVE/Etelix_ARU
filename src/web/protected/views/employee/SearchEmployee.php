@@ -14,7 +14,6 @@
                      <a href="#">Empleado Activos</a>
                      <i class="icon-angle-down"></i>
                   </li>
-                 
                </ul>
                <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -42,12 +41,10 @@
                                     <th>Skype</th>
                                     <th>Teléfono</th>
                                     <th colspan="2">Status</th>
-                                   
                                  </tr>
                               </thead>
                               <tbody>
-                                  
-                                   <?php foreach ($search as $value) {?>
+                                  <?php foreach ($search as $value) {?>
                                   <?php if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
                               <tr>
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
@@ -61,22 +58,9 @@
                                   <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="emm" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
                               </tr>
                                   <?php } ?>
-                               
-                               
                               </tbody>
                            </table>
                         </div>
-<!--                        <div class="margin-top-20">
-                           <ul class="pagination">
-                              <li><a href="#">Anterior</a></li>
-                              <li><a href="#">1</a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#">4</a></li>
-                              <li><a href="#">5</a></li>
-                              <li><a href="#">Siguiente</a></li>
-                           </ul>
-                        </div>-->
                      </div>
                      <!--end tab-pane-->
                   </div>
@@ -112,93 +96,92 @@
                                                         <div class="tab-content">
                                                             <div class="tab-pane active" id="tab_1_11">
                                                                <div class="portlet-body">
+                                                                   <div class="table-responsive">
                                                                   <table class="table table-striped table-bordered table-advance table-hover">
                                                                      <tbody>
-                                                                    <tr>
-                                                                        <td class="letra_empleado">Primer Nombre</td>
-                                                                        <td><div id="name"></div></td>
-                                                                        <td class="letra_empleado">Segundo Nombre</td>
-                                                                        <td><div id="second_name"></div></td>   
-                                                                    </tr>
-                                                                    <tr>
-                                                                       <td class="letra_empleado">Primer Apellido</td>
-                                                                       <td><div id="titlelast"></div></td>
-                                                                       <td class="letra_empleado">Segundo Apellido</td>
-                                                                       <td><div id="second_last_name"></div></td>
+                                                                            <tr>
+                                                                                <td rowspan="6"><div id="imagen_rute"><img id="photo" src="" /></div></td>
+                                                                                <td class="letra_empleado">Primer Nombre</td>
+                                                                                <td><div id="name"></div></td>
+                                                                                <td class="letra_empleado">Segundo Nombre</td>
+                                                                                <td><div id="second_name"></div></td>   
+                                                                            </tr>
+                                                                            <tr>
+                                                                               <td class="letra_empleado">Primer Apellido</td>
+                                                                               <td><div id="titlelast"></div></td>
+                                                                               <td class="letra_empleado">Segundo Apellido</td>
+                                                                               <td><div id="second_last_name"></div></td>
 
-                                                                    </tr>
-                                                                    <tr>
-                                                                       <td class="letra_empleado">Fecha de Nacimiento</td>
-                                                                       <td><div id="date_birth"></div></td>
-                                                                       <td class="letra_empleado">Documento de Identidad</td>
-                                                                       <td><div id="identity_card"></div></td>
-                                                                    </tr>
+                                                                            </tr>
+                                                                            <tr>
+                                                                               <td class="letra_empleado">Fecha de Nacimiento</td>
+                                                                               <td><div id="date_birth"></div></td>
+                                                                               <td class="letra_empleado">Documento de Identidad</td>
+                                                                               <td><div id="identity_card"></div></td>
+                                                                            </tr>
 
-                                                                     <tr>
-                                                                       <td class="letra_empleado">Nacionalidad</td>
-                                                                       <td><div id="nationality"></div></td>
-                                                                       <td class="letra_empleado">Estado Civil</td>
-                                                                       <td><div id="maritalstatus"></div></td>
+                                                                             <tr>
+                                                                               <td class="letra_empleado">Nacionalidad</td>
+                                                                               <td><div id="nationality"></div></td>
+                                                                               <td class="letra_empleado">Estado Civil</td>
+                                                                               <td><div id="maritalstatus"></div></td>
 
-                                                                    </tr>
-                                                                    <tr>
-                                                                       <td class="letra_empleado">Correo Personal</td>
-                                                                       <td><div id="email_personal"></div></td>
-                                                                       <td class="letra_empleado">Correo Corporativo</td>
-                                                                       <td><div id="email_company"></div></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                       <td class="letra_empleado">Teléfono De Habitación</td>
-                                                                       <td><div id="homephone"></div></td>
-                                                                       <td class="letra_empleado">Extensión de Oficina</td>
-                                                                       <td><div id="extension_numeric"></div></td>  
-                                                                    </tr>
+                                                                            </tr>
+                                                                            <tr>
+                                                                               <td class="letra_empleado">Correo Personal</td>
+                                                                               <td><div id="email_personal"></div></td>
+                                                                               <td class="letra_empleado">Correo Corporativo</td>
+                                                                               <td><div id="email_company"></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                               <td class="letra_empleado">Teléfono De Habitación</td>
+                                                                               <td><div id="homephone"></div></td>
+                                                                               <td class="letra_empleado">Extensión de Oficina</td>
+                                                                               <td><div id="extension_numeric"></div></td>  
+                                                                            </tr>
 
-                                             </tbody>
-                                          </table>
-                                       </div>
-                                    </div>
-                                    <!--tab-pane-->
-                                    <div class="tab-pane" id="tab_1_22">
-                                       <div class="tab-pane active" id="tab_1_1_1">
-                                          <div class="scroller" data-height="50%" data-always-visible="1" data-rail-visible1="1">
-                                             <table class="table table-striped table-bordered table-advance table-hover">
+                                                                            <tr>
+                                                                                <td class="letra_empleado" colspan="3">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
+                                                                                <td colspan="2"><div id="address_line_1"></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="letra_empleado" colspan="3">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
+                                                                                <td colspan="2"><div id="address_line_2"></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="letra_empleado" colspan="3">Códigos Postal</td>
+                                                                                <td colspan="2"><div id="zip"></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="letra_empleado" colspan="3">País</td>
+                                                                                <td colspan="2"><div id="country"></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="letra_empleado" colspan="3">Estado/Provincia/Región</td>
+                                                                                <td colspan="2"><div id="state"></div></td>
+                                                                            </tr>
 
-                                          </table>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <!--tab-pane-->
-                                 </div>
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                              </div>
-                                                           </div>
+                                                                            <tr>
+                                                                                <td class="letra_empleado" colspan="3">Ciudad</td>
+                                                                                <td colspan="2"><div id="city"></div></td>
+                                                                            </tr>
+                                                               </tbody>
+                                                           </table>
+                                                                   </div>
                                                        </div>
-                                                   </div>
-<!--                                                   <div id="name"></div>
-                                                   <div id="second_name"></div>
-                                                   <div id="last_name"></div>
-                                                   <div id="second_last_name"></div>-->
-                                                   
+                                                    </div>
+                                                 </div>  
+                                               </div>
                                             </div>
-                                       </div>
-                                    
-                                 </div>
-                              </div> 
-                           </div>
-                        </div>
-                     </div>
+                                         </div>
+                                     </div> 
+                                  </div>
+                               </div>
+                            </div>
+                         </div> 
+                      </div>
+                   </div>
                 </div>
-          </div>   
+            </div>
+        </div>   
     
