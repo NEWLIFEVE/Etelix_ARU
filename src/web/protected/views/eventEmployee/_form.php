@@ -79,7 +79,7 @@ for($i=1;$i<5;$i++)
                                 <a href="#tab2" data-toggle="tab" class="step">
                                     <span class="number">2</span>
                                     <span class="desc">
-                                        <i class="icon-ok"></i>Descanso
+                                        <i class="icon-ok"></i>Inicio Descanso/Almuerzo
                                     </span>
                                 </a>
                             </li>
@@ -87,7 +87,7 @@ for($i=1;$i<5;$i++)
                                 <a href="#tab3" data-toggle="tab" class="step">
                                     <span class="number">3</span>
                                     <span class="desc">
-                                        <i class="icon-ok"></i>Descanso fin
+                                        <i class="icon-ok"></i>Fin Descanso/Almuerzo
                                     </span>
                                 </a>
                             </li>
@@ -130,8 +130,8 @@ for($i=1;$i<5;$i++)
                                     <div class="scroller" style="height:100px" data-always-visible="1" data-rail-visible1="1" tabindex="0">
                                         <div class="row">
                                             <div class="col-md-6 message-declare" id="start_time"><h4>Indique donde esta inciando su jornada laboral</h4></div>
-                                            <div class="col-md-6 message-declare" id="start_break"><h4>¿Esta seguro que desea declarar el inicio del descanso?</h4></div>
-                                            <div class="col-md-6 message-declare" id="end_break"><h4>¿Esta seguro que desea declarar el fin del descanso?</h4></div>
+                                            <div class="col-md-6 message-declare" id="start_break"><h4>¿Esta seguro que desea declarar el inicio del Descanso/Almuerzo?</h4></div>
+                                            <div class="col-md-6 message-declare" id="end_break"><h4>¿Esta seguro que desea declarar el fin del Descanso/Almuerzo?</h4></div>
                                             <div class="col-md-6 message-declare" id="end_time"><h4>¿Esta seguro que desea declarar el fin de jornada?</h4></div>
                                         </div>
                                     </div>
