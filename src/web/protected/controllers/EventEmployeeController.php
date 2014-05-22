@@ -17,7 +17,7 @@ class EventEmployeeController extends Controller
     {
         // return the filter configuration for this controller, e.g.:
         return array(
-            /*'accessControl', */// perform access control for CRUD operations
+            'accessControl', /// perform access control for CRUD operations
             array(
                 'application.filters.UserLoginFilter + view, create, update, index, admin, check, declarar, informacion',
                 ),
@@ -39,7 +39,11 @@ class EventEmployeeController extends Controller
                 'users'=>array(
                     Yii::app()->user->name
                     )
-                )
+                ),
+              array(
+                'deny', // deny all users
+                'users'=>array('*'),
+                ),
             );
     }
 
