@@ -101,17 +101,13 @@
                                                                      <tbody>
                                                                             <tr>
                                                                                 <td rowspan="6"><div id="imagen_rute"><img id="photo" src="" /></div></td>
-                                                                                <td class="letra_empleado">Primer Nombre</td>
-                                                                                <td><div id="name"></div></td>
-                                                                                <td class="letra_empleado">Segundo Nombre</td>
-                                                                                <td><div id="second_name"></div></td>   
+                                                                                <td class="letra_empleado">Nombres</td>
+                                                                                <td><div id="name" style="display:inline"></div> <div id="second_name" style="display:inline"></div></td>
+                                                                                <td class="letra_empleado">Apellidos</td>
+                                                                                 <td><div id="titlelast" style="display:inline"></div> <div id="second_last_name" style="display:inline"></div></td>  
                                                                             </tr>
                                                                             <tr>
-                                                                               <td class="letra_empleado">Primer Apellido</td>
-                                                                               <td><div id="titlelast"></div></td>
-                                                                               <td class="letra_empleado">Segundo Apellido</td>
-                                                                               <td><div id="second_last_name"></div></td>
-
+                                                                                
                                                                             </tr>
                                                                             <tr>
                                                                                <td class="letra_empleado">Fecha de Nacimiento</td>
