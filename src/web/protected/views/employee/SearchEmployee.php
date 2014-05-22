@@ -68,7 +68,7 @@
             </div>
             <!--end tabbable-->           
          </div>
-      <div id="cambio_photo" class="modal fade" tabindex="-1" aria-hidden="true">
+      <div id="detalle_empleado" class="modal fade" tabindex="-1" aria-hidden="true">
         <div class="modal-detallemployee">
            <div class="modal-content">
               <div class="modal-header">
@@ -100,7 +100,7 @@
                                                                   <table class="table table-striped table-bordered table-advance table-hover">
                                                                      <tbody>
                                                                             <tr>
-                                                                                <td rowspan="6"><div id="imagen_rute"><img id="photo" src="" /></div></td>
+                                                                                <td rowspan="6"><div id="imagen_rute"><img id="photo" src="" width="178px" height="178px" /></div></td>
                                                                                 <td class="letra_empleado">Nombres</td>
                                                                                 <td><div id="name" style="display:inline"></div> <div id="second_name" style="display:inline"></div></td>
                                                                                 <td class="letra_empleado">Apellidos</td>

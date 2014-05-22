@@ -580,10 +580,10 @@ $ARU.UI=(function(){
                   $("#photo").attr('src',"/"+result[0].imagen_rute);
               }
               else {
-                 $("#photo").addClass('photo-modal-view-employee');
+                 $("#imagen_rute").addClass('photo-modal-view-employee');
                  $("#photo").attr('src',"/themes/metronic/img/profile/profile.jpg");  
               }
-                $('#cambio_photo').modal('show');
+                $('#detalle_empleado').modal('show');
         }
          
  
