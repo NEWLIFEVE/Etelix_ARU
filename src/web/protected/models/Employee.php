@@ -217,7 +217,7 @@ class Employee extends CActiveRecord
         public function getIdEmployee($limit=null,$offset=null)
         {    
             $conditions=null;
-            $consulta="SELECT e.* FROM users AS u INNER JOIN employee AS e ON u.id_employee=e.id WHERE id_status=1";
+            $consulta="SELECT e.* FROM users AS u INNER JOIN employee AS e ON u.id_employee=e.id WHERE id_status=1 order by e.name";
             if($limit!=null && $offset!=null) $conditions="LIMIT ".$limit." OFFSET ".$offset;
             $employeeall=self::model()->findAllBySql($consulta);
             return $employeeall;
