@@ -593,6 +593,6 @@ $ARU.UI=(function(){
         successPass:successPass,
         viewEmployeeModal:viewEmployeeModal
         
-        
+       
     };
 })();
