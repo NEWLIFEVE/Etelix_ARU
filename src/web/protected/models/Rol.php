@@ -102,7 +102,7 @@ class Rol extends CActiveRecord
          */
         public static function getActions($controller,$idUser)
         {
-            $array=array();
+            $array=array('x');
             if($idUser!=null)
             {
                 $idController=Controllers::model()->find('name=:name',array(':name'=>$controller));
@@ -116,13 +116,7 @@ class Rol extends CActiveRecord
                             $array[]=$value->idAction->name;
                         }
                     }
-                    
                }
-               
-           }
-           else
-           {
-               return false;
            }
             return $array;
         }
