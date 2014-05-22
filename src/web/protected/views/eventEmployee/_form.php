@@ -71,7 +71,7 @@ for($i=1;$i<5;$i++)
                                 <a href="#tab1" data-toggle="tab" class="step">
                                     <span class="number">1</span>
                                     <span class="desc">
-                                        <i class="icon-ok"></i>Inicio de Jornada Laboral
+                                        <i class="icon-ok"></i>Inicio Jornada Laboral
                                     </span>
                                 </a>
                             </li>
@@ -79,7 +79,7 @@ for($i=1;$i<5;$i++)
                                 <a href="#tab2" data-toggle="tab" class="step">
                                     <span class="number">2</span>
                                     <span class="desc">
-                                        <i class="icon-ok"></i>Inicio Descanso/Almuerzo
+                                        <i class="icon-ok"></i>Inicio Descanso / Almuerzo
                                     </span>
                                 </a>
                             </li>
@@ -87,7 +87,7 @@ for($i=1;$i<5;$i++)
                                 <a href="#tab3" data-toggle="tab" class="step">
                                     <span class="number">3</span>
                                     <span class="desc">
-                                        <i class="icon-ok"></i>Fin Descanso/Almuerzo
+                                        <i class="icon-ok"></i>Fin Descanso / Almuerzo
                                     </span>
                                 </a>
                             </li>
@@ -95,7 +95,7 @@ for($i=1;$i<5;$i++)
                                 <a href="#tab4" data-toggle="tab" class="step">
                                     <span class="number">4</span>
                                     <span class="desc">
-                                        <i class="icon-ok"></i>Fin de Jornada Laboral
+                                        <i class="icon-ok"></i>Fin Jornada Laboral
                                     </span>
                                 </a> 
                             </li>
