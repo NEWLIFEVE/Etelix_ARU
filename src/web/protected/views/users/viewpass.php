@@ -48,7 +48,7 @@
                      </div>
                      <div id="tab_2-2" class="tab-pane">
                            <div class="form-group">
-                                  <?php echo CHtml::Button('Cambiar Contraseña', array('class'=>'btn blue', 'id'=>'chancepass')); ?><a data-toggle="modal" href="#cambio_photo" id="photo"></a>
+                                  <?php echo CHtml::Button('Cambiar Contraseña', array('class'=>'btn blue', 'id'=>'changepass')); ?><a data-toggle="modal" href="#cambio_photo" id="photo"></a>
                             </div>
                      </div>
                      <div id="error_contra"></div>
