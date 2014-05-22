@@ -33,6 +33,7 @@ $ARU.AJAX=(function()
             data:formulario,
             success:function(data)
             {
+               console.log(data);
                 result=JSON.parse(data);
                 $ARU.UI.successPass(result);
             }
@@ -55,6 +56,7 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                 result=JSON.parse(data); 
+                console.log(result);
                 $ARU.UI.viewEmployeeModal(result);
             }
         });

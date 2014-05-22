@@ -55,7 +55,7 @@
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                  <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="emm" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
+                                  <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="id_employ" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
                               </tr>
                                   <?php } ?>
                               </tbody>

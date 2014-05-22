@@ -342,8 +342,8 @@ class EmployeeController extends Controller
        $Address=Address::getAddressByEmployee($_GET['id_employee']);
        
        if ($model!=null){
-                echo json_encode(
-                        array(
+                
+                       $datos[]= array(
                             'name'=>$model->first_name,
                             'second_name'=>$model->second_name,
                             'last_name'=>$model->last_name,
@@ -358,18 +358,37 @@ class EmployeeController extends Controller
                             'nationality'=>$model->idNationality->name,
                             'maritalstatus'=>$model->idMaritalStatus->name,
                             'imagen_rute'=>$model->image_rute,
-                            'address_line_1'=>$Address->address_line_1,
-                            'address_line_2'=>$Address->address_line_2,
-                            'zip'=>$Address->zip,
-                            'country'=>$Address->idCity->idState->idCountry->name,
-                            'state'=>$Address->idCity->idState->name,
-                            'city'=>$Address->idCity->name,
-                            
                            
-                            
-                            )
-                        );
-       }
+                            );
+                       
+                       if ($Address!=NULL){
+                           if ($Address->id_city!=NULL)
+                               {
+                                    $city=$Address->idCity->name;
+                                    $state=$Address->idCity->idState->name; 
+                                    $country=$Address->idCity->idState->idCountry->name;
+                                }
+                           else
+                             {
+                               $city="";
+                               $state="";
+                               $country="";
+                             }
+
+                           
+                        $datos[]= array(
+                               'address_line_1'=>$Address->address_line_1,
+                                'address_line_2'=>$Address->address_line_2,
+                                'zip'=>$Address->zip,
+                                'country'=>$country,
+                                'state'=>$state,
+                                'city'=>$city,
+                               );
+                       }
+                       else{return false;};
+                      
+                     echo json_encode($datos);            
+                }
        else{return false;} ;
     }
 }

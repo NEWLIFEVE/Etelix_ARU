@@ -440,20 +440,20 @@ $ARU.UI=(function(){
                    },
                    
                 
-                    'User[validar_pass]':{
+                    'Users[validar_pass]':{
                          required: true,
                          minlength: 5
                     },
                    
-                   'User[pass]':{
+                   'Users[pass]':{
                          required: true,
                          minlength: 5
                     },
                     
-                     'User[confir_pass]':{
+                     'Users[confir_pass]':{
                          required: true,
                          minlength: 5,
-                         equalTo: "#User_pass"  
+                         equalTo: "#Users_pass"  
                     }
                 },
 
@@ -512,9 +512,9 @@ $ARU.UI=(function(){
          function _changePass(){
              $('#chancepass').on('click',function()
                 {
-                   var confirmar_pass= $("#User_validar_pass").val();
-                   var password1= $("#User_pass").val();
-                   $ARU.AJAX.sendPass("GET","/User/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
+                   var confirmar_pass= $("#Users_validar_pass").val();
+                   var password1= $("#Users_pass").val();
+                   $ARU.AJAX.sendPass("GET","/Users/CambioPass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
                 });
 
          }
@@ -523,8 +523,7 @@ $ARU.UI=(function(){
          {
             
              $('a#detalle').on('click',function(){
-                 var id=($(this).find('div#emm').text());
-                
+                 var id=($(this).find('div#id_employ').text());
                  $ARU.AJAX.searchEmployee("GET","/Employee/DynamicEmployee","id_employee="+id);
                 });
          }
@@ -553,32 +552,32 @@ $ARU.UI=(function(){
             }
         }
         
-        function viewEmployeeModal(){
-           
-                $('#title').html(result.name);
-                $('#name').html(result.name);
-                $('#second_name').html(result.second_name);
-                $('#last_name').html(result.last_name);
-                $('#titlelast').html(result.last_name);
-                $('#second_last_name').html(result.second_last_name);
-                $('#date_birth').html(result.date_birth);
-                $('#identity_card').html(result.identity_card);
-                $('#email_personal').html(result.email_personal);
-                $('#email_company').html(result.email_company);
-                $('#cellphone').html(result.cellphone);
-                $('#homephone').html(result.homephone);
-                $('#extension_numeric').html(result.extension_numeric);
-                $('#nationality').html(result.nationality);
-                $('#maritalstatus').html(result.maritalstatus);
-                $('#address_line_1').html(result.address_line_1); 
-                $('#address_line_2').html(result.address_line_2); 
-                $('#zip').html(result.zip); 
-                $('#country').html(result.country); 
-                $('#state').html(result.state); 
-                $('#city').html(result.city); 
-               
-              if (result.imagen_rute!=null){
-                  $("#photo").attr('src',"/"+result.imagen_rute);
+        function viewEmployeeModal(result){
+             
+                $('#title').html(result[0].name);
+                $('#name').html(result[0].name);
+                $('#second_name').html(result[0].second_name);
+                $('#last_name').html(result[0].last_name);
+                $('#titlelast').html(result[0].last_name);
+                $('#second_last_name').html(result[0].second_last_name);
+                $('#date_birth').html(result[0].date_birth);
+                $('#identity_card').html(result[0].identity_card);
+                $('#email_personal').html(result[0].email_personal);
+                $('#email_company').html(result[0].email_company);
+                $('#cellphone').html(result[0].cellphone);
+                $('#homephone').html(result[0].homephone);
+                $('#extension_numeric').html(result[0].extension_numeric);
+                $('#nationality').html(result[0].nationality);
+                $('#maritalstatus').html(result[0].maritalstatus);
+                $('#address_line_1').html(result[1].address_line_1); 
+                $('#address_line_2').html(result[1].address_line_2); 
+                $('#zip').html(result[1].zip); 
+                $('#country').html(result[1].country); 
+                $('#state').html(result[1].state); 
+                $('#city').html(result[1].city); 
+              
+              if (result[0].imagen_rute!=null){
+                  $("#photo").attr('src',"/"+result[0].imagen_rute);
               }
               else {
                  $("#photo").addClass('photo-modal-view-employee');
