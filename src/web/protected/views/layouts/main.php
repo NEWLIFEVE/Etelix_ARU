@@ -17,7 +17,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/stylo.css" />-->
     
    <meta charset="utf-8" />
-   <meta name="MobileOptimized"  http-equiv="refresh" content="600, <?php echo Yii::app()->request->baseUrl; ?>/Employee/infoEmployee "/>
+
+   <meta name="MobileOptimized"  http-equiv="refresh" content="60000"/>
+
  
    <!-- BEGIN GLOBAL MANDATORY STYLES -->   
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/plugins/font-awesome/css/font-awesome.min.css" />
