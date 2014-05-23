@@ -14,26 +14,30 @@ $ARU.UI=(function(){
         _loadFirstView();
         _changePass();
         _viewdetalle();
+        _menu();
         
     }
 
-    
-
-
-   
+            function _menu()
+            {
+                $('li#employee').on('click',function(){
+//                    $('#employee').addClass('star active');
+                    console.log(location);
+                });
+            }
+            
+            
             
             function _loadFirstView()
             {
                 
-              
-            var form = $('#submit_form');
-            var error = $('.alert-danger', form);
-            var success = $('.alert-success', form);
-            
+               var form = $('#submit_form');
+               var error = $('.alert-danger', form);
+               var success = $('.alert-success', form);
                var handleTitle = function(tab, navigation, index) {
-                var total = navigation.find('li').length;
-                console.log(total);
-                var current = index + 1;
+               var total = navigation.find('li').length;
+               console.log(total);
+               var current = index + 1;
                 // set wizard title
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
                 // set done steps
@@ -586,12 +590,15 @@ $ARU.UI=(function(){
                 $('#detalle_empleado').modal('show');
         }
          
+         
+         
  
     
     return {
         init:init,
         successPass:successPass,
-        viewEmployeeModal:viewEmployeeModal
+        viewEmployeeModal:viewEmployeeModal,
+        
         
        
     };

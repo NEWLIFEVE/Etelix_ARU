@@ -20,18 +20,18 @@
          </div>
          <!-- END PAGE HEADER-->
 <div class="row">
+           
             <div class="col-md-12">
                <div class="tabbable tabbable-custom tabbable-full-width">
                   <ul class="nav nav-tabs">
-                   
-                      <li class="active"><a data-toggle="tab" href="#tab_1_5">Empleados </a></li>
+                     <li class="active"><a data-toggle="tab" href="#tab_2_2">Activos</a></li>
+                     <li><a data-toggle="tab" href="#tab_1_3">Inactivos</a></li>
+                     <li><a data-toggle="tab" href="#tab_1_4">Hora de Declaración</a></li>
+                     <li><a data-toggle="tab" href="#tab_1_5"> </a></li>
                   </ul>
                   <div class="tab-content">
-                    
-                     <!--end tab-pane-->
-                     <div id="tab_1_5" class="tab-pane active">
-                        
-                        <div class="table-responsive">
+                     <div id="tab_2_2" class="tab-pane active">
+                          <div class="table-responsive">
                            <table class="table table-striped table-bordered table-advance table-hover">
                               <thead>
                                  <tr>
@@ -61,13 +61,68 @@
                               </tbody>
                            </table>
                         </div>
+                        
                      </div>
+                     <!--end tab-pane-->
+                     <div id="tab_1_3" class="tab-pane">
+                   
+                          <div class="table-responsive">
+                           <table class="table table-striped table-bordered table-advance table-hover">
+                              <thead>
+                                 <tr>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Skype</th>
+                                    <th>Teléfono</th>
+                                    <th colspan="2">Status</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                              </tr>
+                              </tbody>
+                           </table>
+                            </div>
+                         
+                         
+                         
+                     </div>
+                     <!--end tab-pane-->
+                     <div id="tab_1_4" class="tab-pane">
+                      <div class="table-responsive">
+                           <table class="table table-striped table-bordered table-advance table-hover">
+                              <thead>
+                                 <tr>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Skype</th>
+                                    <th>Teléfono</th>
+                                    <th colspan="2">Status</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                              </tr>
+                              </tbody>
+                           </table>
+                            </div>
+                        <div class="table-responsive">
+                          
+                        </div>
+                        
+                     </div>
+                     <!--end tab-pane-->
+                     </div>
+                     
+                    </div>
                      <!--end tab-pane-->
                   </div>
                </div>
             </div>
             <!--end tabbable-->           
-         </div>
+              
       <div id="detalle_empleado" class="modal fade" tabindex="-1" aria-hidden="true">
         <div class="modal-detallemployee">
            <div class="modal-content">

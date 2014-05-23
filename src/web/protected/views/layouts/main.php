@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/stylo.css" />-->
     
    <meta charset="utf-8" />
-   <meta name="MobileOptimized"  http-equiv="refresh" content="60000, <?php echo Yii::app()->request->baseUrl; ?>/Employee/infoEmployee "/>
+   <meta name="MobileOptimized"  http-equiv="refresh" content="600, <?php echo Yii::app()->request->baseUrl; ?>/Employee/infoEmployee "/>
  
    <!-- BEGIN GLOBAL MANDATORY STYLES -->   
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/plugins/font-awesome/css/font-awesome.min.css" />
@@ -196,20 +196,38 @@
                                                    </a>
                                                 </li>-->
                                                
-                                             <li class='start active' id='create' name='create'>
+                                             <li id='create' name='create' class='active'>
                                                    <a href='/EventEmployee/Create'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Declarar</span>
                                                    <span class='selected'></span>
                                                    </a>
                                                 </li>
-                                             <li class=''  id='infoEmployee' name='infoEmployee'>
+                                             <!--<li  id='infoEmployee' name='infoEmployee'>
                                                    <a href='/Employee/infoEmployee'>
                                                    <i class='icon-user'></i> 
                                                    <span class='title'>Empleado</span>
                                                    <span class='selected'></span>
                                                    </a>
-                                                </li>
+                                             </li>-->
+                                             
+                                             <li class='' id ='employee'>
+                                                           <a href='javascript:;'>
+                                                           <i class='icon-user'></i> 
+                                                           <span class='title'>Empleados</span>
+                                                           <span class='arrow '></span>
+                                                           </a>
+                                                           <ul class='sub-menu'>
+                                                              <li >
+                                                                 <a href='/Employee/infoEmployee'>
+                                                                 Mi Perfil</a>
+                                                              </li>
+                                                              <li >
+                                                                 <a href='/Employee/SearchEmployee'>
+                                                                Activos</a>
+                                                              </li>
+                                                           </ul>
+                                                        </li>
                                              
 
                                              </ul>

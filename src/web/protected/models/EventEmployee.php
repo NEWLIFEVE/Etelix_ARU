@@ -137,7 +137,7 @@ class EventEmployee extends CActiveRecord
     public function getSearchStatus($id)
     {   
         $evento=false;
-        $consut=self::model()->find('id_employee=:id ORDER BY date DESC, hour_event DESC', array(':id'=>$id));
+        $consut=self::model()->find('id_employee=:id  ORDER BY date DESC, hour_event DESC', array(':id'=>$id));
         if($consut!=NULL)
         {
             $evento=array(
