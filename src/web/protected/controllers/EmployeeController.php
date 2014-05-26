@@ -324,15 +324,16 @@ class EmployeeController extends Controller
     
     public function actionSearchEmployee()
     {
-        $search=  Employee::getIdEmployee();
-        if ($search!=null)
-        {
-            $this->render('SearchEmployee', array('search'=>$search));
-        }
-        else
-        {
-            return false;
-        }
+//        $search=  Employee::getIdEmployee();
+//        if ($search!=null)
+//        {
+            $this->render('SearchEmployee');
+//            $this->render('SearchEmployee', array('search'=>$search));
+//        }
+//        else
+//        {
+//            return false;
+//        }
     }
     
     public function actionDynamicEmployee()

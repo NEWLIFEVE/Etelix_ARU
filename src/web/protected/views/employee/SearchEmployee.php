@@ -44,8 +44,10 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                  <?php foreach ($search as $value) {?>
-                                  <?php if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
+                                  <?php 
+                                        $activeEmployee = Employee::getStatusEmployees("active");
+                                        foreach ($activeEmployee as $value) {
+                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
                               <tr>
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
                                   <td><?php echo $value->first_name;?></td>
@@ -79,8 +81,21 @@
                                  </tr>
                               </thead>
                               <tbody>
+                                 <?php  $inactiveEmployee = Employee::getStatusEmployees("inactive");
+                                        foreach ($inactiveEmployee as $value) {
+                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
                               <tr>
+                                  <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
+                                  <td><?php echo $value->first_name;?></td>
+                                  <td><?php echo $value->last_name;?></td>
+                                  <td><?php echo $value->skype;?></td>
+                                  <td><?php echo $value->cellphone;?></td>
+                                  <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
+                                  <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
+                                  <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
+                                  <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="id_employ" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
                               </tr>
+                                  <?php } ?>
                               </tbody>
                            </table>
                             </div>
@@ -97,9 +112,10 @@
                                     <th>Foto</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
-                                    <th>Skype</th>
-                                    <th>Teléfono</th>
-                                    <th colspan="2">Status</th>
+                                    <th>Inicio Jornada Laboral</th>
+                                    <th>Inicio Descanso/Almuerzo</th>
+                                    <th>Fin Descanso/Almuerzo</th>
+                                    <th>Fin Jornada Laboral</th>
                                  </tr>
                               </thead>
                               <tbody>

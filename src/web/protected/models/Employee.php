@@ -214,25 +214,32 @@ class Employee extends CActiveRecord
         }
         
         
-        public function getIdEmployee($limit=null,$offset=null)
+        public static function getStatusEmployees($type,$limit=null,$offset=null)
         {    
             $conditions=null;
             $consulta="select e.*
-from
-employee e, users u, event_employee ev, type_event t,
-(select id_employee, MAX(date) as date
-from event_employee 
-group by id_employee ) x,
+                        from
+                        employee e, users u, event_employee ev, type_event t,
+                        (select id_employee, MAX(date) as date
+                        from event_employee 
+                        group by id_employee ) x,
 
-(select id_employee, date, MAX(hour_event) as hour
-from event_employee
-group by id_employee, date
-order by id_employee) y
+                        (select id_employee, date, MAX(hour_event) as hour
+                        from event_employee
+                        group by id_employee, date
+                        order by id_employee) y
 
-where x.id_employee=y.id_employee and x.date = y.date and
-x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
-ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id
-and t.id IN (1,3)";
+                        where x.id_employee=y.id_employee and x.date = y.date and
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id";
+            switch ($type) {
+                case "active":
+                    $consulta.=" and t.id IN (1,3)";
+                    break;
+                case "inactive":
+                    $consulta.=" and t.id IN (2,4)";
+                    break;
+            }
             if($limit!=null && $offset!=null) $conditions="LIMIT ".$limit." OFFSET ".$offset;
             $employeeall=self::model()->findAllBySql($consulta);
             return $employeeall;
