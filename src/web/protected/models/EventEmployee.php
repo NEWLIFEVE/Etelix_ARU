@@ -180,14 +180,13 @@ class EventEmployee extends CActiveRecord
         
         public static function getValidate_hour($start, $date){
          
-             $calculo_dias= DateManagement::getValidate_hour($start, $date);
+             $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
              $hourclient=DateManagement::gethourcliente();
- 
              
-             if ((strtotime($calculo_dias[1])<strtotime("02:20:20")) && (strtotime("2014-05-27")<= strtotime($date))){
-              
-               return false;
-                 
+//             var_dump($calculo_dias[1]); HORAS CALCULADAS
+//             var_dump($calculo_dias[0]); FECHA CALCULADAS
+             if ((strtotime($calculo_dias[1])<strtotime($hourclient)) && (strtotime($calculo_dias[0])<= strtotime($date))){
+               return false; 
              }
              else {
                return true;

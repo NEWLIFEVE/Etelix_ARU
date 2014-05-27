@@ -70,7 +70,7 @@ class EventEmployeeController extends Controller
         	
         	$eventos=EventEmployee::getWorkday($Employee->id, date('Ymd'));
                 $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], date('Ymd'));
-              
+//                var_dump($validate_hour);
                
                 if ($validate_hour!=FALSE)
                     {
@@ -79,9 +79,9 @@ class EventEmployeeController extends Controller
                 }
                 
                 else {
-                    $model = new EventEmployee();
+                    $eventos=FALSE;
                     $this->render('create',array('eventos'=>$eventos,));
-                    //var_dump($validate_hour);
+                   
                 }
         	
                 
