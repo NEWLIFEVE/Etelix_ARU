@@ -315,23 +315,7 @@ $ARU.UI=(function(){
                         }
                    var uploadObj =$("#mulitplefileuploader").uploadFile(settings); 
                 }
-                
-              
     
-    
-//           function inactivo(){
-//               
-//                    $(window).mouseout(function()
-//                    {
-//                        console.log("mover");
-//                    });
-//                    
-//                    $(window).keypress(function()
-//                    {
-//                        console.log("tecla");
-//                    });
-//                  
-//               }
              
          function _format(state) {
                 if (!state.id) return state.text; // optgroup

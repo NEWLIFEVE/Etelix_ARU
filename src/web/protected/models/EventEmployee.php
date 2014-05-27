@@ -156,4 +156,42 @@ class EventEmployee extends CActiveRecord
        if ($id_event==3){ return $stilo="label-info";}
        if ($id_event==4){ return $stilo="label-danger";}
    }
+   
+   
+    /*
+     * funcion para capturar las horas declaradas por empleado
+     * 
+     */
+        
+        public function getEventosHoras($id){
+            $consulta="select x.*, ev.*
+                        from
+                        employee e, users u, event_employee ev, type_event t,
+                        (select id_employee, MAX(date) as date
+                        from event_employee 
+                        group by id_employee ) x
+                        where 
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id.";";
+            $horas=self::model()->findAllBySql($consulta);
+            return $horas;
+        }
+        
+        
+        public static function getValidate_hour($start, $date){
+         
+             $calculo_dias= DateManagement::getValidate_hour($start, $date);
+             $hourclient=DateManagement::gethourcliente();
+ 
+             
+             if ((strtotime($calculo_dias[1])<strtotime("02:20:20")) && (strtotime("2014-05-27")<= strtotime($date))){
+              
+               return false;
+                 
+             }
+             else {
+               return true;
+             }
+
+        }
 }

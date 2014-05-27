@@ -246,10 +246,19 @@ class Employee extends CActiveRecord
         }
         
         public function getDynamicEmployee($idEmployee){
-            
             $dynamicEmployee=self::model()->findByPk($idEmployee);
             return $dynamicEmployee;
         }
+        
+        
+        public function getHourEvent(){
+              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status = 1";
+              $employeedeclare=self::model()->findAllBySql($consulta);
+              return $employeedeclare;
+            }
+        
+        
+       
         
        
 }

@@ -112,21 +112,36 @@
                                     <th>Foto</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
-                                    <th>Inicio Jornada Laboral</th>
-                                    <th>Inicio Descanso/Almuerzo</th>
-                                    <th>Fin Descanso/Almuerzo</th>
-                                    <th>Fin Jornada Laboral</th>
+                                    <th style="background: #3CC051; color:#fff">Inicio Jornada Laboral</th>
+                                    <th style="background: #FCB322; color:#fff">Inicio Descanso/Almuerzo</th>
+                                    <th style="background: #57B5E3; color:#fff">Fin Descanso/Almuerzo</th>
+                                    <th style="background: #ED4E2A; color:#fff">Fin Jornada Laboral</th>
                                  </tr>
                               </thead>
+                              
+                              
                               <tbody>
+                                  <?php $hourdeclare= Employee::getHourEvent(); ?>
+                                 <?php  foreach ($hourdeclare as $value)
+                                    
+                                     {?>
+                                  
+                                  <?php if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else{$photoemployee=$value->image_rute;} ?>
                               <tr>
+                                  <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
+                                  <td><?php echo $value->first_name; ?></td>
+                                  <td><?php echo $value->last_name; ?></td>
+                                           <?php $hora=  EventEmployee::getEventosHoras($value->id) ;?>
+                                           <?php foreach ($hora as $key=> $value){ ?>  
+                                  
+                                  <td><?php echo $value->hour_event; ?></td> <?php } ?>
+                                  <?php if ($key==0){echo "<td></td><td></td><td></td>";}if ($key==1){echo "<td></td><td></td>";} if ($key==2){echo "<td></td>";} ?> 
                               </tr>
+                              <?php }?>
                               </tbody>
                            </table>
                             </div>
-                        <div class="table-responsive">
-                          
-                        </div>
+                     
                         
                      </div>
                      <!--end tab-pane-->

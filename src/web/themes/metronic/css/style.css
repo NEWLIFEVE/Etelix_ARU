@@ -4195,6 +4195,11 @@ Responsive Flip Scroll Tables
 }
 
 .photomodel{
-    width:"178px"; 
-    height:"178px";
+    width:178px; 
+    height:178px;
+}
+
+
+th.colorstart{
+    background:#ff0000;
 }

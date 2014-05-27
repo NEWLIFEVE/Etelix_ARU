@@ -67,14 +67,28 @@ class EventEmployeeController extends Controller
         $Employee=Employee::getEmployee(Yii::app()->user->id);
         if($Employee!=NULL)
         {
-        	$date=date('Ymd');
-        	$eventos=EventEmployee::getWorkday($Employee->id, $date);
-
-        	$this->render('create',array('eventos'=>$eventos,));
+        	
+        	$eventos=EventEmployee::getWorkday($Employee->id, date('Ymd'));
+                $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], date('Ymd'));
+              
+               
+                if ($validate_hour!=FALSE)
+                    {
+                    $this->render('create',array('eventos'=>$eventos,));
+                      
+                }
+                
+                else {
+                    $model = new EventEmployee();
+                    $this->render('create',array('eventos'=>$eventos,));
+                    //var_dump($validate_hour);
+                }
+        	
+                
         }
         else
         {
-        	$Employee = new Employee; 
+            $Employee = new Employee; 
             $Address = new Address;
             $this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
         }

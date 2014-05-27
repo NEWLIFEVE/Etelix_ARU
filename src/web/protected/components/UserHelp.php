@@ -23,5 +23,7 @@ class UserHelp extends CWebModule
 		else
 			return hash($hash,$string);
 	}
+        
+        
 }
 ?>

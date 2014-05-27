@@ -65,3 +65,4 @@ button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}textarea{ove
 .modal-detallemployee{z-index:1050;width:auto;padding:10px;margin-right:auto;margin-left:auto}
 @media screen and (min-width:768px)
 {.modal-detallemployee{right:auto;left:50%;width:80%;padding-top:30px;padding-bottom:30px}
+
