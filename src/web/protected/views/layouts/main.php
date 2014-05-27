@@ -63,6 +63,9 @@
 
 <body>
 
+
+    
+    
 <div class="container" id="page">
 
            <?php if (is_null(Employee::getImage(Yii::app()->user->id))){ $photomain="themes/metronic/img/profile/profile.jpg";}else {$photomain= Employee::getImage(Yii::app()->user->id);}?>
@@ -72,23 +75,19 @@
             
             <?php if (!Yii::app()->user->isGuest)
                 {
+                
+                $option_menu=UserHelp::CreateMenu(Yii::app()->user->getState('rol'));
+                
                     $menu="
-                        
-
-<div class='header navbar navbar-inverse page-header navbar-fixed-top'>
+                        <div class='header navbar navbar-inverse page-header navbar-fixed-top'>
                             <div class='header-inner'>
-                           
                                     <a class='navbar-brand' href='/'>
                                         <font class='Aa'>A</font><font class='RUu'>RU</font>
                                     </a>
-   
                                      <a href='javascript:;' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
                                      <img src='/themes/metronic/img/menu-toggler.png' alt='' />
-                                   
-                                     </a> 
-
+                                     </a>
                                      <ul class='nav navbar-nav pull-right'>
-
                                         <li class='dropdown' id='header_notification_bar'>
                                            <a href='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'
                                               data-close-others='true'>
@@ -156,11 +155,8 @@
                                               </li>
                                            </ul>
                                         </li>
-
                                      </ul>
-
                                   </div>
-
                                </div>
 
                                     <div class='clearfix'></div>
@@ -189,59 +185,11 @@
                                                    </form>
                                                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
                                                 </li>
-                                                <!--
-                                                <li class=''>
-                                                   <a href='/'>
-                                                   <i class='icon-home'></i> 
-                                                   <span class='title'>Inicio</span>
-                                                   <span class='selected'></span>
-                                                   </a>
-                                                </li>-->
-                                               
-                                             <li id='create' name='create'>
-                                                   <a href='/EventEmployee/Create'>
-                                                   <i class='icon-map-marker'></i> 
-                                                   <span class='title'>Declarar</span>
-                                                   <span class='selected'></span>
-                                                   </a>
-                                                </li>
-                                             <!--<li  id='infoEmployee' name='infoEmployee'>
-                                                   <a href='/Employee/infoEmployee'>
-                                                   <i class='icon-user'></i> 
-                                                   <span class='title'>Empleado</span>
-                                                   <span class='selected'></span>
-                                                   </a>
-                                             </li>-->
-                                             
-                                             <li id ='employee'>
-                                                           <a href='javascript:;'>
-                                                           <i class='icon-user'></i> 
-                                                           <span class='title'>Empleados</span>
-                                                           <span class='arrow '></span>
-                                                           <span class='selected'></span>
-                                                           </a>
-                                                           <ul class='sub-menu'>
-                                                              <li >
-                                                                 <a href='/Employee/infoEmployee'>
-                                                                 Mi Perfil</a>
-                                                              </li>
-                                                              <li >
-                                                                 <a href='/Employee/SearchEmployee'>
-                                                                Activos</a>
-                                                              </li>
-                                                           </ul>
-                                                        </li>
-                                             
-
-                                             </ul>
+                                             ".$option_menu."  
+                                            </ul>
                                              <!-- END SIDEBAR MENU -->
                                           </div>
-
-
-                                             <div class='page-content'>
-                                                    ". $content ."
-                                             </div>
-                                            
+                                            <div class='page-content'>". $content ."</div>
                                                <!-- BEGIN FOOTER -->
                                        <div class='footer'>
                                           <div class='footer-inner'>
@@ -253,7 +201,7 @@
                                              </span>
                                           </div>
                                        </div>
-                                       <!-- END FOOTER -->
+                           <!-- END FOOTER -->
                             ";
                     echo $menu;
                     

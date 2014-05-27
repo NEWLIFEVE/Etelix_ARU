@@ -27,7 +27,7 @@ class UserIdentity extends CUserIdentity
         if(strpos($this->username,"@"))
         {
 			$user=Users::model()->findByAttributes(array('email'=>$this->username));
-                     
+                        var_dump($user);
 		}
 		else
 		{
@@ -55,7 +55,7 @@ class UserIdentity extends CUserIdentity
 		else if($user->id_status==3)
 		{
 			$this->_id=$user->id;
-            $this->setState('rol', $user->id_rol);
+                        $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::UPDATE_DATA;
 			$user->lastvist_at=date('Y-m-d H:m:s P');
@@ -64,7 +64,7 @@ class UserIdentity extends CUserIdentity
 		else 
 		{
 			$this->_id=$user->id;
-            $this->setState('rol', $user->id_rol);
+                        $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
 			$user->lastvist_at=date('Y-m-d H:m:s P');
