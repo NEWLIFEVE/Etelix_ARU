@@ -198,7 +198,7 @@
                                                    </a>
                                                 </li>-->
                                                
-                                             <li id='create' name='create' class='active'>
+                                             <li id='create' name='create'>
                                                    <a href='/EventEmployee/Create'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Declarar</span>
@@ -213,11 +213,12 @@
                                                    </a>
                                              </li>-->
                                              
-                                             <li class='' id ='employee'>
+                                             <li id ='employee'>
                                                            <a href='javascript:;'>
                                                            <i class='icon-user'></i> 
                                                            <span class='title'>Empleados</span>
                                                            <span class='arrow '></span>
+                                                           <span class='selected'></span>
                                                            </a>
                                                            <ul class='sub-menu'>
                                                               <li >

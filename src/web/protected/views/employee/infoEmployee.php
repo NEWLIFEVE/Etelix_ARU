@@ -76,7 +76,7 @@
                                  <div class="tab-content">
                                    
                                     <div class="tab-pane active" id="tab_1_11">
-                                       <div class="portlet-body">
+                                       <div class="portlet-body table-responsive" >
                                           <table class="table table-striped table-bordered table-advance table-hover">
 
                                              <tbody>
@@ -143,7 +143,7 @@
                                     <!--tab-pane-->
                                     <div class="tab-pane" id="tab_1_22">
                                        <div class="tab-pane active" id="tab_1_1_1">
-                                          <div class="scroller" data-height="50%" data-always-visible="1" data-rail-visible1="1">
+                                          <div  class="portlet-body table-responsive" >
                                              <table class="table table-striped table-bordered table-advance table-hover">
 
                                              <tbody>
@@ -289,11 +289,11 @@
                                             </div>
                                              <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado form-group">
-                                                     <label class="control-label form-group">Teléfono de Habitación</label>
+                                                     <label class="control-label ">Teléfono de Habitación</label>
                                                       <?php if(empty($Employee->home_phone))echo $form->textField($Employee,'home_phone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'home_phone', array('class'=>'form-control','value'=>$Employee->home_phone)); ?>
                                                  </div>
                                                 <div class="secundario letra_empleado form-group">
-                                                    <label class="control-label form-group">Extensión de Oficina</label>
+                                                    <label class="control-label ">Extensión de Oficina</label>
                                                      <?php if(empty($Employee->extension_numeric))echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control','value'=>$Employee->extension_numeric)); ?>
                                                  </div>
                                             </div>

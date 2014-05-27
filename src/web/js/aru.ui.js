@@ -20,10 +20,20 @@ $ARU.UI=(function(){
 
             function _menu()
             {
-                $('li#employee').on('click',function(){
-//                    $('#employee').addClass('star active');
-                    console.log(location);
-                });
+
+                   console.log(location.pathname);
+                   var result=(location.pathname).split('/');
+   
+                switch (result[1]) {
+            case ('Employee'):
+                $('li#employee').addClass(' active');
+                break;
+                
+            case ('EventEmployee'):
+                $('li#create').addClass(' active');
+                break;
+         
+        }
             }
             
             
@@ -573,6 +583,9 @@ $ARU.UI=(function(){
               }
                 $('#detalle_empleado').modal('show');
         }
+        
+        
+        
          
          
          
