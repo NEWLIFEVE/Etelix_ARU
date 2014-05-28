@@ -123,7 +123,8 @@
                                                  <div class="contenidos_columnas">
                                                   <div class="secundario form-group">
                                                       <label class="control-label letra_empleado">Nacionalidad</label><br>
-                                                          <?php echo $form->dropDownList($model,'nationality',$model->getNationality(), array("class"=>"form-control input-medium","empty"=>"Seleccione")); ?>
+                                                            <?php if(empty($model->id_nationality)) echo $form->dropDownList($model,'nationality',$model->getNationality(), array('empty'=>'Seleccione una Opción','class'=>'form-control input-medium')); else echo $form->dropDownList($model,'nationality',$model->getNationality(), array('class'=>'form-control input-medium')); ?>
+                                                          <?php //echo $form->dropDownList($model,'nationality',$model->getNationality(), array("class"=>"form-control input-medium","empty"=>"Seleccione")); ?>
                                                           <!--<span class="help-block">Proporcione el Primer Apellido</span>-->
                                                   </div>
                                                   <div class="secundario form-group">
@@ -172,6 +173,15 @@
                                          
                                  </div>
                                   
+                                    <?php  if (!empty($Address->idCity->idState->idCountry->name)){
+                                    $pais=$Address->idCity->idState->idCountry->name;
+                                            }
+                                        else {
+                                            $pais="seleccione País";
+                                            }   
+                                    ?>
+                                  
+                                  
                                      <?php 
                                                 $ajaxState=array(
                                                     "ajax"=>array(
@@ -182,7 +192,7 @@
 
                                                     ),
                                                     "class"=>"form-control input-xlarge",
-                                                    "empty"=>"Seleccione",
+                                                    "empty"=>$pais,
                                                 );
                                           ?>
                                           
@@ -196,7 +206,7 @@
 
                                                     ),
                                                     "class"=>"form-control input-xlarge",
-                                                    "empty"=>"Seleccione"
+                                                    
                                                 );
                                   
                                   ?>
@@ -228,18 +238,26 @@
                                                     <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">País</label><br>
                                                               <?php  echo $form->dropDownList($model,'country',Country::getCountry(),$ajaxState);?>
-                                                    </div>
+                                                                
+                                                </div>
                                                </div>
                                                 <div class="contenidos_columnas">
                                                     <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">Estado/Provincia/Región</label><br>
-                                                             <?php echo $form->dropDownList($model,'state', array(),$ajaxCity);?>
+                                                         <?php if(empty($Address->idCity->idState->name))
+                                                             {echo $form->dropDownList($model,'state', array("seleccione"),$ajaxCity);}
+                                                             else {echo $form->dropDownList($model,'state', array($Address->idCity->idState->name),$ajaxCity);   }
+                                                             ?>
+                                                            
                                                     </div>
                                                </div>
                                                  <div class="contenidos_columnas">
                                                     <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">Ciudad</label><br>
-                                                             <?php echo $form->dropDownList($Address,'id_city',array(), array('class'=>'form-control input-xlarge'));?>
+                                                         <?php 
+                                                            if(empty($Address->idCity->name)){echo $form->dropDownList($Address,'id_city',array("Seleccione"), array("class"=>"form-control input-xlarge"));}
+                                                            else{echo $form->dropDownList($Address,'id_city',array($Address->id_city=>$Address->idCity->name), array("class"=>"form-control input-xlarge"));}
+                                                             ?>
                                                     </div>
                                                </div>
                                      

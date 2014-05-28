@@ -125,4 +125,11 @@ class Address extends CActiveRecord
         {
             if ($Address['address_line_1']!=NULL && $Address['zip']!=NULL && $Address['id_city']!=NULL) return TRUE; else return NULL;  
         }
+        
+        
+        public static function employee($id_address)
+        {
+            $Address=  self::model()->find('id=:id_address', array(':id_address'=>$id_address));
+            return $Address;
+        }
 }

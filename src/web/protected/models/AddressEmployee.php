@@ -119,5 +119,18 @@ class AddressEmployee extends CActiveRecord
                 
                 return NULL;
             }                  
-        }      
+        }  
+        
+         public static function loadAddressByEmployee($idEmployee)
+        {          
+            $AddressEmployee = AddressEmployee::model()->find('end_date IS NULL AND id_employee =:idEmploye ',array(':idEmploye'=>$idEmployee));
+            if ($AddressEmployee!=NULL)
+            {     
+                return $AddressEmployee;
+            }          
+            else {   
+                
+                return NULL;
+            }                  
+        }
 }

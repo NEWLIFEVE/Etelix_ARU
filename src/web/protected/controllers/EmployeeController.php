@@ -238,11 +238,12 @@ class EmployeeController extends Controller
     public function actionFirstView()
     {    
         
-          $Address=new Address;
+         
           $model=Employee::getEmployee(Yii::app()->user->id);
         
           if (is_null($model)){
               $model=new Employee;
+              $Address=new Address;
               if(isset($_POST['Employee']))
         {
             $model->id_nationality=$_POST['Employee']['nationality'];
@@ -273,7 +274,7 @@ class EmployeeController extends Controller
                     }
 
                     $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
-                        /* si es */
+                        /* si esdddddd */
                     if(is_null($checkAddressEmployee))
                     {
                         if($Address->id!= NULL)
@@ -305,10 +306,10 @@ class EmployeeController extends Controller
           
           else{
              
-             
-              if(isset($_POST['Employee']))
+             $Address=Address::employee(AddressEmployee::loadAddressByEmployee($model->id)->id_address);
+        
+                if(isset($_POST['Employee']))
         {
-                
             $model->id_nationality=$_POST['Employee']['nationality'];
             $model->attributes = $_POST['Employee'];
     
@@ -320,7 +321,7 @@ class EmployeeController extends Controller
                 if(Address::validAddressForm($_POST['Address']))
                 {
                     $checkAddress = Address::checkAddress($_POST['Address']);
-                    
+
                     if(is_null($checkAddress))
                     {
                         $NewAddress = new Address;
@@ -337,8 +338,7 @@ class EmployeeController extends Controller
                     }
 
                     $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
-                   
-                        /* si es */
+                        /* si esdddddd */
                     if(is_null($checkAddressEmployee))
                     {
                         if($Address->id!= NULL)
@@ -347,7 +347,7 @@ class EmployeeController extends Controller
                             $OldAddressEmployee->end_date = date("Y-m-d");
                             $OldAddressEmployee->save();
                         }
-                        $AddressEmployee = AddressEmployee;
+                        $AddressEmployee = new AddressEmployee;
                         $AddressEmployee->id_employee = $model->id;
                         $AddressEmployee->id_address = $idAddress;
                         $AddressEmployee->start_date = date("Y-m-d");
@@ -359,13 +359,12 @@ class EmployeeController extends Controller
                     }
                     else
                     {
-                            return false;
+                       $this->redirect(array('infoEmployee', 'id' => $model->id));
                     }
                 }
             }
         }
-              
-              
+    
           }
         
         $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
