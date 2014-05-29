@@ -535,8 +535,10 @@ $ARU.UI=(function(){
          function _changePass(){
              $('#changepass').on('click',function()
                 {
+                   
                    var confirmar_pass= $("#Users_validar_pass").val();
                    var password1= $("#Users_pass").val();
+                   
                    $ARU.AJAX.sendPass("GET","/Users/ChangePass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
                 });
 

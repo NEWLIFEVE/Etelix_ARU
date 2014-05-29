@@ -90,7 +90,7 @@ $ARU.AJAX=(function()
         sendEvent:sendEvent,
         sendPass:sendPass,
         searchEmployee:searchEmployee,
-        LockEmployee:LockEmployee,
+        
     };
     
 })();
