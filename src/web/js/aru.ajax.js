@@ -62,6 +62,25 @@ $ARU.AJAX=(function()
         });
     }
     
+    /*
+     * funciona para consultar los password y username, cuando se bloquea por refrescamiento
+     * 
+     */
+    
+//    function LockEmployee(type, action, formulario)
+//    {
+//         $.ajax({
+//            type:type,
+//            url:action,
+//            data:formulario,
+//            success:function(data)
+//            {
+//                console.log("hola");
+//            }
+//        });
+//        
+//    }
+    
     /**
 	 * Inicializa las funciones del submodulo
 	 * @access public
@@ -70,7 +89,8 @@ $ARU.AJAX=(function()
      return {
         sendEvent:sendEvent,
         sendPass:sendPass,
-        searchEmployee:searchEmployee
+        searchEmployee:searchEmployee,
+        LockEmployee:LockEmployee,
     };
     
 })();

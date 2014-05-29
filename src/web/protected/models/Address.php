@@ -132,4 +132,17 @@ class Address extends CActiveRecord
             $Address=  self::model()->find('id=:id_address', array(':id_address'=>$id_address));
             return $Address;
         }
+        
+        
+        public static function newAddress($address_1, $address_2, $zip, $id_city ){
+            $NewAddress = new Address;
+            $NewAddress->address_line_1 = $_POST['Address']['address_line_1'];
+            $NewAddress->address_line_2 = $_POST['Address']['address_line_2'];
+            $NewAddress->zip = $_POST['Address']['zip'];
+            $NewAddress->id_city = $_POST['Address']['id_city'];
+            if($NewAddress->save()){
+            $idAddress = $NewAddress->id;
+            return $idAddress;
+            }
+        }
 }

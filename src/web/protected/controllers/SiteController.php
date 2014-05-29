@@ -145,6 +145,84 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
         
+        public function actionBlockScreen(){
+            $model=new LoginForm;
+            if(isset($_POST['Users'])){
+                 $model->attributes=$_POST['Users'];
+                 if($model->validate() && $model->login()=="normal") $this->redirect('/EventEmployee/Create');
+                 if($model->validate() && $model->login()=="update") $this->redirect('/Employee/firstview');
+            }
+            
+            $datos=$_GET['idUser'];
+            if ($datos!=NULL){
+                Yii::app()->user->logout();
+                $user=Users::getUsers($datos);
+                $model=Employee::getEmployee($datos);
+                $this->render('lockEmployee',array('model'=>$model,'user'=>$user));
+            }
+            else {
+                Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);  
+            }
+        }
         
+       
+
+
+
+
+
+
+
+
+        public static function CreateMenu($id_rol)
+           {
+             switch ($id_rol) {
+            case 1:
+            $option_menu="<li id='create' name='create'>
+                                                   <a href='/EventEmployee/Create'>
+                                                   <i class='icon-map-marker'></i> 
+                                                   <span class='title'>Declarar</span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                          </li>
+                           <li id ='employee'>
+                                   <a href='javascript:;'>
+                                           <i class='icon-user'></i> 
+                                           <span class='title'>Empleados</span>
+                                           <span class='arrow '></span>
+                                           <span class='selected'></span>
+                                   </a>
+                                       <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/Employee/infoEmployee'>
+                                                 Mi Perfil</a>
+                                              </li>
+                                              <li >
+                                                 <a href='/Employee/SearchEmployee'>
+                                                Activos</a>
+                                              </li>
+                                       </ul>
+                         </li>";
+                return $option_menu;
+                break;
+            case 2:
+            $option_menu="
+                        <li id='create' name='create'>
+                           <a href='/EventEmployee/Create'>
+                           <i class='icon-map-marker'></i> 
+                           <span class='title'>Declarar</span>
+                           <span class='selected'></span>
+                           </a>
+                        </li>";
+                return $option_menu;
+
+                break;
+
+        }
+           }
+        
+           
+     
       
 }

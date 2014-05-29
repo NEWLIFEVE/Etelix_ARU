@@ -15,25 +15,35 @@ $ARU.UI=(function(){
         _changePass();
         _viewdetalle();
         _menu();
+//        _lockEmployee();
         
     }
 
+//            function _lockEmployee(){
+//                $('#lockEmployee').on('click',function(){
+//                    
+//                    
+//                     $ARU.AJAX.LockEmployee("GET","/site/LockEmployee","lockPass="+$("#Users_password")+"&lockUser="+$("#Users_username"));
+//                     
+//                });
+//              
+//            }
+
             function _menu()
             {
-
                    console.log(location.pathname);
                    var result=(location.pathname).split('/');
    
                 switch (result[1]) {
-            case ('Employee'):
-                $('li#employee').addClass(' active');
-                break;
+                    case ('Employee'):
+                        $('li#employee').addClass(' active');
+                        break;
                 
-            case ('EventEmployee'):
-                $('li#create').addClass(' active');
-                break;
+                    case ('EventEmployee'):
+                        $('li#create').addClass(' active');
+                        break;
          
-        }
+                    }
             }
             
             
@@ -335,6 +345,14 @@ $ARU.UI=(function(){
          function _applyMetroSelect(){
              
             
+            
+             $("#Employee_id_nationality").select2({
+                placeholder: "Select",
+                allowClear: true,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
              
              $("#Employee_nationality").select2({
                 placeholder: "Select",
@@ -452,6 +470,13 @@ $ARU.UI=(function(){
                          required: true,
                          minlength: 5,
                          equalTo: "#Users_pass"  
+                    }
+                    ,
+                    
+                     'Users[password]':{
+                         required: true,
+                         minlength: 5,
+                          
                     }
                 },
 

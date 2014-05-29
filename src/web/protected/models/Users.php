@@ -173,4 +173,9 @@ class Users extends CActiveRecord
             $model->id_status = 1;
             $model->save();
         }
+        
+        public static function getUsers($idUser){
+            $model=self::model()->findByPk($idUser);
+            return $model; 
+        }
 }

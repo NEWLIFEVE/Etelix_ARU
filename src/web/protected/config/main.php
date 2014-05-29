@@ -18,6 +18,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.controllers.*',
 	),
 	'modules'=>array(),
 	// application components
