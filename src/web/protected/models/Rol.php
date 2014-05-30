@@ -120,4 +120,12 @@ class Rol extends CActiveRecord
            }
             return $array;
         }
+        
+        
+        public static function getRol()
+         {
+               
+            $model=  self::model()->findAll();
+            return $model;
+         }
 }

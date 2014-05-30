@@ -203,7 +203,15 @@ class SiteController extends Controller
                                                 Activos</a>
                                               </li>
                                        </ul>
-                         </li>";
+                         </li>
+                         <li id='controladores' name='controladores'>
+                                                   <a href='/Employee/AdmiControllers'>
+                                                   <i class='icon-map-marker'></i> 
+                                                   <span class='title'>Administrar</span>
+                                                   
+                                                   </a>
+                          </li>
+                            ";
                 return $option_menu;
                 break;
             case 2:

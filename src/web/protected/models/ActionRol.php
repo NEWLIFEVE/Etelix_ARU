@@ -99,4 +99,11 @@ class ActionRol extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        public static function getActionRol($id)
+        {
+            $model=  self::model()->findAll();
+            return $model;
+        }
 }

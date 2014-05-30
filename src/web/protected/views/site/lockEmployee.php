@@ -9,9 +9,7 @@
      
 <div class="page-lock">
     <div class="page-logo">
-      <p class="titulo">
-			<font class="A">A</font><font class="RU">RU</font>
-		</p>
+      <p class="titulo"><font class="A">A</font><font class="RU">RU</font></p>
     </div>
     
        
@@ -24,42 +22,23 @@
         <span class="locked">Bloqueado</span>
         <div class="form">
         <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); ?>
-            <div class="tab-content">    
-            
-                
+            <div class="tab-content">
                 <table  class="input-group form-group">
                     <tr>
                         <td rowspan="2">
                              <?php  echo $form->passwordField($user,'password', array('placeholder' => 'Contraseña','class'=>'form-control','value'=>''));?>
+                             <?php echo $form->error($user,'password'); ?>
                              <?php  echo $form->hiddenField($user,'username', array());?>
                         </td>
                         <td>
                              <span class="input-group-btn"> 
-                            <button type="submit" class="btn blue icn-only"  id="lockEmployee"><i class="m-icon-swapright m-icon-white"></i></button>
+                            <button type="submit" class="btn blue icn-only"  id="lockEmployee">Login<i class="m-icon-swapright m-icon-white"></i></button>
                       </span>
                         </td>
                     </tr>
                   
                 </table>
-                
-<!--                  <div class="input-group input-medium form-group ">
-            
-                     
-                      <span class="input-group-btn"> 
-                        <button type="submit" class="btn blue icn-only centrar_botones" id="lockEmployee"><i class="m-icon-swapright m-icon-white"></i></button>
-                      </span>
-                  </div>-->
-                
-             
-                
-                
-                
-          
             </div>
-        
-        
-       
-          <!-- /input-group -->
           <div class="relogin">
               <?php //echo $user->username; ?>
             <a href="/site/Logout">No eres <?php echo $model->first_name; ?> <?php echo $model->last_name; ?> ?</a>
@@ -69,7 +48,7 @@
       </div>
     </div>
     <div class="page-footer">
-      2013 &copy; Metronic. Admin Dashboard Template.
+      
     </div>
   </div>
 </body>    

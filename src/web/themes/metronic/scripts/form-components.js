@@ -547,7 +547,7 @@ var FormComponents = function () {
         
         $("#mask_number").inputmask({
             "mask": "9",
-            "repeat": 10,
+            "repeat": 20,//logitud del numero ingresado
             "greedy": false
         }); // ~ mask "9" or mask "99" or ... mask "9999999999"
         

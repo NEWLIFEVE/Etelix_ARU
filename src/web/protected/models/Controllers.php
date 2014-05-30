@@ -94,4 +94,11 @@ class Controllers extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        public static function getControllers(){
+            
+            $model=  self::model()->findAll();
+            return $model;
+        }
 }

@@ -18,7 +18,7 @@
     
    <meta charset="utf-8" />
 
-   <meta name="MobileOptimized"  http-equiv="refresh" content="60, url=/site/BlockScreen?idUser=<?php echo $idUser=Yii::app()->user->id; ?>" />
+   <meta name="MobileOptimized"  http-equiv="refresh" content="900, url=/site/BlockScreen?idUser=<?php echo $idUser=Yii::app()->user->id; ?>" />
 
  <!-- /site/BlockScreen-->
    <!-- BEGIN GLOBAL MANDATORY STYLES -->   
@@ -253,6 +253,8 @@
    <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
    <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/plugins/backstretch/jquery.backstretch.min.js"></script>
    <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/plugins/select2/select2.min.js"></script>
+   <script src="/themes/metronic/plugins/fuelux/js/tree.min.js"></script>
+   <script src="/themes/metronic/scripts/ui-tree.js"></script> 
     <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/plugins/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="<?php echo Yii::app()->baseUrl; ?>/themes/metronic/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 

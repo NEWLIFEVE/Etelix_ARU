@@ -438,6 +438,16 @@ class EmployeeController extends Controller
     
     
    
+    public function actionAdmiControllers()
+    {  
+        
+        $model= Controllers::getControllers();
+        $rol= Rol::getRol();
+        $action_rol= ActionRol::getActionRol($rol[0]->id);
+        //var_dump($action_rol);
+        
+        $this->render('AdminControllers',  array('model'=>$model,'rol'=>$rol));
+    }
     
     
 }
