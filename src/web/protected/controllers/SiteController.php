@@ -200,7 +200,7 @@ class SiteController extends Controller
                                               </li>
                                               <li >
                                                  <a href='/Employee/SearchEmployee'>
-                                                Activos</a>
+                                                Ver Empleados</a>
                                               </li>
                                        </ul>
                          </li>";
