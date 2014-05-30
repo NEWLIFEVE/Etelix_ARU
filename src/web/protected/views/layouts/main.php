@@ -18,7 +18,7 @@
     
    <meta charset="utf-8" />
 
-   <meta name="MobileOptimized"  http-equiv="refresh" content="60, url=/site/BlockScreen?idUser=<?php echo $idUser=Yii::app()->user->id; ?>" />
+   <meta name="MobileOptimized"  http-equiv="refresh" content="1800, url=/site/BlockScreen?idUser=<?php echo $idUser=Yii::app()->user->id; ?>" />
 
  <!-- /site/BlockScreen-->
    <!-- BEGIN GLOBAL MANDATORY STYLES -->   
