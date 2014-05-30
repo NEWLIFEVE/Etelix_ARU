@@ -25,23 +25,36 @@
         <div class="form">
         <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); ?>
             <div class="tab-content">    
-                
-                    <div class="input-group input-medium form-group">
             
-                      <?php  echo $form->passwordField($user,'password', array('placeholder' => 'Contraseña','class'=>'form-control','value'=>''));?>
-                      <?php  echo $form->hiddenField($user,'username', array());?>
-<!--                      <span class="input-group-btn"> 
-                        <button type="submit" class="btn blue icn-only" id="lockEmployee"><i class="m-icon-swapright m-icon-white"></i></button>
-                      </span>-->
-                  </div>
                 
-                  <div class="input-group input-medium form-group">
+                <table  class="input-group form-group">
+                    <tr>
+                        <td rowspan="2">
+                             <?php  echo $form->passwordField($user,'password', array('placeholder' => 'Contraseña','class'=>'form-control','value'=>''));?>
+                             <?php  echo $form->hiddenField($user,'username', array());?>
+                        </td>
+                        <td>
+                             <span class="input-group-btn"> 
+                            <button type="submit" class="btn blue icn-only"  id="lockEmployee">Login<i class="m-icon-swapright m-icon-white"></i></button>
+                      </span>
+                        </td>
+                    </tr>
+                  
+                </table>
+                
+<!--                  <div class="input-group input-medium form-group ">
             
                      
                       <span class="input-group-btn"> 
+<<<<<<< HEAD
                         <button type="submit" class="btn blue icn-only" id="lockEmployee">Login<i class="m-icon-swapright m-icon-white"></i></button>
+=======
+                        <button type="submit" class="btn blue icn-only centrar_botones" id="lockEmployee"><i class="m-icon-swapright m-icon-white"></i></button>
+>>>>>>> 3413bbc2506bc9e8ebe8f5115c8ffa5b5b265419
                       </span>
-                  </div>
+                  </div>-->
+                
+             
                 
                 
                 
