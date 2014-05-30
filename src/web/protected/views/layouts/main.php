@@ -18,7 +18,7 @@
     
    <meta charset="utf-8" />
 
-   <meta name="MobileOptimized"  http-equiv="refresh" content="1800, url=/site/BlockScreen?idUser=<?php echo $idUser=Yii::app()->user->id; ?>" />
+   <meta name="MobileOptimized"  http-equiv="refresh" content="900, url=/site/BlockScreen?idUser=<?php echo $idUser=Yii::app()->user->id; ?>" />
 
  <!-- /site/BlockScreen-->
    <!-- BEGIN GLOBAL MANDATORY STYLES -->   
@@ -177,9 +177,9 @@
                                                    <form class='sidebar-search' action='' method='POST'>
                                                       <div class='form-container'>
                                                          <div class='input-box'>
-                                                            <a href='javascript:;' class='remove'></a>
+                                                           <!-- <a href='javascript:;' class='remove'></a>
                                                             <input type='text' placeholder='Search...'/>
-                                                            <input type='button' class='submit' value=' '/>
+                                                            <input type='button' class='submit' value=' '/>-->
                                                          </div>
                                                       </div>
                                                    </form>
