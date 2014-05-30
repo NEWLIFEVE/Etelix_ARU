@@ -59,7 +59,7 @@
                                        <li><i class="icon-map-marker"></i><?php if (!empty($Address->idCity->idState->idCountry->name)){echo $Address->idCity->idState->idCountry->name;}?></li>
                                        <li><i class="icon-calendar"></i><?php echo $Employee->date_birth;?></li>
 <!--                                       <li><i class="icon-briefcase"></i> Design</li>-->
-                                       <li><i class="icon-envelope"></i><?php echo $Employee->email_personal;?></li>
+                                       <li><i class="icon-envelope"></i><?php echo $Employee->email_company;?></li>
                                         <li><i class="icon-skype"></i><?php echo $Employee->skype;?></li>
                                         <li><i class="icon-phone"></i><?php echo $Employee->cellphone;?></li>
                                        <!--<li><i class="icon-heart"></i> BASE Jumping</li>-->

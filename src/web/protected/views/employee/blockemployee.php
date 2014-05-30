@@ -37,6 +37,6 @@
       </div>
     </div>
     <div class="page-footer">
-      2013 &copy; Metronic. Admin Dashboard Template.
+      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved.
     </div>
   </div>

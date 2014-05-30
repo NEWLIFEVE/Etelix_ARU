@@ -20,7 +20,7 @@
       <img class="page-lock-img" src="/<?php echo $model->image_rute; ?>">
       <div class="page-lock-info">
         <h1><?php echo $model->first_name; ?> <?php echo $model->last_name; ?> </h1>
-        <span class="email"><?php echo $model->email_personal; ?></span>
+        <span class="email"><?php echo $model->email_company; ?></span>
         <span class="locked">Bloqueado</span>
         <div class="form">
         <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); ?>
@@ -39,7 +39,7 @@
             
                      
                       <span class="input-group-btn"> 
-                        <button type="submit" class="btn blue icn-only" id="lockEmployee"><i class="m-icon-swapright m-icon-white"></i></button>
+                        <button type="submit" class="btn blue icn-only" id="lockEmployee">Login<i class="m-icon-swapright m-icon-white"></i></button>
                       </span>
                   </div>
                 
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="page-footer">
-      2013 &copy; Metronic. Admin Dashboard Template.
+      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved.
     </div>
   </div>
 </body>    
