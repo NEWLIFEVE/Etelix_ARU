@@ -73,7 +73,7 @@
       </div>
     </div>
     <div class="page-footer">
-      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved.
+      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1
     </div>
   </div>
 </body>    
