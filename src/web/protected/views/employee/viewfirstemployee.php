@@ -116,7 +116,7 @@
                                                   </div>
                                                   <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">Documento de identidad</label>
-                                                        <?php echo $form->textField($model,'identity_card', array('class'=>'form-control input-medium')); ?>
+                                                        <?php echo $form->textField($model,'identity_card', array('class'=>'form-control input-medium','id'=>'mask_number')); ?>
                                                         <!--<span class="help-block">Proporcione el Segundo Apellido</span>-->
                                                   </div>
                                                 </div>
