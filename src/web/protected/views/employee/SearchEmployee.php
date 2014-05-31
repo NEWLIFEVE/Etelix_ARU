@@ -52,8 +52,8 @@
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
                                   <td><?php echo $value->first_name;?></td>
                                   <td><?php echo $value->last_name;?></td>
-                                  <td><?php echo $value->skype;?></td>
-                                  <td><?php echo $value->cellphone;?></td>
+                                  <td><a href="skype:<?php echo $value->skype;?>?call"><i class="icon-skype"></i></a><?php echo " ".$value->skype;?></td>
+                                  <td><i class="icon-phone"></i><?php echo " ".$value->cellphone;?></td>
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
@@ -88,8 +88,8 @@
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
                                   <td><?php echo $value->first_name;?></td>
                                   <td><?php echo $value->last_name;?></td>
-                                  <td><?php echo $value->skype;?></td>
-                                  <td><?php echo $value->cellphone;?></td>
+                                  <td><a href="skype:<?php echo $value->skype;?>?call"><i class="icon-skype"></i></a><?php echo " ".$value->skype;?></td>
+                                  <td><i class="icon-phone"></i><?php echo " ".$value->cellphone;?></td>
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
