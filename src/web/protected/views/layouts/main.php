@@ -177,9 +177,9 @@
                                                    <form class='sidebar-search' action='' method='POST'>
                                                       <div class='form-container'>
                                                          <div class='input-box'>
-                                                            <a href='javascript:;' class='remove'></a>
+                                                           <!-- <a href='javascript:;' class='remove'></a>
                                                             <input type='text' placeholder='Search...'/>
-                                                            <input type='button' class='submit' value=' '/>
+                                                            <input type='button' class='submit' value=' '/>-->
                                                          </div>
                                                       </div>
                                                    </form>
@@ -193,7 +193,7 @@
                                                <!-- BEGIN FOOTER -->
                                        <div class='footer'>
                                           <div class='footer-inner'>
-                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved.
+                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1
                                           </div>
                                           <div class='footer-tools'>
                                              <span class='go-top'>

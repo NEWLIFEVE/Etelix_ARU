@@ -18,7 +18,7 @@
       <img class="page-lock-img" src="/<?php echo $model->image_rute; ?>">
       <div class="page-lock-info">
         <h1><?php echo $model->first_name; ?> <?php echo $model->last_name; ?> </h1>
-        <span class="email"><?php echo $model->email_personal; ?></span>
+        <span class="email"><?php echo $model->email_company; ?></span>
         <span class="locked">Bloqueado</span>
         <div class="form">
         <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); ?>
@@ -38,6 +38,7 @@
                     </tr>
                   
                 </table>
+
             </div>
           <div class="relogin">
               <?php //echo $user->username; ?>
@@ -48,7 +49,9 @@
       </div>
     </div>
     <div class="page-footer">
-      
+
+      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1
+
     </div>
   </div>
 </body>    

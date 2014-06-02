@@ -27,7 +27,7 @@ class UserIdentity extends CUserIdentity
         if(strpos($this->username,"@"))
         {
 			$user=Users::model()->findByAttributes(array('email'=>$this->username));
-                       
+
 		}
 		else
 		{
