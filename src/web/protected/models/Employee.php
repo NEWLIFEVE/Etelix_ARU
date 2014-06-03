@@ -242,6 +242,7 @@ class Employee extends CActiveRecord
             }
             if($limit!=null && $offset!=null) $conditions="LIMIT ".$limit." OFFSET ".$offset;
             $employeeall=self::model()->findAllBySql($consulta);
+           
             return $employeeall;
         }
         
@@ -251,14 +252,69 @@ class Employee extends CActiveRecord
         }
         
         
-        public function getHourEvent(){
+        public function getHourEvent()
+            {
               $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status = 1";
               $employeedeclare=self::model()->findAllBySql($consulta);
               return $employeedeclare;
             }
         
         
-       
+        public function createOption( $id)
+         {
+            
+           
+                $opciones="<tr>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Skype</th>
+                                    <th>Correo Corpotativo</th>
+                                    <th>Extensión de Oficina</th>
+                                    <th>Teléfono</th>
+                                    <th colspan='2'>Status</th>
+                                 </tr>";
+                
+      
+//                switch ($type) {
+//                    case "active":
+//                          
+//                        $activeEmployee = Employee::getStatusEmployees($type);
+//                         foreach ($activeEmployee as $value) {
+//                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;}
+//                                        
+//                                      $opciones.="<tr>
+//                                                 <td><img class='sizephotoemployee' src='/".$photoemployee."'/></td>
+//                                                 <td style='color:#000;'>".$value->first_name."</td>
+//                                                 <td>".$value->last_name."</td>
+//                                              </tr>";
+//                            }
+//                        break;
+//                        
+//                        case "inactive":
+//                          
+//                        $inactiveEmployee = Employee::getStatusEmployees($type);
+//                         foreach ($inactiveEmployee as $value) {
+//                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;}
+//                                        
+//                                      $opciones.="<tr>
+//                                                 <td><img class='sizephotoemployee' src='/".$photoemployee."'/></td>
+//                                                 <td style='color:#000;'>".$value->first_name."</td>
+//                                                 <td>".$value->last_name."</td>
+//                                              </tr>";
+//                            }
+//                        break;
+//
+//                   
+//                }
+                return $opciones;
+         }
+         
+         
+         function unmenu()
+         {
+             
+         }
    
        
 }

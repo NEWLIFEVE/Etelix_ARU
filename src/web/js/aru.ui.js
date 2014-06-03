@@ -15,19 +15,55 @@ $ARU.UI=(function(){
         _changePass();
         _viewdetalle();
         _menu();
-//        _lockEmployee();
+        _createRoles();
+        _treeDirectory();
+        _controllersByRol();
+       
+      
+       
+     
         
     }
 
-//            function _lockEmployee(){
-//                $('#lockEmployee').on('click',function(){
-//                    
-//                    
-//                     $ARU.AJAX.LockEmployee("GET","/site/LockEmployee","lockPass="+$("#Users_password")+"&lockUser="+$("#Users_username"));
-//                     
-//                });
-//              
-//            }
+
+            function rolCreate(result)
+            {
+               console.log (result);
+           
+              switch(result){
+                case "1":
+                    $('#error_rol').removeClass("rojo");
+                    $('#error_rol').removeClass("icon-remove-circle"); 
+                    $('#error_rol').html("");
+                    $('#mensaje').addClass("icon-ok-circle");
+                    $('#mensaje').addClass("verde");           
+                    $('#mensaje').html("<h4>Nuevo Rol Creado!</h4>");
+                    $('#rol').modal('show');
+                   
+                    break;
+                case "2":
+                    $('#error_rol').removeClass("icon-ok-circle");
+                    $('#error_rol').removeClass("verde");
+//                    $('#error_rol').addClass("icon-remove-circle"); 
+                    $('#error_rol').addClass("rojo");
+                    $('#error_rol').html("<h4>Ingrese Un nombre para el Nuevo rol</h4>");
+                    break;
+                
+            }
+               
+             
+               
+            }
+
+           function _createRoles()
+           {
+                $('#crearRol').on('click',function(){
+                    var name_rol= $("#Rol_name_rol").val();
+                   
+                    $ARU.AJAX.createRol("GET","/Rol/CreateRol","name_rol="+name_rol); 
+
+                });
+           }
 
             function _menu()
             {
@@ -403,6 +439,75 @@ $ARU.UI=(function(){
                 }
             });
          }
+         
+         /**
+          * funcion para listar las acciones de un controlador
+          * @returns {undefined}
+          */
+         
+         function _controllersByRol ()
+         {
+             $('a#controllersByRoles').on('click',function(){
+                 var id=($(this).find('div#controllers').text());
+                 $ARU.AJAX.idRol("GET","/Rol/IdRol","idRol="+id);
+                });
+         }
+         
+         function viewActionController(result)
+         {
+            $('#ActionByRoles').html(result); 
+         }
+         
+         
+         
+         /**
+          * funcion para generar el directorio de los controladores y acciones asociadas a un rol
+          * @returns {undefined}
+          */
+         
+         
+         function _treeDirectory(){
+             
+              var DataSourceTree = function (options) {
+                this._data  = options.data;
+                this._delay = options.delay;
+            };
+
+            DataSourceTree.prototype = {
+
+                data: function (options, callback) {
+                    var self = this;
+
+                    setTimeout(function () {
+                        var data = $.extend(true, [], self._data);
+
+                        callback({ data: data });
+
+                    }, this._delay)
+                }
+            };
+             
+             
+             
+             var treeDataSource = new DataSourceTree({
+                data: [
+                    { name: 'Sales', type: 'folder' },
+                    { name: 'Reports', type: 'item', additionalParameters: { id: 'I1' } },
+                    { name: 'Finance', type: 'item', additionalParameters: { id: 'I2' } },
+                    { name: 'Finance1', type: 'item', additionalParameters: { id: 'I3' } }
+                ],
+                delay: 400
+            });
+
+             
+
+            $('#MyTree').tree({
+                dataSource: treeDataSource,
+                loadingHTML: '<img src="/themes/metronic/img/input-spinner.gif"/>',
+            });
+
+             
+         }
 
          function _validarDatos(){
              
@@ -466,16 +571,20 @@ $ARU.UI=(function(){
                          minlength: 5
                     },
                     
-                     'Users[confir_pass]':{
+                   'Users[confir_pass]':{
                          required: true,
                          minlength: 5,
                          equalTo: "#Users_pass"  
                     }
                     ,
-                    
-                     'Users[password]':{
+                    'Users[password]':{
                          required: true,
-                         minlength: 5,
+                         minlength: 5,    
+                    }
+                    ,
+                    
+                     'Rol[name_rol]':{
+                         required: true,
                           
                     }
                 },
@@ -535,10 +644,8 @@ $ARU.UI=(function(){
          function _changePass(){
              $('#changepass').on('click',function()
                 {
-                   
                    var confirmar_pass= $("#Users_validar_pass").val();
-                   var password1= $("#Users_pass").val();
-                   
+                   var password1= $("#Users_pass").val(); 
                    $ARU.AJAX.sendPass("GET","/Users/ChangePass","confirmar_pass="+confirmar_pass+"&pass="+password1);                                              
                 });
 
@@ -552,6 +659,8 @@ $ARU.UI=(function(){
                  $ARU.AJAX.searchEmployee("GET","/Employee/DynamicEmployee","id_employee="+id);
                 });
          }
+         
+        
             
             
         function successPass(result){
@@ -622,7 +731,9 @@ $ARU.UI=(function(){
         init:init,
         successPass:successPass,
         viewEmployeeModal:viewEmployeeModal,
-        
+        rolCreate: rolCreate,
+        viewActionController:viewActionController
+      
         
        
     };

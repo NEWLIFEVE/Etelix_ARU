@@ -204,13 +204,13 @@ class SiteController extends Controller
                                               </li>
                                        </ul>
                          </li>
-                         <li id='controladores' name='controladores'>
+                        <!-- <li id='controladores' name='controladores'>
                                                    <a href='/Employee/AdmiControllers'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Administrar</span>
                                                    
                                                    </a>
-                          </li>
+                          </li>-->
                             ";
                 return $option_menu;
                 break;
@@ -222,7 +222,28 @@ class SiteController extends Controller
                            <span class='title'>Declarar</span>
                            <span class='selected'></span>
                            </a>
-                        </li>";
+                        </li>
+                         <li id ='employee'>
+                                   <a href='javascript:;'>
+                                           <i class='icon-user'></i> 
+                                           <span class='title'>Empleados</span>
+                                           <span class='arrow '></span>
+                                           <span class='selected'></span>
+                                   </a>
+                                       <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/Employee/infoEmployee'>
+                                                 Mi Perfil</a>
+                                              </li>
+                                              <li >
+                                                 <a href='/Employee/SearchEmployee'>
+                                                Ver Empleados</a>
+                                              </li>
+                                       </ul>
+                         </li>
+                            
+                            
+                            ";
                 return $option_menu;
 
                 break;

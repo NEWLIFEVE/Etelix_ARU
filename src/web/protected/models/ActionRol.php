@@ -103,7 +103,8 @@ class ActionRol extends CActiveRecord
         
         public static function getActionRol($id)
         {
-            $model=  self::model()->findAll();
-            return $model;
+            $consulta="select id_action_controller from action_rol where id_rol=".$id."";
+            $model=  self::model()->findAllBySql($consulta);
+            if ($model!=NULL) return $model; else return false;
         }
 }

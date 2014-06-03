@@ -20,13 +20,14 @@
          </div>
          <!-- END PAGE HEADER-->
 <div class="row">
-           
+         
             <div class="col-md-12">
                <div class="tabbable tabbable-custom tabbable-full-width">
                   <ul class="nav nav-tabs">
                      <li class="active"><a data-toggle="tab" href="#tab_2_2">Activos</a></li>
                      <li><a data-toggle="tab" href="#tab_1_3">Inactivos</a></li>
-                     <li><a data-toggle="tab" href="#tab_1_4">Hora de Declaración</a></li>
+                     <?php if (Yii::app()->user->getState('rol')==1){echo "<li><a data-toggle='tab' href='#tab_1_4'>Hora de Declaración</a></li>";} ?>
+                     
                      <li><a data-toggle="tab" href="#tab_1_5"> </a></li>
                   </ul>
                   <div class="tab-content">
@@ -34,14 +35,7 @@
                           <div class="table-responsive">
                            <table class="table table-striped table-bordered table-advance table-hover">
                               <thead>
-                                 <tr>
-                                    <th>Foto</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Skype</th>
-                                    <th>Teléfono</th>
-                                    <th colspan="2">Status</th>
-                                 </tr>
+                                  <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
                                   <?php 
@@ -53,17 +47,27 @@
                                   <td><?php echo $value->first_name;?></td>
                                   <td><?php echo $value->last_name;?></td>
                                   <td><a href="skype:<?php echo $value->skype;?>?call"><i class="icon-skype"></i></a><?php echo " ".$value->skype;?></td>
+                                  <td><?php echo $value->email_company; ?></td>
+                                  <td><?php echo $value->extension_numeric; ?></td>
                                   <td><i class="icon-phone"></i><?php echo " ".$value->cellphone;?></td>
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                  <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="id_employ" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
+                                   <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#cambio_photo' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
                               </tr>
+                              
+                                
                                   <?php } ?>
                               </tbody>
                            </table>
                         </div>
-                        
+                         
+                         
+                         <!--PRUEBA PARA ARMAR LAS OPCIONE EN EL CONTROLADOR-->
+                          
+                               
+                           
+                         <!-- FIN DE PRUEBA-->
                      </div>
                      <!--end tab-pane-->
                      <div id="tab_1_3" class="tab-pane">
@@ -71,16 +75,10 @@
                           <div class="table-responsive">
                            <table class="table table-striped table-bordered table-advance table-hover">
                               <thead>
-                                 <tr>
-                                    <th>Foto</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Skype</th>
-                                    <th>Teléfono</th>
-                                    <th colspan="2">Status</th>
-                                 </tr>
+                                 <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
+                                  
                                  <?php  $inactiveEmployee = Employee::getStatusEmployees("inactive");
                                         foreach ($inactiveEmployee as $value) {
                                         if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
@@ -89,16 +87,22 @@
                                   <td><?php echo $value->first_name;?></td>
                                   <td><?php echo $value->last_name;?></td>
                                   <td><a href="skype:<?php echo $value->skype;?>?call"><i class="icon-skype"></i></a><?php echo " ".$value->skype;?></td>
+                                  <td></td>
+                                  <td></td>
                                   <td><i class="icon-phone"></i><?php echo " ".$value->cellphone;?></td>
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                  <td><a href="#cambio_photo" id="detalle" class="btn default btn-xs green-stripe"><div id="id_employ" style="display:none;"><?php echo $value->id; ?></div>Detalle</a></td>
+                                  <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#cambio_photo' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
+                    
                               </tr>
+                            
                                   <?php } ?>
                               </tbody>
                            </table>
                             </div>
+                         
+                      
                          
                          
                          

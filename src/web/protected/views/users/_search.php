@@ -42,8 +42,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->checkBox($model,'status'); ?>
+		<?php //echo $form->label($model,'status'); ?>
+		<?php //echo $form->checkBox($model,'status'); ?>
 	</div>
 
 	<div class="row">

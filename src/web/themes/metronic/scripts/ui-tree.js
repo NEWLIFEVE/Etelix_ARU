@@ -24,23 +24,7 @@ var UITree = function () {
             };
             
             // INITIALIZING TREE
-            var treeDataSource = new DataSourceTree({
-                data: [
-                    { name: 'Sales', type: 'folder' },
-                    { name: 'Reports', type: 'item', additionalParameters: { id: 'I1' } },
-                    { name: 'Finance', type: 'item', additionalParameters: { id: 'I2' } },
-                    { name: 'Finance1', type: 'item', additionalParameters: { id: 'I3' } }
-                ],
-                delay: 400
-            });
-
-             
-
-            $('#MyTree').tree({
-                dataSource: treeDataSource,
-                loadingHTML: '<img src="/themes/metronic/img/input-spinner.gif"/>',
-            });
-
+           
 
           
         }
