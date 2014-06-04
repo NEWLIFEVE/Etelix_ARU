@@ -50,7 +50,7 @@
     </div>
     <div class="page-footer">
 
-      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1
+      Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1.1
 
     </div>
   </div>
