@@ -269,9 +269,9 @@ class Employee extends CActiveRecord
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Skype</th>
+                                    <th>Teléfono</th>
                                     <th>Correo Corpotativo</th>
                                     <th>Extensión de Oficina</th>
-                                    <th>Teléfono</th>
                                     <th colspan='2'>Status</th>
                                  </tr>";
                 
