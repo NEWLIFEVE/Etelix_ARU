@@ -219,9 +219,9 @@ class EventEmployee extends CActiveRecord
             
       public static function getfiltro($id, $date, $hour)
         {
-          var_dump("hola"); 
-        var_dump($id);
-        var_dump($date);
-        var_dump($hour);
+//          var_dump("hola"); 
+//        var_dump($id);
+//        var_dump($date);
+//        var_dump($hour);
         }
 }
