@@ -3,6 +3,9 @@ Etelix_ARU
 
 Sistema de administracion de RRHH
 
+Realese 1.1.1.1
+- Corregido BUG de boton ENVIAR del formulario infoEmployee, al hacer click realizaba la cction de DECLARAR.
+
 Realese 1.1.1
 - Cambios en Tablas activos e inactivos, solo se muestra detalle para administrador, y se agregaron los campos de correo y ext.
 - Solo se muestran las horas declaradas para Admin.
