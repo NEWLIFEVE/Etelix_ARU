@@ -38,6 +38,7 @@
                                   <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
+                                  <?php $filtro= Employee::getfiltro(); echo $filtro;?>
                                   <?php 
                                         $activeEmployee = Employee::getStatusEmployees("active");
                                         foreach ($activeEmployee as $value) {
@@ -53,7 +54,7 @@
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                   <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#cambio_photo' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
+                                   <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
                               </tr>
                               
                                 
@@ -72,7 +73,7 @@
                      <!--end tab-pane-->
                      <div id="tab_1_3" class="tab-pane">
                    
-                          <div class="table-responsive">
+                          <div class="table-responsive1111">
                            <table class="table table-striped table-bordered table-advance table-hover">
                               <thead>
                                  <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
@@ -93,7 +94,7 @@
                                   <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
                                   <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
                                   <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                  <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#cambio_photo' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
+                                  <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
                     
                               </tr>
                             

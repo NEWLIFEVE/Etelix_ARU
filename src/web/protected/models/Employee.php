@@ -216,6 +216,7 @@ class Employee extends CActiveRecord
         
         public static function getStatusEmployees($type,$limit=null,$offset=null)
         {    
+           
             $conditions=null;
             $consulta="select e.*
                         from
@@ -311,10 +312,25 @@ class Employee extends CActiveRecord
          }
          
          
-         function unmenu()
-         {
+         public function getfiltro()
+                 
+                 {
              
-         }
+             
+             $consulta=" select e.id
+                        from
+                        employee e, users u
+                        where  u.id_employee = e.id and u.id_status = 1";
+             
+             $model=self::model()->findAllBySql($consulta);
+             foreach ($model as $value)
+                 {
+                    $event=  EventEmployee::getfiltroHour($value->id);
+                 }
+             //var_dump($event);
+             //return $model;
+                 }
+       
    
        
 }

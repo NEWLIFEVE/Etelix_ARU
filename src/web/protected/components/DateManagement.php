@@ -47,5 +47,8 @@ class DateManagement
             $hour = date('H:i:s',time() - 3600*date('I')); 
             return $hour;
         }
+        
+        
+        
 }
 ?>

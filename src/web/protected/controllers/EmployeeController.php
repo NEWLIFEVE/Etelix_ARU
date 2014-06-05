@@ -448,7 +448,8 @@ class EmployeeController extends Controller
      {
         $idrol=$_GET['idRol'];
          $rol= Rol::getRol();
-         $model= ActionRol::getActionRol($_GET['idRol']);
+         $model= ActionRol::getActionRol($idrol);
+        
          $controllers= Controllers::getControllers();
          $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$idrol));
      }

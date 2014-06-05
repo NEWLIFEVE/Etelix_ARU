@@ -449,13 +449,24 @@ $ARU.UI=(function(){
          {
              $('a#controllersByRoles').on('click',function(){
                  var id=($(this).find('div#controllers').text());
-                 $ARU.AJAX.idRol("GET","/Rol/IdRol","idRol="+id);
+                 var rol= $('#idrol').text();
+                 $ARU.AJAX.idRol("GET","/Rol/IdRol","idcontrollers="+id+"&rol="+rol);
                 });
          }
          
          function viewActionController(result)
          {
-            $('#ActionByRoles').html(result); 
+         
+                var html = "<div><h2>ACCIONES</h2></div>";//creamos una variable donde almacenar la información
+                for(datos in result)//recorremos el json
+            {
+                html += "<div><a href='#'>" +result[datos]+ "</a></div>";
+              
+              
+            }
+                $('#ActionByRoles').html(html);
+
+           
          }
          
          

@@ -101,4 +101,13 @@ class ActionController extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        public function getAControllers($id)
+         {
+                $consulta="select id_action, id_controller from action_controller where id=".$id."";
+                $array = self::model()->findAllBySql($consulta);
+             
+             return $array;
+         }
 }

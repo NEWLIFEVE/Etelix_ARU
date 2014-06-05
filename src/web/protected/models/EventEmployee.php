@@ -174,6 +174,7 @@ class EventEmployee extends CActiveRecord
                         x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
                         ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id.";";
             $horas=self::model()->findAllBySql($consulta);
+          
             return $horas;
         }
         
@@ -192,5 +193,35 @@ class EventEmployee extends CActiveRecord
                return true;
              }
 
+        }
+        
+        
+        public function getfiltroHour ($id)
+            {
+                $consulta="select  e.id ,ev.date, ev.hour_event
+                        from
+                        employee e, users u, event_employee ev, type_event t,
+                        (select id_employee, MAX(date) as date
+                        from event_employee 
+                        group by id_employee ) x
+                        where 
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and ev.id_type_event=1 and
+                        ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id."";
+               
+                $model=self::model()->findAllBySql($consulta);
+             
+                foreach ($model as $value)
+                    {
+                        $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
+                        var_dump($filtrar);
+                    }
+            }
+            
+      public static function getfiltro($id, $date, $hour)
+        {
+          var_dump("hola"); 
+        var_dump($id);
+        var_dump($date);
+        var_dump($hour);
         }
 }

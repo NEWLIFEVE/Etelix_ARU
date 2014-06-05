@@ -78,20 +78,27 @@ $ARU.AJAX=(function()
         });
     }
     
-    
+    /**
+     * 
+     * @param {type} type
+     * @param {type} action
+     * @param {type} formulario
+     * @returns {undefined}
+     */
      function idRol(type,action, formulario)
     {
         
-        $.ajax({
+        var result = JSON.parse($.ajax({
             type:type,
             url:action,
             data:formulario,
+            async:false,
             success:function(data)
-            {
-                result=JSON.parse(data);
-                $ARU.UI.viewActionController(result);
-            }
-        });
+            { }
+            }).responseText);
+            
+        $ARU.UI.viewActionController(result);    
+            
     }
    
      return {
