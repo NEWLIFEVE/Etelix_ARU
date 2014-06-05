@@ -403,7 +403,7 @@
                                        </div>   
                                  </div>
                                      <div>
-                                          <input type="submit" value="Enviar" class="btn blue button-submit centrar_botones"/>  
+                                          <input type="submit" value="Enviar" class="btn blue centrar_botones"/>  
 <!--                                          <a href="#" class="btn default">Cancelar</a>-->
                                        </div>
                                       <?php $this->endWidget(); ?>
