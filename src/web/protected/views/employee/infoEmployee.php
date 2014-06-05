@@ -200,10 +200,7 @@
                                
                               </ul>
                            </div>
-                           <div class="col-md-9">
-                              <div class="tab-content">
-                                 <div id="tab_1-1" class="tab-pane active">
-                            <?php $form=$this->beginWidget('CActiveForm', array(
+                              <?php $form=$this->beginWidget('CActiveForm', array(
                                     'id'=>'submit_form',
                                     'enableClientValidation'=>true,
                                     'clientOptions'=>array(
@@ -215,6 +212,10 @@
                                             )
                                         );
                                 ?>
+                           <div class="col-md-9">
+                              <div class="tab-content">
+                                 <div id="tab_1-1" class="tab-pane active">
+                          
                                      
                                      
                                      
@@ -299,6 +300,7 @@
                                             </div>
                                             
                                         </div> 
+                              
                                  </div>
                                   
                                 <?php  if (!empty($Address->idCity->idState->idCountry->name)){
@@ -316,6 +318,9 @@
                                             "url"=>CController::createUrl("Employee/StateByCountry"),
                                             "data"=>"js:$('#submit_form').serialize()",
                                             "update"=>"#Employee_state",
+                                            
+                                        
+                                            
                                         
                                         ),
                                         "class"=>"form-control",
@@ -346,7 +351,7 @@
 //                                              if(empty($Address->address_line_1))
 //                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
 //                                              else
-                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>$Address->address_line_1));
+                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control input-xmedium','value'=>$Address->address_line_1));
                                           ?>
                                        </div>
                                      <div class="form-group">
@@ -356,7 +361,7 @@
 //                                              if(empty($Address->address_line_2))
 //                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
 //                                              else
-                                                echo $form->textField($Address,'address_line_2', array('class'=>'form-control','value'=>$Address->address_line_2));
+                                                echo $form->textField($Address,'address_line_2', array('class'=>'form-control input-xmedium','value'=>$Address->address_line_2));
                                              ?>
                                        </div>
                                      
@@ -401,15 +406,17 @@
                                           ?>
                                          
                                        </div>   
+                                     
                                  </div>
                                      <div>
 
                                           <input type="submit" value="Enviar" class="btn blue centrar_botones"/>  
 
                                        </div>
-                                      <?php $this->endWidget(); ?>
+                                     
                               </div>
                            </div>
+                             <?php $this->endWidget(); ?>
                            <!--end col-md-9-->                                   
                         </div>
                      </div>

@@ -24,8 +24,7 @@ $ARU.UI=(function(){
      
         
     }
-
-
+            
             function rolCreate(result)
             {
                console.log (result);
@@ -564,10 +563,18 @@ $ARU.UI=(function(){
                        required: false, 
                    }
                    ,
-                   'Address[country]':{
+                   'Employee[country]':{
                        required: true, 
                    },
+                   'Employee[state]':{
+                       required: true, 
+                   },
+                   
                    'Address[zip]':{
+                       required: true, 
+                   },
+                   
+                   'Address[id_city]':{
                        required: true, 
                    },
                    
