@@ -204,13 +204,13 @@ class SiteController extends Controller
                                               </li>
                                        </ul>
                          </li>
-                         <li id='controladores' name='controladores'>
+                         <!--<li id='controladores' name='controladores'>
                                                    <a href='/Employee/AdmiControllers'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Administrar</span>
                                                    
                                                    </a>
-                          </li>
+                          </li>-->
                             ";
                 return $option_menu;
                 break;

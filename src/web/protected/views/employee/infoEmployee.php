@@ -305,6 +305,7 @@
                                   
                                 <?php  if (!empty($Address->idCity->idState->idCountry->name)){
                                     $pais=$Address->idCity->idState->idCountry->name;
+                                    $code=$Address->idCity->idState->idCountry->code;
                                             }
                                         else {
                                             $pais="seleccione País";
@@ -319,11 +320,9 @@
                                             "data"=>"js:$('#submit_form').serialize()",
                                             "update"=>"#Employee_state",
                                             
-                                        
-                                            
-                                        
                                         ),
                                         "class"=>"form-control",
+                                        "options" => array($code=>array('selected'=>true)),
                                         "empty"=>$pais,
                                     );
                                   
@@ -339,6 +338,7 @@
                                         
                                         ),
                                         "class"=>"form-control",
+                                        "value"=>"1",
                                         
                                     );
                                   
@@ -389,7 +389,7 @@
                                           <label class="control-label letra_empleado">Estado/Provincia/Región</label>
                                              <?php 
                                           if(empty($Address->idCity->idState->name))
-                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione un Pais'),$ajaxCity);
+                                           echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione un Estado'),$ajaxCity);
                                           else
                                             echo $form->dropDownList($Employee,'state', array('empty'=>$Address->idCity->idState->name),$ajaxCity);
                                           ?>
