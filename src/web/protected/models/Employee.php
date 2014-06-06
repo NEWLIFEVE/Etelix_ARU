@@ -232,7 +232,7 @@ class Employee extends CActiveRecord
 
                         where x.id_employee=y.id_employee and x.date = y.date and
                         x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
-                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id";
+                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id ";
             switch ($type) {
                 case "active":
                     $consulta.=" and t.id IN (1,3)";
@@ -271,7 +271,7 @@ class Employee extends CActiveRecord
                                     <th>Apellido</th>
                                     <th>Skype</th>
                                     <th>Teléfono</th>
-                                    <th>Correo Corpotativo</th>
+                                    <th>Correo Corporativo</th>
                                     <th>Extensión de Oficina</th>
                                     <th colspan='2'>Status</th>
                                  </tr>";
@@ -312,21 +312,30 @@ class Employee extends CActiveRecord
          }
          
          
-         public function getfiltro()
+         public function getfiltro($type)
                  
         {
+             
+            
              $consulta=" select e.id
                         from
                         employee e, users u
                         where  u.id_employee = e.id and u.id_status = 1";
              
              $model=self::model()->findAllBySql($consulta);
-             foreach ($model as $value)
+             foreach ($model as $key=> $value)
                  {
-                    $event=  EventEmployee::getfiltroHour($value->id);
+                 //var_dump($value->id);
+                 $event=  EventEmployee::getfiltroHour($value->id, $type); 
+                
+                 if ($event!=NULL){
+                     $array[]=$event;
+                     
                  }
-             //var_dump($event);
-             //return $model;
+                 
+                 }
+               return $array;
+                 //return $event;
        }
        
    

@@ -196,8 +196,10 @@ class EventEmployee extends CActiveRecord
         }
         
         
-        public function getfiltroHour ($id)
+        public function getfiltroHour ($id,$type)
             {
+              
+               $employeeall=NULL;
                 $consulta="select  e.id ,ev.date, ev.hour_event
                         from
                         employee e, users u, event_employee ev, type_event t,
@@ -213,13 +215,69 @@ class EventEmployee extends CActiveRecord
                 foreach ($model as $value)
                     {
                         $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
-                        var_dump($filtrar);
+                        if ($filtrar!=NULL){
+                            $consul="
+                                        select e.*
+                        from
+                        employee e, users u, event_employee ev, type_event t,
+                        (select id_employee, MAX(date) as date
+                        from event_employee 
+                        group by id_employee ) x,
+
+                        (select id_employee, date, MAX(hour_event) as hour
+                        from event_employee
+                        group by id_employee, date
+                        order by id_employee) y
+
+                        where x.id_employee=y.id_employee and x.date = y.date and
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id  and e.id=".$filtrar." ";
+                            
+                           switch ($type) {
+                            case "active":
+                                $consul.=" and t.id IN (1,3)";
+                                break;
+                            case "inactive":
+                                $consul.=" and t.id IN (2,4)";
+                                break;
+                            }  
+                            $employeeall=  Employee::model()->findBySql($consul);
+                            
+                        }
+                          
                     }
+                   
+                    return $employeeall;
             }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
       public static function getfiltro($id, $date, $hour)
         {
-         $calculo_dias= DateManagement::getValidate_hour($hour, $date, 16);
-         return $calculo_dias;
+         $calculo_dias= DateManagement::getFiltroEmployee($hour, $date, 16);
+         $hourclient=DateManagement::gethourcliente();
+         $filtroId=NULL;
+         $fecha=date('Ymd');
+        
+         //cuando la fecha actual es igual a la fecha de declaracion--------cuando la fecha actual es menor o igual a la fecha de calculo por horas
+         if ((strtotime($fecha)== strtotime($date)) || (strtotime($fecha)<= strtotime($calculo_dias[0])))
+             {
+             $filtroId=$id;
+             
+                             
+             }
+             return $filtroId;
+ 
         }
 }
+
+
+

@@ -38,10 +38,11 @@
                                   <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
-                                  <?php $filtro= Employee::getfiltro(); echo $filtro;?>
+                                  <?php $filtroactivo= Employee::getfiltro("active"); ?>
+                                  <?php // $filtro= Employee::getfiltro("inactive"); var_dump($filtro);?>
                                   <?php 
-                                        $activeEmployee = Employee::getStatusEmployees("active");
-                                        foreach ($activeEmployee as $value) {
+                                        //$activeEmployee = Employee::getStatusEmployees("active");
+                                        foreach ($filtroactivo as $value) {
                                         if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
                               <tr>
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
@@ -79,9 +80,9 @@
                                  <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
-                                  
-                                 <?php  $inactiveEmployee = Employee::getStatusEmployees("inactive");
-                                        foreach ($inactiveEmployee as $value) {
+                                  <?php  $filtroinactivo= Employee::getfiltro("inactive");  ?>
+                                 <?php  //$inactiveEmployee = Employee::getStatusEmployees("inactive");
+                                        foreach ($filtroinactivo as $value) {
                                         if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
                               <tr>
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
