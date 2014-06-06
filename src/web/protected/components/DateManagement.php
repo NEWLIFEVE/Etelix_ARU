@@ -9,6 +9,7 @@ class DateManagement
 	
     
     public static function getValidate_hour($start, $date, $plusHours) {
+        
         if ($start != null) {
             $hours = explode(":", $start);
             $hour = $hours[0];
@@ -47,8 +48,7 @@ class DateManagement
             $hour = date('H:i:s',time() - 3600*date('I')); 
             return $hour;
         }
-        
-        
+     
         
 }
 ?>

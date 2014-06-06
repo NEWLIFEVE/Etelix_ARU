@@ -219,9 +219,7 @@ class EventEmployee extends CActiveRecord
             
       public static function getfiltro($id, $date, $hour)
         {
-//          var_dump("hola"); 
-//        var_dump($id);
-//        var_dump($date);
-//        var_dump($hour);
+         $calculo_dias= DateManagement::getValidate_hour($hour, $date, 16);
+         return $calculo_dias;
         }
 }

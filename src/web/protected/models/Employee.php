@@ -314,9 +314,7 @@ class Employee extends CActiveRecord
          
          public function getfiltro()
                  
-                 {
-             
-             
+        {
              $consulta=" select e.id
                         from
                         employee e, users u
@@ -329,7 +327,7 @@ class Employee extends CActiveRecord
                  }
              //var_dump($event);
              //return $model;
-                 }
+       }
        
    
        

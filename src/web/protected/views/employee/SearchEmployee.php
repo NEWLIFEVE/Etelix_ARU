@@ -38,7 +38,7 @@
                                   <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
-                                  <?php //$filtro= Employee::getfiltro(); echo $filtro;?>
+                                  <?php $filtro= Employee::getfiltro(); echo $filtro;?>
                                   <?php 
                                         $activeEmployee = Employee::getStatusEmployees("active");
                                         foreach ($activeEmployee as $value) {
