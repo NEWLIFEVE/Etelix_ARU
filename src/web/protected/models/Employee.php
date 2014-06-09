@@ -316,7 +316,7 @@ class Employee extends CActiveRecord
                  
         {
              
-            
+            $array = array();
              $consulta=" select e.id
                         from
                         employee e, users u
@@ -325,17 +325,19 @@ class Employee extends CActiveRecord
              $model=self::model()->findAllBySql($consulta);
              foreach ($model as $key=> $value)
                  {
-                 //var_dump($value->id);
+                
                  $event=  EventEmployee::getfiltroHour($value->id, $type); 
                 
                  if ($event!=NULL){
                      $array[]=$event;
                      
                  }
-                 
+                
                  }
-               return $array;
-                 //return $event;
+                 
+                // var_dump($event);
+              return $array;
+               
        }
        
    

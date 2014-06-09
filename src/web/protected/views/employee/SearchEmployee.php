@@ -39,27 +39,46 @@
                               </thead>
                               <tbody>
                                   <?php $filtroactivo= Employee::getfiltro("active"); ?>
-                                  <?php // $filtro= Employee::getfiltro("inactive"); var_dump($filtro);?>
-                                  <?php 
-                                        //$activeEmployee = Employee::getStatusEmployees("active");
-                                        foreach ($filtroactivo as $value) {
-                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
-                              <tr>
-                                  <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
-                                  <td><?php echo $value->first_name;?></td>
-                                  <td><?php echo $value->last_name;?></td>
-                                  <td><a href="skype:<?php echo $value->skype;?>?call"><i class="icon-skype"></i></a><?php echo " ".$value->skype;?></td>
-                                  <td><i class="icon-phone"></i><?php echo " ".$value->cellphone;?></td>
-                                  <td><i class="icon-envelope"></i><?php echo " ".$value->email_company; ?></td>
-                                  <td><?php echo " ".$value->extension_numeric; ?></td>
-                                  <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
-                                  <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
-                                  <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                   <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
-                              </tr>
+                                  <?php if ($filtroactivo!=NULL){ 
+                                      
+                                      
+                                      foreach ($filtroactivo as $value) {
+                                       if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+                                       
+                                                   $status=EventEmployee::getSearchStatus($value->id);
+                                                   $estilo=EventEmployee::getStilo($status['id_type_event']);
+                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { echo $opc="";}
+                                       $employee="
+                                               <tr>
+                                               <td><img class='sizephotoemployee' src='/$photoemployee'></td>
+                                               <td>$value->first_name</td>  
+                                               <td>$value->last_name</td>
+                                               <td><a href='skype:$value->skype?call'><i class='icon-skype'></i></a>    $value->skype</td>   
+                                               <td><i class='icon-phone'></i>$value->cellphone</td>
+                                               <td><i class='icon-envelope'></i>$value->email_company</td>
+                                               <td>$value->extension_numeric</td>
+                                               <td><span class='label label-sm $estilo' > $status[name]</span></td>
+                                               <td>$opc</td>
+                                               </tr>
+                                               ";
+                                       echo $employee;
+                                       
+                                       
+                                       } } ?>
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                  <?php //else { echo "vacio";} ?>
                               
-                                
-                                  <?php } ?>
                               </tbody>
                            </table>
                         </div>
@@ -80,26 +99,35 @@
                                  <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
-                                  <?php  $filtroinactivo= Employee::getfiltro("inactive");  ?>
-                                 <?php  //$inactiveEmployee = Employee::getStatusEmployees("inactive");
-                                        foreach ($filtroinactivo as $value) {
-                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} ?>
-                              <tr>
-                                  <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
-                                  <td><?php echo $value->first_name;?></td>
-                                  <td><?php echo $value->last_name;?></td>
-                                  <td><a href="skype:<?php echo $value->skype;?>?call"><i class="icon-skype"></i></a><?php echo " ".$value->skype;?></td>
-                                  <td><i class="icon-phone"></i><?php echo " ".$value->cellphone;?></td>
-                                  <td><i class="icon-envelope"></i><?php echo " ".$value->email_company; ?></td>
-                                  <td><?php echo " ".$value->extension_numeric; ?></td>
-                                  <?php $status=EventEmployee::getSearchStatus($value->id); ?> 
-                                  <?php $estilo=EventEmployee::getStilo($status['id_type_event']); ?>
-                                  <td><span class="label label-sm <?php echo $estilo; ?>"><?php echo $status['name']; ?></span></td>
-                                  <?php if (Yii::app()->user->getState('rol')==1){echo " <td><a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a></td>";} ?> 
-                    
-                              </tr>
+                                  <?php  $filtroinactivo= Employee::getfiltro("inactive");?>
+                                <?php if ($filtroinactivo!=NULL){ 
+                                      
+                                      
+                                      foreach ($filtroinactivo as $value) {
+                                       if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+                                       
+                                                   $status=EventEmployee::getSearchStatus($value->id);
+                                                   $estilo=EventEmployee::getStilo($status['id_type_event']);
+                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { echo $opc="";}
+                                       $employee="
+                                               <tr>
+                                               <td><img class='sizephotoemployee' src='/$photoemployee'></td>
+                                               <td>$value->first_name</td>  
+                                               <td>$value->last_name</td>
+                                               <td><a href='skype:$value->skype?call'><i class='icon-skype'></i></a>    $value->skype</td>   
+                                               <td><i class='icon-phone'></i>$value->cellphone</td>
+                                               <td><i class='icon-envelope'></i>$value->email_company</td>
+                                               <td>$value->extension_numeric</td>
+                                               <td><span class='label label-sm $estilo' > $status[name]</span></td>
+                                               <td>$opc</td>
+                                               </tr>
+                                               ";
+                                       echo $employee;
+                                       
+                                       
+                                       } } ?>
                             
-                                  <?php } ?>
+                              
                               </tbody>
                            </table>
                             </div>

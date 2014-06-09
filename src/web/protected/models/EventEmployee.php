@@ -200,21 +200,33 @@ class EventEmployee extends CActiveRecord
             {
               
                $employeeall=NULL;
-                $consulta="select  e.id ,ev.date, ev.hour_event
+                $consulta="select  e.id ,ev.date, ev.hour_event, ev.id_type_event
                         from
                         employee e, users u, event_employee ev, type_event t,
                         (select id_employee, MAX(date) as date
                         from event_employee 
                         group by id_employee ) x
                         where 
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and ev.id_type_event=1 and
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1  and
                         ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id."";
-               
+                
                 $model=self::model()->findAllBySql($consulta);
-             
+                //var_dump($model);
                 foreach ($model as $value)
                     {
+                   
+                    //var_dump($value->id_type_event);
+                    
+                    if ($value->id_type_event==3){
+                        
+                    
+                        
+                        
+                    }
+                    
                         $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
+                     //var_dump($filtrar);
+                    
                         if ($filtrar!=NULL){
                             $consul="
                                         select e.*
@@ -246,19 +258,18 @@ class EventEmployee extends CActiveRecord
                         }
                           
                     }
-                   
+                   //var_dump($employeeall);
                     return $employeeall;
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+       /**
+        * 
+        * @param type $id
+        * @param type $date
+        * @param type $hour
+        * @return type
+        * 
+        * funcion que retorna los id de los empleados que cumplen con la condicion 16 horas
+        */     
             
       public static function getfiltro($id, $date, $hour)
         {
@@ -266,14 +277,13 @@ class EventEmployee extends CActiveRecord
          $hourclient=DateManagement::gethourcliente();
          $filtroId=NULL;
          $fecha=date('Ymd');
-        
-         //cuando la fecha actual es igual a la fecha de declaracion--------cuando la fecha actual es menor o igual a la fecha de calculo por horas
-         if ((strtotime($fecha)== strtotime($date)) || (strtotime($fecha)<= strtotime($calculo_dias[0])))
+        // var_dump($fecha);
+         if ((strtotime($fecha)== strtotime($date)) )
              {
              $filtroId=$id;
-             
-                             
+                    
              }
+             //var_dump($filtroId);
              return $filtroId;
  
         }
