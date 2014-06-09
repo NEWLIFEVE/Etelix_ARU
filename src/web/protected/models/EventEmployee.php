@@ -183,15 +183,37 @@ class EventEmployee extends CActiveRecord
          
              $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
              $hourclient=DateManagement::gethourcliente();
+//             var_dump($start);
+//
+//             
+//             var_dump(strtotime($calculo_dias[1]));
+//             var_dump($hourclient);
+//             var_dump($calculo_dias[0]);
+//             var_dump($date);
+             $fecha=date('Ymd');
              
-//             var_dump($calculo_dias[1]); HORAS CALCULADAS
-//             var_dump($calculo_dias[0]); FECHA CALCULADAS
-             if ((strtotime($calculo_dias[1])<strtotime($hourclient)) && (strtotime($calculo_dias[0])<= strtotime($date))){
-               return false; 
+             
+//             if ((strtotime($calculo_dias[0])<= strtotime("2014-06-09"))){
+//                 echo "cualquer";
+//             }
+             
+             
+             
+             
+             if (((strtotime($calculo_dias[1]))<= strtotime($hourclient))&&(strtotime($calculo_dias[0])<= strtotime($fecha))){
+                 return false;
              }
+             
              else {
-               return true;
+                return true;
              }
+             
+//             if ((strtotime($calculo_dias[1])<strtotime($start)) && (strtotime($calculo_dias[0])<= strtotime($date))){
+//               return false; 
+//             }
+//             else {
+//               return true;
+//             }
 
         }
         

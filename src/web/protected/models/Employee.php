@@ -232,13 +232,13 @@ class Employee extends CActiveRecord
 
                         where x.id_employee=y.id_employee and x.date = y.date and
                         x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
-                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id ";
+                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id  ";
             switch ($type) {
                 case "active":
-                    $consulta.=" and t.id IN (1,3)";
+                    $consulta.=" and t.id IN (1,3) ORDER BY e.first_name";
                     break;
                 case "inactive":
-                    $consulta.=" and t.id IN (2,4)";
+                    $consulta.=" and t.id IN (2,4) ORDER BY e.first_name";
                     break;
             }
             if($limit!=null && $offset!=null) $conditions="LIMIT ".$limit." OFFSET ".$offset;
@@ -255,7 +255,7 @@ class Employee extends CActiveRecord
         
         public function getHourEvent()
             {
-              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status = 1";
+              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status = 1 ORDER BY e.first_name";
               $employeedeclare=self::model()->findAllBySql($consulta);
               return $employeedeclare;
             }
