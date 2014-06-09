@@ -54,8 +54,8 @@
                                                <td>$value->first_name</td>  
                                                <td>$value->last_name</td>
                                                <td><a href='skype:$value->skype?call'><i class='icon-skype'></i></a>    $value->skype</td>   
-                                               <td><i class='icon-phone'></i>$value->cellphone</td>
-                                               <td><i class='icon-envelope'></i>$value->email_company</td>
+                                               <td><i class='icon-phone'></i> $value->cellphone</td>
+                                               <td><i class='icon-envelope'></i> $value->email_company</td>
                                                <td>$value->extension_numeric</td>
                                                <td><span class='label label-sm $estilo' > $status[name]</span></td>
                                                <td>$opc</td>
@@ -65,30 +65,11 @@
                                        
                                        
                                        } } ?>
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
                                   <?php //else { echo "vacio";} ?>
                               
                               </tbody>
                            </table>
                         </div>
-                         
-                         
-                         <!--PRUEBA PARA ARMAR LAS OPCIONE EN EL CONTROLADOR-->
-                          
-                               
-                           
-                         <!-- FIN DE PRUEBA-->
                      </div>
                      <!--end tab-pane-->
                      <div id="tab_1_3" class="tab-pane">
@@ -116,7 +97,7 @@
                                                <td>$value->last_name</td>
                                                <td><a href='skype:$value->skype?call'><i class='icon-skype'></i></a>    $value->skype</td>   
                                                <td><i class='icon-phone'></i>$value->cellphone</td>
-                                               <td><i class='icon-envelope'></i>$value->email_company</td>
+                                               <td><i class='icon-envelope'></i> $value->email_company</td>
                                                <td>$value->extension_numeric</td>
                                                <td><span class='label label-sm $estilo' > $status[name]</span></td>
                                                <td>$opc</td>
@@ -131,11 +112,7 @@
                               </tbody>
                            </table>
                             </div>
-                         
-                      
-                         
-                         
-                         
+        
                      </div>
                      <!--end tab-pane-->
                      <div id="tab_1_4" class="tab-pane">
