@@ -199,11 +199,12 @@ class UsersController extends Controller
             $model=Users::model()->findByPk($id);
             if($model->id_status != 3){
                 $last_pass=  md5($_GET['confirmar_pass']);
+               
                 
                     $validate_pass=Users::model()->getPass($last_pass);
                                 if ($validate_pass!=NULL){
                                      $model=Users::model()->findByPk($id);
-                                     $model->password= md5( $_GET['pass']);
+                                     $model->password= md5($_GET['pass']);
                                      $model->save();
                                      echo json_encode("1");
                                 }

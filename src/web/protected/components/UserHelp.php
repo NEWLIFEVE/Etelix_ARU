@@ -15,6 +15,7 @@ class UserHelp extends CWebModule
 	 * @return hash string.
 	 */
 	public static function encrypting($string="") {
+ 
 		$hash = 'md5';
 		if ($hash=="md5")
 			return md5($string);

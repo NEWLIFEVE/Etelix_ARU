@@ -183,38 +183,41 @@ class EventEmployee extends CActiveRecord
          
              $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
              $hourclient=DateManagement::gethourcliente();
-//             var_dump($start);
-//
-//             
-//             var_dump(strtotime($calculo_dias[1]));
-//             var_dump($hourclient);
-//             var_dump($calculo_dias[0]);
-//             var_dump($date);
              $fecha=date('Ymd');
+             $fechaActual=  strtotime($fecha);  //captura la fecha de la pc
+             $fechaCalculada=  strtotime($calculo_dias[0]); //fecha calculada por las 16 horas  
+             $horaCalculada=  strtotime($calculo_dias[1]);
+             $horaActual=  strtotime($hourclient);
              
-             
-//             if ((strtotime($calculo_dias[0])<= strtotime("2014-06-09"))){
-//                 echo "cualquer";
-//             }
-             
-             
-             
-             
-             if (((strtotime($calculo_dias[1]))<= strtotime($hourclient))&&(strtotime($calculo_dias[0])<= strtotime($fecha))){
-                 return false;
-             }
-             
-             else {
-                return true;
-             }
-             
-//             if ((strtotime($calculo_dias[1])<strtotime($start)) && (strtotime($calculo_dias[0])<= strtotime($date))){
-//               return false; 
-//             }
-//             else {
-//               return true;
-//             }
+             if ($fechaActual<= $fechaCalculada ){
+              
+                        //cuando la fecha actual es igual a la fecha calculada, se compara la hora actual (cliente) con la hora calculada
+                         if ($fechaActual==$fechaCalculada){
+                                    if ($horaActual<=$horaCalculada)
+                                        return true;
+                                    
+                                    else
+                                        return false;
+                         }
+                         //cuando la fecha actual es menor a la fecha calculada
+                         if ($fechaActual < $fechaCalculada){
+                                   $fechaHoraCalculadas=$calculo_dias[0]." ".$calculo_dias[1];
+                                   $fechaHoraActual=$fecha." ".$hourclient;
+                                   
+                                 $pruebaActual=strtotime($fechaHoraActual);// fecha y hora actual
+                                 $pruebaCalculo=strtotime($fechaHoraCalculadas);//fecha y horas calculadas
 
+                                 if ($pruebaActual<=$pruebaCalculo){
+                                     return true;
+                                 }
+                                 else {
+                                     return false;
+                                 }
+                             
+                         }
+                  
+             }
+          
         }
         
         
