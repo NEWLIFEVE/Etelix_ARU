@@ -277,37 +277,7 @@ class Employee extends CActiveRecord
                                  </tr>";
                 
       
-//                switch ($type) {
-//                    case "active":
-//                          
-//                        $activeEmployee = Employee::getStatusEmployees($type);
-//                         foreach ($activeEmployee as $value) {
-//                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;}
-//                                        
-//                                      $opciones.="<tr>
-//                                                 <td><img class='sizephotoemployee' src='/".$photoemployee."'/></td>
-//                                                 <td style='color:#000;'>".$value->first_name."</td>
-//                                                 <td>".$value->last_name."</td>
-//                                              </tr>";
-//                            }
-//                        break;
-//                        
-//                        case "inactive":
-//                          
-//                        $inactiveEmployee = Employee::getStatusEmployees($type);
-//                         foreach ($inactiveEmployee as $value) {
-//                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;}
-//                                        
-//                                      $opciones.="<tr>
-//                                                 <td><img class='sizephotoemployee' src='/".$photoemployee."'/></td>
-//                                                 <td style='color:#000;'>".$value->first_name."</td>
-//                                                 <td>".$value->last_name."</td>
-//                                              </tr>";
-//                            }
-//                        break;
-//
-//                   
-//                }
+
                 return $opciones;
          }
          
