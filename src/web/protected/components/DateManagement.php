@@ -9,7 +9,7 @@ class DateManagement
 	
     
     public static function getValidate_hour($start, $date, $plusHours) {
-        
+        //echo $date;
         if ($start != null) {
             $hours = explode(":", $start);
             $hour = $hours[0];
@@ -20,9 +20,9 @@ class DateManagement
             if ($maxHour > 24) {
 
                 $nextHour = $maxHour - 24;
-                $fecha = date('Y-m-d');
-                $nuevaFecha = strtotime('+1 day', strtotime($fecha));
+                $nuevaFecha = strtotime('+1 day', strtotime($date));
                 $nuevaFecha = date('Y-m-d', $nuevaFecha);
+                 
                 $fechaHora[] = $nuevaFecha;
 
                 if ($nextHour < 10) {
