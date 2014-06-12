@@ -287,10 +287,10 @@ class Employee extends CActiveRecord
         {
              
             $array = array();
-             $consulta=" select e.id
+             $consulta="select e.id, e.first_name
                         from
                         employee e, users u
-                        where  u.id_employee = e.id and u.id_status = 1";
+                        where  u.id_employee = e.id and u.id_status = 1 order by e.first_name";
              
              $model=self::model()->findAllBySql($consulta);
              foreach ($model as $key=> $value)

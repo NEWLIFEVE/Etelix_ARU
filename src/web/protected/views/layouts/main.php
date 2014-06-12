@@ -193,7 +193,7 @@
                                                <!-- BEGIN FOOTER -->
                                        <div class='footer'>
                                           <div class='footer-inner'>
-                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1.1.1
+                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1.1.2
                                           </div>
                                           <div class='footer-tools'>
                                              <span class='go-top'>

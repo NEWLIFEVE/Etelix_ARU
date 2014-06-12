@@ -3,8 +3,13 @@ Etelix_ARU
 
 Sistema de administracion de RRHH
 
+Realese 1.1.1.2
+- Ahora los empleados que tengan un status de inicio de jornada mayor a 16 hrs sin haber declarado fin de jornada aparecen automaticamente como inactivos.
+- Corregido error de Cifrado para contraseñas con caracteres especiales.
+- Corregido error de comparacion de Horas y Fechas para turnos mixtos.
+
 Realese 1.1.1.1
-- Corregido BUG de boton ENVIAR del formulario infoEmployee, al hacer click realizaba la cction de DECLARAR.
+- Corregido BUG de boton ENVIAR del formulario infoEmployee, al hacer click realizaba .
 
 Realese 1.1.1
 - Cambios en Tablas activos e inactivos, solo se muestra detalle para administrador, y se agregaron los campos de correo y ext.
