@@ -262,8 +262,7 @@ class EventEmployee extends CActiveRecord
                  
                         if ($filtrar!=NULL){
                             //var_dump($filtrar);
-                            $consul="
-                                        select e.*
+                            $consul="select e.*
                                         from
                                         employee e, users u, event_employee ev, type_event t,
                                         (select id_employee, MAX(date) as date
@@ -282,11 +281,11 @@ class EventEmployee extends CActiveRecord
                            switch ($type) {
                             case "active":
                                
-                                $consul.=" and t.id IN (1,3)";
+                                $consul.=" and t.id IN (1,3) order by e.first_name desc";
                                 break;
                             case "inactive":
                                  
-                                $consul.=" and t.id IN (2,4)";
+                                $consul.=" and t.id IN (2,4) order by e.first_name desc";
                                 break;
                             }  
                             $employeeall=  Employee::model()->findBySql($consul);
