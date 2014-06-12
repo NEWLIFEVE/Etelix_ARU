@@ -189,28 +189,20 @@ class EventEmployee extends CActiveRecord
         
         public static function getValidate_hour($start, $date)
         {
-   
-             $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
-             $hourclient=DateManagement::gethourcliente();
-             $fecha=date('Ymd');
-           
-           
-                $calculo= strtotime($calculo_dias[0]." ".$calculo_dias[1]);
-                $actual= strtotime($fecha." ".$hourclient);
-                    // $calculo_dias[1];
-                  // $prueba=  strtotime("2014-06-12 17:05:28");
+            $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
+            $hourclient=DateManagement::gethourcliente();
+            $fecha=date('Ymd');
+            $calculo= strtotime($calculo_dias[0]." ".$calculo_dias[1]);
+            $actual= strtotime($fecha." ".$hourclient);
+            if ($actual<=$calculo)
+                {
+                    return true;
+                }
 
-                    if ($actual<=$calculo)
-                        {
-                            return true;
-                        }
-
-                        else{
-                            return false;
-                        }
-          
-        }
-        
+                else{
+                    return false;
+                }
+        }     
         
         public function getfiltroHour ($id,$type)
             {
