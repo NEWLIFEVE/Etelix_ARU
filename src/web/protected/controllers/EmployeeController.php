@@ -453,6 +453,14 @@ class EmployeeController extends Controller
          $controllers= Controllers::getControllers();
          $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$idrol));
      }
+     
+     
+       public function actionCodePosition()
+    {
+
+            $this->render('CodePosition');
+
+    }
     
     
 }

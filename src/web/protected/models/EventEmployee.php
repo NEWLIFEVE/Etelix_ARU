@@ -155,6 +155,7 @@ class EventEmployee extends CActiveRecord
        if ($id_event==2){ return $stilo="label-warning";}
        if ($id_event==3){ return $stilo="label-info";}
        if ($id_event==4){ return $stilo="label-danger";}
+       if ($id_event==5){ return $stilo="label-default";}
    }
    
    
@@ -225,6 +226,8 @@ class EventEmployee extends CActiveRecord
             {
                  
                $employeeall=NULL;
+               $sindeclarar=NULL;
+               
                 $consulta="select  e.id ,ev.date, ev.hour_event, ev.id_type_event
                         from
                   
@@ -246,22 +249,28 @@ class EventEmployee extends CActiveRecord
                 
                 foreach ($model as $value)
                     {
-                   
-                    //var_dump($value->id);
-                    if (($value->id_type_event ==2) || ($value->id_type_event ==4) ){
-                        $filtrar=$id;
-                        
-                    }
+                    
+                        //$allfilter= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
+                       
                     
                      if (($value->id_type_event ==1) || ($value->id_type_event ==3) ){
                         $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
-                       
+                        if ($filtrar==FALSE){
+                            $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
+                             $consut->id_type_event =5;
+                             $consut->save();
+                       }
                     } 
                         
-                     
-                 
+                    else{
+                        
+                        $filtrar=$id; 
+                         
+                    }
+                     echo $sindeclarar;
+               
                         if ($filtrar!=NULL){
-                            //var_dump($filtrar);
+                          
                             $consul="
                                         select e.*
                                         from
@@ -285,8 +294,8 @@ class EventEmployee extends CActiveRecord
                                 $consul.=" and t.id IN (1,3)";
                                 break;
                             case "inactive":
-                                 
-                                $consul.=" and t.id IN (2,4)";
+                                  
+                                $consul.=" and t.id IN (2,4,5)";
                                 break;
                             }  
                             $employeeall=  Employee::model()->findBySql($consul);
@@ -314,12 +323,19 @@ class EventEmployee extends CActiveRecord
          $hourclient=DateManagement::gethourcliente();
          $filtroId=NULL;
          $fecha=date('Ymd');
-        // var_dump($fecha);
-         if ((strtotime($fecha)== strtotime($date)) )
+         
+         
+        // var_dump($id);
+//        var_dump($date);
+         if ((strtotime($fecha)<= strtotime($date)) )
              {
              $filtroId=$id;
                     
              }
+         else {
+                 return false;
+             
+         }
              //var_dump($filtroId);
              return $filtroId;
  
