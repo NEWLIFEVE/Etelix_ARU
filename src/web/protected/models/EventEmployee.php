@@ -312,6 +312,8 @@ class EventEmployee extends CActiveRecord
          
         $calculo= strtotime($calculo_dias[0]. " ". $calculo_dias[1]);
         $actual= strtotime($fecha ." ". $hourclient );
+//        var_dump($calculo_dias[0]. " ". $calculo_dias[1]);
+//        var_dump($fecha ." ". $hourclient);
          if ($actual <= $calculo)
              {
              $filtroId=$id;
