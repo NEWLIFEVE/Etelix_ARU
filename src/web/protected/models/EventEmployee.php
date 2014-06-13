@@ -237,6 +237,7 @@ class EventEmployee extends CActiveRecord
                     
                      if (($value->id_type_event ==1) || ($value->id_type_event ==3) ){
                         $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
+                      
                         if ($filtrar==FALSE){
                             $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
                              $consut->id_type_event =5;
@@ -309,10 +310,9 @@ class EventEmployee extends CActiveRecord
          $filtroId=NULL;
          $fecha=date('Ymd');
          
-         
-        // var_dump($id);
-//        var_dump($date);
-         if ((strtotime($fecha)<= strtotime($date)) )
+        $calculo= strtotime($calculo_dias[0]. " ". $calculo_dias[1]);
+        $actual= strtotime($fecha ." ". $hourclient );
+         if ($actual <= $calculo)
              {
              $filtroId=$id;
                     

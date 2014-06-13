@@ -18,7 +18,7 @@ class DateManagement
             $maxHour = $hour + $plusHours;
 
             if ($maxHour > 24) {
-
+ 
                 $nextHour = $maxHour - 24;
                 $nuevaFecha = strtotime('+1 day', strtotime($date));
                 $nuevaFecha = date('Y-m-d', $nuevaFecha);
@@ -33,8 +33,10 @@ class DateManagement
                     return $fechaHora;
                 }
             } else {
-                $fechaHora[] = date('Y-m-d');
+                 
+                $fechaHora[] = $date;
                 $fechaHora[] = $maxHour . ":" . $min . ":" . $sec;
+          
                 return $fechaHora;
             }
         } else {
@@ -77,8 +79,9 @@ class DateManagement
                     return $fechaHora;
                 }
             } else {
-                $fechaHora[] = date('Y-m-d');
+                $fechaHora[] = $date;
                 $fechaHora[] = $maxHour . ":" . $min . ":" . $sec;
+                
                 return $fechaHora;
             }
         } else {
