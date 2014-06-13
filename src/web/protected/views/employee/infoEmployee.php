@@ -309,6 +309,7 @@
                                             }
                                         else {
                                             $pais="seleccione País";
+                                            $code= "";
                                             }   
                                     ?>
                                   

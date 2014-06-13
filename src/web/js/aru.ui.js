@@ -25,10 +25,18 @@ $ARU.UI=(function(){
      
         
     }
-            function _MaskCell(){
-                console.log(location.pathname);
-                
-            }
+//            function _MaskCell(){
+//               
+//                
+//                if (location.pathname=="/Employee/infoEmployee")
+//                {
+//                     
+//                   var pais= $("#Employee_country").val();
+//                   console.log(pais);
+//                     
+//                }
+//                
+//            }
             
            
             function rolCreate(result)
