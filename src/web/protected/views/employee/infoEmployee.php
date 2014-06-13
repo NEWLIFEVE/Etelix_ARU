@@ -321,7 +321,7 @@
                                             "update"=>"#Employee_state",
                                             
                                         ),
-                                        "class"=>"form-control",
+                                        "class"=>"form-control ",
                                         "options" => array($code=>array('selected'=>true)),
                                         "empty"=>$pais,
                                     );
@@ -351,7 +351,7 @@
 //                                              if(empty($Address->address_line_1))
 //                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
 //                                              else
-                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control input-xmedium','value'=>$Address->address_line_1));
+                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control ','value'=>$Address->address_line_1));
                                           ?>
                                        </div>
                                      <div class="form-group">
@@ -361,7 +361,7 @@
 //                                              if(empty($Address->address_line_2))
 //                                                echo $form->textField($Address,'address_line_1', array('class'=>'form-control','value'=>''));
 //                                              else
-                                                echo $form->textField($Address,'address_line_2', array('class'=>'form-control input-xmedium','value'=>$Address->address_line_2));
+                                                echo $form->textField($Address,'address_line_2', array('class'=>'form-control','value'=>$Address->address_line_2));
                                              ?>
                                        </div>
                                      

@@ -18,13 +18,19 @@ $ARU.UI=(function(){
         _createRoles();
         _treeDirectory();
         _controllersByRol();
+        _MaskCell();
        
       
        
      
         
     }
+            function _MaskCell(){
+                console.log(location.pathname);
+                
+            }
             
+           
             function rolCreate(result)
             {
                console.log (result);
@@ -66,7 +72,7 @@ $ARU.UI=(function(){
 
             function _menu()
             {
-                   console.log(location.pathname);
+                 
                    var result=(location.pathname).split('/');
    
                 switch (result[1]) {
@@ -752,6 +758,7 @@ $ARU.UI=(function(){
         viewEmployeeModal:viewEmployeeModal,
         rolCreate: rolCreate,
         viewActionController:viewActionController
+        
       
         
        
