@@ -3,6 +3,10 @@ Etelix_ARU
 
 Sistema de administracion de RRHH
 
+- formato de numeros telefonicos (fijos y moviles) dependiendo del pais seleccionado y del codigo del pais
+
+
+
 Realese 1.1.1.2
 - Ahora los empleados que tengan un status de inicio de jornada mayor a 16 hrs sin haber declarado fin de jornada aparecen automaticamente como inactivos.
 - Corregido error de Cifrado para contraseñas con caracteres especiales.
