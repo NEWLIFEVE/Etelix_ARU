@@ -32,18 +32,25 @@ $ARU.UI=(function(){
                 
             function _MaskCell(){
                
+                $("#Employee_extension_numeric").inputmask("mask", {
+                                 "mask": "9999",
+                                  
+                                    });
+               
                 $('#Employee_cod_phone').on('change',function(){
                     var codePhone= $("#Employee_cod_phone").val();
                     $("#Employee_cellphone").val(" ");
                     $("#Employee_home_phone").val(" ");
+                   
+                    
                     switch(codePhone){
                         case "+58":
                             $("#Employee_cellphone").inputmask("mask", {
-                                 "mask": "+58(0499) 999-9999",
-                                  required: true,
+                                 "mask": "+58(499) 999-9999",
+                                  
                                     });
                            $("#Employee_home_phone").inputmask("mask", {
-                                 "mask": "+58(0299) 999-9999"
+                                 "mask": "+58(299) 999-9999"
                                     });
                          break;
                          case "+57":
@@ -689,6 +696,10 @@ $ARU.UI=(function(){
                        required: true, 
                    },
                    
+                    'Employee[extension_numeric]':{
+                       maxlength: 4 
+                   },
+                   
                    'Address[address_line_1]':{
                        required: true, 
                    },
@@ -735,8 +746,7 @@ $ARU.UI=(function(){
                     ,
                     
                      'Rol[name_rol]':{
-                         required: true,
-                          
+                         required: true,    
                     }
                 },
 

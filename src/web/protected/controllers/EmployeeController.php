@@ -232,10 +232,48 @@ class EmployeeController extends Controller
         }
     }
     
+    /*
+     * vista para actualizar los datos de numeros de telefonos para empleados
+     * 
+     */
+    
+    
+    public function actionUpdatePhone()
+      {
+         $model=new Employee;
+         $Address= new Address;
+       
+             if(isset($_POST['Employee'])){
+                 $model=Employee::getEmployee(Yii::app()->user->id);
+                 $model->attributes = $_POST['Employee'];
+                  Users::updateStatus(Yii::app()->user->id);
+                  if($model->save())
+                    {
+                       $this->redirect(array('infoEmployee', 'id' => $model->id));
+                    }
+             }
+             
+       
+         
+         
+         $this->render('UpdatePhone',array('model'=>$model, 'address'=>$Address));
+            
+       
+        
+      }
+
+
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * 
-     * funcion de prueba para armar la primera vista del usuario
+     * Vista de carga de datos basicos del empleado con estatus 3
      */
     public function actionFirstView()
     {    
