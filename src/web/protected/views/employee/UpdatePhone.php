@@ -73,7 +73,7 @@
                                
                                  <div class="tab-pane active" id="tab1">
                                     
-                                             <h3 class="form-section">Actualización de Números Teléfonicos</h3>
+                                             <h3 class="form-section">Hola "<?php echo Yii::app()->user->name?>", por favor Actualiza tus Números Teléfonicos para continuar utilizando ARU</h3>
                                              
                                              
                                              <div class="div_tabla_editar_empleados">

@@ -334,14 +334,15 @@ class EmployeeController extends Controller
                 }
             }
         }
-              
-              
           }
           
-          else{
-             
-             $Address=Address::employee(AddressEmployee::loadAddressByEmployee($model->id)->id_address);
-        
+          else{   
+                $addressModel = AddressEmployee::loadAddressByEmployee($model->id);
+                if(is_null($addressModel))
+                    $Address = new Address;
+                else
+                    $Address=Address::employee($addressModel->id_address);
+                
                 if(isset($_POST['Employee']))
                 {
                     $model->id_nationality=$_POST['Employee']['nationality'];
