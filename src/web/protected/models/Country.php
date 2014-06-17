@@ -11,12 +11,15 @@
  * @property string $local_name
  * @property integer $capital
  * @property string $code_short
+ * @property string $cod_phone
  *
  * The followings are the available model relations:
  * @property State[] $states
  */
 class Country extends CActiveRecord
 {
+    
+            public $telefono;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,10 +43,10 @@ class Country extends CActiveRecord
 			array('region', 'length', 'max'=>26),
 			array('local_name', 'length', 'max'=>45),
 			array('code_short', 'length', 'max'=>2),
-			array('continent', 'safe'),
+			array('continent, cod_phone', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('code, name, continent, region, local_name, capital, code_short', 'safe', 'on'=>'search'),
+			array('code, name, continent, region, local_name, capital, code_short, cod_phone', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +75,7 @@ class Country extends CActiveRecord
 			'local_name' => 'Local Name',
 			'capital' => 'Capital',
 			'code_short' => 'Code Short',
+			'cod_phone' => 'Cod Phone',
 		);
 	}
 
@@ -100,6 +104,7 @@ class Country extends CActiveRecord
 		$criteria->compare('local_name',$this->local_name,true);
 		$criteria->compare('capital',$this->capital);
 		$criteria->compare('code_short',$this->code_short,true);
+		$criteria->compare('cod_phone',$this->cod_phone,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -117,8 +122,13 @@ class Country extends CActiveRecord
 		return parent::model($className);
 	}
         
-        public static function getCountry() {
+           public static function getCountry() {
             return  CHtml::ListData(Country::model()->findAll(),"code","name"); 
         }
         
+        
+           public static function getCodePhoneCountry() {
+            $consulta="Select  cod_phone,(cod_phone || ' ' || name)AS telefono  from country WHERE cod_phone IS NOT NULL group by cod_phone, name";
+            return  CHtml::ListData(Country::model()->findAllBySql($consulta),"cod_phone","telefono"); 
+        }
 }

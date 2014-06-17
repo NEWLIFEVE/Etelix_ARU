@@ -283,21 +283,30 @@
                                                     <label class="control-label ">Skype</label>
                                                      <?php  if(empty($Employee->skype)) echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>''));else echo $form->textField($Employee,'skype', array('class'=>'form-control','value'=>$Employee->skype)); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado form-group">
+                                                 <div class="secundario letra_empleado form-group">
+                                                    <label class="control-label ">Código de Número Telefónico</label>
+                                                    <?php echo $form->dropDownList($Employee,'cod_phone',Country::getCodePhoneCountry(),  array('class'=>'form-control', 'empty'=>' ') );?>
+                                              
+                                                 </div>
+                                                
+                                            </div>
+                                             <div class="contenidos_columnas">
+                                                 <div class="secundario letra_empleado form-group">
                                                     <label class="control-label ">Teléfono Celular</label>
                                                       <?php if(empty($Employee->cellphone))echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'cellphone', array('class'=>'form-control','value'=>$Employee->cellphone)); ?>
                                                  </div>
-                                            </div>
-                                             <div class="contenidos_columnas">
                                                  <div class="secundario letra_empleado form-group">
                                                      <label class="control-label ">Teléfono de Habitación</label>
                                                       <?php if(empty($Employee->home_phone))echo $form->textField($Employee,'home_phone', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'home_phone', array('class'=>'form-control','value'=>$Employee->home_phone)); ?>
                                                  </div>
-                                                <div class="secundario letra_empleado form-group">
+                                               
+                                            </div>
+                                         <div class="contenidos_columnas">
+                                              <div class="secundario letra_empleado form-group">
                                                     <label class="control-label ">Extensión de Oficina</label>
                                                      <?php if(empty($Employee->extension_numeric))echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control','value'=>'')); else echo $form->textField($Employee,'extension_numeric', array('class'=>'form-control','value'=>$Employee->extension_numeric)); ?>
                                                  </div>
-                                            </div>
+                                         </div>
                                             
                                         </div> 
                               
@@ -309,7 +318,7 @@
                                             }
                                         else {
                                             $pais="seleccione País";
-                                            $code= "";
+                                           $code="";
                                             }   
                                     ?>
                                   

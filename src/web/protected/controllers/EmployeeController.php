@@ -47,6 +47,7 @@ class EmployeeController extends Controller
     public function actionInfoEmployee() 
     {
         $Employee=Employee::getEmployee(Yii::app()->user->id);
+       
         if(is_null($Employee))
         {
             $Employee = new Employee;
@@ -59,6 +60,7 @@ class EmployeeController extends Controller
 
         if(isset($_POST['Employee']))
         {
+            
             $Employee->attributes = $_POST['Employee'];
             if($Employee->save())
             {
