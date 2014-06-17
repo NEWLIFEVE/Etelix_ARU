@@ -850,6 +850,7 @@ $ARU.UI=(function(){
         
         function viewEmployeeModal(result){
              
+             
                 $('#title').html(result[0].name);
                 $('#name').html(result[0].name);
                 $('#second_name').html(result[0].second_name);
@@ -861,6 +862,7 @@ $ARU.UI=(function(){
                 $('#email_personal').html(result[0].email_personal);
                 $('#email_company').html(result[0].email_company);
                 $('#cellphone').html(result[0].cellphone);
+                $('#skype').html(result[0].skype);
                 $('#homephone').html(result[0].homephone);
                 $('#extension_numeric').html(result[0].extension_numeric);
                 $('#nationality').html(result[0].nationality);

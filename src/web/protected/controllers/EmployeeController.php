@@ -438,6 +438,7 @@ class EmployeeController extends Controller
                             'email_personal'=>$model->email_personal,
                             'email_company'=>$model->email_company,
                             'cellphone'=>$model->cellphone,
+                            'skype'=>$model->skype,
                             'homephone'=>$model->home_phone,
                             'extension_numeric'=>$model->extension_numeric,
                             'nationality'=>$model->idNationality->name,
