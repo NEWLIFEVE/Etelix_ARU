@@ -8,14 +8,20 @@ class UserUpdateFilter extends CFilter
     {
     	$request=Yii::app()->getRequest();
         
-		if(Users::model()->findByPk(Yii::app()->user->id)->id_status != 3)
+		if(Users::model()->findByPk(Yii::app()->user->id)->id_status == 3)
 		{
+                        $request->redirect('/Employee/firstView');
+			return false;
+		}
+		elseif(Users::model()->findByPk(Yii::app()->user->id)->id_status == 4)
+		{
+                        $request->redirect('/Employee/updatePhone');
 			return true;
 		}
 		else
 		{
-        	$request->redirect('/Employee/firstView');
-     		return false;
+        	
+     		return true;
     	}
     } 
 
