@@ -188,16 +188,12 @@
                                                                    <div class="table-responsive">
                                                                   <table class="table table-striped table-bordered table-advance table-hover">
                                                                      <tbody>
-                                                                           
                                                                             <tr>
                                                                                 <td rowspan="7" align="center"><div id="imagen_rute"><img id="photo" src="" width="178px" height="178px" /></div></td>
                                                                                 <td class="letra_empleado">Nombres</td>
                                                                                 <td><div id="name" style="display:inline"></div> <div id="second_name" style="display:inline"></div></td>
                                                                                 <td class="letra_empleado">Apellidos</td>
                                                                                  <td><div id="titlelast" style="display:inline"></div> <div id="second_last_name" style="display:inline"></div></td>  
-                                                                            </tr>
-                                                                            <tr>
-                                                                                
                                                                             </tr>
                                                                             <?php if (Yii::app()->user->getState('rol')==1){ echo "
                                                                             <tr>
@@ -212,19 +208,9 @@
                                                                                <td><div id='nationality'></div></td>
                                                                                <td class='letra_empleado'>Estado Civil</td>
                                                                                <td><div id='maritalstatus'></div></td>
-
                                                                             </tr>
-                                                                            <tr>
-                                                                               <td class='letra_empleado'>Correo Personal</td>
-                                                                               <td><div id='email_personal'></div></td>
-                                                                               <td class='letra_empleado'>Correo Corporativo</td>
-                                                                               <td><div id='email_company'></div></td>
-                                                                            </tr>";} 
-                                                                          
-                                                                            
+                                                                           ";} 
                                                                             ?>
-                                                                            
-                                                                            
                                                                             <tr>
                                                                                <td class='letra_empleado'>Skype</td>
                                                                                <td><div id='skype'></div></td>
@@ -237,14 +223,18 @@
                                                                                <td class="letra_empleado">Extensión de Oficina</td>
                                                                                <td><div id="extension_numeric"></div></td>  
                                                                             </tr>
+                                                                             <tr>
+                                                                               <td class='letra_empleado'>Correo Personal</td>
+                                                                               <td><div id='email_personal'></div></td>
+                                                                               <td class='letra_empleado'>Correo Corporativo</td>
+                                                                               <td><div id='email_company'></div></td>
+                                                                            </tr>
                                                                            <?php if (Yii::app()->user->getState('rol')==1){ echo "     
                                                                             <tr>
-                                                                                 
                                                                                 <td class='letra_empleado' colspan='3'>Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
                                                                                 <td colspan='2'><div id='address_line_1'></div></td>
                                                                             </tr>
                                                                             <tr>
-                                                                                 
                                                                                 <td class='letra_empleado' colspan='3'>Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
                                                                                 <td colspan='2'><div id='address_line_2'></div></td>
                                                                             </tr>
@@ -266,9 +256,7 @@
                                                                                 <td colspan='2'><div id='city'></div></td>
                                                                             </tr>";}
                                                                             
-                                                                            else{
-                                                                                echo "<tr><td colspan='4'></td></tr><tr><td colspan='4'></td></tr><tr><td colspan='4'></td></tr>";
-                                                                            }?>
+                                                                           ?>
                                                                </tbody>
                                                            </table>
                                                                    </div>
