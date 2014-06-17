@@ -145,7 +145,7 @@
                                            <?php $hora=  EventEmployee::getEventosHoras($value->id) ;?>
                                            <?php foreach ($hora as $key=> $value){ ?>  
                                   
-                                  <td><?php echo $value->hour_event; echo "<span style='color:#666'> (".$value->date.")</span>"; ?></td> <?php } ?>
+                                  <td><?php echo $value->hour_event; echo "<span style='color:#B3B3B3'>   (".$value->date.")</span>"; ?></td> <?php } ?>
                                   <?php if ($key==0){echo "<td></td><td></td><td></td>";}if ($key==1){echo "<td></td><td></td>";} if ($key==2){echo "<td></td>";} ?> 
                               </tr>
                               <?php }?>
