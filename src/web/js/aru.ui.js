@@ -859,11 +859,11 @@ $ARU.UI=(function(){
                 $('#second_last_name').html(result[0].second_last_name);
                 $('#date_birth').html(result[0].date_birth);
                 $('#identity_card').html(result[0].identity_card);
-                $('#email_personal').html(result[0].email_personal);
-                $('#email_company').html(result[0].email_company);
-                $('#cellphone').html(result[0].cellphone);
-                $('#skype').html(result[0].skype);
-                $('#homephone').html(result[0].homephone);
+                $('#email_personal').html("<i class='icon-envelope'></i> "+result[0].email_personal);
+                $('#email_company').html("<i class='icon-envelope'></i> "+result[0].email_company);
+                $('#cellphone').html("<i class='icon-phone'></i> "+result[0].cellphone);
+                $('#skype').html("<a href='skype:"+result[0].skype+"?call'><i class='icon-skype'></i></a> "+result[0].skype);
+                $('#homephone').html("<i class='icon-home'></i> "+result[0].homephone);
                 $('#extension_numeric').html(result[0].extension_numeric);
                 $('#nationality').html(result[0].nationality);
                 $('#maritalstatus').html(result[0].maritalstatus);
