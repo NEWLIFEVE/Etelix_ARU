@@ -172,7 +172,7 @@ class EventEmployee extends CActiveRecord
                         from event_employee 
                         group by id_employee ) x
                         where 
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
                         ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id.";";
             $horas=self::model()->findAllBySql($consulta);
           
