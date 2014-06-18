@@ -233,7 +233,7 @@ class Employee extends CActiveRecord
                         order by id_employee) y
 
                         where x.id_employee=y.id_employee and x.date = y.date and
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
                         ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id  ";
             switch ($type) {
                 case "active":
@@ -288,7 +288,7 @@ class Employee extends CActiveRecord
              $consulta="select e.id, e.first_name
                         from
                         employee e, users u
-                        where  u.id_employee = e.id and u.id_status != 2 order by e.first_name";
+                        where  u.id_employee = e.id and u.id_status NOT IN(2,3) order by e.first_name";
              
              $model=self::model()->findAllBySql($consulta);
              foreach ($model as $key=> $value)
