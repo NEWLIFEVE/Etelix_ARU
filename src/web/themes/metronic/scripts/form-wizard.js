@@ -10,10 +10,31 @@ var FormWizard = function () {
 
             function format(state) {
                 if (!state.id) return state.text; // optgroup
-                return "<img class='flag' src='/themes/metronic/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
+                return "&nbsp;&nbsp;" + state.text; //colocar link para las imagenes
             }
 
-            $("#country_list").select2({
+            $("#Employee_country1").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+            
+            
+            $("#Employee_state1").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+            
+            $("#Address_id_city1").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: format,
@@ -23,7 +44,8 @@ var FormWizard = function () {
                 }
             });
 
-            var form = $('#submit_form');
+            var form = $('#firstview');
+           
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -33,146 +55,41 @@ var FormWizard = function () {
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
-                    //account
-                    first_name: {
-                        minlength: 5,
-                        required: true
-                    },
-                    last_name: {
-                        minlength: 5,
-                        required: true
-                    },
-                    
-                     identity_card: {
-                        minlength: 7,
-                        required: true,
+                    'Employee[first_name]':{
+                       required: true
+                   },
                    
-                    },
-                    
-                    date_birth: {
-                      
-                        required: true
-                    },
-                    
-                    nationality: {
-                      
-                        required: true
-                    },
-                    
-                     state_marital: {
-                  
-                        required: true
-                    },
-                    
-                    level_education: {
-                  
-                        required: true
-                    },
-                    
-                     mask_cuenta: {
-                  
-                        required: true
-                    },
-                    
-                     emplo_state: {
-                  
-                      required: true
-                    },
-                    
-                  
-                    address_room: {
-                  
-                      required: true
-                    },
-                    rpassword: {
-                        minlength: 5,
-                        required: true,
-                        equalTo: "#submit_form_password"
-                    },
-                    //profile
-                    fullname: {
-                        required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    
-                     email_company: {
-                        required: true,
-                        email: true
-                    },
-                    cellphone: {
-                        required: true
-                    },
-                    
-                     officephone: {
-                        required: true
-                    },
-                    
-                     extension_numeric: {
-                        required: false
-                    },
-                     skype: {
-                        required: true
-                    },
-                    
-                    branch_office: {
-                        required: true
-                    },
-                    management: {
-                        required: true
-                    },
-                    
-                    departament: {
-                        required: false
-                    },
-                    
-                    
-                     office: {
-                        required: false
-                    },
-                    gender: {
-                        required: true
-                    },
-                    address: {
-                        required: true
-                    },
-                    city: {
-                        required: true
-                    },
-                    country: {
-                        required: true
-                    },
-                    //payment
-                    card_name: {
-                        required: true
-                    },
-                    acount_number: {
-                      
-                        maxlength: 24,
-                        required: true
-                    },
-                    card_cvc: {
-                        digits: true,
-                        required: true,
-                        minlength: 3,
-                        maxlength: 4
-                    },
-                    card_expiry_date: {
-                        required: true
-                    },
-                    'payment[]': {
-                        required: true,
-                        minlength: 1
-                    }
-                },
-
-                messages: { // custom messages for radio buttons and checkboxes
-                    'payment[]': {
-                        required: "Please select at least one option",
-                        minlength: jQuery.format("Please select at least one option")
-                    }
+                   'Employee[last_name]':{
+                       required: true
+                   },
+                   'Employee[identity_card]':{
+                       required: true
+                   },
+                   'Employee[email_personal]':{
+                       required: true,
+                       email: true
+                   },
+                   'Employee[email_company]':{
+                       required: true,
+                       email: true
+                   },
+                   'Employee[skype]':{
+                       required: true, 
+                   },
+                   'Employee[cellphone]':{
+                       required: true, 
+                   },
+                   
+                   'Address[address_line_1]':{
+                       required: true, 
+                   },
+                   'Address[address_line_2]':{
+                       required: true, 
+                   }
+                   ,
+                   'Address[country]':{
+                       required: true, 
+                   }
                 },
 
                 errorPlacement: function (error, element) { // render error placement for each input type
@@ -214,9 +131,10 @@ var FormWizard = function () {
                 },
 
                 submitHandler: function (form) {
-                    success.show();
-                    error.hide();
+//                    success.show();
+//                    error.hide();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+                    form.submit();
                 }
 
             });
@@ -244,7 +162,7 @@ var FormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
                 // set done steps
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
@@ -309,7 +227,7 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                alert('Finished! Hope you like it :)');
+//                alert('Finished! Hope you like it :)');
             }).hide();
         }
 

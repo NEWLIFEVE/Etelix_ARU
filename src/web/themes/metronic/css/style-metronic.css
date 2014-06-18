@@ -1382,3 +1382,21 @@ Bootstrap Panel
      -moz-box-shadow: none !important;
           box-shadow: none !important;
 }
+
+
+
+
+.centrar_botones{
+    margin-top: 3%;
+    width: 100%;
+    height: 50px;
+     /*margin-left: 15%;*/
+}
+
+.btdeclare{
+    padding-top: 1.1em;
+}
+
+.message-declare{
+    width: 100% !important;
+}

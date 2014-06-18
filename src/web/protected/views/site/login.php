@@ -68,19 +68,19 @@
          
           <?php $this->endWidget(); ?>
          <div class="forget-password">
-            <h4>Olvidaste tu contraseña ?</h4>
+            <h4>Olvido su contraseña ?</h4>
             <p>
                No se preocupe, haga click <a href="javascript:;"  id="forget-password">aquí</a>
-               para restablecer tu contraseña.
+               para restablecer su contraseña.
             </p>
          </div>
-         <div class="create-account">
+<!--         <div class="create-account">
             <p>
                  
                ¿No tienes una cuenta todavía?&nbsp; 
                <a href="javascript:;" id="register-btn" >Crear una cuenta</a>
             </p>
-         </div>
+         </div>-->
       </form>
       <!-- END LOGIN FORM -->        
       <!-- BEGIN FORGOT PASSWORD FORM -->
@@ -421,8 +421,8 @@
    <!-- END LOGIN -->
    <!-- BEGIN COPYRIGHT -->
    <div class="copyright">
-     <font color="white">Copyrigth 2014 by</font> <a id="enlacerenoc" href="http://www.sacet.com.ve/">www.sacet.com.ve</a>
-			<font color="white"> Legal privacy</font>
+     <font color="white">Copyrigth 2014 by</font> <a id="enlacerenoc" href="http://www.etelix.com/">www.etelix.com</a>
+			<font color="white"> Legal privacy Version 1.1.2 </font>
    </div>
    
    <!-- END JAVASCRIPTS -->

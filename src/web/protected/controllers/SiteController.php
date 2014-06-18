@@ -29,13 +29,13 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-           if(!Yii::app()->user->isGuest)
-                {
-            $this->render('index');
-                }
-                
-            else{
-                   $model = new LoginForm;
+		if(!Yii::app()->user->isGuest)
+		{
+            $this->redirect('eventEmployee/Create');
+        }
+        else
+        {
+            $model=new LoginForm;
             // if it is ajax validation request
             if(isset($_POST['ajax']) && $_POST['ajax'] === 'login-form')
             {
@@ -47,14 +47,13 @@ class SiteController extends Controller
             {
                 $model->attributes = $_POST['LoginForm'];
                 // validate user input and redirect to the previous page if valid
-                if($model->validate() && $model->login())
-                    $this->redirect(Yii::app()->user->returnUrl);
+                if($model->validate() && $model->login()) $this->redirect('EventEmployee/Create');
+//                    $this->redirect(Yii::app()->user->returnUrl);
             }
             // display the login form
             $this->render('login', array('model' => $model));
         }
-                
-            }
+    }
             
             
 	
@@ -102,39 +101,39 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
-	public function actionLogin()
-	{
-            
-            
-              if(!Yii::app()->user->isGuest)
-        {
-            $this->render('index');
-        }
-        else
-        {
-		$model=new LoginForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
-        }
-        
-        
-                }
+//	public function actionLogin()
+//	{
+//            
+//            
+//              if(!Yii::app()->user->isGuest)
+//        {
+//            $this->render('index');
+//        }
+//        else
+//        {
+//		$model=new LoginForm;
+//
+//		// if it is ajax validation request
+//		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+//		{
+//			echo CActiveForm::validate($model);
+//			Yii::app()->end();
+//		}
+//
+//		// collect user input data
+//		if(isset($_POST['LoginForm']))
+//		{
+//			$model->attributes=$_POST['LoginForm'];
+//			// validate user input and redirect to the previous page if valid
+//			if($model->validate() && $model->login())
+//				$this->redirect(Yii::app()->user->returnUrl);
+//		}
+//		// display the login form
+//		$this->render('login',array('model'=>$model));
+//        }
+//        
+//        
+//                }
 
 	/**
 	 * Logs out the current user and redirect to homepage.
@@ -144,4 +143,100 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+        
+        public function actionBlockScreen(){
+            $model=new LoginForm;
+            if(isset($_POST['Users'])){
+                 $model->attributes=$_POST['Users'];
+                 if($model->validate() && $model->login()) $this->redirect('/EventEmployee/Create');
+            }
+            
+            $datos=$_GET['idUser'];
+            if ($datos!=NULL){
+                Yii::app()->user->logout();
+                $user=Users::getUsers($datos);
+                $model=Employee::getEmployee($datos);
+                $this->render('lockEmployee',array('model'=>$model,'user'=>$user));
+            }
+            else {
+                Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);  
+            }
+        }
+
+        public static function CreateMenu($id_rol)
+           {
+             switch ($id_rol) {
+            case 1:
+            $option_menu="<li id='create' name='create'>
+                                                   <a href='/EventEmployee/Create'>
+                                                   <i class='icon-map-marker'></i> 
+                                                   <span class='title'>Declarar</span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                          </li>
+                           <li id ='employee'>
+                                   <a href='javascript:;'>
+                                           <i class='icon-user'></i> 
+                                           <span class='title'>Empleados</span>
+                                           <span class='arrow '></span>
+                                           <span class='selected'></span>
+                                   </a>
+                                       <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/Employee/infoEmployee'>
+                                                 Mi Perfil</a>
+                                              </li>
+                                              <li >
+                                                 <a href='/Employee/SearchEmployee'>
+                                                Ver Empleados</a>
+                                              </li>
+                                       </ul>
+                         </li>
+                         <!--<li id='controladores' name='controladores'>
+                                                   <a href='/Employee/AdmiControllers'>
+                                                   <i class='icon-map-marker'></i> 
+                                                   <span class='title'>Administrar</span>
+                                                   
+                                                   </a>
+                          </li>-->
+                            ";
+                return $option_menu;
+                break;
+            case 2:
+            $option_menu="
+                        <li id='create' name='create'>
+                           <a href='/EventEmployee/Create'>
+                           <i class='icon-map-marker'></i> 
+                           <span class='title'>Declarar</span>
+                           <span class='selected'></span>
+                           </a>
+                        </li>
+                         <li id ='employee'>
+                                   <a href='javascript:;'>
+                                           <i class='icon-user'></i> 
+                                           <span class='title'>Empleados</span>
+                                           <span class='arrow '></span>
+                                           <span class='selected'></span>
+                                   </a>
+                                       <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/Employee/infoEmployee'>
+                                                 Mi Perfil</a>
+                                              </li>
+                                              <li >
+                                                 <a href='/Employee/SearchEmployee'>
+                                                Ver Empleados</a>
+                                              </li>
+                                       </ul>
+                         </li>
+                            
+                            
+                            ";
+                return $option_menu;
+
+                break;
+
+        }
+           }
 }

@@ -2570,7 +2570,8 @@ Custom tabs
 }
 
 .tabbable-custom .nav-tabs > li.active { 
-  border-top: 3px solid #d12610; 
+  border-top: 3px solid #28b779; 
+  /*border-top: 3px solid #d12610;*/ 
   margin-top: 0; 
   position: relative; 
 }
@@ -3797,7 +3798,7 @@ textarea.placeholder {
 
 .form-control-static {
   font-size: 14px;
-  padding-top: 7px;
+  padding-top: 1px;//margen para la vista del empleado de confirmar los datos
 }
 
 .control-label .required {
@@ -3860,6 +3861,7 @@ textarea.placeholder {
   margin: 30px 0px 25px 0px;
   padding-bottom: 5px;
   border-bottom: 1px solid #eee;
+  color :#27a9e3;
 }
 
 .form .form-section:first-child {
@@ -4134,4 +4136,70 @@ Responsive Flip Scroll Tables
   .flip-scroll tbody tr { border-left: 1px solid #ddd; }
   .flip-scroll th:last-child,
   .flip-scroll td:last-child { border-bottom: 1px solid #ddd; }
+}
+
+
+
+#contenedor {
+  display: table;
+  border-spacing: 5px;
+  margin-left: 30%;
+
+}
+#contenidos {
+  display: table-row;
+}
+#principal, #secundario, #confirmaemployee{
+  display: table-cell;
+}
+#principal {
+  width: 60%;
+}
+#secundario{
+  width: 20%;
+}
+
+#secundariosed{
+  margin-left: 60%; 
+  width: 40%;
+}
+
+.mitad{
+     width: 50%;
+}
+
+.sizephotoemployee{
+    
+    width: 29px;
+    height: 29px;
+}
+
+.modalemployee{
+    height:300%;
+    width:90%;
+}
+
+.photo-dialog{
+    width: 24%;
+}
+#confirmaemployee{ width: 70%;}
+.verde{color:#10a062; }
+.rojo{color:#FF0000;}
+.margen_detalle_empleado{float: left; margin-right: 20px;}
+
+
+
+@media only screen and (max-width: 800px) {
+.photo-modal-view-employee{
+   width: 24%;
+}
+
+.photomodel{
+    width:178px; 
+    height:178px;
+}
+
+
+th.colorstart{
+    background:#ff0000;
 }

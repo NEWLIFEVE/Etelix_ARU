@@ -8,9 +8,13 @@
 class UserIdentity extends CUserIdentity
 {
     
-        private $_id;
-	const ERROR_EMAIL_INVALID=3;
-	const ERROR_STATUS_INACTIV=4;
+    private $_id;
+    private $id_rol;
+
+    const ERROR_EMAIL_INVALID=3;
+    const ERROR_STATUS_INACTIV=4;
+    const UPDATE_DATA=5;
+
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -21,33 +25,52 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-           if (strpos($this->username,"@")) {
-			$user= User::model()->findByAttributes(array('email'=>$this->username));
-                      //CVarDumper::dump($user);
-		} else {
-			$user= User::model()->findByAttributes(array('username'=>$this->username));
-                         
+        if(strpos($this->username,"@"))
+        {
+			$user=Users::model()->findByAttributes(array('email'=>$this->username));
+
 		}
-		if($user===null){
-			if (strpos($this->username,"@")) {
+		else
+		{
+			$user=Users::model()->findByAttributes(array('username'=>$this->username));             
+		}
+		if($user===null)
+		{
+			if(strpos($this->username,"@"))
+			{
 				$this->errorCode=self::ERROR_EMAIL_INVALID;
-			} else {
+			} 
+			else
+			{
 				$this->errorCode=self::ERROR_USERNAME_INVALID;
 			}
 		}
-		else if($this->password!==$user->password)
-		{
-                        echo $this->password;    
+		else if(UserHelp::encrypting($this->password)!==$user->password)
+		{     
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		}
-		
+		else if($user->id_status==2)
+		{
+			$this->erroCode=self::ERROR_STATUS_INACTIV;
+		}
 		else 
 		{
 			$this->_id=$user->id;
+                        $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
-                    
+			$user->lastvist_at=date('Y-m-d H:m:s P');
+			$user->save();
 		}
 		return $this->errorCode;
 	}
+
+	/**
+	 *
+	 */
+	public function getId()
+    {
+        return $this->_id;
+     
+    }
 }
