@@ -257,7 +257,7 @@ class Employee extends CActiveRecord
         
         public function getHourEvent()
             {
-              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status = 1 ORDER BY e.first_name";
+              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status != 2 ORDER BY e.first_name";
               $employeedeclare=self::model()->findAllBySql($consulta);
               return $employeedeclare;
             }
