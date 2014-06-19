@@ -37,11 +37,10 @@
                       <?php foreach ($rol as $value){?>
                            <?php //echo $value->id;?>
                       <div><i class="icon-user"></i>  <?php echo $value->name_rol;?><br></div>
-                      <div><a href="/Employee/AdminPermit?idRol=<?php echo $value->id; ?>">Editar Permisos</a></div>
+                      <div><a href="/Employee/AdminPermit/<?php echo $value->id; ?>">Editar Permisos</a></div>
 
                         <?php } ?>
                      
                   </div>
                </div>
-
 

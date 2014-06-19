@@ -88,16 +88,23 @@ $ARU.AJAX=(function()
      function idRol(type,action, formulario)
     {
         
-        var result = JSON.parse($.ajax({
+     $.ajax({
             type:type,
             url:action,
             data:formulario,
-            async:false,
+          
             success:function(data)
-            { }
-            }).responseText);
+            { 
+               //console.log(data[0]);
+                result= JSON.parse(data);
+                $ARU.UI.viewActionController(result); 
             
-        $ARU.UI.viewActionController(result);    
+            }
+            });
+          
+         
+        
+          
             
     }
    

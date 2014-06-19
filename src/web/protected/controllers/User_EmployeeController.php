@@ -1,8 +1,8 @@
-<?php
+s<?php
 
 class User_EmployeeController extends Controller
 {
-	public function actionIndex()
+	dpublic function actionIndex()
 	{
         $id=Yii::app()->user->id;
         $model = Employee::model()->findByPk($id);
@@ -20,8 +20,7 @@ class User_EmployeeController extends Controller
 
 	
 	
-	public function filters()
-	{
+	d{
 		// return the filter configuration for this controller, e.g.:
 		return array(
 			'accessControl', // perform access control for CRUD operations

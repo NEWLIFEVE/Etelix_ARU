@@ -189,7 +189,7 @@
                                                                   <table class="table table-striped table-bordered table-advance table-hover">
                                                                      <tbody>
                                                                             <tr>
-                                                                                <td rowspan="7" align="center"><div id="imagen_rute"><img id="photo" src="" width="178px" height="178px" /></div></td>
+                                                                                <td rowspan="6" align="center"><div id="imagen_rute"><img id="photo" src="" width="178px" height="178px" /></div></td>
                                                                                 <td class="letra_empleado">Nombres</td>
                                                                                 <td><div id="name" style="display:inline"></div> <div id="second_name" style="display:inline"></div></td>
                                                                                 <td class="letra_empleado">Apellidos</td>
