@@ -168,12 +168,13 @@ class EventEmployee extends CActiveRecord
         {
             $date=date('Ymd');
             $model=  EventEmployee::getMaxDateMinHour($id);
-            $eventosOld=EventEmployee::getWorkday($id, $model->date);
-            $validate_hour=EventEmployee::getValidate_hour($eventosOld[0]['hour'], $model->date);
-            if($validate_hour){
-                $date = $model->date;
+            if($model){
+                $eventosOld=EventEmployee::getWorkday($id, $model->date);
+                $validate_hour=EventEmployee::getValidate_hour($eventosOld[0]['hour'], $eventosOld[0]['date']);
+                $eventos=EventEmployee::getWorkday($id, $model->date);
+            }else{
+                $eventos[]=NULL;
             }
-            $eventos=EventEmployee::getWorkday($id, $date);
             return $eventos;
         }
         
