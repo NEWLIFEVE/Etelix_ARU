@@ -68,6 +68,7 @@ class EventEmployeeController extends Controller
         if($Employee!=NULL)
         {        
             $model=  EventEmployee::getMaxDateMinHour($Employee->id);
+            if ($model){
             $eventos=EventEmployee::getWorkday($Employee->id, $model->date);
             $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], $model->date);
             if ($validate_hour){
@@ -75,7 +76,11 @@ class EventEmployeeController extends Controller
             }else {
                 $eventos=FALSE;
                 $this->render('create',array('eventos'=>$eventos,));
-            }     
+            }
+            }else{
+                $eventos=FALSE;
+                $this->render('create',array('eventos'=>$eventos,));
+            }
         }
         else
         {
@@ -202,32 +207,34 @@ class EventEmployeeController extends Controller
     {
         if(isset($_GET['location']) && isset($_GET['date_event']) && isset($_GET['time_event']))
         {
-            $last=null;
-            $idEmployee=Employee::getEmployee(Yii::app()->user->id)->id;
-            $date=date('Ymd');
-            $model=  EventEmployee::getMaxDateMinHour($idEmployee);
-            $eventosOld=EventEmployee::getWorkday($idEmployee, $model->date);
-            $validate_hour=EventEmployee::getValidate_hour($eventosOld[0]['hour'], $model->date);
-            if($validate_hour){
-                $date = $model->date;
-            }
-            
-            $eventos=EventEmployee::getWorkday($idEmployee, $date);
-            
-            if($eventos!=false)
-            {
-                $last=end($eventos);
-                if($last['event']<4)
-                {
-                    $type_event=$last['event']+1;
-                    $aux=TRUE;
+            $last = null;
+            $idEmployee = Employee::getEmployee(Yii::app()->user->id)->id;
+            $date = date('Ymd');
+            $model = EventEmployee::getMaxDateMinHour($idEmployee);
+            if ($model) {
+                $eventosOld = EventEmployee::getWorkday($idEmployee, $model->date);
+                $validate_hour = EventEmployee::getValidate_hour($eventosOld[0]['hour'], $model->date);
+                if ($validate_hour) {
+                    $date = $model->date;
                 }
+
+                $eventos = EventEmployee::getWorkday($idEmployee, $date);
+
+                if ($eventos != false) {
+                    $last = end($eventos);
+                    if ($last['event'] < 4) {
+                        $type_event = $last['event'] + 1;
+                        $aux = TRUE;
+                    }
+                } else {
+                    $type_event = 1;
+                    $aux = TRUE;
+                }
+            } else {
+                $type_event = 1;
+                $aux = TRUE;
             }
-            else
-            {
-                $type_event=1;
-                $aux=TRUE;
-            }
+
             if($aux)
             {
                 $model = new EventEmployee();
@@ -237,7 +244,7 @@ class EventEmployeeController extends Controller
                 $model->id_employee = $idEmployee;
                 $model->id_location = Location::getId($_GET['location']);
                 if($model->save())
-                    echo json_encode(array('event'=>$model->id_type_event,'hour'=>$model->hour_event));
+                    echo json_encode(array('event'=>$model->id_type_event,'hour'=>$model->hour_event,'date'=>$model->date));
                 else
                     echo 'fallo';
             }

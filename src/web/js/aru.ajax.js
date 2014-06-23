@@ -18,7 +18,7 @@ $ARU.AJAX=(function()
             {
                 result=JSON.parse(data);
                 id=result.event;
-                $('div#tab'+id+' label').html(result.hour);
+                $('div#tab'+id+' label').html(result.hour +" <span style='color:#B3B3B3'>("+result.date+")</span>");
             }
          });
 

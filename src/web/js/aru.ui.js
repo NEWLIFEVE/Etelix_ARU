@@ -19,11 +19,6 @@ $ARU.UI=(function(){
         _treeDirectory();
         _controllersByRol();
         _MaskCell();
-       
-      
-       
-     
-        
     }
     
       var result=(location.pathname).split('/');
@@ -511,8 +506,6 @@ $ARU.UI=(function(){
             
          function _applyMetroSelect(){
              
-            
-            
              $("#Employee_id_nationality").select2({
                 placeholder: "Select",
                 allowClear: true,
