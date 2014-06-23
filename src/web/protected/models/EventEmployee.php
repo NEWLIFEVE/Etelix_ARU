@@ -175,6 +175,13 @@ class EventEmployee extends CActiveRecord
                         x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
                         ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id.";";
             $horas=self::model()->findAllBySql($consulta);
+            
+            
+            $model=  EventEmployee::getMaxDateMinHour($id);
+            var_dump($model);
+//            $eventos=EventEmployee::getWorkday($id, $model->date);
+//            $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], $model->date);
+                            
           
             return $horas;
         }
