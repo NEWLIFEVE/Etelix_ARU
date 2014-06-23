@@ -47,16 +47,12 @@
                                        
                                                    $status=EventEmployee::getSearchStatus($value->id);
                                                    $estilo=EventEmployee::getStilo($status['id_type_event']);
-                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { echo $opc="";}
+                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
                                        $employee="
                                                <tr>
                                                <td><img class='sizephotoemployee' src='/$photoemployee'></td>
                                                <td>$value->first_name</td>  
                                                <td>$value->last_name</td>
-                                               <td><a href='skype:$value->skype?call'><i class='icon-skype'></i></a>    $value->skype</td>   
-                                               <td><i class='icon-phone'></i> $value->cellphone</td>
-                                               <td><i class='icon-envelope'></i> $value->email_company</td>
-                                               <td>$value->extension_numeric</td>
                                                <td><span class='label label-sm $estilo' > $status[name]</span></td>
                                                <td>$opc</td>
                                                </tr>
@@ -89,16 +85,12 @@
                                        
                                                    $status=EventEmployee::getSearchStatus($value->id);
                                                    $estilo=EventEmployee::getStilo($status['id_type_event']);
-                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { echo $opc="";}
+                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
                                        $employee="
                                                <tr>
                                                <td><img class='sizephotoemployee' src='/$photoemployee'></td>
                                                <td>$value->first_name</td>  
                                                <td>$value->last_name</td>
-                                               <td><a href='skype:$value->skype?call'><i class='icon-skype'></i></a>    $value->skype</td>   
-                                               <td><i class='icon-phone'></i>$value->cellphone</td>
-                                               <td><i class='icon-envelope'></i> $value->email_company</td>
-                                               <td>$value->extension_numeric</td>
                                                <td><span class='label label-sm $estilo' > $status[name]</span></td>
                                                <td>$opc</td>
                                                </tr>
@@ -145,7 +137,7 @@
                                            <?php $hora=  EventEmployee::getEventosHoras($value->id) ;?>
                                            <?php foreach ($hora as $key=> $value){ ?>  
                                   
-                                  <td><?php echo $value->hour_event; ?></td> <?php } ?>
+                                  <td><?php echo $value->hour_event; echo "<span style='color:#B3B3B3'>   (".$value->date.")</span>"; ?></td> <?php } ?>
                                   <?php if ($key==0){echo "<td></td><td></td><td></td>";}if ($key==1){echo "<td></td><td></td>";} if ($key==2){echo "<td></td>";} ?> 
                               </tr>
                               <?php }?>
@@ -197,67 +189,74 @@
                                                                   <table class="table table-striped table-bordered table-advance table-hover">
                                                                      <tbody>
                                                                             <tr>
-                                                                                <td rowspan="6"><div id="imagen_rute"><img id="photo" src="" width="178px" height="178px" /></div></td>
+                                                                                <td rowspan="7" align="center"><div id="imagen_rute"><img id="photo" src="" width="178px" height="178px" /></div></td>
                                                                                 <td class="letra_empleado">Nombres</td>
                                                                                 <td><div id="name" style="display:inline"></div> <div id="second_name" style="display:inline"></div></td>
                                                                                 <td class="letra_empleado">Apellidos</td>
                                                                                  <td><div id="titlelast" style="display:inline"></div> <div id="second_last_name" style="display:inline"></div></td>  
                                                                             </tr>
+                                                                            <?php if (Yii::app()->user->getState('rol')==1){ echo "
                                                                             <tr>
-                                                                                
-                                                                            </tr>
-                                                                            <tr>
-                                                                               <td class="letra_empleado">Fecha de Nacimiento</td>
-                                                                               <td><div id="date_birth"></div></td>
-                                                                               <td class="letra_empleado">Documento de Identidad</td>
-                                                                               <td><div id="identity_card"></div></td>
+                                                                               <td class='letra_empleado'>Fecha de Nacimiento</td>
+                                                                               <td><div id='date_birth'></div></td>
+                                                                               <td class='letra_empleado'>Documento de Identidad</td>
+                                                                               <td><div id='identity_card'></div></td>
                                                                             </tr>
 
                                                                              <tr>
-                                                                               <td class="letra_empleado">Nacionalidad</td>
-                                                                               <td><div id="nationality"></div></td>
-                                                                               <td class="letra_empleado">Estado Civil</td>
-                                                                               <td><div id="maritalstatus"></div></td>
-
+                                                                               <td class='letra_empleado'>Nacionalidad</td>
+                                                                               <td><div id='nationality'></div></td>
+                                                                               <td class='letra_empleado'>Estado Civil</td>
+                                                                               <td><div id='maritalstatus'></div></td>
                                                                             </tr>
+                                                                           ";} 
+                                                                            ?>
                                                                             <tr>
-                                                                               <td class="letra_empleado">Correo Personal</td>
-                                                                               <td><div id="email_personal"></div></td>
-                                                                               <td class="letra_empleado">Correo Corporativo</td>
-                                                                               <td><div id="email_company"></div></td>
+                                                                               <td class='letra_empleado'>Skype</td>
+                                                                               <td><div id='skype'></div></td>
+                                                                               <td class="letra_empleado">Teléfono</td>
+                                                                               <td><div id="cellphone"></div></td>  
                                                                             </tr>
-                                                                            <tr>
+                                                                             <tr>
                                                                                <td class="letra_empleado">Teléfono De Habitación</td>
                                                                                <td><div id="homephone"></div></td>
                                                                                <td class="letra_empleado">Extensión de Oficina</td>
                                                                                <td><div id="extension_numeric"></div></td>  
                                                                             </tr>
+                                                                             <tr>
+                                                                               <td class='letra_empleado'>Correo Personal</td>
+                                                                               <td><div id='email_personal'></div></td>
+                                                                               <td class='letra_empleado'>Correo Corporativo</td>
+                                                                               <td><div id='email_company'></div></td>
+                                                                            </tr>
+                                                                           <?php if (Yii::app()->user->getState('rol')==1){ echo "     
+                                                                            <tr>
+                                                                                <td class='letra_empleado' colspan='3'>Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
+                                                                                <td colspan='2'><div id='address_line_1'></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class='letra_empleado' colspan='3'>Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
+                                                                                <td colspan='2'><div id='address_line_2'></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class='letra_empleado' colspan='3'>Códigos Postal</td>
+                                                                                <td colspan='2'><div id='zip'></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class='letra_empleado' colspan='3'>País</td>
+                                                                                <td colspan='2'><div id='country'></div></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class='letra_empleado' colspan='3'>Estado/Provincia/Región</td>
+                                                                                <td colspan='2'><div id='state'></div></td>
+                                                                            </tr>
 
                                                                             <tr>
-                                                                                <td class="letra_empleado" colspan="3">Apartamento, Suite, Unidad, Edificio, Piso, Etc</td>
-                                                                                <td colspan="2"><div id="address_line_1"></div></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="letra_empleado" colspan="3">Dirección de Calle, P.O Box, Nombre de la Compañía, C/O</td>
-                                                                                <td colspan="2"><div id="address_line_2"></div></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="letra_empleado" colspan="3">Códigos Postal</td>
-                                                                                <td colspan="2"><div id="zip"></div></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="letra_empleado" colspan="3">País</td>
-                                                                                <td colspan="2"><div id="country"></div></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td class="letra_empleado" colspan="3">Estado/Provincia/Región</td>
-                                                                                <td colspan="2"><div id="state"></div></td>
-                                                                            </tr>
-
-                                                                            <tr>
-                                                                                <td class="letra_empleado" colspan="3">Ciudad</td>
-                                                                                <td colspan="2"><div id="city"></div></td>
-                                                                            </tr>
+                                                                                <td class='letra_empleado' colspan='3'>Ciudad</td>
+                                                                                <td colspan='2'><div id='city'></div></td>
+                                                                            </tr>";}
+                                                                            
+                                                                           ?>
                                                                </tbody>
                                                            </table>
                                                                    </div>

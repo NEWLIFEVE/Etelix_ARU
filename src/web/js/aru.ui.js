@@ -18,13 +18,145 @@ $ARU.UI=(function(){
         _createRoles();
         _treeDirectory();
         _controllersByRol();
+        _MaskCell();
        
       
        
      
         
     }
+    
+      var result=(location.pathname).split('/');
+    
+      
+                
+            function _MaskCell(){
+               
+                $("#Employee_extension_numeric").inputmask("mask", {
+                                 "mask": "9999",
+                                  
+                                    });
+               
+                $('#Employee_cod_phone').on('change',function(){
+                    var codePhone= $("#Employee_cod_phone").val();
+                    $("#Employee_cellphone").val(" ");
+                    $("#Employee_home_phone").val(" ");
+                   
+                    
+                    switch(codePhone){
+                        case "+58":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+58(499) 999-9999",
+                                  
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+58(299) 999-9999"
+                                    });
+                         break;
+                         case "+57":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+57(999) 999-9999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+57(9) 999-9999"
+                                    });
+                         break;
+                         case "+56":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+56(9) 999-99999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+56(99) 999-99999"
+                                    });
+                         break;
+                          case "+51":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+51(9) 999-99999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+51(99) 999-99999"
+                                    });
+                         break;
+                         case "+507":
+                             
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+507 999-9999999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+507 999-9999999"
+                                    });
+                         break;
+                         case "+1":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+1(999) 999-9999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+1(999) 999-9999"
+                                    });
+                         break;
+                    }
+                });
+                
+                if ((result[2]=="infoEmployee")||(result[2]=="firstView")){
+                    var country= $("#Employee_country").val();
+                     switch(country){
+                        case "VEN":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+58(0499) 999-9999",
+                             
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+58(0299) 999-9999"
+                                    });
+                         break;
+                         case "COL":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+57(999) 999-9999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+57(9) 999-9999"
+                                    });
+                         break;
+                         case "CHL":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+56(9) 999-99999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+56(99) 999-99999"
+                                    });
+                         break;
+                          case "PER":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+51(9) 999-99999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+51(99) 999-99999"
+                                    });
+                         break;
+                         case "PAN":
+                             
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+507 999-9999999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+507 999-9999999"
+                                    });
+                         break;
+                         case "USA":
+                            $("#Employee_cellphone").inputmask("mask", {
+                                 "mask": "+1(999) 999-9999"
+                                    });
+                           $("#Employee_home_phone").inputmask("mask", {
+                                 "mask": "+1(999) 999-9999"
+                                    });
+                         break;
+                    }
+                
+                }
+                
+            }
             
+           
             function rolCreate(result)
             {
                console.log (result);
@@ -66,7 +198,7 @@ $ARU.UI=(function(){
 
             function _menu()
             {
-                   console.log(location.pathname);
+                 
                    var result=(location.pathname).split('/');
    
                 switch (result[1]) {
@@ -406,6 +538,14 @@ $ARU.UI=(function(){
             }); 
              
              
+              $("#Employee_cod_phone").select2({
+                placeholder: "Select",
+                allowClear: true,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+             
 
             $("#Employee_country").select2({
                 placeholder: "Select",
@@ -556,6 +696,10 @@ $ARU.UI=(function(){
                        required: true, 
                    },
                    
+                    'Employee[extension_numeric]':{
+                       maxlength: 4 
+                   },
+                   
                    'Address[address_line_1]':{
                        required: true, 
                    },
@@ -602,8 +746,7 @@ $ARU.UI=(function(){
                     ,
                     
                      'Rol[name_rol]':{
-                         required: true,
-                          
+                         required: true,    
                     }
                 },
 
@@ -707,6 +850,7 @@ $ARU.UI=(function(){
         
         function viewEmployeeModal(result){
              
+             
                 $('#title').html(result[0].name);
                 $('#name').html(result[0].name);
                 $('#second_name').html(result[0].second_name);
@@ -715,10 +859,11 @@ $ARU.UI=(function(){
                 $('#second_last_name').html(result[0].second_last_name);
                 $('#date_birth').html(result[0].date_birth);
                 $('#identity_card').html(result[0].identity_card);
-                $('#email_personal').html(result[0].email_personal);
-                $('#email_company').html(result[0].email_company);
-                $('#cellphone').html(result[0].cellphone);
-                $('#homephone').html(result[0].homephone);
+                $('#email_personal').html("<i class='icon-envelope'></i> "+result[0].email_personal);
+                $('#email_company').html("<i class='icon-envelope'></i> "+result[0].email_company);
+                $('#cellphone').html("<i class='icon-phone'></i> "+result[0].cellphone);
+                $('#skype').html("<a href='skype:"+result[0].skype+"?call'><i class='icon-skype'></i></a> "+result[0].skype);
+                $('#homephone').html("<i class='icon-home'></i> "+result[0].homephone);
                 $('#extension_numeric').html(result[0].extension_numeric);
                 $('#nationality').html(result[0].nationality);
                 $('#maritalstatus').html(result[0].maritalstatus);
@@ -752,6 +897,7 @@ $ARU.UI=(function(){
         viewEmployeeModal:viewEmployeeModal,
         rolCreate: rolCreate,
         viewActionController:viewActionController
+        
       
         
        

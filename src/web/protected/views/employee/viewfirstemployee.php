@@ -151,33 +151,47 @@
                                                             <?php echo $form->textField($model,'skype', array('class'=>'form-control input-medium')); ?>
                                                           <!--<span class="help-block">Proporcione el Primer Apellido</span>-->
                                                   </div>
-                                                  <div class="secundario form-group">
+                                                  <div class="secundario form-group">    
+                                                      <label class="control-label letra_empleado ">Código de Número Telefónico</label><br>
+                                                           <?php echo $form->dropDownList($model,'cod_phone',Country::getCodePhoneCountry(),  array('class'=>'form-control input-medium', 'empty'=>' ') );?>
+                                                          
+                                                 </div>
+                                                 
+                                                </div>
+                                               <div class="contenidos_columnas">
+                                                   
+                                                    <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">Teléfono Celular</label>
                                                             <?php echo $form->textField($model,'cellphone', array('class'=>'form-control input-medium')); ?>
                                                           <!--<span class="help-block">Proporcione el Primer Apellido</span>-->
                                                   </div>
-                                                </div>
-                                               <div class="contenidos_columnas">
+                                                   
+                                                   
                                                   <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">Teléfono De Habitación</label>
                                                             <?php echo $form->textField($model,'home_phone', array('class'=>'form-control input-medium')); ?>
                                                           <!--<span class="help-block">Proporcione el Primer Apellido</span>-->
                                                   </div>
-                                                  <div class="secundario form-group">
+                                                  
+                                                </div>
+                                                   <div class="contenidos_columnas">
+                                                       <div class="secundario form-group">
                                                         <label class="control-label letra_empleado">Extensión de Oficina</label>
                                                             <?php echo $form->textField($model,'extension_numeric', array('class'=>'form-control input-medium')); ?>
                                                           <!--<span class="help-block">Proporcione el Primer Apellido</span>-->
-                                                  </div>
-                                                </div>
+                                                        </div>
+                                                     </div>
                                             </div>     
                                          
                                  </div>
                                   
                                     <?php  if (!empty($Address->idCity->idState->idCountry->name)){
                                     $pais=$Address->idCity->idState->idCountry->name;
+                                    $code=$Address->idCity->idState->idCountry->code;
                                             }
                                         else {
                                             $pais="seleccione País";
+                                             $code= "";
                                             }   
                                     ?>
                                   
@@ -192,6 +206,7 @@
 
                                                     ),
                                                     "class"=>"form-control input-xlarge",
+                                                     "options" => array($code=>array('selected'=>true)),
                                                     "empty"=>$pais,
                                                 );
                                           ?>

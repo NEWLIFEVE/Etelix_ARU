@@ -49,6 +49,8 @@ class Employee extends CActiveRecord
     public $line1;
     public $line2;
     public $zip;
+    public $cod_phone;
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -231,7 +233,7 @@ class Employee extends CActiveRecord
                         order by id_employee) y
 
                         where x.id_employee=y.id_employee and x.date = y.date and
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
                         ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id  ";
             switch ($type) {
                 case "active":
@@ -255,7 +257,7 @@ class Employee extends CActiveRecord
         
         public function getHourEvent()
             {
-              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status = 1 ORDER BY e.first_name";
+              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name";
               $employeedeclare=self::model()->findAllBySql($consulta);
               return $employeedeclare;
             }
@@ -269,45 +271,11 @@ class Employee extends CActiveRecord
                                     <th>Foto</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
-                                    <th>Skype</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo Corporativo</th>
-                                    <th>Extensión de Oficina</th>
                                     <th colspan='2'>Status</th>
                                  </tr>";
                 
       
-//                switch ($type) {
-//                    case "active":
-//                          
-//                        $activeEmployee = Employee::getStatusEmployees($type);
-//                         foreach ($activeEmployee as $value) {
-//                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;}
-//                                        
-//                                      $opciones.="<tr>
-//                                                 <td><img class='sizephotoemployee' src='/".$photoemployee."'/></td>
-//                                                 <td style='color:#000;'>".$value->first_name."</td>
-//                                                 <td>".$value->last_name."</td>
-//                                              </tr>";
-//                            }
-//                        break;
-//                        
-//                        case "inactive":
-//                          
-//                        $inactiveEmployee = Employee::getStatusEmployees($type);
-//                         foreach ($inactiveEmployee as $value) {
-//                                        if (is_null($value->image_rute)){$photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;}
-//                                        
-//                                      $opciones.="<tr>
-//                                                 <td><img class='sizephotoemployee' src='/".$photoemployee."'/></td>
-//                                                 <td style='color:#000;'>".$value->first_name."</td>
-//                                                 <td>".$value->last_name."</td>
-//                                              </tr>";
-//                            }
-//                        break;
-//
-//                   
-//                }
+
                 return $opciones;
          }
          
@@ -317,10 +285,10 @@ class Employee extends CActiveRecord
         {
              
             $array = array();
-             $consulta=" select e.id
+             $consulta="select e.id, e.first_name
                         from
                         employee e, users u
-                        where  u.id_employee = e.id and u.id_status = 1";
+                        where  u.id_employee = e.id and u.id_status NOT IN(2,3) order by e.first_name";
              
              $model=self::model()->findAllBySql($consulta);
              foreach ($model as $key=> $value)

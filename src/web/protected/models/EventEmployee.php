@@ -155,6 +155,7 @@ class EventEmployee extends CActiveRecord
        if ($id_event==2){ return $stilo="label-warning";}
        if ($id_event==3){ return $stilo="label-info";}
        if ($id_event==4){ return $stilo="label-danger";}
+       if ($id_event==5){ return $stilo="label-default";}
    }
    
    
@@ -171,7 +172,7 @@ class EventEmployee extends CActiveRecord
                         from event_employee 
                         group by id_employee ) x
                         where 
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
                         ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id.";";
             $horas=self::model()->findAllBySql($consulta);
           
@@ -179,110 +180,116 @@ class EventEmployee extends CActiveRecord
         }
         
         
-        public static function getValidate_hour($start, $date){
-         
-             $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
-             $hourclient=DateManagement::gethourcliente();
-             $fecha=date('Ymd');
-             $fechaActual=  strtotime($fecha);  //captura la fecha de la pc
-             $fechaCalculada=  strtotime($calculo_dias[0]); //fecha calculada por las 16 horas  
-             $horaCalculada=  strtotime($calculo_dias[1]);
-             $horaActual=  strtotime($hourclient);
-             
-             if ($fechaActual<= $fechaCalculada ){
-              
-                        //cuando la fecha actual es igual a la fecha calculada, se compara la hora actual (cliente) con la hora calculada
-                         if ($fechaActual==$fechaCalculada){
-                                    if ($horaActual<=$horaCalculada)
-                                        return true;
-                                    
-                                    else
-                                        return false;
-                         }
-                         //cuando la fecha actual es menor a la fecha calculada
-                         if ($fechaActual < $fechaCalculada){
-                                   $fechaHoraCalculadas=$calculo_dias[0]." ".$calculo_dias[1];
-                                   $fechaHoraActual=$fecha." ".$hourclient;
-                                   
-                                 $pruebaActual=strtotime($fechaHoraActual);// fecha y hora actual
-                                 $pruebaCalculo=strtotime($fechaHoraCalculadas);//fecha y horas calculadas
-
-                                 if ($pruebaActual<=$pruebaCalculo){
-                                     return true;
-                                 }
-                                 else {
-                                     return false;
-                                 }
-                             
-                         }
-                  
-             }
-          
-        }
+        /**
+         * funcion que retorna 
+         * @param type $start
+         * @param type $date
+         * @return boolean
+         */
         
+        public static function getValidate_hour($start, $date)
+        {
+            $calculo_dias= DateManagement::getValidate_hour($start, $date, 16);
+            $hourclient=DateManagement::gethourcliente();
+            $fecha=date('Ymd');
+            $calculo= strtotime($calculo_dias[0]." ".$calculo_dias[1]);
+            $actual= strtotime($fecha." ".$hourclient);
+            if ($actual<=$calculo)
+                {
+                    return true;
+                }
+
+                else{
+                    return false;
+                }
+        }     
         
         public function getfiltroHour ($id,$type)
             {
-              
+                 
                $employeeall=NULL;
+               $sindeclarar=NULL;
+               
                 $consulta="select  e.id ,ev.date, ev.hour_event, ev.id_type_event
                         from
-                        employee e, users u, event_employee ev, type_event t,
-                        (select id_employee, MAX(date) as date
-                        from event_employee 
-                        group by id_employee ) x
-                        where 
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1  and
-                        ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id."";
+                  
+                                        employee e, users u, event_employee ev, type_event t,
+                                        (select id_employee, MAX(date) as date
+                                        from event_employee 
+                                        group by id_employee ) x,
+
+                                        (select id_employee, date, MAX(hour_event) as hour
+                                        from event_employee
+                                        group by id_employee, date
+                                        order by id_employee) y
+
+                                        where x.id_employee=y.id_employee and x.date = y.date and
+                                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
+                                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id and e.id=".$id." ";
                 
                 $model=self::model()->findAllBySql($consulta);
-                //var_dump($model);
+                
                 foreach ($model as $value)
                     {
-                   
-                    //var_dump($value->id_type_event);
                     
-                    if ($value->id_type_event==3){
-                        
+                        //$allfilter= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
+                       
                     
-                        
-                        
-                    }
-                    
+                     if (($value->id_type_event ==1) || ($value->id_type_event ==3) ){
                         $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
-                     //var_dump($filtrar);
-                    
+                      
+                        if ($filtrar==FALSE){
+                            $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
+                             $consut->id_type_event =5;
+                             $consut->save();
+                       }
+                    } 
+                        
+                    else{
+                        
+                        $filtrar=$id; 
+                         
+                    }
+                     echo $sindeclarar;
+               
                         if ($filtrar!=NULL){
+
+                          
                             $consul="
                                         select e.*
-                        from
-                        employee e, users u, event_employee ev, type_event t,
-                        (select id_employee, MAX(date) as date
-                        from event_employee 
-                        group by id_employee ) x,
 
-                        (select id_employee, date, MAX(hour_event) as hour
-                        from event_employee
-                        group by id_employee, date
-                        order by id_employee) y
+                                        from
+                                        employee e, users u, event_employee ev, type_event t,
+                                        (select id_employee, MAX(date) as date
+                                        from event_employee 
+                                        group by id_employee ) x,
 
-                        where x.id_employee=y.id_employee and x.date = y.date and
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
-                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id  and e.id=".$filtrar." ";
-                            
+                                        (select id_employee, date, MAX(hour_event) as hour
+                                        from event_employee
+                                        group by id_employee, date
+                                        order by id_employee) y
+
+                                        where x.id_employee=y.id_employee and x.date = y.date and
+                                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
+                                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id  and e.id=".$filtrar." ";
+
                            switch ($type) {
                             case "active":
-                                $consul.=" and t.id IN (1,3)";
+                               
+                                $consul.=" and t.id IN (1,3) order by e.first_name desc";
                                 break;
                             case "inactive":
-                                $consul.=" and t.id IN (2,4)";
-                                break;
+
+                                  
+                                $consul.=" and t.id IN (2,4,5)";
+
                             }  
                             $employeeall=  Employee::model()->findBySql($consul);
                             
                         }
                           
                     }
+                   
                    //var_dump($employeeall);
                     return $employeeall;
             }
@@ -302,12 +309,20 @@ class EventEmployee extends CActiveRecord
          $hourclient=DateManagement::gethourcliente();
          $filtroId=NULL;
          $fecha=date('Ymd');
-        // var_dump($fecha);
-         if ((strtotime($fecha)== strtotime($date)) )
+         
+        $calculo= strtotime($calculo_dias[0]. " ". $calculo_dias[1]);
+        $actual= strtotime($fecha ." ". $hourclient );
+//        var_dump($calculo_dias[0]. " ". $calculo_dias[1]);
+//        var_dump($fecha ." ". $hourclient);
+         if ($actual <= $calculo)
              {
              $filtroId=$id;
                     
              }
+         else {
+                 return false;
+             
+         }
              //var_dump($filtroId);
              return $filtroId;
  

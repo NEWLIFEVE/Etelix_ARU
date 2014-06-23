@@ -47,8 +47,7 @@ class SiteController extends Controller
             {
                 $model->attributes = $_POST['LoginForm'];
                 // validate user input and redirect to the previous page if valid
-                if($model->validate() && $model->login()=="normal") $this->redirect('EventEmployee/Create');
-                if($model->validate() && $model->login()=="update") $this->redirect('Employee/firstview');
+                if($model->validate() && $model->login()) $this->redirect('EventEmployee/Create');
 //                    $this->redirect(Yii::app()->user->returnUrl);
             }
             // display the login form
@@ -149,8 +148,7 @@ class SiteController extends Controller
             $model=new LoginForm;
             if(isset($_POST['Users'])){
                  $model->attributes=$_POST['Users'];
-                 if($model->validate() && $model->login()=="normal") $this->redirect('/EventEmployee/Create');
-                 if($model->validate() && $model->login()=="update") $this->redirect('/Employee/firstview');
+                 if($model->validate() && $model->login()) $this->redirect('/EventEmployee/Create');
             }
             
             $datos=$_GET['idUser'];
@@ -165,15 +163,6 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);  
             }
         }
-        
-       
-
-
-
-
-
-
-
 
         public static function CreateMenu($id_rol)
            {
@@ -250,8 +239,4 @@ class SiteController extends Controller
 
         }
            }
-        
-           
-     
-      
 }

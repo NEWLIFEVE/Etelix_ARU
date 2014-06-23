@@ -7,15 +7,22 @@ class UserUpdateFilter extends CFilter
     public function preFilter($filterChain)  
     {
     	$request=Yii::app()->getRequest();
-        
-		if(Users::model()->findByPk(Yii::app()->user->id)->id_status != 3)
-		{
-			return true;
-		}
-		else
-		{
-        	$request->redirect('/Employee/firstView');
-     		return false;
+        $statusUser = Users::model()->findByPk(Yii::app()->user->id)->id_status;
+
+        if( $statusUser == 3)
+        {
+            $request->redirect('/Employee/firstView');
+            return false;
+        }
+        elseif($statusUser == 4)
+        {
+            $request->redirect('/Employee/UpdatePhone');
+            return false;
+        }
+        else
+        {
+
+        return true;
     	}
     } 
 
