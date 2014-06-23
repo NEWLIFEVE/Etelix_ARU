@@ -14,10 +14,6 @@
 //   ?>
 
 
-<div id="ActionByRoles"></div>
-<div id="idrol" style="display: none;"><?php echo $idrol; ?></div>
-
-
 
 
 
@@ -73,3 +69,8 @@ foreach (glob(Yii::getPathOfAlias('application.controllers') . "/*Controller.php
 
     //var_dump($array);
 ?>
+
+
+<div id="ActionByRoles"></div>
+<div id="idrol" style="display: none;"><?php echo $idrol; ?></div>
+

@@ -577,6 +577,25 @@ $ARU.UI=(function(){
                     return m;
                 }
             });
+            
+              $("#Employee_cp").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: _format,
+                formatSelection: _format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+              $("#Employee_codeDependence").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: _format,
+                formatSelection: _format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
          }
          
          /**
@@ -738,6 +757,16 @@ $ARU.UI=(function(){
                     'Users[password]':{
                          required: true,
                          minlength: 5,    
+                    }
+                    ,
+                    'Employee[cp]':{
+                         required: true,
+                           
+                    }
+                    ,
+                    'Employee[codeDependence]':{
+                         required: true,
+                           
                     }
                     ,
                     

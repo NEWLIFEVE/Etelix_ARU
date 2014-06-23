@@ -116,16 +116,16 @@ class EventEmployee extends CActiveRecord
         /**
          * 
          */
-        public static function getWorkday($id, $date)
+        public static function getWorkday($id,$date)
         {
             $eventos = array();
-            $model = self::model()->findAll('id_employee=:id AND date=:date ORDER BY id_type_event ASC', array(':id' => $id, ':date' => $date));
-
+            $model = self::model()->findAll('id_employee=:id AND date>=:date  ORDER BY id_type_event ASC', array(':id' => $id, ':date' => $date));  
             if ($model != NULL) {
                 foreach ($model as $value) {
                     $eventos[] = array(
                         'event' => $value->id_type_event,
-                        'hour' => $value->hour_event
+                        'hour' => $value->hour_event,
+                        'date' => $value->date
                     );
                 }
                 return $eventos;
@@ -327,6 +327,31 @@ class EventEmployee extends CActiveRecord
              return $filtroId;
  
         }
+        
+    public static function getMaxDateMinHour($id){
+        $model=  EventEmployee::model()->findBySql("select  e.id ,ev.date, ev.hour_event, ev.id_type_event
+                    from
+                    employee e, users u, event_employee ev, type_event t,
+                    (select id_employee, MAX(date) as date
+                    from event_employee
+                    where  id_type_event = 1
+                    group by id_employee ) x,
+
+                    (select id_employee, date, MIN(hour_event) as hour
+                    from event_employee
+                    where id_type_event = 1
+                    group by id_employee, date
+                    order by id_employee) y
+
+                    where x.id_employee=y.id_employee and x.date = y.date and
+                    x.id_employee = e.id and u.id_employee = e.id and u.id_status = 1 and 
+                    ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id and e.id=".$id." ");
+        if($model!=NULL){
+            return $model;
+        }else{
+            return false;
+        }
+    }
 }
 
 

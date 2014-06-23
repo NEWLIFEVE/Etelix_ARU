@@ -490,12 +490,7 @@ class EmployeeController extends Controller
      }
      
      
-       public function actionCodePosition()
-    {
-
-            $this->render('CodePosition');
-
-    }
+    
     
     
 }

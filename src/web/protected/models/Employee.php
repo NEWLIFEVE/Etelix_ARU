@@ -50,8 +50,12 @@ class Employee extends CActiveRecord
     public $line2;
     public $zip;
     public $cod_phone;
-    
-	/**
+    public $cp;
+    public $codeDependence;
+
+
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
