@@ -164,19 +164,17 @@ class EventEmployee extends CActiveRecord
      * 
      */
         
-        public function getEventosHoras($id){
-            $consulta="select x.*, ev.*
-                        from
-                        employee e, users u, event_employee ev, type_event t,
-                        (select id_employee, MAX(date) as date
-                        from event_employee 
-                        group by id_employee ) x
-                        where 
-                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
-                        ev.id_employee=e.id and ev.date=x.date  and ev.id_type_event = t.id and ev.id_employee=".$id.";";
-            $horas=self::model()->findAllBySql($consulta);
-          
-            return $horas;
+        public function getEventosHoras($id)
+        {
+            $date=date('Ymd');
+            $model=  EventEmployee::getMaxDateMinHour($id);
+            $eventosOld=EventEmployee::getWorkday($id, $model->date);
+            $validate_hour=EventEmployee::getValidate_hour($eventosOld[0]['hour'], $model->date);
+            if($validate_hour){
+                $date = $model->date;
+            }
+            $eventos=EventEmployee::getWorkday($id, $date);
+            return $eventos;
         }
         
         
