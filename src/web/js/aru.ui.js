@@ -19,6 +19,8 @@ $ARU.UI=(function(){
         _treeDirectory();
         _controllersByRol();
         _MaskCell();
+        _CreatePositionCode();
+    
     }
     
       var result=(location.pathname).split('/');
@@ -571,7 +573,9 @@ $ARU.UI=(function(){
                 }
             });
             
-              $("#Employee_cp").select2({
+              
+            
+              $("#PositionCode_id_division").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: _format,
@@ -580,7 +584,16 @@ $ARU.UI=(function(){
                     return m;
                 }
             });
-              $("#Employee_codeDependence").select2({
+              $("#PositionCode_id_position").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: _format,
+                formatSelection: _format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+              $("#PositionCode_id_employee").select2({
                 placeholder: "Select",
                 allowClear: true,
                 formatResult: _format,
@@ -765,6 +778,19 @@ $ARU.UI=(function(){
                     
                      'Rol[name_rol]':{
                          required: true,    
+                    },
+                     'PositionCode[id_position]':{
+                         required: true,    
+                    },
+                     'PositionCode[id_employee]':{
+                         required: true,    
+                    },
+                     'PositionCode[start_date]':{
+                         required: true,    
+                    },
+                    
+                    'PositionCode[id_division]':{
+                         required: true,    
                     }
                 },
 
@@ -903,6 +929,59 @@ $ARU.UI=(function(){
         }
         
         
+        function _CreatePositionCode()
+        {
+            
+             $('a#positioncode').on('click',function(){
+                 var id_division= $("#PositionCode_id_division").val();
+                 var id_position= $("#PositionCode_id_position").val();
+                 var id_employee= $("#PositionCode_id_employee").val();
+                 var start_date= $("#PositionCode_start_date").val();
+                 
+                 if ((id_division=="") || (id_position=="") || (id_employee=="") || (start_date=="")){
+                
+                    $('#error').addClass("alert alert-danger");
+                    $('#error').addClass("rojo");
+                    $('#error').show( "slow");
+                    $('#error').html("Faltan Datos Para Realizar el Registro");
+                 }
+                 else {
+                    $('#error').removeClass("rojo");
+                    $('#error').removeClass("alert alert-danger");
+                    $('#error').removeClass("icon-remove-circle"); 
+                    $('#error').html("");
+                    $ARU.AJAX.crearPosicion("GET","/PositionCode/CrearPosition","id_employee="+id_employee+"&id_position="+id_position+"&id_division="+id_division+"&start_date="+start_date);
+                    
+                 }
+                 
+             });
+        }
+        
+        function createPosition(result)
+        {
+            console.log(result);
+              switch(result){
+                case "true":
+                    $("#PositionCode_id_division").attr('value');
+                    $('#error').addClass("alert alert-success");
+                    $('#error').addClass("verde");           
+                    $('#error').html("Registro Exitoso!");
+                   
+                    break;
+                case "false":
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("Falla en el Registro");
+                    break;
+                
+            }
+            
+            
+            
+        }
+        
+        
         
          
          
@@ -914,7 +993,8 @@ $ARU.UI=(function(){
         successPass:successPass,
         viewEmployeeModal:viewEmployeeModal,
         rolCreate: rolCreate,
-        viewActionController:viewActionController
+        viewActionController:viewActionController,
+        createPosition:createPosition
         
       
         

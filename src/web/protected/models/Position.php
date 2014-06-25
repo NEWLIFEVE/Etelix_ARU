@@ -14,6 +14,8 @@
  */
 class Position extends CActiveRecord
 {
+    
+    public  $position;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -100,4 +102,15 @@ class Position extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    
+    /**
+     * funcion para listar las posiciones organizacionales creadas
+     */
+    
+    
+    public function getPosition()
+    {
+         return  CHtml::ListData(Position::model()->findAll(),"id","name"); 
+    }
 }

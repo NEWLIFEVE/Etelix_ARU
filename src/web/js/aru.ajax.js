@@ -78,6 +78,9 @@ $ARU.AJAX=(function()
         });
     }
     
+    
+  
+    
     /**
      * 
      * @param {type} type
@@ -100,12 +103,32 @@ $ARU.AJAX=(function()
                 $ARU.UI.viewActionController(result); 
             
             }
-            });
-          
-         
+            });      
+    }
+    
+      /**
+     * funcion para crear la posicion de empleado en la organizacion
+     * @param {type} type
+     * @param {type} action
+     * @param {type} formulario
+     * @returns {undefined}
+     */
+    
+    function crearPosicion(type,action, formulario)
+    {
         
-          
-            
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+               
+                
+                $ARU.UI.createPosition(result);
+            }
+        });
     }
    
      return {
@@ -113,7 +136,8 @@ $ARU.AJAX=(function()
         sendPass:sendPass,
         searchEmployee:searchEmployee,
         createRol:createRol,
-        idRol:idRol
+        idRol:idRol,
+        crearPosicion:crearPosicion
         
     };
     

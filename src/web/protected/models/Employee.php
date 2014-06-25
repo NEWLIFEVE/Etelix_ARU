@@ -52,6 +52,7 @@ class Employee extends CActiveRecord
     public $cod_phone;
     public $cp;
     public $codeDependence;
+    public $empleados;
 
 
 
@@ -309,6 +310,13 @@ class Employee extends CActiveRecord
               return $array;
                
        }
+       
+       public function getEmployeeAll()
+    {
+           
+           $consult ="select e.id, (e.first_name||' '|| e.last_name) as empleados from employee e, users u where e.id=u.id_employee order by first_name ";
+         return  CHtml::ListData(self::model()->findAllBySql($consult),"id","empleados"); 
+    }
        
    
        

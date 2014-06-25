@@ -4202,4 +4202,11 @@ Responsive Flip Scroll Tables
 
 th.colorstart{
     background:#ff0000;
+}}
+
+
+.centrar{
+    display:block;
+   margin-left: 45%;
+    
 }
