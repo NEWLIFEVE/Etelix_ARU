@@ -124,9 +124,50 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                 result=JSON.parse(data);
-               
-                
                 $ARU.UI.createPosition(result);
+            }
+        });
+    }
+    
+    
+    /**
+     * funcion para crear una nueva division en la organizacion
+     */
+    
+    function crearDivision(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                $ARU.UI.createDivision(result);
+      
+            }
+        });
+    }
+    
+    
+    /**
+     * funcion para crear nuevos cargos en la organizacion
+     */
+    
+    
+     function crearCargo(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                $ARU.UI.createCargo(result);
+      
             }
         });
     }
@@ -137,7 +178,9 @@ $ARU.AJAX=(function()
         searchEmployee:searchEmployee,
         createRol:createRol,
         idRol:idRol,
-        crearPosicion:crearPosicion
+        crearPosicion:crearPosicion,
+        crearDivision:crearDivision,
+        crearCargo:crearCargo
         
     };
     

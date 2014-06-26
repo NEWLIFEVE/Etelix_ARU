@@ -4210,3 +4210,37 @@ th.colorstart{
    margin-left: 45%;
     
 }
+input.dependencia, input.cargo, #checkbox, #seleDepen
+{
+    display:none;
+}
+
+.newGroup, .cancelarnewGroup
+{
+    color: rgba(111,204,187,1);
+    width: 5%;
+    font-weight: bold;
+    font-size: 27px;
+    position: static;
+    top: 6px;
+    right: 0;
+    margin-left: 5px;
+    margin-top: 80%;
+}
+
+
+#PositionCode_dependencia
+{
+    display:none;
+}
+
+
+#mensajeLider{
+    margin-top:-8px;
+  
+}
+#checkbox{
+    
+    margin-left:14px;
+}
+

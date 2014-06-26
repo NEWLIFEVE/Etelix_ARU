@@ -24,7 +24,7 @@ class PositionController extends Controller
         return array(
             array(
                 'allow',
-                'actions'=>Rol::getActions('Division', Yii::app()->user->id),
+                'actions'=>Rol::getActions('Position', Yii::app()->user->id),
                 'users'=>array(
                     Yii::app()->user->name
                     )
@@ -44,6 +44,28 @@ class PositionController extends Controller
         $model= new Position;
 		$this->render('index', array('model'=>$model));
 	}
+    
+    
+    /**
+     * funcion para crear nuevos cargos
+     */
+    public function actionAddPosition()
+     {
+       
+         
+         if ( ($_GET['nuevoCargo']!=null) && ($_GET['leader']!=null))
+             {
+                $model=new Position;
+                $model->name=$_GET['nuevoCargo'];
+                $model->leader=$_GET['leader'];
+                if($model->save())echo json_encode(true); else echo json_encode(false); 
+                    
+                    
+                    
+             
+             }
+        
+     }
 
 	
 }

@@ -40,7 +40,7 @@
                     <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); 
 
                                      
-                    $Division=array("class"=>"form-control input-large","empty"=>"Division/Departamento",);
+                    $Division=array("class"=>"form-control input-large","empty"=>"División");
                     $Position=array("class"=>"form-control input-large","empty"=>"Cargo",);
                     $Employee=array("class"=>"form-control input-large","empty"=>"Empleado",);
 
@@ -54,15 +54,58 @@
                                   <div class="contenidos_columnas">
                                       <div class="secundario form-group">
                                           <label class="control-label letra_empleado">División</label><br>
-                                             <?php echo $form->dropDownList($model,'id_division',Division::getDivision(),$Division);?>
-                                            
+                                          <table>
+                                              <tr>
+                                                  <td>
+                                                       <div id="selectDivision">
+                                                        <?php echo $form->dropDownList($model,'id_division',Division::getDivision(),$Division);?>
+                                                        </div>
+                                                  </td>
+                                                  <td>
+                                                      <div id="mensaje"></div>
+                                                       <input type="text" id="dependencia" class="dependencia form-control input-large"  value="" name="dependencia"/>
+                                                   </td>
+                                                   <td><div id="dependencia"></div>
+                                                       <div id="seleDepen">
+                                                       <?php echo $form->dropDownList($model,'dependencia',Division::getDivision(),$Division);?>
+                                                       </div>
+                                                   </td>
+                                                   <td>
+                                                       <p id="test" class="newGroup">+</p>    
+                                                   </td>
+                                              </tr>
+                                          </table>
                                       </div>
+                                      
                                   </div>
                                   <div class="contenidos_columnas">
                                       <div class="secundario form-group">
                                           <label class="control-label letra_empleado">Cargo</label><br>
-                                            <?php echo $form->dropDownList($model,'id_position',Position::getPosition(),$Position);?>
-                                          
+                                            
+                                          <table>
+                                              <tr>
+                                                  <td>
+                                                      <div id="selectCargo">
+                                                          <?php echo $form->dropDownList($model,'id_position',Position::getPosition(),$Position);?>
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                       <div id="mensajeCargo"></div>
+                                                       <input type="text" id="cargo" class="cargo form-control input-large"  value="" name="cargo"/>
+                                                  </td>
+                                                  <td>
+                                                      
+                                                      <div id="checkbox">
+                                                          <div id="mensajeLider" ></div>
+                                                          <input type="checkbox" id="leader" name="leader" value="1"   />
+                                                      </div>
+                                                     
+                                                  </td>
+                                                  <td>
+                                                      <p id="cargo" class="newGroup">+</p>
+                                                  </td>
+                                              </tr>
+                                          </table>
                                       </div>
                                     </div>
                                   <div class="contenidos_columnas">
@@ -91,3 +134,6 @@
                </div>
             </div>
 </div>
+
+
+

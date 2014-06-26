@@ -20,6 +20,7 @@ $ARU.UI=(function(){
         _controllersByRol();
         _MaskCell();
         _CreatePositionCode();
+        _addDivision();
     
     }
     
@@ -575,15 +576,15 @@ $ARU.UI=(function(){
             
               
             
-              $("#PositionCode_id_division").select2({
+             $("#PositionCode_id_division").select2({
                 placeholder: "Select",
                 allowClear: true,
-                formatResult: _format,
-                formatSelection: _format,
                 escapeMarkup: function (m) {
                     return m;
                 }
             });
+            
+            
               $("#PositionCode_id_position").select2({
                 placeholder: "Select",
                 allowClear: true,
@@ -602,6 +603,16 @@ $ARU.UI=(function(){
                     return m;
                 }
             });
+              $("#PositionCode_dependencia").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: _format,
+                formatSelection: _format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+             
          }
          
          /**
@@ -937,35 +948,93 @@ $ARU.UI=(function(){
                  var id_position= $("#PositionCode_id_position").val();
                  var id_employee= $("#PositionCode_id_employee").val();
                  var start_date= $("#PositionCode_start_date").val();
+                 var dependencia= $("#PositionCode_dependencia").val();
+                 var nuevaDivision= $("#dependencia").val();
+                 var nuevoCargo= $("#cargo").val();
+                 var leader= $("#leader:checked").val();
                  
-                 if ((id_division=="") || (id_position=="") || (id_employee=="") || (start_date=="")){
                 
-                    $('#error').addClass("alert alert-danger");
-                    $('#error').addClass("rojo");
-                    $('#error').show( "slow");
-                    $('#error').html("Faltan Datos Para Realizar el Registro");
+                 if((dependencia!="") || (nuevaDivision!="")){
+                     
+                     if ((dependencia=="") || (nuevaDivision=="")){
+                            $('#error').addClass("alert alert-danger");
+                            $('#error').addClass("rojo");
+                            $('#error').show( "slow");
+                            $('#error').html("Faltan Datos Para Realizar el Registro de División y Dependencia");
+                     }
+                     
+                     else{
+                          $('#error').removeClass("rojo");
+                            $('#error').removeClass("alert alert-danger");
+                            $('#error').removeClass("icon-remove-circle"); 
+                            $('#error').html("");
+                            $ARU.AJAX.crearDivision("GET","/Division/AddDivision","dependencia="+dependencia+"&nuevaDivision="+nuevaDivision);
+                     }
                  }
-                 else {
-                    $('#error').removeClass("rojo");
-                    $('#error').removeClass("alert alert-danger");
-                    $('#error').removeClass("icon-remove-circle"); 
-                    $('#error').html("");
-                    $ARU.AJAX.crearPosicion("GET","/PositionCode/CrearPosition","id_employee="+id_employee+"&id_position="+id_position+"&id_division="+id_division+"&start_date="+start_date);
+                 
+                 if ((id_division!="") || (id_position!="") || (id_employee!="") || (start_date!="")){
+                     
+                         if ((id_division=="") || (id_position=="") || (id_employee=="") || (start_date=="")){
+
+                            $('#error').addClass("alert alert-danger");
+                            $('#error').addClass("rojo");
+                            $('#error').show( "slow");
+                            $('#error').html("Faltan Datos Para Realizar el Registro de Código de Posición");
+                         }
+                         else {
+                            $('#error').removeClass("rojo");
+                            $('#error').removeClass("alert alert-danger");
+                            $('#error').removeClass("icon-remove-circle"); 
+                            $('#error').html("");
+                            $ARU.AJAX.crearPosicion("GET","/PositionCode/CrearPosition","id_employee="+id_employee+"&id_position="+id_position+"&id_division="+id_division+"&start_date="+start_date);
+
+                         }
+                     
+                     
+                 }
+                 
+                 
+                 if (nuevoCargo!=""){
+                   
+               switch(leader){
+                    case "1":
+                        var leadercambio='1';
+                       $ARU.AJAX.crearCargo("GET","/Position/AddPosition","nuevoCargo="+nuevoCargo+"&leader="+leadercambio);
+                        break;
+                    case undefined:
+                        var leadercambio='0';
+                        $ARU.AJAX.crearCargo("GET","/Position/AddPosition","nuevoCargo="+nuevoCargo+"&leader="+leadercambio);
+                        break;
+                
+                    }
                     
+                    
+                        
                  }
+                 
+                 
+              
                  
              });
         }
         
         function createPosition(result)
         {
-            console.log(result);
+            
               switch(result){
                 case "true":
-                    $("#PositionCode_id_division").attr('value');
+                   
                     $('#error').addClass("alert alert-success");
                     $('#error').addClass("verde");           
                     $('#error').html("Registro Exitoso!");
+                    $("#PositionCode_id_division").select2('val', '');
+                    $("#PositionCode_id_position").select2('val', '');
+                    $("#PositionCode_id_employee").select2('val', '');
+                    $("#PositionCode_start_date").val(" ");
+
+
+                    
+            
                    
                     break;
                 case "false":
@@ -981,7 +1050,121 @@ $ARU.UI=(function(){
             
         }
         
+        function _addDivision()
+        {
+            
+       $('p#test').on('click',function(){
+
+                    $("#PositionCode_id_division").select2('val', '');
+                    $("#PositionCode_id_position").select2('val', '');
+                    $("#PositionCode_id_employee").select2('val', '');
+                     $("#PositionCode_dependencia").select2('val', '');;
+                    $("#PositionCode_start_date").val("");
+                    $('#error').removeClass("rojo");
+                    $('#error').removeClass("alert alert-danger");
+                    $('#error').removeClass("icon-remove-circle"); 
+                    $('#error').html("");
+                    
+            $("input.dependencia").val("");
+            if($("input.dependencia").css("display")=="none"){
+                $(this).html("<");
+                $("input.dependencia").toggle("slide");
+                $("#seleDepen").toggle("slide");
+                $("div#selectDivision").hide("fast");
+                $("div#mensaje").html("Nombre de la División");
+                $("div#dependencia").html("Dependencia");
+                
+                
+            }else{
+                $("div#mensaje").html("");
+                $("div#dependencia").html("");
+                $("input.dependencia").hide("fast");
+                $("div#selectDivision").toggle("slide");
+                $("#seleDepen").hide("fast");
+                $(this).html("+");
+            }
+        });
+       $('p#cargo').on('click',function(){
+         
+            $("#cargo").val("");
+            if($("input.cargo").css("display")=="none"){
+                 $(this).html("<");
+                 $("input.cargo").toggle("slide");
+                 $("div#selectCargo").hide("fast");
+                 $("div#mensajeCargo").html("Nombre del Cargo");
+                 $("div#mensajeLider").html("Lider");
+                 $("div#checkbox").toggle("slide");
+            }
+            
+            else
+            {
+                
+              $("div#mensajeCargo").html("");
+              $("div#mensajeLider").html("");
+              $("input.cargo").hide("fast");
+              $("div#checkbox").hide("fast");
+              $("div#selectCargo").toggle("slide");
+              $(this).html("+");  
+            }
+          
+        });
+            
+        }
         
+        
+        
+          
+        function createDivision(result)
+        {
+            
+            switch(result){
+                case true:
+                   
+                    $('#error').addClass("alert alert-success");
+                    $('#error').addClass("verde");           
+                    $('#error').html("Registro Exitoso!");
+              
+                    break;
+                case false:
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("Falla en el Registro");
+                    break;
+                
+            }
+            
+        }
+        
+        
+        
+        /**
+         * funcion para cargar mensajes de cracion de cargos nuevos en la organizacion
+         */
+        
+        
+         function createCargo(result)
+        {
+            
+            switch(result){
+                case true:
+                   
+                    $('#error').addClass("alert alert-success");
+                    $('#error').addClass("verde");           
+                    $('#error').html("Registro Exitoso!");
+              
+                    break;
+                case false:
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("Falla en el Registro");
+                    break;
+                
+            }
+            
+            
+        }
         
          
          
@@ -994,7 +1177,11 @@ $ARU.UI=(function(){
         viewEmployeeModal:viewEmployeeModal,
         rolCreate: rolCreate,
         viewActionController:viewActionController,
-        createPosition:createPosition
+        createPosition:createPosition,
+        createDivision:createDivision,
+        createCargo:createCargo,
+        
+        
         
       
         

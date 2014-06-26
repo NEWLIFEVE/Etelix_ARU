@@ -84,5 +84,27 @@ class DivisionController extends Controller
 	}
 	*/
     
+    
+    
+    /**
+     * 
+     * funcion para guardar nuevas division organizacionales en la empresa (ej. presidencia, vp presidencia, gerencias)
+     */
+    
+    public function actionAddDivision(){
+        
+    $dependencia=$_GET['dependencia'];
+    $nuevaDivision=$_GET['nuevaDivision'];
+    
+    if (($nuevaDivision!=null) && ($dependencia!=null) ){
+        
+        $model= new Division;
+        $model->name=$nuevaDivision;
+        $model->id_dependency=$dependencia;
+        if($model->save())echo json_encode(true); else echo json_encode(false);  
+    }
+        
+    }
+    
    
 }
