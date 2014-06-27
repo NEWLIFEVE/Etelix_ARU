@@ -117,4 +117,7 @@ class PositionCode extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    
+    
 }

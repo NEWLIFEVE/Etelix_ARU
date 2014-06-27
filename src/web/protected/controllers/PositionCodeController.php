@@ -70,13 +70,46 @@ class PositionCodeController extends Controller
     public function actionCrearPosition()
      {
         
-                $PositionCode= new PositionCode;
-                $PositionCode->position_code="1.3";
-                $PositionCode->id_employee=$_GET['id_employee'];
-                $PositionCode->id_division=$_GET['id_division'];
-                $PositionCode->id_position=$_GET['id_position'];
-                $PositionCode->start_date=$_GET['start_date'];
-                if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
+      
+        $verificarLeader=  Position::verficarPosition($_GET['id_division'] );
+        
+        if ($verificarLeader!=NULL){
+                        if ($verificarLeader[0]->leader!=0){
+                           
+                            $PositionCode= new PositionCode;
+                            $PositionCode->position_code="1.3";
+                            $PositionCode->id_employee=$_GET['id_employee'];
+                            $PositionCode->id_division=$_GET['id_division'];
+                            $PositionCode->id_position=$_GET['id_position'];
+                            $PositionCode->start_date=$_GET['start_date'];
+                            if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
+                        }
+                        
+                        else {
+                            echo json_encode("sinlider");
+                        }
+     
+                    }
+                    
+     else {
+         
+       $verificarCargo= Position::verficarCargo($_GET['id_position']);
+                if ($verificarCargo->leader!=0){
+                            $PositionCode= new PositionCode;
+                            $PositionCode->position_code="1.3";
+                            $PositionCode->id_employee=$_GET['id_employee'];
+                            $PositionCode->id_division=$_GET['id_division'];
+                            $PositionCode->id_position=$_GET['id_position'];
+                            $PositionCode->start_date=$_GET['start_date'];
+                            if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
+                }
+                else
+                    {
+                    echo json_encode("sinlider");
+                    }
+     }
+        
+                
         
      }
 

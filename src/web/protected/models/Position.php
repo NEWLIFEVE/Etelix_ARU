@@ -113,4 +113,32 @@ class Position extends CActiveRecord
     {
          return  CHtml::ListData(Position::model()->findAll(),"id","name"); 
     }
+    
+    
+    
+     /**
+     * funcion para verificar si existe lider en la division
+     */
+    
+    
+    public function verficarPosition($division)
+     {
+         $consulta="select leader from position_code, position where id_division=".$division." and id_position=position.id order by leader desc";
+         $position=self::model()->findAllBySql($consulta);
+         return $position;
+     }
+     
+     
+     
+     /**
+      * funcion para verificar si el cargo cumple como lider
+      */
+     
+     
+     public function verficarCargo($position)
+     {
+         $consulta="select leader from position where id=".$position."";
+           $position=self::model()->findBySql($consulta);
+           return $position;
+     }
 }

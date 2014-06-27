@@ -1007,14 +1007,7 @@ $ARU.UI=(function(){
                         break;
                 
                     }
-                    
-                    
-                        
                  }
-                 
-                 
-              
-                 
              });
         }
         
@@ -1032,16 +1025,20 @@ $ARU.UI=(function(){
                     $("#PositionCode_id_employee").select2('val', '');
                     $("#PositionCode_start_date").val(" ");
 
-
-                    
-            
-                   
                     break;
                 case "false":
                   
                     $('#error').addClass("alert alert-danger"); 
                     $('#error').addClass("rojo");
                     $('#error').html("Falla en el Registro");
+                    break;
+                    
+                           
+                case "sinlider":
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("Se Necesita Crear un Lider/Coordinador/Gerente para esta División");
                     break;
                 
             }
@@ -1160,6 +1157,7 @@ $ARU.UI=(function(){
                     $('#error').addClass("rojo");
                     $('#error').html("Falla en el Registro");
                     break;
+             
                 
             }
             
