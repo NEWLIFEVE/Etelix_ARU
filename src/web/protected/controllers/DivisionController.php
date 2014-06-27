@@ -44,48 +44,7 @@ class DivisionController extends Controller
 		$this->render('index');
 	}
 
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
-    
-    
-    
+ 
     /**
      * 
      * funcion para guardar nuevas division organizacionales en la empresa (ej. presidencia, vp presidencia, gerencias)
@@ -105,6 +64,19 @@ class DivisionController extends Controller
     }
         
     }
+    
+    
+        /**
+         * 
+         * funcion para calcular la dependencia entre las division
+         */
+    public function getDependencia($division)
+          {
+             
+             $model=  Division::verificarDependencia($division);
+             var_dump($model->id_dependency);
+            
+          }
     
    
 }

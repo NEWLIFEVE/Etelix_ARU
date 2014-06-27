@@ -118,4 +118,18 @@ class Division extends CActiveRecord
       public static function getDivision() {
             return  CHtml::ListData(self::model()->findAll(),"id","name"); 
         }
+        
+        
+      /**
+       * funcion para verificar la dependencia de los departmatentos
+       */
+        
+      public function verificarDependencia($division)
+              {
+                 $consult="select * from division where id=".$division."";
+                  $dependencia=self::model()->findBySql($consult);
+                  return $dependencia;
+              }
+        
+        
 }

@@ -69,13 +69,13 @@ class PositionCodeController extends Controller
     
     public function actionCrearPosition()
      {
-        
-      
         $verificarLeader=  Position::verficarPosition($_GET['id_division'] );
         
         if ($verificarLeader!=NULL){
                         if ($verificarLeader[0]->leader!=0){
                            
+                            
+                            $pedendenciaDivision= DivisionController::getDependencia($_GET['id_division']);
                             $PositionCode= new PositionCode;
                             $PositionCode->position_code="1.3";
                             $PositionCode->id_employee=$_GET['id_employee'];
@@ -107,10 +107,7 @@ class PositionCodeController extends Controller
                     {
                     echo json_encode("sinlider");
                     }
-     }
-        
-                
-        
+     } 
      }
 
 	
