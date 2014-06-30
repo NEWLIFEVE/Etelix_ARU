@@ -43,9 +43,6 @@ class PositionCodeController extends Controller
         
         if (isset($_POST['PositionCode']))
             {
-            
-            
-          
                 $PositionCode= new PositionCode;
                 $PositionCode->position_code="1.3";
                 $PositionCode->id_employee=$_POST['PositionCode']['id_employee'];
@@ -57,9 +54,6 @@ class PositionCodeController extends Controller
                     {
                    $this->redirect(array('index', 'id' => $PositionCode->id));
                     }
-                
-               
-            
             }
         
         $model= new PositionCode;
@@ -67,48 +61,70 @@ class PositionCodeController extends Controller
 	}
     
     
-    public function actionCrearPosition()
-     {
-        $verificarLeader=  Position::verficarPosition($_GET['id_division'] );
-        
-        if ($verificarLeader!=NULL){
-                        if ($verificarLeader[0]->leader!=0){
-                           
-                            
-                            $pedendenciaDivision= DivisionController::getDependencia($_GET['id_division']);
-                            $PositionCode= new PositionCode;
-                            $PositionCode->position_code="1.3";
-                            $PositionCode->id_employee=$_GET['id_employee'];
-                            $PositionCode->id_division=$_GET['id_division'];
-                            $PositionCode->id_position=$_GET['id_position'];
-                            $PositionCode->start_date=$_GET['start_date'];
-                            if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
-                        }
-                        
-                        else {
-                            echo json_encode("sinlider");
-                        }
+//    public function actionCrearPosition()
+//     {
+//        $verificarLeader=  Position::verficarPosition($_GET['id_division'] );
+//        
+//        if ($verificarLeader!=NULL){
+//                        if ($verificarLeader[0]->leader!=0){
+//                           
+//                            
+//                            $pedendenciaDivision= DivisionController::getDependencia($_GET['id_division']);
+//                            $PositionCode= new PositionCode;
+//                            $PositionCode->position_code="1.3";
+//                            $PositionCode->id_employee=$_GET['id_employee'];
+//                            $PositionCode->id_division=$_GET['id_division'];
+//                            $PositionCode->id_position=$_GET['id_position'];
+//                            $PositionCode->start_date=$_GET['start_date'];
+//                            if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
+//                        }
+//                        
+//                        else {
+//                            echo json_encode("sinlider");
+//                        }
+//     
+//                    }
+//                    
+//     else {
+//         
+//       $verificarCargo= Position::verficarCargo($_GET['id_position']);
+//                if ($verificarCargo->leader!=0){
+//                            $PositionCode= new PositionCode;
+//                            $PositionCode->position_code="1.3";
+//                            $PositionCode->id_employee=$_GET['id_employee'];
+//                            $PositionCode->id_division=$_GET['id_division'];
+//                            $PositionCode->id_position=$_GET['id_position'];
+//                            $PositionCode->start_date=$_GET['start_date'];
+//                            if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
+//                }
+//                else
+//                    {
+//                    echo json_encode("sinlider");
+//                    }
+//     } 
+//     }
      
-                    }
-                    
-     else {
+     public function actionCrearPosition(){
+//    var_dump($_GET['id_employee']);
+//  
+//    var_dump($_GET['new_position']);
+//    var_dump($_GET['leader']);
+//    var_dump($_GET['id_division']);
+//    var_dump($_GET['new_division']);
+//    var_dump($_GET['id_dependencia']);
+//    var_dump($_GET['start_date']);
+    
+    
+    if ($_GET['id_division']!=NULL)
+        {
+              $idDivision=$_GET['id_division'];
+        }
+        
+   else
+       {
+           $idDivision=  Division::getNewDivision($_GET['new_division'],$_GET['id_dependencia'] );
+       
+       } 
          
-       $verificarCargo= Position::verficarCargo($_GET['id_position']);
-                if ($verificarCargo->leader!=0){
-                            $PositionCode= new PositionCode;
-                            $PositionCode->position_code="1.3";
-                            $PositionCode->id_employee=$_GET['id_employee'];
-                            $PositionCode->id_division=$_GET['id_division'];
-                            $PositionCode->id_position=$_GET['id_position'];
-                            $PositionCode->start_date=$_GET['start_date'];
-                            if ($PositionCode->save()) echo json_encode("true");else echo json_encode("false");
-                }
-                else
-                    {
-                    echo json_encode("sinlider");
-                    }
-     } 
      }
-
-	
 }

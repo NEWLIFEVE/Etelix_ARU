@@ -36,9 +36,6 @@ class PositionController extends Controller
             );
     }
     
-    
-    
-    
 	public function actionIndex()
 	{
         $model= new Position;
@@ -51,18 +48,12 @@ class PositionController extends Controller
      */
     public function actionAddPosition()
      {
-       
-         
          if ( ($_GET['nuevoCargo']!=null) && ($_GET['leader']!=null))
              {
                 $model=new Position;
                 $model->name=$_GET['nuevoCargo'];
                 $model->leader=$_GET['leader'];
                 if($model->save())echo json_encode(true); else echo json_encode(false); 
-                    
-                    
-                    
-             
              }
         
      }

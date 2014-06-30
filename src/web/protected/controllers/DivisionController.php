@@ -72,10 +72,22 @@ class DivisionController extends Controller
          */
     public function getDependencia($division)
           {
-             
-             $model=  Division::verificarDependencia($division);
-             var_dump($model->id_dependency);
+        
+                $model=  Division::verificarDependencia($division);//dependencia directa
+              if ($model->id_dependency!=NULL){
+                $idDivision= Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia   
+                var_dump($model->id_dependency.$idDivision);
+              }
+              
+              else {
+                 //var_dump("dependencia directa con presidencia");
+              }
             
+            
+                $escalaDependencia=  Division::escala($division);
+                
+             
+             
           }
     
    

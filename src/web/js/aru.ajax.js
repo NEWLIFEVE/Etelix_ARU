@@ -128,6 +128,21 @@ $ARU.AJAX=(function()
             }
         });
     }
+    function createPositionCode(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                alert(data);
+//                result=JSON.parse(data);
+//                $ARU.UI.createPosition(result);
+            }
+        });
+    }
     
     
     /**
@@ -180,7 +195,8 @@ $ARU.AJAX=(function()
         idRol:idRol,
         crearPosicion:crearPosicion,
         crearDivision:crearDivision,
-        crearCargo:crearCargo
+        crearCargo:crearCargo,
+        createPositionCode:createPositionCode
         
     };
     

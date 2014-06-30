@@ -130,6 +130,58 @@ class Division extends CActiveRecord
                   $dependencia=self::model()->findBySql($consult);
                   return $dependencia;
               }
+              
+              
+     
+        
+        /**
+         * funcion para verificar Id de la division
+         */
+        
+        public function verificarId($id, $idDependencia)
+          {
+             $cont=0;    
+              for ($i = 1; $i <= $id; $i++){
+                    $consult="select * from division where id=".$i." and id_dependency=".$idDependencia."";
+                    $dependencia[]=self::model()->findBySql($consult);
+                   }
+                  foreach($dependencia as $value){
+                        if ($value!=null){ ++$cont;}
+                        }
+                    return $cont;
+                    
+          }
+          
+          /**
+           * funcion 
+           */
+          
+          public function escala($division)
+                  {
+                  $consult="select * from division where id=".$division."";
+                  $dependencia=self::model()->findBySql($consult);
+                  
+                  
+                            while (($dependencia->id_dependency != NULL)):
+                                self::escala($dependencia->id_dependency);
+                                $dependencia->id_dependency=NULL;
+                            endwhile;
+                            
+                            var_dump($division);
+             
+                  }
+                  
+                  
+                  
+         public function getNewDivision()
+          {
+             $model=new Division;
+             $model->name=$_GET['new_division'];
+             $model->name=$_GET['id_dependencia'];
+             $model->save();
+             return $model->id;
+             
+          }
         
         
 }

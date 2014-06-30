@@ -20,7 +20,8 @@
 class PositionCode extends CActiveRecord
 {
 
-    public $dependencia;
+    public $new_division;
+    public $id_dependencia;
     /**
 	 * @return string the associated database table name
 	 */

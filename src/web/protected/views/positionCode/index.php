@@ -40,9 +40,9 @@
                     <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); 
 
                                      
-                    $Division=array("class"=>"form-control input-large","empty"=>"División");
-                    $Position=array("class"=>"form-control input-large","empty"=>"Cargo",);
-                    $Employee=array("class"=>"form-control input-large","empty"=>"Empleado",);
+                    $Division=array("class"=>"form-control input-large select2","empty"=>"División");
+                    $Position=array("class"=>"form-control input-large select2","empty"=>"Cargo",);
+                    $Employee=array("class"=>"form-control input-large select2","empty"=>"Empleado",);
 
                       ?>
                       
@@ -63,11 +63,12 @@
                                                   </td>
                                                   <td>
                                                       <div id="mensaje"></div>
-                                                       <input type="text" id="dependencia" class="dependencia form-control input-large"  value="" name="dependencia"/>
+                                                      <?php echo $form->textField($model,'new_division', array('class'=>'form-control input-large dependencia')); ?>
+                                                       <!--<input type="text" id="new_division" class="dependencia form-control input-large"  value="" name="new_division"/>-->
                                                    </td>
                                                    <td><div id="dependencia"></div>
                                                        <div id="seleDepen">
-                                                       <?php echo $form->dropDownList($model,'dependencia',Division::getDivision(),$Division);?>
+                                                       <?php echo $form->dropDownList($model,'id_dependencia',Division::getDivision(),$Division);?>
                                                        </div>
                                                    </td>
                                                    <td>
@@ -91,7 +92,7 @@
                                                   </td>
                                                   <td>
                                                        <div id="mensajeCargo"></div>
-                                                       <input type="text" id="cargo" class="cargo form-control input-large"  value="" name="cargo"/>
+                                                       <input type="text" id="new_position" class="cargo form-control input-large"  value="" name="new_position"/>
                                                   </td>
                                                   <td>
                                                       
