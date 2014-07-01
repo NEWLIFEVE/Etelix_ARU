@@ -119,6 +119,7 @@
                                     <th style="background: #FCB322; color:#fff">Inicio Descanso/Almuerzo</th>
                                     <th style="background: #57B5E3; color:#fff">Fin Descanso/Almuerzo</th>
                                     <th style="background: #ED4E2A; color:#fff">Fin Jornada Laboral</th>
+                                    <th style="background: #999; color:#fff">Cerrado por Limite de Tiempo</th>
                                  </tr>
                               </thead>
                               
@@ -137,8 +138,12 @@
                                            <?php $hora=  EventEmployee::getEventosHoras($value->id) ;?>
                                            <?php foreach ($hora as $key=> $value){ ?>  
                                   
-                                  <td><?php  if ($value['hour'])echo $value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span>"; ?></td> <?php } ?>
-                                  <?php  if ($key==0){echo "<td></td><td></td><td></td>";}if ($key==1){echo "<td></td><td></td>";} if ($key==2){echo "<td></td>";} ?> 
+                                  <?php  if ($value['event']==1)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?>
+                                  <?php  if ($value['event']==2)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
+                                  <?php  if ($value['event']==3)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
+                                  <?php  if ($value['event']==4)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
+                                  <?php  if ($value['event']==5)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> <?php } ?>
+                                  <?php if ($key==0){echo "<td></td><td></td><td></td>";}if ($key==1){echo "<td></td><td></td>";} if ($key==2){echo "<td></td>";} ?> 
                               </tr>
                               <?php  }?>
                               </tbody>

@@ -160,7 +160,7 @@ class Division extends CActiveRecord
         
               if ($model->id_dependency!=NULL){
                 $idDivision= Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia   
-                var_dump($model->id_dependency.".".$idDivision);
+                //var_dump($model->id_dependency.".".$idDivision);
               }
              
                   }

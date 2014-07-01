@@ -211,7 +211,7 @@ class EventEmployee extends CActiveRecord
                $employeeall=NULL;
                $sindeclarar=NULL;
                
-                $consulta="select  e.id ,ev.date, ev.hour_event, ev.id_type_event
+                $consulta="select  ev.id_employee ,ev.date, ev.hour_event, ev.id_type_event
                         from
                   
                                         employee e, users u, event_employee ev, type_event t,
@@ -232,19 +232,19 @@ class EventEmployee extends CActiveRecord
                 
                 foreach ($model as $value)
                     {
-                    
                         //$allfilter= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
-                       
-                    
-                     if (($value->id_type_event ==1) || ($value->id_type_event ==3) ){
-                        $filtrar= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
+
+                     if (($value->id_type_event !=4) || ($value->id_type_event !=5) ){
+                        $filtrar= EventEmployee::getfiltro($value->id_employee, $value->date, $value->hour_event);
                       
                         if ($filtrar==FALSE){
-                           
-                            
-                             $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
-                             $consut->id_type_event =5;
-                             $consut->save();
+//                             $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
+                            $new_event_employee = new EventEmployee; 
+                            $new_event_employee->id_employee =$value->id_employee;
+                            $new_event_employee->date =date('Ymd');
+                            $new_event_employee->hour_event ="00:00:00";
+                            $new_event_employee->id_type_event =5;
+                            $new_event_employee->save();
                        }
                     } 
                         
@@ -256,8 +256,6 @@ class EventEmployee extends CActiveRecord
                      echo $sindeclarar;
                
                         if ($filtrar!=NULL){
-
-                          
                             $consul="
                                         select e.*
 
