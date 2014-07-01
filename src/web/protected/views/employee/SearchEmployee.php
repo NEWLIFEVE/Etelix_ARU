@@ -142,8 +142,8 @@
                                   <?php  if ($value['event']==2)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
                                   <?php  if ($value['event']==3)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
                                   <?php  if ($value['event']==4)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
-                                  <?php  if ($value['event']==5)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> <?php } ?>
-                                  <?php if ($key==0){echo "<td></td><td></td><td></td>";}if ($key==1){echo "<td></td><td></td>";} if ($key==2){echo "<td></td>";} ?> 
+                                  <?php  if ($value['event']==5)$cerrar= "<td>".$value['hour']."</td>"; ?> <?php } ?>
+                                  <?php if ($key==0){echo "<td></td><td></td><td></td><td>$cerrar</td>";}if ($key==1){echo "<td></td><td></td><td>$cerrar</td>";} if ($key==2){echo "<td></td><td>$cerrar</td>";} ?> 
                               </tr>
                               <?php  }?>
                               </tbody>
