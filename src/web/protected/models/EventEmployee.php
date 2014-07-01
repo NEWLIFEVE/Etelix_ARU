@@ -210,6 +210,7 @@ class EventEmployee extends CActiveRecord
                  
                $employeeall=NULL;
                $sindeclarar=NULL;
+               $filtrar=NULL;
                
                 $consulta="select  ev.id_employee ,ev.date, ev.hour_event, ev.id_type_event
                         from
@@ -229,23 +230,39 @@ class EventEmployee extends CActiveRecord
                                         ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id and e.id=".$id." ";
                 
                 $model=self::model()->findAllBySql($consulta);
+                $fecha=date('Ymd');
                 
                 foreach ($model as $value)
                     {
-                        //$allfilter= EventEmployee::getfiltro($value->id, $value->date, $value->hour_event);
-
+             
                      if (($value->id_type_event !=4) || ($value->id_type_event !=5) ){
-                        $filtrar= EventEmployee::getfiltro($value->id_employee, $value->date, $value->hour_event);
-                      
+                        if ($type!="inactive"){
+                        $filtrar= EventEmployee::getfiltro($value->id_employee, $value->date, $value->hour_event); 
                         if ($filtrar==FALSE){
-//                             $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
+                            
+                            $consulta="select * from event_employee where hour_event='".$value->hour_event."' and date='".$fecha."' and id_employee=".$value->id_employee." and id_type_event=5 ";
+                            $employee=  EventEmployee::model()->findBySql($consulta);
+                            
+                            if ($employee){
+                                
+                            }
+                            
+                            else {
                             $new_event_employee = new EventEmployee; 
                             $new_event_employee->id_employee =$value->id_employee;
                             $new_event_employee->date =date('Ymd');
                             $new_event_employee->hour_event ="00:00:00";
                             $new_event_employee->id_type_event =5;
                             $new_event_employee->save();
-                       }
+                                
+                            }
+                           // $consut=self::model()->find('id_employee=:id AND date=:date AND hour_event=:hour_event ', array(':id'=>$value->id, ':date'=>$value->date,':hour_event'=>$value->hour_event));
+//                            
+                   
+                    
+                         }
+                         
+                        }
                     } 
                         
                     else{
