@@ -236,7 +236,7 @@ class EventEmployee extends CActiveRecord
                     {
              
                      if (($value->id_type_event !=4) || ($value->id_type_event !=5) ){
-                        if ($type!="inactive"){
+                       
                         $filtrar= EventEmployee::getfiltro($value->id_employee, $value->date, $value->hour_event); 
                         if ($filtrar==FALSE){
                             
@@ -262,7 +262,7 @@ class EventEmployee extends CActiveRecord
                     
                          }
                          
-                        }
+                        
                     } 
                         
                     else{
@@ -300,7 +300,7 @@ class EventEmployee extends CActiveRecord
 
                                   
                                 $consul.=" and t.id IN (2,4,5)";
-
+                                break;    
                             }  
                             $employeeall=  Employee::model()->findBySql($consul);
                             
