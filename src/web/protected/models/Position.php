@@ -138,7 +138,25 @@ class Position extends CActiveRecord
      public function verficarCargo($position)
      {
          $consulta="select leader from position where id=".$position."";
-           $position=self::model()->findBySql($consulta);
-           return $position;
+         $position=self::model()->findBySql($consulta);
+         return $position;
      }
+     
+     
+     
+     /**
+      * 
+      * 
+      */
+     
+     public function getNewPosition($newPosition, $leader)
+      {
+           if ($leader=="undefined")$leader=0;
+               
+                $model=new Position;
+                $model->name=$newPosition;
+                $model->leader=$leader;
+                $model->save();
+                return $model->id;
+      }
 }

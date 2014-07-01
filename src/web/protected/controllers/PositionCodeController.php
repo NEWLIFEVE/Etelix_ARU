@@ -104,27 +104,33 @@ class PositionCodeController extends Controller
 //     } 
 //     }
      
-     public function actionCrearPosition(){
-//    var_dump($_GET['id_employee']);
-//  
-//    var_dump($_GET['new_position']);
-//    var_dump($_GET['leader']);
-//    var_dump($_GET['id_division']);
-//    var_dump($_GET['new_division']);
-//    var_dump($_GET['id_dependencia']);
-//    var_dump($_GET['start_date']);
-    
-    
-    if ($_GET['id_division']!=NULL)
-        {
-              $idDivision=$_GET['id_division'];
-        }
-        
-   else
+     public function actionCrearPosition()
        {
-           $idDivision=  Division::getNewDivision($_GET['new_division'],$_GET['id_dependencia'] );
-       
-       } 
-         
-     }
+
+            if ($_GET['id_division']!=NULL) $idDivision=$_GET['id_division']; else $idDivision=Division::getNewDivision($_GET['new_division'],$_GET['id_dependencia']);  
+            if ($_GET['id_position']!=NULL) $idPosition=$_GET['id_position']; else  $idPosition=Position::getNewPosition($_GET['new_position'], $_GET['leader']);  
+              
+            $LevelPosition=  Position::verficarPosition($idDivision);   
+                if ($LevelPosition!=NULL)
+                  {
+                     if ($LevelPosition[0]->leader!=0)
+                         {
+                            $createPositionCode=  PositionCode::getCreatePositionCode($idDivision,$idPosition, $_GET['id_employee'], $_GET['start_date']);
+                                echo json_encode ($createPositionCode);
+                         }
+                     else echo json_encode ("sinlider");
+                         
+                  }
+               else
+                 {
+                   $verificarCargo= Position::verficarCargo($idPosition);
+                    if ($verificarCargo->leader!=0)
+                        {
+                            $createPositionCode=  PositionCode::getCreatePositionCode($idDivision,$idPosition, $_GET['id_employee'], $_GET['start_date']); 
+                                echo json_encode ($createPositionCode);
+                        }
+                    else echo json_encode ("sinlider");
+                    
+                 }
+       }
 }

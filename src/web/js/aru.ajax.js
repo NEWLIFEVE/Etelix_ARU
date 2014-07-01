@@ -137,9 +137,9 @@ $ARU.AJAX=(function()
             data:formulario,
             success:function(data)
             {
-                alert(data);
-//                result=JSON.parse(data);
-//                $ARU.UI.createPosition(result);
+                
+                result=JSON.parse(data);
+                $ARU.UI.createPosition(result);
             }
         });
     }

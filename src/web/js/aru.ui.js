@@ -1001,9 +1001,9 @@ $ARU.UI=(function(){
         
         function createPosition(result)
         {
-            
+            console.log(result);
               switch(result){
-                case "true":
+                case true:
                    
                     $('#error').addClass("alert alert-success");
                     $('#error').addClass("verde");           
@@ -1014,7 +1014,7 @@ $ARU.UI=(function(){
                     $("#PositionCode_start_date").val(" ");
 
                     break;
-                case "false":
+                case false:
                   
                     $('#error').addClass("alert alert-danger"); 
                     $('#error').addClass("rojo");
@@ -1165,10 +1165,5 @@ $ARU.UI=(function(){
         createDivision:createDivision,
         createCargo:createCargo,
         
-        
-        
-      
-        
-       
     };
 })();

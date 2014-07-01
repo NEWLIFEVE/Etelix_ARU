@@ -177,7 +177,7 @@ class Division extends CActiveRecord
           {
              $model=new Division;
              $model->name=$_GET['new_division'];
-             $model->name=$_GET['id_dependencia'];
+             $model->id_dependency=$_GET['id_dependencia'];
              $model->save();
              return $model->id;
              
