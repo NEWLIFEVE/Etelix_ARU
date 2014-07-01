@@ -1001,13 +1001,15 @@ $ARU.UI=(function(){
         
         function createPosition(result)
         {
-            console.log(result);
+           
               switch(result){
                 case true:
                    
                     $('#error').addClass("alert alert-success");
                     $('#error').addClass("verde");           
                     $('#error').html("Registro Exitoso!");
+                    $('#error').show();
+                    $('#error').fadeOut(15000);
                     $("#PositionCode_id_division").select2('val', '');
                     $("#PositionCode_id_position").select2('val', '');
                     $("#PositionCode_id_employee").select2('val', '');

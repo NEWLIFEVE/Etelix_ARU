@@ -109,8 +109,9 @@ class PositionCodeController extends Controller
 
             if ($_GET['id_division']!=NULL) $idDivision=$_GET['id_division']; else $idDivision=Division::getNewDivision($_GET['new_division'],$_GET['id_dependencia']);  
             if ($_GET['id_position']!=NULL) $idPosition=$_GET['id_position']; else  $idPosition=Position::getNewPosition($_GET['new_position'], $_GET['leader']);  
-              
+ 
             $LevelPosition=  Position::verficarPosition($idDivision);   
+            $pedendenciaDivision= DivisionController::getDependencia($idDivision);
                 if ($LevelPosition!=NULL)
                   {
                      if ($LevelPosition[0]->leader!=0)

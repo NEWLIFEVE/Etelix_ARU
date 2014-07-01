@@ -152,11 +152,9 @@ class Position extends CActiveRecord
      public function getNewPosition($newPosition, $leader)
       {
            if ($leader=="undefined")$leader=0;
-               
                 $model=new Position;
                 $model->name=$newPosition;
                 $model->leader=$leader;
-                $model->save();
-                return $model->id;
+                if($model->save())return $model->id; else return false;      
       }
 }

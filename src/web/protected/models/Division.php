@@ -111,7 +111,7 @@ class Division extends CActiveRecord
 	}
     
     /**
-     * 
+     * funcion para alistar las divisiones en un select
      * 
      */
     
@@ -131,9 +131,42 @@ class Division extends CActiveRecord
                   return $dependencia;
               }
               
-              
-     
+                  
+         public function getNewDivision()
+          {
+             $model=new Division;
+             $model->name=$_GET['new_division'];
+             $model->id_dependency=$_GET['id_dependencia'];
+             if ($model->save())return $model->id; else return false;
+          }
+          
+          
+            /**
+           * funcion 
+           */
+          
+          public function escala($division)
+                  {
+                  $consult="select * from division where id=".$division."";
+                  $dependencia=self::model()->findBySql($consult);
+                  
+                  
+                            while (($dependencia->id_dependency != NULL)):
+                                self::escala($dependencia->id_dependency);
+                                $dependencia->id_dependency=NULL;
+                            endwhile;
+                            
+                             $model=  Division::verificarDependencia($division);//dependencia directa
         
+              if ($model->id_dependency!=NULL){
+                $idDivision= Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia   
+                var_dump($model->id_dependency.".".$idDivision);
+              }
+             
+                  }
+                  
+                  
+                  
         /**
          * funcion para verificar Id de la division
          */
@@ -151,37 +184,7 @@ class Division extends CActiveRecord
                     return $cont;
                     
           }
-          
-          /**
-           * funcion 
-           */
-          
-          public function escala($division)
-                  {
-                  $consult="select * from division where id=".$division."";
-                  $dependencia=self::model()->findBySql($consult);
-                  
-                  
-                            while (($dependencia->id_dependency != NULL)):
-                                self::escala($dependencia->id_dependency);
-                                $dependencia->id_dependency=NULL;
-                            endwhile;
-                            
-                            var_dump($division);
              
-                  }
-                  
-                  
-                  
-         public function getNewDivision()
-          {
-             $model=new Division;
-             $model->name=$_GET['new_division'];
-             $model->id_dependency=$_GET['id_dependencia'];
-             $model->save();
-             return $model->id;
-             
-          }
         
         
 }
