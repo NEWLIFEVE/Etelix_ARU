@@ -216,11 +216,11 @@ class EventEmployee extends CActiveRecord
                   
                                         employee e, users u, event_employee ev, type_event t,
                                         (select id_employee, MAX(date) as date
-                                        from event_employee 
+                                        from event_employee where id_type_event !=5
                                         group by id_employee ) x,
 
                                         (select id_employee, date, MAX(hour_event) as hour
-                                        from event_employee
+                                        from event_employee where id_type_event !=5
                                         group by id_employee, date
                                         order by id_employee) y
 
