@@ -24,18 +24,18 @@ class CityController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-        public function accessRules()
-            {
-                    return array(
-                array(
-                    'allow',
-                    'actions'=>Rol::getActions('City', Yii::app()->user->id),
-                    'users'=>array(
-                        Yii::app()->user->name
-                        )
-                    )
-                );
-            }
+    public function accessRules()
+    {
+        return array(
+        	array(
+        		'allow',
+            	'actions'=>Rol::getActions('City', Yii::app()->user->id),
+            	'users'=>array(
+                	Yii::app()->user->name
+                	)
+            	)
+        	);
+    }
 
 	/**
 	 * Displays a particular model.
@@ -162,14 +162,17 @@ class CityController extends Controller
 			Yii::app()->end();
 		}
 	}
-        
-                 
-        public function actionCityByState(){
-           $states = $_POST['Employee']['id_states'];
+
+	/**
+	 *
+	 */            
+    public function actionCityByState()
+    {
+       $states = $_POST['Employee']['id_states'];
+   
+       $listado_city= City::model()->findAll("id_states=:states",array(':states'=>$states));
+       foreach ($listado_city as $data)
+           echo "<option value=\"{$data->id}\">{$data->name}</option>";
        
-           $listado_city= City::model()->findAll("id_states=:states",array(':states'=>$states));
-           foreach ($listado_city as $data)
-               echo "<option value=\"{$data->id}\">{$data->name}</option>";
-           
-        }
+    }
 }
