@@ -7,7 +7,13 @@
 class DateManagement
 {
 	
-    
+    /**
+     * funcion para el calculo de las 16 horas, recibe como parametro hora de inicio de session, fecha y plus, retorna el calculo de las horas y la fecha calculada
+     * @param type $start
+     * @param type $date
+     * @param type $plusHours
+     * @return string|boolean
+     */
     public static function getValidate_hour($start, $date, $plusHours) {
         //echo $date;
         if ($start != null) {
@@ -44,6 +50,10 @@ class DateManagement
         }
     }
 
+    /**
+     * funcion para capturar la hora del cliente
+     * @return type
+     */
     public static function gethourcliente(){
             
             date_default_timezone_set("America/Caracas"); 
@@ -52,7 +62,13 @@ class DateManagement
         }
      
         
-        
+        /**
+         * funcion para calcular las 16 horas, recibe como parametros la hora de inicio de jornada, fecha y un plus de 16 horas para realizar el calculo
+         * @param type $start
+         * @param type $date
+         * @param type $plusHours
+         * @return string|boolean
+         */
         
          public static function getFiltroEmployee($start, $date, $plusHours) {
         
