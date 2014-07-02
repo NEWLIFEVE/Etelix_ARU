@@ -33,11 +33,7 @@ class PositionCodeController extends Controller
                 ),
             );
     }
-    
-    
-    
-    
-    
+
 	public function actionIndex()
 	{
         

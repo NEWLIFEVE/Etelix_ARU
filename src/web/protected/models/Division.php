@@ -127,8 +127,11 @@ class Division extends CActiveRecord
       public function verificarDependencia($division)
               {
                  $consult="select * from division where id=".$division."";
-                  $dependencia=self::model()->findBySql($consult);
-                  return $dependencia;
+                  $model=self::model()->findBySql($consult);
+                  if($model->id_dependency!=NULL)
+                    return $model;
+                  else
+                    return FALSE;  
               }
               
                   
