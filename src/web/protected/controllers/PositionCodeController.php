@@ -53,7 +53,7 @@ class PositionCodeController extends Controller
 
         $LevelPosition = Position::verficarPosition($idDivision);
         $pedendenciaDivision = DivisionController::getDependencia($idDivision);
-       
+        
         if($LevelPosition != NULL)
         {
             if($LevelPosition[0]->leader != 0)
@@ -65,13 +65,15 @@ class PositionCodeController extends Controller
         }
         else
         {
+             
             $verificarCargo = Position::verficarCargo($idPosition);
+            
             if($verificarCargo->leader != 0)
             {
                 $createPositionCode = PositionCode::getCreatePositionCode($idDivision,$pedendenciaDivision, $idPosition, $_GET['id_employee'], $_GET['start_date']);
                 echo json_encode($createPositionCode);
             }
-            else echo json_encode("sinlider");
+//            else echo json_encode("sinlider");
         }
         
         
