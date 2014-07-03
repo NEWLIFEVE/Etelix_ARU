@@ -72,7 +72,7 @@
                                                        </div>
                                                    </td>
                                                    <td>
-                                                       <p id="test" class="newGroup">+</p>    
+                                                       <p id="test" class="newGroup icon-plus-sign"></p>    
                                                    </td>
                                               </tr>
                                           </table>
@@ -103,7 +103,7 @@
                                                      
                                                   </td>
                                                   <td>
-                                                      <p id="cargo" class="newGroup">+</p>
+                                                      <p id="cargo" class="newGroup  icon-plus-sign"></p>
                                                   </td>
                                               </tr>
                                           </table>

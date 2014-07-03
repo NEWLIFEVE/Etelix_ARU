@@ -49,7 +49,7 @@ class DivisionController extends Controller
     /**
      * funcion para calcular la dependencia entre las division
      * @access public
-     * @param type $division
+     * @param int $division
      */
     public function getDependencia($division)
     {
@@ -83,20 +83,26 @@ class DivisionController extends Controller
                     foreach($LevelPosition as $value)
                         {
                             $leader[]=$value->leader;
-                           $numeroPosicion=count($leader)+1; 
+                            $numeroPosicion1=count($leader);
+                            $numeroPosicion= ".".$numeroPosicion1;
                              
                         }
                    }
                    else 
                        {
-                       $numeroPosicion=1;
+                       $numeroPosicion="";
                        
                        }
                      
                      
                      $allArray= implode(".", $position); 
-                     $mergeDependencia=$id.".".$allArray.".".$numeroPosicion;
+                     $mergeDependencia=$id.".".$allArray.$numeroPosicion;
                      return $mergeDependencia;//codigo de posicion para los empleados
+        }
+        
+        else{
+            
+            return $mergeDependencia="1";
         }
         
       

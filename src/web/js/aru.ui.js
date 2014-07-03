@@ -1051,12 +1051,15 @@ $ARU.UI=(function(){
                     
             $("input.dependencia").val("");
             if($("input.dependencia").css("display")=="none"){
-                $(this).html("<");
+               // $(this).html("<");
                 $("input.dependencia").toggle("slide");
                 $("#seleDepen").toggle("slide");
                 $("div#selectDivision").hide("fast");
                 $("div#mensaje").html("Nombre de la División");
                 $("div#dependencia").html("Dependencia");
+                $('#test').removeClass("icon-plus-sign");
+                $('#test').addClass("icon-signout");
+                
                 
                 
             }else{
@@ -1065,7 +1068,10 @@ $ARU.UI=(function(){
                 $("input.dependencia").hide("fast");
                 $("div#selectDivision").toggle("slide");
                 $("#seleDepen").hide("fast");
-                $(this).html("+");
+                $('#test').removeClass("icon-signout");
+                $('#test').addClass("icon-plus-sign"); 
+               
+                //$(this).html("+");
             }
         });
        $('p#cargo').on('click',function(){
@@ -1073,12 +1079,14 @@ $ARU.UI=(function(){
             $("#new_position").val("");
             $("#PositionCode_id_position").select2('val', '');
             if($("input.cargo").css("display")=="none"){
-                 $(this).html("<");
+                 //$(this).html("<");
                  $("input.cargo").toggle("slide");
                  $("div#selectCargo").hide("fast");
                  $("div#mensajeCargo").html("Nombre del Cargo");
                  $("div#mensajeLider").html("Lider");
                  $("div#checkbox").toggle("slide");
+                 $('#cargo').removeClass("icon-plus-sign");
+                 $('#cargo').addClass("icon-signout");
             }
             
             else
@@ -1089,7 +1097,8 @@ $ARU.UI=(function(){
               $("input.cargo").hide("fast");
               $("div#checkbox").hide("fast");
               $("div#selectCargo").toggle("slide");
-              $(this).html("+");  
+              $('#cargo').removeClass("icon-signout");
+              $('#cargo').addClass("icon-plus-sign"); 
             }
           
         });
