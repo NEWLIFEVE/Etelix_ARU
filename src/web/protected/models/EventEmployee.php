@@ -333,9 +333,10 @@ class EventEmployee extends CActiveRecord
                                 $consul.=" and t.id IN (2,4,5)";
                                 break;    
                             }     
-                                    
+                             
+                              $employeeall=  Employee::model()->findBySql($consul);       
                             }
-                            $employeeall=  Employee::model()->findBySql($consul);
+                           
                             return $employeeall;  
                     }
                 

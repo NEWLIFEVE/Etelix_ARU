@@ -142,12 +142,15 @@
                                               <?php  if ($value['event']==2)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?> 
                                               <?php  if ($value['event']==3)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?> 
                                               <?php  if ($value['event']==4)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?> 
-                                              <?php  if ($value['event']==5) $timeClose="00:00:00<span id='tablehourEvent'>   (".$value['date'].")</span>"; ?> <?php } ?>
+                                              <?php } ?>
+
+                                          <?php if ($value['event']==5){ $calculoCierre=DateManagement::getFiltroEmployee($value['hour'], $value['date'], 16);} ?>
+                                        
 
                                     <?php 
-                                            if (($key==1) && ($value['event']==5)){echo "<td></td><td></td><td></td><td>$timeClose</td>";}
-                                            if (($key==2) && ($value['event']==5)){echo "<td></td><td></td><td>$timeClose</td>";}
-                                            if (($key==3) && ($value['event']==5)){echo "<td></td><td>$timeClose</td>";} 
+                                            if (($key==1) && ($value['event']==5)){echo "<td></td><td></td><td></td><td>$calculoCierre[1]<span id='tablehourEvent'>($calculoCierre[0])</span></td>";}
+                                            if (($key==2) && ($value['event']==5)){echo "<td></td><td></td><td>$calculoCierre[1]<span id='tablehourEvent'>($calculoCierre[0])</span></td>";}
+                                            if (($key==3) && ($value['event']==5)){echo "<td></td><td>$calculoCierre[1]<span id='tablehourEvent'>($calculoCierre[0])</span></td>";} 
                                             
                                             if ($value['event']!=5){
                                                 if ($key==0){echo "<td></td><td></td><td></td><td></td>";}

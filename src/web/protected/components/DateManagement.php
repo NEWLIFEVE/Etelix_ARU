@@ -104,6 +104,23 @@ class DateManagement
             return false;
         }
     }
+
+     /**
+         * funcion para calcular las 16, para mostrarla en la vista HORA DE DECLARACION
+         * @param type $hour
+         *
+         * @return 
+         */
+
+     public static function getFirstEvent($hour)
+     {
+            $hours = explode(":", $hour);
+            $hour = $hours[0];
+            $min = $hours[1];
+            $sec = $hours[2];
+            $maxHour = $hour + 16;
+            var_dump($maxHour);
+     }
         
       
 }
