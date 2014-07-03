@@ -73,7 +73,7 @@ class PositionCodeController extends Controller
                 $createPositionCode = PositionCode::getCreatePositionCode($idDivision,$pedendenciaDivision, $idPosition, $_GET['id_employee'], $_GET['start_date']);
                 echo json_encode($createPositionCode);
             }
-//            else echo json_encode("sinlider");
+           else echo json_encode("sinlider");
         }
         
         

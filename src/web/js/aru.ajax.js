@@ -138,8 +138,8 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                 
-//                result=JSON.parse(data);
-//                $ARU.UI.createPosition(result);
+                result=JSON.parse(data);
+                $ARU.UI.createPosition(result);
             }
         });
     }
