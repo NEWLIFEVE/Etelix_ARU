@@ -4239,8 +4239,27 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     margin-top:-8px;
   
 }
-#checkbox{
-    
-    margin-left:14px;
+#checkbox{margin-left:14px;}
+
+#tablehourEvent{
+    color:#B3B3B3;
 }
+
+#iniciojornada{
+    background: #3CC051; 
+    color:#fff;
+}
+#inicioDescanso{
+    background: #FCB322; color:#fff
+}
+#FinDescanso{
+    background: #57B5E3; color:#fff
+}
+#finJornada{
+   background: #ED4E2A; color:#fff
+}
+#Limite{
+   background: #999; color:#fff
+}
+
 

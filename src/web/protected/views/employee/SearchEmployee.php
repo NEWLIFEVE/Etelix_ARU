@@ -82,7 +82,7 @@
                                       
                                       foreach ($filtroinactivo as $value) {
                                        if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
-                                       
+
                                                    $status=EventEmployee::getSearchStatus($value->id);
                                                    $estilo=EventEmployee::getStilo($status['id_type_event']);
                                                    if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
@@ -115,11 +115,11 @@
                                     <th>Foto</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
-                                    <th style="background: #3CC051; color:#fff">Inicio Jornada Laboral</th>
-                                    <th style="background: #FCB322; color:#fff">Inicio Descanso/Almuerzo</th>
-                                    <th style="background: #57B5E3; color:#fff">Fin Descanso/Almuerzo</th>
-                                    <th style="background: #ED4E2A; color:#fff">Fin Jornada Laboral</th>
-                                    <th style="background: #999; color:#fff">Cerrado por Limite de Tiempo</th>
+                                    <th id="iniciojornada">Inicio Jornada Laboral</th>
+                                    <th id="inicioDescanso">Inicio Descanso/Almuerzo</th>
+                                    <th id="FinDescanso">Fin Descanso/Almuerzo</th>
+                                    <th id="finJornada">Fin Jornada Laboral</th>
+                                    <th id="Limite">Cerrado por Limite de Tiempo</th>
                                  </tr>
                               </thead>
                               
@@ -137,13 +137,26 @@
                                   <td><?php echo $value->last_name; ?></td>
                                            <?php $hora=  EventEmployee::getEventosHoras($value->id) ;?>
                                            <?php foreach ($hora as $key=> $value){ ?>  
-                                  
-                                  <?php  if ($value['event']==1)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?>
-                                  <?php  if ($value['event']==2)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
-                                  <?php  if ($value['event']==3)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
-                                  <?php  if ($value['event']==4)echo "<td>".$value['hour']."<span style='color:#B3B3B3'>   (".$value['date'].")</span></td>"; ?> 
-                                  <?php  if ($value['event']==5)$cerrar= "<td>".$value['hour']."</td>"; ?> <?php } ?>
-                                  <?php if ($key==0){echo "<td></td><td></td><td></td><td>$cerrar</td>";}if ($key==1){echo "<td></td><td></td><td>$cerrar</td>";} if ($key==2){echo "<td></td><td>$cerrar</td>";} ?> 
+                                              <?php  if ($value['event']){} else{ echo "<td></td>";} ?>
+                                              <?php  if ($value['event']==1)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?>
+                                              <?php  if ($value['event']==2)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?> 
+                                              <?php  if ($value['event']==3)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?> 
+                                              <?php  if ($value['event']==4)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?> 
+                                              <?php  if ($value['event']==5) $timeClose=$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span>"; ?> <?php } ?>
+
+                                    <?php 
+                                            if (($key==1) && ($value['event']==5)){echo "<td></td><td></td><td></td><td>$timeClose</td>";}
+                                            if (($key==2) && ($value['event']==5)){echo "<td></td><td></td><td>$timeClose</td>";}
+                                            if (($key==3) && ($value['event']==5)){echo "<td></td><td>$timeClose</td>";} 
+                                            
+                                            if ($value['event']!=5){
+                                                if ($key==0){echo "<td></td><td></td><td></td><td></td>";}
+                                                if ($key==1){echo "<td></td><td></td><td></td>";}
+                                                if ($key==2){echo "<td></td><td></td>";}
+                                                if ($key==3){echo "<td></td>";}
+                                                if ($key==4){echo "";}
+                                            }
+                                    ?>
                               </tr>
                               <?php  }?>
                               </tbody>
