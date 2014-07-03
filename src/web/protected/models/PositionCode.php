@@ -126,10 +126,10 @@ class PositionCode extends CActiveRecord
      * funcion para guardar positionCode
      */
     
-    public function getCreatePositionCode($idDivision, $idPosition, $idEmployee, $startDate)
+    public function getCreatePositionCode($idDivision,$positionCode ,$idPosition, $idEmployee, $startDate)
      {
         $PositionCode= new PositionCode;
-        $PositionCode->position_code="1.3";
+        $PositionCode->position_code=$positionCode;
         $PositionCode->id_employee=$idEmployee;
         $PositionCode->id_division=$idDivision;
         $PositionCode->id_position=$idPosition;

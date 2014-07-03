@@ -53,16 +53,52 @@ class DivisionController extends Controller
      */
     public function getDependencia($division)
     {
-        $model=Division::verificarDependencia($division);//dependencia directa
-        if($model->id_dependency!=NULL)
+        $model = Division::verificarDependencia($division); //dependencia directa
+        $array = array();
+        if($model->id_dependency != NULL)
         {
-            $idDivision=Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia
-            //var_dump($model->id_dependency.".".$idDivision);
+            $contador = $model->id_dependency;
+            $id = $model->id;
+
+            while($contador != NULL):
+                $otraDependencia = Division::verificarDependencia($contador);
+                $idDivision = Division::verificarId($id, $contador);
+                $contador = $otraDependencia->id_dependency;
+                $id = $otraDependencia->id; //ultimo id que se le pasa depedencia raiz
+                $array[] = $idDivision;
+
+            endwhile;
+
+
+            $contadorotro=count($array)-1;
+                    
+                   for ($i=$contadorotro; $i>=0; $i--)
+                   {
+                       $position[]=$array[$i];
+                       
+                   }
+             
+                    $LevelPosition = Position::verficarPosition($division);
+                   if ($LevelPosition!=null){
+                    foreach($LevelPosition as $value)
+                        {
+                            $leader[]=$value->leader;
+                           $numeroPosicion=count($leader)+1; 
+                             
+                        }
+                   }
+                   else 
+                       {
+                       $numeroPosicion=1;
+                       
+                       }
+                     
+                     
+                     $allArray= implode(".", $position); 
+                     $mergeDependencia=$id.".".$allArray.".".$numeroPosicion;
+                     return $mergeDependencia;//codigo de posicion para los empleados
         }
-        else
-        {
-            //var_dump("dependencia directa con presidencia");
-        }
-        $escalaDependencia=Division::escala($division);
+        
+      
     }
 }
