@@ -102,12 +102,46 @@ class ActionController extends CActiveRecord
 		return parent::model($className);
 	}
         
-        
-        public function getAControllers($id)
-         {
-                $consulta="select id_action, id_controller from action_controller where id=".$id."";
-                $array = self::model()->findAllBySql($consulta);
-             
-             return $array;
+        /**
+         * Metodo encargado de buscar los actions de un controlador
+         * @param string $class
+         * @param int $IdRol
+         * @return array
+         */
+        public function getAControllers($class, $IdRol)
+        {
+            $array=array();
+            $declaredClasses = get_declared_classes();
+               
+            //if(!in_array($class, $declaredClasses)) Yii::import("application.controllers." . $class, true);
+    
+            $reflection = new ReflectionClass($class); 
+            $methods = $reflection->getMethods();
+    
+            foreach($methods as $key => $method)
+            {
+                if(preg_match('/^action+\w{2,}/',$method->name))
+                {
+                    $array[] = $method->name;
+                }
+            }
+            return $array;
+               
+            
+                
+                
+                
+//                 $ActionByControlloresRol = self::model()->findAllBySql($consulta);
+                
+                
+                
+//                $consulta="select * from action_controller, 
+//                           (select id_action_controller from action_rol where id_rol=".$IdRol." group by id_action_controller) as x 
+//                            where id =x.id_action_controller and id_controller=".$IdControllers." order by id_action asc";
+//                $ActionByControlloresRol = self::model()->findAllBySql($consulta);
+//               
+//              
+//                //var_dump($AllAction);
+//             return $ActionByControlloresRol;
          }
 }

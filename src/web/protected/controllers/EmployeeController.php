@@ -264,13 +264,6 @@ class EmployeeController extends Controller
 
 
     
-    
-    
-    
-    
-    
-    
-    
     /**
      * 
      * Vista de carga de datos basicos del empleado con estatus 3
@@ -486,23 +479,18 @@ class EmployeeController extends Controller
         $this->render('AdminControllers',  array('rol'=>$rol));
     }
     
-    public function actionAdminPermit()
+    public function actionAdminPermit($id)
      {
-        $idrol=$_GET['idRol'];
+//        $idrol=$_GET['idRol'];
          $rol= Rol::getRol();
-         $model= ActionRol::getActionRol($idrol);
+         $model= ActionRol::getActionRol($id);
         
          $controllers= Controllers::getControllers();
-         $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$idrol));
+         $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$id));
      }
      
      
-       public function actionCodePosition()
-    {
-
-            $this->render('CodePosition');
-
-    }
+   
     
     
 }

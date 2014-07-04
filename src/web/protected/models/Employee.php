@@ -50,8 +50,13 @@ class Employee extends CActiveRecord
     public $line2;
     public $zip;
     public $cod_phone;
-    
-	/**
+    public $cp;
+    public $codeDependence;
+    public $empleados;
+
+
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -254,15 +259,20 @@ class Employee extends CActiveRecord
             return $dynamicEmployee;
         }
         
-        
+        /**
+         * funcion que consulta los empleados para listar nombre y apallidos para la tabla de eventos 
+         * @return type
+         */
         public function getHourEvent()
             {
-              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name";
-              $employeedeclare=self::model()->findAllBySql($consulta);
-              return $employeedeclare;
+               return self::model()->findAllBySql("select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name");
             }
         
-        
+        /**
+         * funcion para crear los encabezados de las tablas activos e inactivos
+         * @param type $id
+         * @return string
+         */
         public function createOption( $id)
          {
             
@@ -279,6 +289,12 @@ class Employee extends CActiveRecord
                 return $opciones;
          }
          
+         
+         /**
+          * funcion para filtrar los empleados que tienen user y empleado creado, pasando como parametros el tipo (activos e inactivos)
+          * @param type $type
+          * @return type
+          */
          
          public function getfiltro($type)
                  
@@ -307,6 +323,13 @@ class Employee extends CActiveRecord
               return $array;
                
        }
+       
+       public function getEmployeeAll()
+    {
+           
+           $consult ="select e.id, (e.first_name||' '|| e.last_name) as empleados from employee e, users u where e.id=u.id_employee order by first_name ";
+         return  CHtml::ListData(self::model()->findAllBySql($consult),"id","empleados"); 
+    }
        
    
        

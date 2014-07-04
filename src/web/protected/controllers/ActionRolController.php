@@ -1,6 +1,6 @@
 <?php
 
-class CityController extends Controller
+class ActionRolController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -24,18 +24,26 @@ class CityController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-    public function accessRules()
-    {
-        return array(
-        	array(
-        		'allow',
-            	'actions'=>Rol::getActions('City', Yii::app()->user->id),
-            	'users'=>array(
-                	Yii::app()->user->name
-                	)
-            	)
-        	);
-    }
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','admin'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
 
 	/**
 	 * Displays a particular model.
@@ -54,14 +62,14 @@ class CityController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new City;
+		$model=new ActionRol;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['City']))
+		if(isset($_POST['ActionRol']))
 		{
-			$model->attributes=$_POST['City'];
+			$model->attributes=$_POST['ActionRol'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -83,9 +91,9 @@ class CityController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['City']))
+		if(isset($_POST['ActionRol']))
 		{
-			$model->attributes=$_POST['City'];
+			$model->attributes=$_POST['ActionRol'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -114,7 +122,7 @@ class CityController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('City');
+		$dataProvider=new CActiveDataProvider('ActionRol');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -125,10 +133,10 @@ class CityController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new City('search');
+		$model=new ActionRol('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['City']))
-			$model->attributes=$_GET['City'];
+		if(isset($_GET['ActionRol']))
+			$model->attributes=$_GET['ActionRol'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -139,12 +147,12 @@ class CityController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return City the loaded model
+	 * @return ActionRol the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=City::model()->findByPk($id);
+		$model=ActionRol::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -152,27 +160,14 @@ class CityController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param City $model the model to be validated
+	 * @param ActionRol $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='city-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='action-rol-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-
-	/**
-	 *
-	 */            
-    public function actionCityByState()
-    {
-       $states = $_POST['Employee']['id_states'];
-   
-       $listado_city= City::model()->findAll("id_states=:states",array(':states'=>$states));
-       foreach ($listado_city as $data)
-           echo "<option value=\"{$data->id}\">{$data->name}</option>";
-       
-    }
 }

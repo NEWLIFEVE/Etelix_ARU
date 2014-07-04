@@ -4202,4 +4202,64 @@ Responsive Flip Scroll Tables
 
 th.colorstart{
     background:#ff0000;
+}}
+
+
+.centrar{
+    display:block;
+   margin-left: 45%;
+    
 }
+input.dependencia, input.cargo, #checkbox, #seleDepen
+{
+    display:none;
+}
+
+.newGroup, .cancelarnewGroup
+{
+    color: rgba(111,204,187,1);
+    width: 5%;
+    font-weight: bold;
+    font-size: 18px;
+    position: static;
+    top: 6px;
+    right: 0;
+    margin-left: 5px;
+    margin-top: 80%;
+}
+
+
+#PositionCode_dependencia
+{
+    display:none;
+}
+
+
+#mensajeLider{
+    margin-top:-8px;
+  
+}
+#checkbox{margin-left:14px;}
+
+#tablehourEvent{
+    color:#B3B3B3;
+}
+
+#iniciojornada{
+    background: #3CC051; 
+    color:#fff;
+}
+#inicioDescanso{
+    background: #FCB322; color:#fff
+}
+#FinDescanso{
+    background: #57B5E3; color:#fff
+}
+#finJornada{
+   background: #ED4E2A; color:#fff
+}
+#Limite{
+   background: #999; color:#fff
+}
+
+

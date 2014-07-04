@@ -12,7 +12,7 @@ for($i=1;$i<5;$i++)
 {
     $div.="<div class='form-group' id='tab".$i."'>
             <label class='control-label col-md-3 letra_empleado'>";
-    if(isset($eventos[$i-1]['hour'])) $div.=$eventos[$i-1]['hour'];
+    if(isset($eventos[$i-1]['hour'])) $div.=$eventos[$i-1]['hour']." <span style='color:#B3B3B3'>(".$eventos[$i-1]['date'].")</span>";
     $div.="</label>
           </div>";
 }

@@ -18,7 +18,7 @@ $ARU.AJAX=(function()
             {
                 result=JSON.parse(data);
                 id=result.event;
-                $('div#tab'+id+' label').html(result.hour);
+                $('div#tab'+id+' label').html(result.hour +" <span style='color:#B3B3B3'>("+result.date+")</span>");
             }
          });
 
@@ -78,6 +78,9 @@ $ARU.AJAX=(function()
         });
     }
     
+    
+  
+    
     /**
      * 
      * @param {type} type
@@ -88,17 +91,100 @@ $ARU.AJAX=(function()
      function idRol(type,action, formulario)
     {
         
-        var result = JSON.parse($.ajax({
+     $.ajax({
             type:type,
             url:action,
             data:formulario,
-            async:false,
+          
             success:function(data)
-            { }
-            }).responseText);
+            { 
+               //console.log(data[0]);
+                result= JSON.parse(data);
+                $ARU.UI.viewActionController(result); 
             
-        $ARU.UI.viewActionController(result);    
-            
+            }
+            });      
+    }
+    
+      /**
+     * funcion para crear la posicion de empleado en la organizacion
+     * @param {type} type
+     * @param {type} action
+     * @param {type} formulario
+     * @returns {undefined}
+     */
+    
+    function crearPosicion(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                $ARU.UI.createPosition(result);
+            }
+        });
+    }
+    function createPositionCode(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                
+                result=JSON.parse(data);
+                $ARU.UI.createPosition(result);
+            }
+        });
+    }
+    
+    
+    /**
+     * funcion para crear una nueva division en la organizacion
+     */
+    
+    function crearDivision(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                $ARU.UI.createDivision(result);
+      
+            }
+        });
+    }
+    
+    
+    /**
+     * funcion para crear nuevos cargos en la organizacion
+     */
+    
+    
+     function crearCargo(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                $ARU.UI.createCargo(result);
+      
+            }
+        });
     }
    
      return {
@@ -106,7 +192,11 @@ $ARU.AJAX=(function()
         sendPass:sendPass,
         searchEmployee:searchEmployee,
         createRol:createRol,
-        idRol:idRol
+        idRol:idRol,
+        crearPosicion:crearPosicion,
+        crearDivision:crearDivision,
+        crearCargo:crearCargo,
+        createPositionCode:createPositionCode
         
     };
     
