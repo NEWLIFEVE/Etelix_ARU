@@ -150,11 +150,21 @@ class Position extends CActiveRecord
       */
      
      public function getNewPosition($newPosition, $leader)
-      {
-           if ($leader=="undefined")$leader=0;
-                $model=new Position;
-                $model->name=$newPosition;
-                $model->leader=$leader;
-                if($model->save())return $model->id; else return false;      
-      }
+     {
+            if ($leader=="undefined")$leader=0;
+            $modelCheckPosition = self::model()->find("name = '$newPosition'");
+            
+            if($modelCheckPosition == NULL){
+                $modelNewPosition=new Position;
+                $modelNewPosition->name=$newPosition;
+                $modelNewPosition->leader=$leader;
+                if($modelNewPosition->save())return $modelNewPosition->id; else return false;   
+            }else{
+                
+                
+                return $modelCheckPosition->id;
+                
+                
+            }
+     }
 }

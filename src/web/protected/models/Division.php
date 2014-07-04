@@ -125,24 +125,32 @@ class Division extends CActiveRecord
        * funcion para verificar la dependencia de los departmatentos
        */
         
-      public function getModelDivision($division)
+      public function verificarDependencia($division)
       {
-          $consult="select * from division where id=".$division."";
-          $dependencia=self::model()->findBySql($consult);
-          return $dependencia;
+         $consult="select * from division where id=".$division."";
+         $dependencia=self::model()->findBySql($consult);
+         return $dependencia;
       }
               
                   
-      public function getNewDivision()
+      public function getNewDivision($newDivision,$idDependence)
       {
-         $model=new Division;
-         $model->name=$_GET['new_division'];
-         $model->id_dependency=$_GET['id_dependencia'];
-         if ($model->save())return $model->id; else return false;
+          
+          $modelCheckDivision = self::model()->find("name = '$newDivision' AND id_dependency = $idDependence");
+          
+          if($modelCheckDivision == NULL){
+              $modelNewDivision=new Division;
+              $modelNewDivision->name=$newDivision;
+              $modelNewDivision->id_dependency=$idDependence;
+              if ($modelNewDivision->save())return $modelNewDivision->id; else return false;
+          }else{
+              return $modelCheckDivision->id;
+          }
+          
       }
           
           
-            /**
+           /**
            * funcion 
            */
           
@@ -172,9 +180,9 @@ class Division extends CActiveRecord
          * funcion para verificar Id de la division
          */
         
-      public function getAmountDependence($id, $idDependencia)
+      public function verificarId($id, $idDependencia)
       {
-         $cont=0;    
+          $cont=0;    
           for ($i = 1; $i <= $id; $i++){
                 $consult="select * from division where id=".$i." and id_dependency=".$idDependencia."";
                 $dependencia[]=self::model()->findBySql($consult);

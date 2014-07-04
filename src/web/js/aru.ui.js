@@ -1001,7 +1001,6 @@ $ARU.UI=(function(){
         
         function createPosition(result)
         {
-           
               switch(result){
                 case true:
                    
@@ -1009,7 +1008,7 @@ $ARU.UI=(function(){
                     $('#error').addClass("verde");           
                     $('#error').html("Registro Exitoso!");
                     $('#error').show();
-                    $('#error').fadeOut(15000);
+                    //$('#error').fadeOut(15000);
                     $("#PositionCode_id_division").select2('val', '');
                     $("#PositionCode_id_position").select2('val', '');
                     $("#PositionCode_id_employee").select2('val', '');
@@ -1022,7 +1021,13 @@ $ARU.UI=(function(){
                     $('#error').addClass("rojo");
                     $('#error').html("Falla en el Registro");
                     break;
-                    
+                
+                case 'EmployeeAlreadyExists':
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("El Empleado ya Existe y aún está Activo");
+                    break;
                            
                 case "sinlider":
                   

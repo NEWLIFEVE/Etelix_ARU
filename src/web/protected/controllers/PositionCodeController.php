@@ -38,7 +38,7 @@ class PositionCodeController extends Controller
     
     
     
-	public function actionIndex()
+    public function actionIndex()
     { 
         $model= new PositionCode;
         $this->render('index',array('model'=>$model));
@@ -65,7 +65,6 @@ class PositionCodeController extends Controller
         }
         else
         {
-             
             $verificarCargo = Position::verficarCargo($idPosition);
             
             if($verificarCargo->leader != 0)
@@ -75,8 +74,6 @@ class PositionCodeController extends Controller
             }
             else echo json_encode("sinlider");
         }
-        
-        
-        
+
     }
 }

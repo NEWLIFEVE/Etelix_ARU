@@ -51,60 +51,53 @@ class DivisionController extends Controller
      * @access public
      * @param int $division
      */
-    public function getDependence($division)
+    public function getDependencia($division)
     {
-        $modelDivision = Division::getModelDivision($division); //dependencia directa
+        $model = Division::verificarDependencia($division); //dependencia directa
         $array = array();
-        if($modelDivision->id_dependency != NULL)
+        if($model->id_dependency != NULL)
         {
-            $idDependence = $modelDivision->id_dependency;
-            $id = $modelDivision->id;
+            $contador = $model->id_dependency;
+            $id = $model->id;
 
-            while($idDependence != NULL):
-                $otraDependencia = Division::getModelDivision($idDependence);
-                $idDivision = Division::getAmountDependence($id, $idDependence);
-                $idDependence = $otraDependencia->id_dependency;
+            while($contador != NULL):
+                $otraDependencia = Division::verificarDependencia($contador);
+                $idDivision = Division::verificarId($id, $contador);
+                $contador = $otraDependencia->id_dependency;
                 $id = $otraDependencia->id; //ultimo id que se le pasa depedencia raiz
                 $array[] = $idDivision;
-
             endwhile;
-
 
             $contadorotro=count($array)-1;
                     
-                   for ($i=$contadorotro; $i>=0; $i--)
-                   {
-                       $position[]=$array[$i];
-                       
-                   }
-             
-                    $LevelPosition = Position::verficarPosition($division);
-                   if ($LevelPosition!=null){
-                    foreach($LevelPosition as $value)
-                        {
-                            $leader[]=$value->leader;
-                            $numeroPosicion1=count($leader);
-                            $numeroPosicion= ".".$numeroPosicion1;
-                             
-                        }
-                   }
-                   else 
-                       {
-                       $numeroPosicion="";
-                       
-                       }
-                     
-                     
-                     $allArray= implode(".", $position); 
-                     $mergeDependencia=$id.".".$allArray.$numeroPosicion;
-                     return $mergeDependencia;//codigo de posicion para los empleados
+            for ($i=$contadorotro; $i>=0; $i--)
+            {
+               $position[]=$array[$i];
+
+            }
+
+            $LevelPosition = Position::verficarPosition($division);
+            if ($LevelPosition!=null){
+                foreach($LevelPosition as $value)
+                {
+                    $leader[]=$value->leader;
+                    $numeroPosicion1=count($leader);
+                    $numeroPosicion= ".".$numeroPosicion1;
+                }
+            }
+            else 
+            {
+                $numeroPosicion="";
+            }
+
+            $allArray= implode(".", $position); 
+            $mergeDependencia=$id.".".$allArray.$numeroPosicion;
+            return $mergeDependencia;//codigo de posicion para los empleados
         }
-        
-        else{
-            
+        else
+        {
             return $mergeDependencia="1";
         }
-        
-      
+
     }
 }
