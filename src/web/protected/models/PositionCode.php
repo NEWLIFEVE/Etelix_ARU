@@ -33,7 +33,9 @@ class PositionCode extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
+	
+   
+    public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.

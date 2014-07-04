@@ -113,7 +113,6 @@
                                       <div class="secundario form-group">
                                           <label class="control-label letra_empleado">Empleado</label><br>
                                              <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
-                                          
                                       </div>
                                        <div class="secundario form-group">
                                           <label class="control-label letra_empleado">Fecha de Inicio</label><br>
