@@ -300,27 +300,24 @@ class Employee extends CActiveRecord
                  
         {
              
-            $array = array();
+             $array = array();
              $consulta="select e.id, e.first_name
                         from
                         employee e, users u
                         where  u.id_employee = e.id and u.id_status NOT IN(2,3) order by e.first_name";
-             
+
              $model=self::model()->findAllBySql($consulta);
              foreach ($model as $key=> $value)
-                 {
-                
+             {
                  $event=  EventEmployee::getfiltroHour($value->id, $type); 
-                
+
                  if ($event!=NULL){
                      $array[]=$event;
-                     
                  }
-                
-                 }
-                 
-                // var_dump($event);
-              return $array;
+             }
+
+            // var_dump($event);
+             return $array;
                
        }
        

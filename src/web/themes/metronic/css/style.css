@@ -4215,9 +4215,9 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     display:none;
 }
 
-.newGroup, .cancelarnewGroup
+.newGroup
 {
-    color: rgba(111,204,187,1);
+    color: #1d943b !important;
     width: 5%;
     font-weight: bold;
     font-size: 18px;
@@ -4227,6 +4227,20 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     margin-left: 5px;
     margin-top: 80%;
 }
+
+.cancelarnewGroup
+{
+    color: #bb2413 !important;
+    width: 5%;
+    font-weight: bold;
+    font-size: 18px;
+    position: static;
+    top: 6px;
+    right: 0;
+    margin-left: 5px;
+    margin-top: 80%;
+}
+
 
 
 #PositionCode_dependencia

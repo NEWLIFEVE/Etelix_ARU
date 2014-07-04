@@ -1057,8 +1057,8 @@ $ARU.UI=(function(){
                 $("div#selectDivision").hide("fast");
                 $("div#mensaje").html("Nombre de la División");
                 $("div#dependencia").html("Dependencia");
-                $('#test').removeClass("icon-plus-sign");
-                $('#test').addClass("icon-signout");
+                $('#test').removeClass("newGroup icon-plus-sign");
+                $('#test').addClass("cancelarnewGroup icon-signout");
                 
                 
                 
@@ -1068,8 +1068,8 @@ $ARU.UI=(function(){
                 $("input.dependencia").hide("fast");
                 $("div#selectDivision").toggle("slide");
                 $("#seleDepen").hide("fast");
-                $('#test').removeClass("icon-signout");
-                $('#test').addClass("icon-plus-sign"); 
+                $('#test').removeClass("cancelarnewGroup icon-signout");
+                $('#test').addClass("newGroup icon-plus-sign"); 
                
                 //$(this).html("+");
             }
@@ -1085,8 +1085,8 @@ $ARU.UI=(function(){
                  $("div#mensajeCargo").html("Nombre del Cargo");
                  $("div#mensajeLider").html("Lider");
                  $("div#checkbox").toggle("slide");
-                 $('#cargo').removeClass("icon-plus-sign");
-                 $('#cargo').addClass("icon-signout");
+                 $('#cargo').removeClass("newGroup icon-plus-sign");
+                 $('#cargo').addClass("cancelarnewGroup icon-signout");
             }
             
             else
@@ -1097,8 +1097,8 @@ $ARU.UI=(function(){
               $("input.cargo").hide("fast");
               $("div#checkbox").hide("fast");
               $("div#selectCargo").toggle("slide");
-              $('#cargo').removeClass("icon-signout");
-              $('#cargo').addClass("icon-plus-sign"); 
+              $('#cargo').removeClass("cancelarnewGroup icon-signout");
+              $('#cargo').addClass("newGroup icon-plus-sign"); 
             }
           
         });
