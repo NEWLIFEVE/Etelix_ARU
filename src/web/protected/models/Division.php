@@ -105,65 +105,66 @@ class Division extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Division the static model class
 	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+      public static function model($className=__CLASS__)
+      {
+            return parent::model($className);
+      }
     
     /**
      * funcion para alistar las divisiones en un select
      * 
      */
     
-      public static function getDivision() {
-            return  CHtml::ListData(self::model()->findAll(),"id","name"); 
-        }
+      public static function getDivision() 
+      {
+           return  CHtml::ListData(self::model()->findAll(),"id","name"); 
+      }
         
         
       /**
        * funcion para verificar la dependencia de los departmatentos
        */
         
-      public function verificarDependencia($division)
-              {
-                 $consult="select * from division where id=".$division."";
-                  $dependencia=self::model()->findBySql($consult);
-                  return $dependencia;
-              }
+      public function getModelDivision($division)
+      {
+          $consult="select * from division where id=".$division."";
+          $dependencia=self::model()->findBySql($consult);
+          return $dependencia;
+      }
               
                   
-         public function getNewDivision()
-          {
-             $model=new Division;
-             $model->name=$_GET['new_division'];
-             $model->id_dependency=$_GET['id_dependencia'];
-             if ($model->save())return $model->id; else return false;
-          }
+      public function getNewDivision()
+      {
+         $model=new Division;
+         $model->name=$_GET['new_division'];
+         $model->id_dependency=$_GET['id_dependencia'];
+         if ($model->save())return $model->id; else return false;
+      }
           
           
             /**
            * funcion 
            */
           
-          public function escala($division)
-                  {
-                  $consult="select * from division where id=".$division."";
-                  $dependencia=self::model()->findBySql($consult);
-                  
-                  
-                            while (($dependencia->id_dependency != NULL)):
-                                self::escala($dependencia->id_dependency);
-                                $dependencia->id_dependency=NULL;
-                            endwhile;
-                            
-                             $model=  Division::verificarDependencia($division);//dependencia directa
-        
-              if ($model->id_dependency!=NULL){
-                $idDivision= Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia   
-                //var_dump($model->id_dependency.".".$idDivision);
-              }
-             
-                  }
+      public function escala($division)
+      {
+          $consult="select * from division where id=".$division."";
+          $dependencia=self::model()->findBySql($consult);
+
+
+          while (($dependencia->id_dependency != NULL)):
+              self::escala($dependencia->id_dependency);
+              $dependencia->id_dependency=NULL;
+          endwhile;
+
+          $model=  Division::verificarDependencia($division);//dependencia directa
+
+          if ($model->id_dependency!=NULL){ 
+            $idDivision= Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia   
+            //var_dump($model->id_dependency.".".$idDivision);
+          }
+
+      }
                   
                   
                   
@@ -171,19 +172,18 @@ class Division extends CActiveRecord
          * funcion para verificar Id de la division
          */
         
-        public function verificarId($id, $idDependencia)
-          {
-             $cont=0;    
-              for ($i = 1; $i <= $id; $i++){
-                    $consult="select * from division where id=".$i." and id_dependency=".$idDependencia."";
-                    $dependencia[]=self::model()->findBySql($consult);
-                   }
-                  foreach($dependencia as $value){
-                        if ($value!=null){ ++$cont;}
-                        }
-                    return $cont;
-                    
+      public function getAmountDependence($id, $idDependencia)
+      {
+         $cont=0;    
+          for ($i = 1; $i <= $id; $i++){
+                $consult="select * from division where id=".$i." and id_dependency=".$idDependencia."";
+                $dependencia[]=self::model()->findBySql($consult);
           }
+          foreach($dependencia as $value){
+                if ($value!=null){ ++$cont;}
+          }
+          return $cont;
+      }
              
         
         

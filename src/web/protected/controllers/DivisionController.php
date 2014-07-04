@@ -51,19 +51,19 @@ class DivisionController extends Controller
      * @access public
      * @param int $division
      */
-    public function getDependencia($division)
+    public function getDependence($division)
     {
-        $model = Division::verificarDependencia($division); //dependencia directa
+        $modelDivision = Division::getModelDivision($division); //dependencia directa
         $array = array();
-        if($model->id_dependency != NULL)
+        if($modelDivision->id_dependency != NULL)
         {
-            $contador = $model->id_dependency;
-            $id = $model->id;
+            $idDependence = $modelDivision->id_dependency;
+            $id = $modelDivision->id;
 
-            while($contador != NULL):
-                $otraDependencia = Division::verificarDependencia($contador);
-                $idDivision = Division::verificarId($id, $contador);
-                $contador = $otraDependencia->id_dependency;
+            while($idDependence != NULL):
+                $otraDependencia = Division::getModelDivision($idDependence);
+                $idDivision = Division::getAmountDependence($id, $idDependence);
+                $idDependence = $otraDependencia->id_dependency;
                 $id = $otraDependencia->id; //ultimo id que se le pasa depedencia raiz
                 $array[] = $idDivision;
 
