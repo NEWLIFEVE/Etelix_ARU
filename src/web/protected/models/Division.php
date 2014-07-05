@@ -136,7 +136,7 @@ class Division extends CActiveRecord
       public function getNewDivision($newDivision,$idDependence)
       {
           
-          $modelCheckDivision = self::model()->find("name = '$newDivision' AND id_dependency = $idDependence");
+          $modelCheckDivision = self::model()->find("name = '$newDivision'");
           
           if($modelCheckDivision == NULL){
               $modelNewDivision=new Division;
