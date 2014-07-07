@@ -51,12 +51,12 @@ class DivisionController extends Controller
      * @access public
      * @param int $division
      */
-    public function getDependencia($division,$position,$check)
+
+    public static function actionGetDependencia()
     {
-        
-//        $division = $_GET['idDivision'];
-//        $position = $_GET['idPosition'];
-//        $check = $_GET['check'];
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
+        $check = $_GET['check'];
         
         $dependecy = Division::model()->findBySql("select id_dependency from division where id = $division;")->id_dependency;
         $levelPosition = Position::model()->findBySql("select leader 
@@ -96,7 +96,6 @@ class DivisionController extends Controller
                 $codePosition = $modelStart->position_code;
             }
         }
-        
 
         if($modelStart == NULL){
             $position_code = '1';
@@ -111,7 +110,9 @@ class DivisionController extends Controller
         }
         
         if($check == true){
-            echo $position_code;
+
+           // echo $position_code;
+            echo json_encode($position_code);
         }else{
             return $position_code;
         }
