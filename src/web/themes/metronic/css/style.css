@@ -4215,6 +4215,8 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     display:none;
 }
 
+
+
 .newGroup
 {
     color: #1d943b !important;
@@ -4277,3 +4279,30 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 }
 
 
+.btnCpCentrar{
+    
+    margin-left: 45%;
+}
+
+.rotarfecha{
+         margin-left: 20px;
+        -webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    
+}
+
+#seleDepen{
+    
+    margin-left: 78px;
+}
+
+
+#checkbox{
+    margin-left: 82px;
+}
+
+.ocultar{
+    display: none;
+    
+}
