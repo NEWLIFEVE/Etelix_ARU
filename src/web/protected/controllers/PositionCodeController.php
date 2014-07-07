@@ -52,7 +52,7 @@ class PositionCodeController extends Controller
         if($_GET['id_position'] != NULL) $idPosition = $_GET['id_position']; else $idPosition = Position::getNewPosition($_GET['new_position'], $_GET['leader']);
 
         $LevelPosition = Position::verficarPosition($idDivision);
-        $pedendenciaDivision = DivisionController::getDependencia($idDivision);
+        $pedendenciaDivision = DivisionController::getDependencia($idDivision,$idPosition,false);
         
         if($LevelPosition != NULL)
         {
