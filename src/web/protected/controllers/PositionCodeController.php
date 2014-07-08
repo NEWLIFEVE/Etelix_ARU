@@ -9,10 +9,10 @@ class PositionCodeController extends Controller
         return array(
             'accessControl', /// perform access control for CRUD operations
             array(
-                'application.filters.UserLoginFilter + index ',/*cuando no estas logeado*/
+                'application.filters.UserLoginFilter + index, AdminPositionCode, CrearPosition ',/*cuando no estas logeado*/
                 ),
             array(
-                'application.filters.UserUpdateFilter + index + CrearPosition',
+                'application.filters.UserUpdateFilter + index, AdminPositionCode, CrearPosition',
                 )
             );
     }
@@ -33,11 +33,7 @@ class PositionCodeController extends Controller
                 ),
             );
     }
-    
-    
-    
-    
-    
+ 
     public function actionIndex()
     { 
         $model= new PositionCode;
