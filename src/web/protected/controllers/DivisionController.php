@@ -49,20 +49,71 @@ class DivisionController extends Controller
     /**
      * funcion para calcular la dependencia entre las division
      * @access public
-     * @param type $division
+     * @param int $division
      */
-    public function getDependencia($division)
+    public static function actionGetDependencia()
     {
-        $model=Division::verificarDependencia($division);//dependencia directa
-        if($model->id_dependency!=NULL)
-        {
-            $idDivision=Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia
-            //var_dump($model->id_dependency.".".$idDivision);
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
+        $check = $_GET['check'];
+        
+        $dependecy = Division::model()->findBySql("select id_dependency from division where id = $division;")->id_dependency;
+        $levelPosition = Position::model()->findBySql("select leader 
+                                                       from position 
+                                                       where id = $position;")->leader;
+
+        
+        if($dependecy == NULL){ $comparador = 'IS'; $dependecy = 'NULL';}
+        else{ $comparador = '='; $dependecy = $dependecy;}
+
+        if($levelPosition == 1){
+
+            $sql = "SELECT pc.position_code as position_code
+                FROM position_code as pc
+                INNER JOIN division as d ON d.id = pc.id_division
+                INNER JOIN position as p ON p.id = pc.id_position
+                WHERE pc.id_division $comparador $dependecy
+                AND p.leader = 1;";
+
+        }elseif($levelPosition == 0){
+            
+            $sql = "SELECT pc.position_code as position_code
+                FROM position_code as pc
+                INNER JOIN division as d ON d.id = pc.id_division
+                INNER JOIN position as p ON p.id = pc.id_position
+                WHERE pc.id_division = $division
+                AND p.leader = 1;";
         }
-        else
-        {
-            //var_dump("dependencia directa con presidencia");
+        
+        $modelStart = PositionCode::model()->findBySql($sql);
+        if($modelStart == NULL){
+            $modelStart = NULL;
+        }else{
+            if($modelStart->position_code == NULL){
+                $codePosition = NULL;
+            }else{
+                $codePosition = $modelStart->position_code;
+            }
         }
-        $escalaDependencia=Division::escala($division);
+
+        if($modelStart == NULL){
+            $position_code = '1';
+        }else{
+            $sql = "SELECT COUNT(pc.id)+1 as position_code
+                    FROM position_code as pc
+                    INNER JOIN division as d ON d.id = pc.id_division
+                    INNER JOIN position as p ON p.id = pc.id_position
+                    WHERE pc.position_code LIKE '$codePosition._';";
+            $modelEnd = PositionCode::model()->findBySql($sql)->position_code;
+            $position_code = $codePosition.'.'.$modelEnd;
+        }
+        
+        if($check == true){
+           // echo $position_code;
+            echo json_encode($position_code);
+        }else{
+            return $position_code;
+        }
+
     }
 }

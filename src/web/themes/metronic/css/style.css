@@ -4215,18 +4215,34 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     display:none;
 }
 
-.newGroup, .cancelarnewGroup
+
+
+.newGroup
 {
-    color: rgba(111,204,187,1);
+    color: #1d943b !important;
     width: 5%;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 18px;
     position: static;
     top: 6px;
     right: 0;
     margin-left: 5px;
     margin-top: 80%;
 }
+
+.cancelarnewGroup
+{
+    color: #bb2413 !important;
+    width: 5%;
+    font-weight: bold;
+    font-size: 18px;
+    position: static;
+    top: 6px;
+    right: 0;
+    margin-left: 5px;
+    margin-top: 80%;
+}
+
 
 
 #PositionCode_dependencia
@@ -4239,8 +4255,54 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     margin-top:-8px;
   
 }
-#checkbox{
-    
-    margin-left:14px;
+#checkbox{margin-left:14px;}
+
+#tablehourEvent{
+    color:#B3B3B3;
 }
 
+#iniciojornada{
+    background: #3CC051; 
+    color:#fff;
+}
+#inicioDescanso{
+    background: #FCB322; color:#fff
+}
+#FinDescanso{
+    background: #57B5E3; color:#fff
+}
+#finJornada{
+   background: #ED4E2A; color:#fff
+}
+#Limite{
+   background: #999; color:#fff
+}
+
+
+.btnCpCentrar{
+    
+    margin-left: 45%;
+}
+
+.rotarfecha{
+         margin-left: 20px;
+        -webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    
+}
+
+#seleDepen{
+    
+    margin-left: 78px;
+}
+
+
+#checkbox{
+    margin-left: 82px;
+}
+
+.ocultar{
+    display: none;
+    
+}

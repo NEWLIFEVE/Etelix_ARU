@@ -33,7 +33,9 @@ class PositionCode extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
+	
+   
+        public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
@@ -126,15 +128,36 @@ class PositionCode extends CActiveRecord
      * funcion para guardar positionCode
      */
     
-    public function getCreatePositionCode($idDivision, $idPosition, $idEmployee, $startDate)
-     {
-        $PositionCode= new PositionCode;
-        $PositionCode->position_code="1.3";
-        $PositionCode->id_employee=$idEmployee;
-        $PositionCode->id_division=$idDivision;
-        $PositionCode->id_position=$idPosition;
-        $PositionCode->start_date=$startDate;
-        if ($PositionCode->save()) return TRUE ;else return FALSE;
-     }
+         public function getCreatePositionCode($idDivision,$positionCode ,$idPosition, $idEmployee, $startDate)
+         {
+            $modelPositionCode = self::model()->find("id_employee = $idEmployee");
+            $PositionCode= new PositionCode;
+            $PositionCode->position_code=$positionCode;
+            $PositionCode->id_employee=$idEmployee;
+            $PositionCode->id_division=$idDivision;
+            $PositionCode->id_position=$idPosition;
+            $PositionCode->start_date=$startDate;
+
+            $dateFormat = date('Y-m-d',  strtotime($startDate));
+
+            if($modelPositionCode == NULL){
+
+                if ($PositionCode->save()) return TRUE; else return FALSE;
+
+            }elseif($modelPositionCode != NULL){
+                if($modelPositionCode->end_date == NULL){
+
+                    return 'EmployeeAlreadyExists';
+
+                }elseif($modelPositionCode->end_date != NULL && $dateFormat > $modelPositionCode->end_date){
+
+                    if ($PositionCode->save()) return TRUE; else return FALSE;
+
+                }elseif($modelPositionCode->end_date != NULL && $dateFormat <= $modelPositionCode->end_date){
+
+                    return 'EmployeeAlreadyExists';
+                }
+            }
+         }
     
 }

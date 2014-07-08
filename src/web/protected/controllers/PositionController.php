@@ -3,7 +3,7 @@
 class PositionController extends Controller
 {
     
-      public function filters()
+    public function filters()
     {
         // return the filter configuration for this controller, e.g.:
         return array(
@@ -19,7 +19,7 @@ class PositionController extends Controller
     
     
     
-      public function accessRules()
+    public function accessRules()
     {
         return array(
             array(
@@ -36,27 +36,27 @@ class PositionController extends Controller
             );
     }
     
-	public function actionIndex()
-	{
+    public function actionIndex()
+    {
         $model= new Position;
-		$this->render('index', array('model'=>$model));
-	}
+        $this->render('index', array('model'=>$model));
+    }
     
     
     /**
      * funcion para crear nuevos cargos
      */
-    public function actionAddPosition()
-     {
-         if ( ($_GET['nuevoCargo']!=null) && ($_GET['leader']!=null))
-             {
-                $model=new Position;
-                $model->name=$_GET['nuevoCargo'];
-                $model->leader=$_GET['leader'];
-                if($model->save())echo json_encode(true); else echo json_encode(false); 
-             }
-        
-     }
+//    public function actionAddPosition()
+//    {
+//         if (($_GET['nuevoCargo']!=null) && ($_GET['leader']!=null))
+//         {
+//            $model=new Position;
+//            $model->name=$_GET['nuevoCargo'];
+//            $model->leader=$_GET['leader'];
+//            if($model->save())echo json_encode(true); else echo json_encode(false); 
+//         }
+//
+//    }
      
      
     
