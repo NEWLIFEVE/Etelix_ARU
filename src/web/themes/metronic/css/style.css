@@ -4304,5 +4304,8 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 
 .ocultar{
     display: none;
-    
+}
+
+.fondotablesgris{
+   background-color:#DDD; 
 }

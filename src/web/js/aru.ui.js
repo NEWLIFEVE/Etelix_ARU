@@ -207,6 +207,9 @@ $ARU.UI=(function(){
                     case ('EventEmployee'):
                         $('li#create').addClass(' active');
                         break;
+                    case ('positionCode'):
+                        $('li#codigoposicion').addClass(' active');
+                        break;
          
                     }
             }
