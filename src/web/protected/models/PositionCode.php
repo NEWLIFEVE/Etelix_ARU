@@ -139,10 +139,29 @@ class PositionCode extends CActiveRecord
             $PositionCode->start_date=$startDate;
 
             $dateFormat = date('Y-m-d',  strtotime($startDate));
+            $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($dateFormat)));  
+            
+            $modelVacantPositionCode = self::model()->findBySql("SELECT * FROM position_code pc
+                                                                 INNER JOIN employee as e ON e.id = pc.id_employee
+                                                                 WHERE e.first_name = 'Vacante'
+                                                                 AND pc.id_division = $idDivision AND pc.id_position = $idPosition 
+                                                                 AND pc.position_code = '$positionCode' AND pc.id_employee = 189");
+                    
+            
 
             if($modelPositionCode == NULL){
 
-                if ($PositionCode->save()) return TRUE; else return FALSE;
+                if ($PositionCode->save()){
+
+                    if($modelVacantPositionCode != NULL){
+                        $modelVacantPositionCode->end_date = $yesterday;
+                        $modelVacantPositionCode->save();
+                    }
+                    
+                    return TRUE; 
+                }else{
+                    return FALSE;
+                }
 
             }elseif($modelPositionCode != NULL){
                 if($modelPositionCode->end_date == NULL){
@@ -151,7 +170,17 @@ class PositionCode extends CActiveRecord
 
                 }elseif($modelPositionCode->end_date != NULL && $dateFormat > $modelPositionCode->end_date){
 
-                    if ($PositionCode->save()) return TRUE; else return FALSE;
+                    if ($PositionCode->save()){ 
+                        
+                        if($modelVacantPositionCode != NULL){
+                            $modelVacantPositionCode->end_date = $yesterday;
+                            $modelVacantPositionCode->save();
+                        }
+                        
+                        return TRUE;
+                    } else{ 
+                        return FALSE;
+                    }
 
                 }elseif($modelPositionCode->end_date != NULL && $dateFormat <= $modelPositionCode->end_date){
 

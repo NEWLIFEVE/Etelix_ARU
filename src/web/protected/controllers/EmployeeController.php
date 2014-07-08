@@ -240,7 +240,6 @@ class EmployeeController extends Controller
     {
         $model=new Employee;
         $Address=new Address;
-
         if(isset($_POST['Employee']))
         {
             $model=Employee::getEmployee(Yii::app()->user->id);

@@ -56,6 +56,7 @@ class PositionCodeController extends Controller
         
 
         $LevelPosition = Position::verficarPosition($idDivision);
+
         //$pedendenciaDivision = DivisionController::actionGetDependencia();
         $pedendenciaDivision = $_GET['codePosition'];
         
@@ -80,5 +81,15 @@ class PositionCodeController extends Controller
             else echo json_encode("sinlider");
         }
 
+    }
+    
+    
+    
+    public function actionAdminPositionCode(){
+        
+
+        $positionCode = PositionCode::model()->findAll();
+      
+        $this->render('AdminPc',array('model'=>$positionCode));
     }
 }

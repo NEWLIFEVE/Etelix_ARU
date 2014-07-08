@@ -207,6 +207,9 @@ $ARU.UI=(function(){
                     case ('EventEmployee'):
                         $('li#create').addClass(' active');
                         break;
+                    case ('positionCode'):
+                        $('li#codigoposicion').addClass(' active');
+                        break;
          
                     }
             }
@@ -845,11 +848,8 @@ $ARU.UI=(function(){
                 }
 
             });
-//  
-//              
-//          
+ 
          }
-         
          
          function _changePass(){
              $('#changepass').on('click',function()
@@ -899,7 +899,6 @@ $ARU.UI=(function(){
         
         function viewEmployeeModal(result){
              
-             
                 $('#title').html(result[0].name);
                 $('#name').html(result[0].name);
                 $('#second_name').html(result[0].second_name);
@@ -945,8 +944,7 @@ $ARU.UI=(function(){
             var new_position = $("#new_position").val();
             var leader = $("#leader:checked").val();
             var position=$("div#posicion").text();
-            console.log(position);
-            
+           
             if (id_division=="" &(new_division=="" || id_dependencia=="") || (id_position=="" & new_position=="") || id_employee=="" || start_date==""){
                 $('#error').addClass("alert alert-danger");
                     $('#error').addClass("rojo");
@@ -969,11 +967,12 @@ $ARU.UI=(function(){
               switch(result){
                 case true:
                    
-                    $('#error').addClass("alert alert-success");
-                    $('#error').addClass("verde");           
-                    $('#error').html("Registro Exitoso!");
-                    $('#error').show();
-                    //$('#error').fadeOut(15000);
+//                    $('#error').addClass("alert alert-success");
+//                    $('div#mensaje').addClass("verde");           
+//                    $('#error').html("Registro Exitoso!");
+//                    $('#error').show();
+                    $('div#mensaje').html("<h4>Creación Exitosa de Código de Posición!</h4>");
+                    $('#codigo_posicion').modal('show');
                     $("#PositionCode_id_division").select2('val', '');
                     $("#PositionCode_id_position").select2('val', '');
                     $("#PositionCode_id_employee").select2('val', '');
@@ -985,6 +984,8 @@ $ARU.UI=(function(){
                     $('#error').addClass("alert alert-danger"); 
                     $('#error').addClass("rojo");
                     $('#error').html("Falla en el Registro");
+                    $('#error').show();
+                    $('#error').fadeToggle(3000);
                     break;
                 
                 case 'EmployeeAlreadyExists':
@@ -992,6 +993,8 @@ $ARU.UI=(function(){
                     $('#error').addClass("alert alert-danger"); 
                     $('#error').addClass("rojo");
                     $('#error').html("El Empleado ya Existe y aún está Activo");
+                    $('#error').show();
+                    $('#error').fadeToggle(3000);
                     break;
                            
                 case "sinlider":
@@ -999,6 +1002,8 @@ $ARU.UI=(function(){
                     $('#error').addClass("alert alert-danger"); 
                     $('#error').addClass("rojo");
                     $('#error').html("Se Necesita Crear un Lider/Coordinador/Gerente para esta División");
+                    $('#error').show();
+                    $('#error').fadeToggle(3000);
                     break;
                 
             }
