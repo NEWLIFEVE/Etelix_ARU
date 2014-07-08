@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/07/2014, 10:08:54 AM
+    Author     : ISRAEL
+*/
+
+@media (min-width: 993px) and (max-width: 1200px) {  
+
+	.page-boxed .header .dropdown .username {
+		display: none;
+	}
+        
+        #etiquetafechapc{
+            float:left !important;
+            clear: both;
+            margin-top: 15px;
+            margin-left: 36px;
+        }
+        
+        #seleDepen{
+            margin-left:auto;
+        }
+        #test{
+            margin-left:15px;
+        }
+        #PositionCode_new_division{
+            width: 304px !important;
+        }
+
+}
