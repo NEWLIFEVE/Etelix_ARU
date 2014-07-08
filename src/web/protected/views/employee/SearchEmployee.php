@@ -145,7 +145,7 @@
                                               <?php } ?>
 
                                           <?php if ($value['event']==5){ $calculoCierre=DateManagement::getFiltroEmployee($value['hour'], $value['date'], 16);} ?>
-                                        
+
 
                                     <?php 
                                             if (($key==1) && ($value['event']==5)){echo "<td></td><td></td><td></td><td>$calculoCierre[1]<span id='tablehourEvent'>($calculoCierre[0])</span></td>";}
