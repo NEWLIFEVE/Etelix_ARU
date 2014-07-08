@@ -264,6 +264,8 @@ class EventEmployee extends CActiveRecord
 //                                        x.id_employee = e.id and u.id_employee = e.id and u.id_status NOT IN(2,3) and 
 //                                        ev.id_employee=e.id and ev.date=x.date and ev.hour_event=y.hour and ev.id_type_event = t.id and e.id=".$id." ";
 //                
+//                                                      (select id_employee, date, MAX(hour_event) as hour
+//                                        from event_employee 
                
                $consulta="select  ev.id_employee ,ev.date, ev.hour_event, ev.id_type_event
                         from
@@ -272,7 +274,6 @@ class EventEmployee extends CActiveRecord
                                         (select id_employee, MAX(date) as date
                                         from event_employee 
                                         group by id_employee ) x,
-
                                         (select id_employee, date, MAX(id_type_event) as hour
                                         from event_employee
                                         group by id_employee, date
