@@ -212,11 +212,11 @@ class SiteController extends Controller
                                                <ul class='sub-menu'>
                                               <li>
                                                  <a href='/positionCode/'>
-                                                 Código de Posición</a>
+                                                 Crear Cp</a>
                                               </li>
                                               <li>
                                                  <a href='/positionCode/AdminPositionCode'>
-                                                CP para Empleados</a>
+                                                Administrar Cp</a>
                                               </li>
                                               
                                        </ul>                  
