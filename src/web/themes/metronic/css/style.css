@@ -4285,21 +4285,21 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 }
 
 .rotarfecha{
-         margin-left: 20px;
-        -webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+     margin-left: 20px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     
 }
 
 #seleDepen{
     
-    margin-left: 78px;
+    margin-left: 171px;
 }
 
 
 #checkbox{
-    margin-left: 82px;
+    margin-left: 171px;
 }
 
 .ocultar{

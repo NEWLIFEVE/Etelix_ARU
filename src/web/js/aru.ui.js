@@ -965,7 +965,7 @@ $ARU.UI=(function(){
                 case true:
                    
 //                    $('#error').addClass("alert alert-success");
-//                    $('#error').addClass("verde");           
+//                    $('div#mensaje').addClass("verde");           
 //                    $('#error').html("Registro Exitoso!");
 //                    $('#error').show();
                     $('div#mensaje').html("<h4>Creación Exitosa de Código de Posición!</h4>");

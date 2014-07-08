@@ -133,8 +133,8 @@
                                          <div class="col-md-4" style="display: inline">
                                          <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
                                          </div>
-                                         <div class="col-md-6" style="display: inline">
-                                             <label class="control-label col-md-3">Fecha<span class="required">*</span></label>
+                                         <div class="col-md-6" style="display: inline" id="etiquetafechapc">
+                                             <label class="control-label col-md-3" >Fecha<span class="required">*</span></label>
                                              <?php echo $form->textField($model,'start_date', array('class'=>'form-control input-medium date-picker')); ?>
                                          </div>
                                      </div>
@@ -169,7 +169,7 @@
                                        </div>
                                     </div>
                                    <div class="form-group">
-                                       <label class="control-label col-md-3">Fecha:</label>
+                                       <label class="control-label col-md-3" >Fecha:</label>
                                        <div class="col-md-4">
                                            
                                           <p class="form-control-static" data-display="PositionCode[start_date]"></p>
@@ -232,7 +232,7 @@
                                                        </div>
                                                     </div>
                                                         <div id="only-open">
-                                                            <div id="mensaje"></div>
+                                                            <div id="mensaje" class="verde"></div>
                                                         </div>
                                                     </div>
                                                  <div class="modal-footer">
