@@ -202,7 +202,6 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                 result=JSON.parse(data);
-               
                 $ARU.UI.viewPositionCode(result);
             }
         });
