@@ -191,10 +191,7 @@ class SiteController extends Controller
                                                  <a href='/Employee/SearchEmployee'>
                                                 Ver Empleados</a>
                                               </li>
-                                              <li>
-                                                 <a href='/positionCode/'>
-                                                Código de Posición</a>
-                                              </li>
+                                             
                                        </ul>
                          </li>
                          <!--<li id='controladores' name='controladores'>
