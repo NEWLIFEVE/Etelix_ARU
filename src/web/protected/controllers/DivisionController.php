@@ -51,23 +51,20 @@ class DivisionController extends Controller
      * @access public
      * @param int $division
      */
+
     public function actionGetDependencia()
     {
         $division = $_GET['id_division'];
         $position = $_GET['id_position'];
         $check = $_GET['check'];
         
-        
-        
+
         $vacantPositionCode = self::actionGetVacantPositionCode();
         
         if($vacantPositionCode == false){
         
             $dependecy = Division::model()->findBySql("select id_dependency from division where id = $division;")->id_dependency;
-            $levelPosition = Position::model()->findBySql("select leader 
-                                                           from position 
-                                                           where id = $position;")->leader;
-
+            $levelPosition = Position::model()->findBySql("select leader from position where id = $position;")->leader;
 
             if($dependecy == NULL){ $comparador = 'IS'; $dependecy = 'NULL'; }
             else{ $comparador = '='; $dependecy = $dependecy; }
@@ -80,7 +77,6 @@ class DivisionController extends Controller
                     INNER JOIN position as p ON p.id = pc.id_position
                     WHERE pc.id_division $comparador $dependecy
                     AND p.leader = 1;";
-
             }elseif($levelPosition == 0){
 
                 $sql = "SELECT pc.position_code as position_code
@@ -105,13 +101,30 @@ class DivisionController extends Controller
             if($modelStart == NULL){
                 $position_code = '1';
             }else{
-                $sql = "SELECT COUNT(pc.id)+1 as position_code
+
+                $sql = "SELECT cast(regexp_replace(pc.position_code, '".$codePosition.".' , '') as int)+1 as position_code
                         FROM position_code as pc
                         INNER JOIN division as d ON d.id = pc.id_division
                         INNER JOIN position as p ON p.id = pc.id_position
-                        WHERE pc.position_code LIKE '$codePosition._';";
-                $modelEnd = PositionCode::model()->findBySql($sql)->position_code;
-                $position_code = $codePosition.'.'.$modelEnd;
+                        INNER JOIN employee as e ON e.id = pc.id_employee
+                        WHERE pc.position_code LIKE '".$codePosition."._' 
+                        AND e.first_name != 'Vacante'
+                        ORDER BY cast(regexp_replace(pc.position_code, '".$codePosition.".' , '') as int) DESC LIMIT 1;";
+                
+                $modelEnd = PositionCode::model()->findBySql($sql);
+                if($modelEnd == NULL){
+                    $modelEnd = NULL;
+                    $newNumber = 1;
+                }else{
+                    if($modelEnd->position_code == NULL){
+                        $newNumber = 1;
+                    }else{
+                        $newNumber = $modelEnd->position_code;
+                    }
+                }        
+  
+                $position_code = $codePosition.'.'.$newNumber;
+
             }
         
         }else{
@@ -161,4 +174,6 @@ class DivisionController extends Controller
         }
 
     }
+
+    
 }

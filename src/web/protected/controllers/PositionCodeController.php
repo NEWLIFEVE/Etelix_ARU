@@ -56,6 +56,7 @@ class PositionCodeController extends Controller
         
 
         $LevelPosition = Position::verficarPosition($idDivision);
+
         //$pedendenciaDivision = DivisionController::actionGetDependencia();
         $pedendenciaDivision = $_GET['codePosition'];
         
