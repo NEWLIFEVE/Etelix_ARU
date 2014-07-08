@@ -66,7 +66,6 @@ class DivisionController extends Controller
                 $contador = $otraDependencia->id_dependency;
                 $id = $otraDependencia->id; //ultimo id que se le pasa depedencia raiz
                 $array[] = $idDivision;
-
             endwhile;
 
 
