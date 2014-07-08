@@ -187,9 +187,13 @@ class SiteController extends Controller
                                                  <a href='/Employee/infoEmployee'>
                                                  Mi Perfil</a>
                                               </li>
-                                              <li >
+                                              <li>
                                                  <a href='/Employee/SearchEmployee'>
                                                 Ver Empleados</a>
+                                              </li>
+                                              <li>
+                                                 <a href='/positionCode/'>
+                                                Código de Posición</a>
                                               </li>
                                        </ul>
                          </li>
@@ -200,6 +204,26 @@ class SiteController extends Controller
                                                    
                                                    </a>
                           </li>-->
+                         <li id='codigoposicion' name='codigoposicion'>
+                                                   <a href=''>
+                                                   <i class='icon-group'></i> 
+                                                   <span class='title'>Código de Posición</span> 
+                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                                                   
+                                               <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/positionCode/'>
+                                                 Código de Posición</a>
+                                              </li>
+                                              <li>
+                                                 <a href='/positionCode/AdminPositionCode'>
+                                                CP para Empleados</a>
+                                              </li>
+                                              
+                                       </ul>                  
+                          </li>
                             ";
                 return $option_menu;
                 break;

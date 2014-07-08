@@ -3,7 +3,7 @@
 class PositionCodeController extends Controller
 {
     
-      public function filters()
+    public function filters()
     {
         // return the filter configuration for this controller, e.g.:
         return array(
@@ -17,7 +17,7 @@ class PositionCodeController extends Controller
             );
     }
     
-      public function accessRules()
+    public function accessRules()
     {
         return array(
             array(
@@ -33,22 +33,28 @@ class PositionCodeController extends Controller
                 ),
             );
     }
-
-	public function actionIndex()
-	{ 
+ 
+    public function actionIndex()
+    { 
         $model= new PositionCode;
-		$this->render('index',array('model'=>$model));
-	}
+        $this->render('index',array('model'=>$model));
+    }
  
     
     
-     public function actionCrearPosition()
+    public function actionCrearPosition()
     {
         if($_GET['id_division'] != NULL) $idDivision = $_GET['id_division']; else $idDivision = Division::getNewDivision($_GET['new_division'], $_GET['id_dependencia']);
         if($_GET['id_position'] != NULL) $idPosition = $_GET['id_position']; else $idPosition = Position::getNewPosition($_GET['new_position'], $_GET['leader']);
 
+        if($_GET['check']!= NULL) $check = $_GET['check'];
+        
+        
+
         $LevelPosition = Position::verficarPosition($idDivision);
-        $pedendenciaDivision = DivisionController::getDependencia($idDivision);
+
+        //$pedendenciaDivision = DivisionController::actionGetDependencia();
+        $pedendenciaDivision = $_GET['codePosition'];
         
         if($LevelPosition != NULL)
         {
@@ -61,7 +67,6 @@ class PositionCodeController extends Controller
         }
         else
         {
-             
             $verificarCargo = Position::verficarCargo($idPosition);
             
             if($verificarCargo->leader != 0)
@@ -69,10 +74,18 @@ class PositionCodeController extends Controller
                 $createPositionCode = PositionCode::getCreatePositionCode($idDivision,$pedendenciaDivision, $idPosition, $_GET['id_employee'], $_GET['start_date']);
                 echo json_encode($createPositionCode);
             }
-           else echo json_encode("sinlider");
+            else echo json_encode("sinlider");
         }
+
+    }
+    
+    
+    
+    public function actionAdminPositionCode(){
         
-        
-        
+
+        $positionCode = PositionCode::model()->findAll();
+      
+        $this->render('AdminPc',array('model'=>$positionCode));
     }
 }

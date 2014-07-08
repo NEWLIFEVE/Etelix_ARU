@@ -186,7 +186,27 @@ $ARU.AJAX=(function()
             }
         });
     }
-   
+    
+    
+    /**
+     * 
+     * 
+     */
+     function posicion(type,action, formulario)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+               
+                $ARU.UI.viewPositionCode(result);
+            }
+        });
+    }
      return {
         sendEvent:sendEvent,
         sendPass:sendPass,
@@ -196,7 +216,8 @@ $ARU.AJAX=(function()
         crearPosicion:crearPosicion,
         crearDivision:crearDivision,
         crearCargo:crearCargo,
-        createPositionCode:createPositionCode
+        createPositionCode:createPositionCode,
+        posicion:posicion,
         
     };
     

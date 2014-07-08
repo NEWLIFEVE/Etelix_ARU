@@ -51,59 +51,129 @@ class DivisionController extends Controller
      * @access public
      * @param int $division
      */
-    public function getDependencia($division)
+
+    public function actionGetDependencia()
     {
-        $model = Division::verificarDependencia($division); //dependencia directa
-        $array = array();
-        if($model->id_dependency != NULL)
-        {
-            $contador = $model->id_dependency;
-            $id = $model->id;
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
+        $check = $_GET['check'];
+        
 
-            while($contador != NULL):
-                $otraDependencia = Division::verificarDependencia($contador);
-                $idDivision = Division::verificarId($id, $contador);
-                $contador = $otraDependencia->id_dependency;
-                $id = $otraDependencia->id; //ultimo id que se le pasa depedencia raiz
-                $array[] = $idDivision;
-            endwhile;
+        $vacantPositionCode = self::actionGetVacantPositionCode();
+        
+        if($vacantPositionCode == false){
+        
+            $dependecy = Division::model()->findBySql("select id_dependency from division where id = $division;")->id_dependency;
+            $levelPosition = Position::model()->findBySql("select leader from position where id = $position;")->leader;
 
+            if($dependecy == NULL){ $comparador = 'IS'; $dependecy = 'NULL'; }
+            else{ $comparador = '='; $dependecy = $dependecy; }
 
-            $contadorotro=count($array)-1;
-                    
-                   for ($i=$contadorotro; $i>=0; $i--)
-                   {
-                       $position[]=$array[$i];
-                       
-                   }
-             
-                    $LevelPosition = Position::verficarPosition($division);
-                   if ($LevelPosition!=null){
-                    foreach($LevelPosition as $value)
-                        {
-                            $leader[]=$value->leader;
-                            $numeroPosicion1=count($leader);
-                            $numeroPosicion= ".".$numeroPosicion1;
-                             
-                        }
-                   }
-                   else 
-                       {
-                       $numeroPosicion="";
-                       
-                       }
-                     
-                     
-                     $allArray= implode(".", $position); 
-                     $mergeDependencia=$id.".".$allArray.$numeroPosicion;
-                     return $mergeDependencia;//codigo de posicion para los empleados
+            if($levelPosition == 1){
+
+                $sql = "SELECT pc.position_code as position_code
+                    FROM position_code as pc
+                    INNER JOIN division as d ON d.id = pc.id_division
+                    INNER JOIN position as p ON p.id = pc.id_position
+                    WHERE pc.id_division $comparador $dependecy
+                    AND p.leader = 1;";
+            }elseif($levelPosition == 0){
+
+                $sql = "SELECT pc.position_code as position_code
+                    FROM position_code as pc
+                    INNER JOIN division as d ON d.id = pc.id_division
+                    INNER JOIN position as p ON p.id = pc.id_position
+                    WHERE pc.id_division = $division
+                    AND p.leader = 1;";
+            }
+
+            $modelStart = PositionCode::model()->findBySql($sql);
+            if($modelStart == NULL){
+                $modelStart = NULL;
+            }else{
+                if($modelStart->position_code == NULL){
+                    $codePosition = NULL;
+                }else{
+                    $codePosition = $modelStart->position_code;
+                }
+            }
+
+            if($modelStart == NULL){
+                $position_code = '1';
+            }else{
+
+                $sql = "SELECT cast(regexp_replace(pc.position_code, '".$codePosition.".' , '') as int)+1 as position_code
+                        FROM position_code as pc
+                        INNER JOIN division as d ON d.id = pc.id_division
+                        INNER JOIN position as p ON p.id = pc.id_position
+                        INNER JOIN employee as e ON e.id = pc.id_employee
+                        WHERE pc.position_code LIKE '".$codePosition."._' 
+                        AND e.first_name != 'Vacante'
+                        ORDER BY cast(regexp_replace(pc.position_code, '".$codePosition.".' , '') as int) DESC LIMIT 1;";
+                
+                $modelEnd = PositionCode::model()->findBySql($sql);
+                if($modelEnd == NULL){
+                    $modelEnd = NULL;
+                    $newNumber = 1;
+                }else{
+                    if($modelEnd->position_code == NULL){
+                        $newNumber = 1;
+                    }else{
+                        $newNumber = $modelEnd->position_code;
+                    }
+                }        
+  
+                $position_code = $codePosition.'.'.$newNumber;
+
+            }
+        
+        }else{
+            $position_code = $vacantPositionCode;
         }
         
-        else{
-            
-            return $mergeDependencia="1";
+        if($check == true){
+            echo json_encode($position_code);
+        }else{
+            return $position_code;
         }
-        
-      
+
     }
+    
+    public function actionGetVacantPositionCode() 
+    {
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
+//        $check = $_GET['check'];
+        
+        $sql = "SELECT pc.position_code 
+                FROM position_code pc
+                INNER JOIN division as d ON d.id = pc.id_division
+                INNER JOIN position as p ON p.id = pc.id_position
+                INNER JOIN employee as e ON e.id = pc.id_employee
+                WHERE pc.id_division = $division
+                AND pc.id_position = $position    
+                AND e.first_name = 'Vacante'
+                AND pc.end_date IS NULL;";
+        
+        $modelPositionCode = PositionCode::model()->findBySql($sql);
+
+        if($modelPositionCode == NULL){
+            $oldPositionCode = NULL;
+        }else{
+            if($modelPositionCode->position_code == NULL){
+                 $oldPositionCode = NULL;
+            }else{
+                 $oldPositionCode = $modelPositionCode->position_code;
+            }
+        }
+        
+        if($oldPositionCode == NULL){
+            return false;
+        }else{
+            return $oldPositionCode;
+        }
+
+    }
+
+    
 }

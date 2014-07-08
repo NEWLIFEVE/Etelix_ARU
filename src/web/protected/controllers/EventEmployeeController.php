@@ -64,30 +64,30 @@ class EventEmployeeController extends Controller
 	 */
 	public function actionCreate()
 	{
-        $Employee=Employee::getEmployee(Yii::app()->user->id);
-        if($Employee!=NULL)
-        {        
-            $model=  EventEmployee::getMaxDateMinHour($Employee->id);
-            if ($model){
-            $eventos=EventEmployee::getWorkday($Employee->id, $model->date);
-            $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], $model->date);
-            if ($validate_hour){
-                $this->render('create',array('eventos'=>$eventos,));
-            }else {
-                $eventos=FALSE;
-                $this->render('create',array('eventos'=>$eventos,));
+            $Employee=Employee::getEmployee(Yii::app()->user->id);
+            if($Employee!=NULL)
+            {        
+                $model=  EventEmployee::getMaxDateMinHour($Employee->id);
+                if ($model){
+                    $eventos=EventEmployee::getWorkday($Employee->id, $model->date);
+                    $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], $model->date);
+                    if ($validate_hour){
+                        $this->render('create',array('eventos'=>$eventos,));
+                    }else {
+                        $eventos=FALSE;
+                        $this->render('create',array('eventos'=>$eventos,));
+                    }
+                }else{
+                    $eventos=FALSE;
+                    $this->render('create',array('eventos'=>$eventos,));
+                }
             }
-            }else{
-                $eventos=FALSE;
-                $this->render('create',array('eventos'=>$eventos,));
+            else
+            {
+                $Employee = new Employee; 
+                $Address = new Address;
+                $this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
             }
-        }
-        else
-        {
-            $Employee = new Employee; 
-            $Address = new Address;
-            $this->render('/employee/infoEmployee',array('Employee' => $Employee, 'Address' => $Address));
-        }
 	}
 
 	/**
@@ -193,10 +193,10 @@ class EventEmployeeController extends Controller
 
     	if($getevente!=NULL)
     	{
-    		$this->render('Check',array(
-    			'geteve'=>$getevente,
-    			)
-    		);
+            $this->render('Check',array(
+                    'geteve'=>$getevente,
+                    )
+            );
     	}
     }
     

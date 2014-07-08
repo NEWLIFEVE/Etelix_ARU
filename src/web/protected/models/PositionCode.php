@@ -33,7 +33,9 @@ class PositionCode extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
+	
+   
+        public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
@@ -126,15 +128,65 @@ class PositionCode extends CActiveRecord
      * funcion para guardar positionCode
      */
     
-    public function getCreatePositionCode($idDivision,$positionCode ,$idPosition, $idEmployee, $startDate)
-     {
-        $PositionCode= new PositionCode;
-        $PositionCode->position_code=$positionCode;
-        $PositionCode->id_employee=$idEmployee;
-        $PositionCode->id_division=$idDivision;
-        $PositionCode->id_position=$idPosition;
-        $PositionCode->start_date=$startDate;
-        if ($PositionCode->save()) return TRUE ;else return FALSE;
-     }
+         public function getCreatePositionCode($idDivision,$positionCode ,$idPosition, $idEmployee, $startDate)
+         {
+            $modelPositionCode = self::model()->find("id_employee = $idEmployee");
+            $PositionCode= new PositionCode;
+            $PositionCode->position_code=$positionCode;
+            $PositionCode->id_employee=$idEmployee;
+            $PositionCode->id_division=$idDivision;
+            $PositionCode->id_position=$idPosition;
+            $PositionCode->start_date=$startDate;
+
+            $dateFormat = date('Y-m-d',  strtotime($startDate));
+            $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($dateFormat)));  
+            
+            $modelVacantPositionCode = self::model()->findBySql("SELECT * FROM position_code pc
+                                                                 INNER JOIN employee as e ON e.id = pc.id_employee
+                                                                 WHERE e.first_name = 'Vacante'
+                                                                 AND pc.id_division = $idDivision AND pc.id_position = $idPosition 
+                                                                 AND pc.position_code = '$positionCode' AND pc.id_employee = 189");
+                    
+            
+
+            if($modelPositionCode == NULL){
+
+                if ($PositionCode->save()){
+
+                    if($modelVacantPositionCode != NULL){
+                        $modelVacantPositionCode->end_date = $yesterday;
+                        $modelVacantPositionCode->save();
+                    }
+                    
+                    return TRUE; 
+                }else{
+                    return FALSE;
+                }
+
+            }elseif($modelPositionCode != NULL){
+                if($modelPositionCode->end_date == NULL){
+
+                    return 'EmployeeAlreadyExists';
+
+                }elseif($modelPositionCode->end_date != NULL && $dateFormat > $modelPositionCode->end_date){
+
+                    if ($PositionCode->save()){ 
+                        
+                        if($modelVacantPositionCode != NULL){
+                            $modelVacantPositionCode->end_date = $yesterday;
+                            $modelVacantPositionCode->save();
+                        }
+                        
+                        return TRUE;
+                    } else{ 
+                        return FALSE;
+                    }
+
+                }elseif($modelPositionCode->end_date != NULL && $dateFormat <= $modelPositionCode->end_date){
+
+                    return 'EmployeeAlreadyExists';
+                }
+            }
+         }
     
 }
