@@ -64,6 +64,6 @@
                </div>
 
 <div class="modal-footer">
-                                                     <a href="/positionCode/index"/><button type="button" class="btn green">Aceptar</button></a>
+     <a href="/positionCode/index"/><button type="button" class="btn green">Aceptar</button></a>
  </div>
 
