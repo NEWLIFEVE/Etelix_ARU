@@ -70,6 +70,15 @@ class PositionController extends Controller
     }
      
      
+     /**
+     * funcion para visualizar las posiciones (cargos) existentes en la organizacion
+     * 
+     */
+    public function actionViewPosition()
+     {
+        $model = Position::model()->findAllBySql("SELECT * FROM position ORDER BY leader DESC;");
+        $this->render('viewPosition',array('model'=>$model));
+     }
     
 
 	

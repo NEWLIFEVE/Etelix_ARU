@@ -208,6 +208,9 @@ $ARU.UI=(function(){
                     case ('positionCode'):
                         $('li#codigoposicion').addClass(' active');
                         break;
+                    case ('division'):
+                        $('li#division').addClass(' active');
+                        break;
          
                     }
             }

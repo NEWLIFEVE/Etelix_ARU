@@ -212,12 +212,47 @@ class SiteController extends Controller
                                                <ul class='sub-menu'>
                                               <li>
                                                  <a href='/positionCode/'>
-                                                 Código de Posición</a>
+                                                 Crear Cp</a>
                                               </li>
                                               <li>
                                                  <a href='/positionCode/AdminPositionCode'>
-                                                CP para Empleados</a>
+                                                Administrar Cp</a>
                                               </li>
+                                              
+                                       </ul>                  
+                          </li>
+                          
+                            <li id='division' name='division'>
+                                                   <a href=''>
+                                                   <i class='icon-th-large'></i> 
+                                                   <span class='title'>División</span> 
+                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                                                   
+                                               <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/division/viewDivision'>
+                                                 Divisiones</a>
+                                              </li>
+                                              
+                                              
+                                       </ul>                  
+                          </li>
+                            <li id='cargo' name='cargo'>
+                                                   <a href=''>
+                                                   <i class='icon-briefcase'></i> 
+                                                   <span class='title'>Cargo</span> 
+                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                                                   
+                                               <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/position/viewPosition'>
+                                                 Cargos</a>
+                                              </li>
+                                              
                                               
                                        </ul>                  
                           </li>
