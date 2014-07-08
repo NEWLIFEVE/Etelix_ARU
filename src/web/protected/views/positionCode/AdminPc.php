@@ -35,6 +35,7 @@
                                   <th class="fondotablesgris">Nombre</th>
                                  <th class="fondotablesgris">Apellido</th>
                                  <th class="fondotablesgris">División</th>
+                                 <th class="fondotablesgris">Dependencia</th>
                                  <th class="fondotablesgris">Posición</th>
                                  <th class="fondotablesgris">Código de Posición</th>
                                  <th class="fondotablesgris">Fecha de Inicio</th>
@@ -49,6 +50,7 @@
                                                <td>".$value->idEmployee->first_name."</td>
                                                <td>".$value->idEmployee->last_name."</td>
                                                <td>".$value->idDivision->name."</td>
+                                               <td>".Division::getNameDivision($value->id_dependency)."</td>    
                                                <td>".$value->idPosition->name."</td>
                                                <td>".$value->position_code."</td>
                                                <td>".$value->start_date."</td>

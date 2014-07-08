@@ -192,6 +192,22 @@ class Division extends CActiveRecord
           }
           return $cont;
       }
+      
+      public function getNameDivision($id) {
+          
+          if($id != NULL){
+              $model = self::model()->find("id = $id");
+              
+              if($model != NULL){
+                  return $model->name;
+              }else{
+                  return '';
+              }
+          }else{
+              return '';
+          }
+          
+      }
              
         
         

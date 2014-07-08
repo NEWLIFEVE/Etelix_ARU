@@ -25,9 +25,7 @@ $ARU.UI=(function(){
     }
     
       var result=(location.pathname).split('/');
-    
-      
-                
+
             function _MaskCell(){
                
                 $("#Employee_extension_numeric").inputmask("mask", {
@@ -955,6 +953,7 @@ $ARU.UI=(function(){
                     $('#error').removeClass("alert alert-danger");
                     $('#error').removeClass("icon-remove-circle");
                     $('#error').html("");
+                    
                     $ARU.AJAX.createPositionCode("GET", "/PositionCode/CrearPosition", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
                     
             }
@@ -1175,6 +1174,7 @@ $ARU.UI=(function(){
         
         function viewPositionCode(result){
             
+            console.log(result);
              $("div#posicion").html(result);
         }
     return {
