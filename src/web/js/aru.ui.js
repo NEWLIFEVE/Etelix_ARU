@@ -1039,12 +1039,12 @@ $ARU.UI=(function(){
             var leader = $("#leader:checked").val();
            
            if ((new_division !="") && (id_dependencia != "")){
-                $ARU.AJAX.crearDivision("GET", "/Division/getNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
+                $ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
            }          
           
             if (new_position !=""){
                 if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
-                $ARU.AJAX.crearCargo("GET", "/Division/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
+                $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
                 
            }  
             
