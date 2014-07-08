@@ -57,6 +57,17 @@ class PositionController extends Controller
 //         }
 //
 //    }
+    
+    
+    public function actionGetNewPosition() {
+        
+         $newPosition = $_GET['new_position'];
+         $leader = $_GET['leader'];
+         $modelDivision = Position::getNewPosition($newPosition, $leader);
+         
+         return $modelDivision;
+
+    }
      
      
      /**
