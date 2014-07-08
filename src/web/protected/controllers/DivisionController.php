@@ -174,6 +174,16 @@ class DivisionController extends Controller
         }
 
     }
-
+    
+    /**
+     * funcion para visualizar las divisiones existentes en la organizacion
+     * 
+     */
+    public function actionViewDivision()
+     {
+        $model = Division::model()->findAll();
+        $this->render('viewDivision',array('model'=>$model));
+     }
+     
     
 }
