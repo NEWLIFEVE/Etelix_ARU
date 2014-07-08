@@ -57,10 +57,12 @@ class DivisionController extends Controller
     }
 
     /**
-     * funcion para calcular la dependencia entre las division
-     * @access public
-     * @param int $division
+     * funcion para visualizar las divisiones existentes en la organizacion
+     * 
      */
-
-
+    public function actionViewDivision()
+     {
+        $model = Division::model()->findAll();
+        $this->render('viewDivision',array('model'=>$model));
+     }  
 }

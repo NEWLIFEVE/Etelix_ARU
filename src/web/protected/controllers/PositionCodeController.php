@@ -75,7 +75,6 @@ class PositionCodeController extends Controller
         }
 
     }
-<<<<<<< HEAD
 
     public function actionAdminPositionCode(){
         
@@ -212,10 +211,4 @@ class PositionCodeController extends Controller
         }
 
     }
-    
-    public function actionAdminPositionCode()
-     {
-        $positionCode = PositionCode::model()->findAll();
-        $this->render('AdminPc',array('model'=>$positionCode));
-     }
 }
