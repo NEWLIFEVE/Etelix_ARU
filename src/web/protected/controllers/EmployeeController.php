@@ -368,7 +368,7 @@ class EmployeeController extends Controller
                     }
                 }
             }
-        }
+//        }
         $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
     }
     
