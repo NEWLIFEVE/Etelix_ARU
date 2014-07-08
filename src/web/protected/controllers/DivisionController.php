@@ -58,6 +58,7 @@ class DivisionController extends Controller
         $position = $_GET['id_position'];
         $check = $_GET['check'];
         
+
         $vacantPositionCode = self::actionGetVacantPositionCode();
         
         if($vacantPositionCode == false){
@@ -76,7 +77,6 @@ class DivisionController extends Controller
                     INNER JOIN position as p ON p.id = pc.id_position
                     WHERE pc.id_division $comparador $dependecy
                     AND p.leader = 1;";
-
             }elseif($levelPosition == 0){
 
                 $sql = "SELECT pc.position_code as position_code
@@ -123,6 +123,7 @@ class DivisionController extends Controller
                 }        
   
                 $position_code = $codePosition.'.'.$newNumber;
+
             }
         
         }else{
@@ -172,6 +173,6 @@ class DivisionController extends Controller
         }
 
     }
-    
+
     
 }
