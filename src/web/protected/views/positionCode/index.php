@@ -130,10 +130,10 @@
                                     </div>
                                      <div class="form-group">
                                          <label class="control-label col-md-2">Empleado<span class="required">*</span></label>
-                                         <div class="col-md-3" style="display: inline">
+                                         <div class="col-md-4" style="display: inline">
                                          <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
                                          </div>
-                                         <div class="col-md-4" style="display: inline">
+                                         <div class="col-md-6" style="display: inline">
                                              <label class="control-label col-md-3">Fecha<span class="required">*</span></label>
                                              <?php echo $form->textField($model,'start_date', array('class'=>'form-control input-medium date-picker')); ?>
                                          </div>
@@ -182,7 +182,7 @@
                                            <div id="posicion"></div>
                                        </div>
                                     </div>
-                                 
+                                  
                                  </div>
                               </div>
                            </div>
@@ -209,3 +209,42 @@
                </div>
             </div>
          </div>
+
+
+
+<div id="codigo_posicion" class="modal fade" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                 <h4 class="modal-title">Código de Posición</h4>
+                              </div>
+                              <div class="modal-body" align="center">
+                                  <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="row">
+                                       <div class="col-md-6" style="width:100%;"> 
+                                      <form action="#" role="form">
+                                            <div class="form-group">
+                                               <div class="cambiocontra" style="width: 310%;">
+                                                      
+                                                    <div class="margin-top-10 ">
+                                                       <div class="input-group input-group-fixed">
+                                                       </div>
+                                                    </div>
+                                                        <div id="only-open">
+                                                            <div id="mensaje"></div>
+                                                        </div>
+                                                    </div>
+                                                 <div class="modal-footer">
+                                                     <a href="/positionCode/index"/><button type="button" class="btn green">Aceptar</button></a>
+                                                     <div id></div>  
+                                              </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div> 
+                           </div>
+                        </div>
+                     </div>
+                </div>
+          </div>
