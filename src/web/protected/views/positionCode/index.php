@@ -236,7 +236,7 @@
                                                         </div>
                                                     </div>
                                                  <div class="modal-footer">
-                                                     <a href="/positionCode/index"/><button type="button" class="btn green">Aceptar</button></a>
+                                                     <a href="/positionCode/index"/><button type="button" class="btn green">Agregar</button></a>
                                                      <div id></div>  
                                               </div>
                                        </div>
