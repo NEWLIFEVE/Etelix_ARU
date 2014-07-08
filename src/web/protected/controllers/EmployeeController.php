@@ -252,14 +252,9 @@ class EmployeeController extends Controller
                        $this->redirect(array('infoEmployee', 'id' => $model->id));
                     }
              }
-             
-       
-         
-         
+
          $this->render('UpdatePhone',array('model'=>$model, 'address'=>$Address));
-            
-       
-        
+
       }
 
 
