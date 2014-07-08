@@ -107,7 +107,7 @@ class DivisionController extends Controller
                         INNER JOIN division as d ON d.id = pc.id_division
                         INNER JOIN position as p ON p.id = pc.id_position
                         INNER JOIN employee as e ON e.id = pc.id_employee
-                        WHERE pc.position_code LIKE '".$codePosition."._' 
+                        WHERE pc.position_code LIKE '".$codePosition.".__' 
                         AND e.first_name != 'Vacante'
                         ORDER BY cast(regexp_replace(pc.position_code, '".$codePosition.".' , '') as int) DESC LIMIT 1;";
                 
