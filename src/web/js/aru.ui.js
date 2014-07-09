@@ -290,10 +290,9 @@ $ARU.UI=(function(){
            if ((new_division !="") && (id_dependencia != "")){
                  id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
                 
-           }
-           else {
+          }else{
                  id_division= $("#PositionCode_id_division").val();
-           }
+          }
            
           if (new_position !=""){
                 if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
@@ -309,24 +308,20 @@ $ARU.UI=(function(){
                  
                     if (form.valid() == false) {
                         $('.alert-danger').html('Todos los Campos son Obligatorios.');
-                       
                         return false;
-                    }
-                    else {
+                    }else{
                       
                         if (employee=='true'){
                            $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo.'); 
                            $('.alert-danger').css('display', 'block'); 
                            return false;
-                        }
-                        
-                      else{
+                        }else{
                             if (lider=='false'){
                                $('.alert-danger').html('Es Necesario Crear un Lider para esta Division.'); 
                                $('.alert-danger').css('display', 'block'); 
                                return false;
                             }
-                          }
+                        }
                     }
                  
                     
