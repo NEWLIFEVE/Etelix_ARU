@@ -129,7 +129,7 @@ class PositionCode extends CActiveRecord
      * funcion para guardar positionCode
      */
     
-         public function getCreatePositionCode($idDivision,$positionCode ,$idPosition, $idEmployee, $startDate)
+         public function getNewPositionCode($idDivision,$positionCode ,$idPosition, $idEmployee, $startDate)
          {
             $modelPositionCode = self::model()->find("id_employee = $idEmployee");
             $PositionCode= new PositionCode;
@@ -142,8 +142,7 @@ class PositionCode extends CActiveRecord
             $dateFormat = date('Y-m-d',  strtotime($startDate));
             $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($dateFormat)));  
             
-            $modelVacantPositionCode = self::model()->find("id_division = $idDivision AND id_position = $idPosition 
-                                                            AND position_code = '$positionCode' AND id_employee = 189");
+            $modelVacantPositionCode = self::model()->find("id_division = $idDivision AND id_position = $idPosition AND position_code = '$positionCode' AND id_employee = 189");
 
             if($modelPositionCode == NULL){
 
