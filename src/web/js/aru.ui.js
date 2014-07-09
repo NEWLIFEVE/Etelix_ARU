@@ -1051,7 +1051,7 @@ $ARU.UI=(function(){
              
              var id_division = $("#PositionCode_id_division").val();
              var id_position = $("#PositionCode_id_position").val();
-             $ARU.AJAX.posicion("GET", "/Division/getDependencia", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
+             $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
                      
              
              
