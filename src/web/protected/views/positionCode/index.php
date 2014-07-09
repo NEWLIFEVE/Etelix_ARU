@@ -63,8 +63,8 @@
                               <div class="tab-content">
                                  <div class="alert alert-danger display-none">
                                     <button class="close" data-dismiss="alert"></button>
-                                    Todos los Campos son Obligatorios.
                                  </div>
+
                                  <div class="alert alert-success display-none">
                                     <button class="close" data-dismiss="alert"></button>
                                    
@@ -141,11 +141,10 @@
                                    
                                  </div>
                               
-                                  
-                         
+
                                  <div class="tab-pane" id="tab2">
                                     <h3 class="block">Confirmar Código de Posición</h3>
-                                    
+
                                     <div class="form-group">
                                         <div class="col-md-4" style="clear: both; width: 100%"> <div id="error"></div></div>
                                        <label class="control-label col-md-3">División:</label>

@@ -219,13 +219,14 @@ $ARU.UI=(function(){
             
             function _loadFirstView()
             {
-                
-               var form = $('#submit_form');
-               var error = $('.alert-danger', form);
+               var form = $('#submit_form');        
+               var error = $('.alert-danger', form); 
+               var lider= false;
+               
                var success = $('.alert-success', form);
                var handleTitle = function(tab, navigation, index) {
                var total = navigation.find('li').length;
-               console.log(total);
+              
                var current = index + 1;
                 // set wizard title
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
@@ -263,6 +264,7 @@ $ARU.UI=(function(){
 
             // default form wizard
             $('#form_wizard_1').bootstrapWizard({
+               
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -276,17 +278,59 @@ $ARU.UI=(function(){
                 onNext: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
-
+        var id_dependencia = $("#PositionCode_id_dependencia").val();
+        var new_division = $("#PositionCode_new_division").val();
+        var new_position = $("#new_position").val();
+        var id_employee = $("#PositionCode_id_employee").val();
+        var start_date = $("#PositionCode_start_date").val();
+        var leader = $("#leader:checked").val();
+        var id_division='';
+        var id_position='';
+                
+           if ((new_division !="") && (id_dependencia != "")){
+                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                
+          }else{
+                 id_division= $("#PositionCode_id_division").val();
+          }
+           
+          if (new_position !=""){
+                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
+                  id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+           }
+           
+           else {
+                  id_position = $("#PositionCode_id_position").val();              
+           }
+                 
+                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
+                 var lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position); 
+                 
                     if (form.valid() == false) {
+                        $('.alert-danger').html('Todos los Campos son Obligatorios.');
                         return false;
+                    }else{
+                      
+                        if (employee=='true'){
+                           $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo.'); 
+                           $('.alert-danger').css('display', 'block'); 
+                           return false;
+                        }else{
+                            if (lider=='false'){
+                               $('.alert-danger').html('Es Necesario Crear un Lider para esta Division.'); 
+                               $('.alert-danger').css('display', 'block'); 
+                               return false;
+                            }
+                        }
                     }
+                 
+                    
 
                     handleTitle(tab, navigation, index);
                 },
                 onPrevious: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
-
                     handleTitle(tab, navigation, index);
                 },
                 onTabShow: function (tab, navigation, index) {
@@ -300,7 +344,7 @@ $ARU.UI=(function(){
             });
               
               
-                    $('#form_wizard_1').find('.button-previous').hide();
+            $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
 //                alert('Finished! Hope you like it :)');
             }).hide();
@@ -775,16 +819,13 @@ $ARU.UI=(function(){
                     }
                     ,
                     'Employee[cp]':{
-                         required: true,
-                           
+                         required: true, 
                     }
                     ,
                     'Employee[codeDependence]':{
-                         required: true,
-                           
+                         required: true,  
                     }
                     ,
-                    
                      'Rol[name_rol]':{
                          required: true,    
                     },
@@ -875,16 +916,12 @@ $ARU.UI=(function(){
          
          function _viewdetalle()
          {
-            
              $('a#detalle').on('click',function(){
                  var id=($(this).find('div#id_employ').text());
                  $ARU.AJAX.searchEmployee("GET","/Employee/DynamicEmployee","id_employee="+id);
                 });
          }
-         
-        
-            
-            
+           
         function successPass(result){
             
             switch(result){
@@ -947,29 +984,29 @@ $ARU.UI=(function(){
         {
             $('a#positioncode').on('click', function() {
 
-//            var id_division = $("#PositionCode_id_division").val();
-//            var id_position = $("#PositionCode_id_position").val();
-//            var id_employee = $("#PositionCode_id_employee").val();
-//            var start_date = $("#PositionCode_start_date").val();
-//            var id_dependencia = $("#PositionCode_id_dependencia").val();
-//            var new_division = $("#PositionCode_new_division").val();
-//            var new_position = $("#new_position").val();
-//            var leader = $("#leader:checked").val();
-//            var position=$("div#posicion").text();
-//           
-//            if (id_division=="" &(new_division=="" || id_dependencia=="") || (id_position=="" & new_position=="") || id_employee=="" || start_date==""){
-//                $('#error').addClass("alert alert-danger");
-//                    $('#error').addClass("rojo");
-//                    $('#error').show("slow");
-//                    $('#error').html("Faltan Datos Para Realizar el Registro");
-//            }else{
-//                 $('#error').removeClass("rojo");
-//                    $('#error').removeClass("alert alert-danger");
-//                    $('#error').removeClass("icon-remove-circle");
-//                    $('#error').html("");
-//                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CrearPosition", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
-//                    
-//            }
+            var id_division = $("#PositionCode_id_division").val();
+            var id_position = $("#PositionCode_id_position").val();
+            var id_employee = $("#PositionCode_id_employee").val();
+            var start_date = $("#PositionCode_start_date").val();
+            var id_dependencia = $("#PositionCode_id_dependencia").val();
+            var new_division = $("#PositionCode_new_division").val();
+            var new_position = $("#new_position").val();
+            var leader = $("#leader:checked").val();
+            var position=$("div#posicion").text();
+           
+            if (id_division=="" &(new_division=="" || id_dependencia=="") || (id_position=="" & new_position=="") || id_employee=="" || start_date==""){
+                $('#error').addClass("alert alert-danger");
+                    $('#error').addClass("rojo");
+                    $('#error').show("slow");
+                    $('#error').html("Faltan Datos Para Realizar el Registro");
+            }else{
+                 $('#error').removeClass("rojo");
+                    $('#error').removeClass("alert alert-danger");
+                    $('#error').removeClass("icon-remove-circle");
+                    $('#error').html("");
+                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CreatePositionCode", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
+                    
+            }
 
             });
         }
@@ -979,11 +1016,6 @@ $ARU.UI=(function(){
         {
               switch(result){
                 case true:
-                   
-//                    $('#error').addClass("alert alert-success");
-//                    $('div#mensaje').addClass("verde");           
-//                    $('#error').html("Registro Exitoso!");
-//                    $('#error').show();
                     $('div#mensaje').html("<h4>Creación Exitosa de Código de Posición!</h4>");
                     $('#codigo_posicion').modal('show');
                     $("#PositionCode_id_division").select2('val', '');
@@ -1027,42 +1059,46 @@ $ARU.UI=(function(){
         
         function _addDivision()
         {
-     
-      
-       $('a#siguiente').on('click',function(){
-          
-          
-            var id_dependencia = $("#PositionCode_id_dependencia").val();
-            var new_division = $("#PositionCode_new_division").val();
-            
-            var new_position = $("#new_position").val();
-            var leader = $("#leader:checked").val();
-           
-           if ((new_division !="") && (id_dependencia != "")){
-                $ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
-           }          
-          
-            if (new_position !=""){
-                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
-                $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
+           $('a#siguiente').on('click',function(){
+
+                var id_dependencia = $("#PositionCode_id_dependencia").val();
+                var new_division = $("#PositionCode_new_division").val();
+                var new_position = $("#new_position").val();
+                var leader = $("#leader:checked").val();
+                var id_division='';
+                var id_position='';
                 
-           }  
-            
+           if ((new_division !="") && (id_dependencia != "")){
+                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+
+           }
+           
+           else {
+                 id_division= $("#PositionCode_id_division").val();
+           }
+           
+          if (new_position !=""){
+                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
+                  id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+           }
+           
+           else {
+                  id_position = $("#PositionCode_id_position").val();              
+           }
           
-            var idDivision = $("#PositionCode_id_division option:selected").text();
-            var newDivision=$("input#PositionCode_new_division").val();
+           var idDivision = $("#PositionCode_id_division option:selected").text();
+           var newDivision=$("input#PositionCode_new_division").val();
              
-             if (idDivision!= "División")
-             {
-                  $("p#idDivision").attr( "data-display" );
-                  $("p#idDivision").removeClass( "ocultar" );
-             }
-             
-             else 
-             {
-                 $("p#idDivision").addClass( "ocultar" );
-                 $("p#idDivision").html( " " );  
-             }
+           if (idDivision!= "División")
+           {
+              $("p#idDivision").attr( "data-display" );
+              $("p#idDivision").removeClass( "ocultar" );
+           }
+           else 
+           {
+             $("p#idDivision").addClass( "ocultar" );
+             $("p#idDivision").html( " " );  
+           }
              
            var newPosicion=$("input#new_position").val();
            var idPosicion = $("#PositionCode_id_position option:selected").text();
@@ -1077,11 +1113,9 @@ $ARU.UI=(function(){
                 $("p#idPosition").addClass( "ocultar" );
                  $("p#idPosition").html( "hola " );
            }
-             
-             var id_division = $("#PositionCode_id_division").val();
-             var id_position = $("#PositionCode_id_position").val();
              $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
-                     
+             id_division='';
+             id_position='';
              
              
        });
@@ -1156,24 +1190,7 @@ $ARU.UI=(function(){
           
         function createDivision(result)
         {
-            
-            switch(result){
-                case true:
-                   
-                    $('#error').addClass("alert alert-success");
-                    $('#error').addClass("verde");           
-                    $('#error').html("Registro Exitoso!");
-              
-                    break;
-                case false:
-                  
-                    $('#error').addClass("alert alert-danger"); 
-                    $('#error').addClass("rojo");
-                    $('#error').html("Falla en el Registro");
-                    break;
-                
-            }
-            
+            $('div#newid').html(result);
         }
         
         
@@ -1185,27 +1202,11 @@ $ARU.UI=(function(){
         
          function createCargo(result)
         {
-            switch(result){
-                case true:
-                   
-                    $('#error').addClass("alert alert-success");
-                    $('#error').addClass("verde");           
-                    $('#error').html("Registro Exitoso!");
-              
-                    break;
-                case false:
-                  
-                    $('#error').addClass("alert alert-danger"); 
-                    $('#error').addClass("rojo");
-                    $('#error').html("Falla en el Registro");
-                    break;
-            }
-            
+             $('#cargoresul').html(result);
         }
         
         function viewPositionCode(result){
-            
-            console.log(result);
+         
              $("div#posicion").html(result);
         }
         
