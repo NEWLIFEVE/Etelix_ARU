@@ -798,6 +798,16 @@ $ARU.UI=(function(){
                          required: true,    
                     },
                     
+                     'PositionCode[new_division]':{
+                         required: true,    
+                    },
+                     'PositionCode[id_dependencia]':{
+                         required: true,    
+                    },
+                     'new_position':{
+                         required: true,    
+                    },
+                    
                     'PositionCode[id_division]':{
                          required: true,    
                     }
@@ -936,30 +946,31 @@ $ARU.UI=(function(){
         function _CreatePositionCode()
         {
             $('a#positioncode').on('click', function() {
-            var id_division = $("#PositionCode_id_division").val();
-            var id_position = $("#PositionCode_id_position").val();
-            var id_employee = $("#PositionCode_id_employee").val();
-            var start_date = $("#PositionCode_start_date").val();
-            var id_dependencia = $("#PositionCode_id_dependencia").val();
-            var new_division = $("#PositionCode_new_division").val();
-            var new_position = $("#new_position").val();
-            var leader = $("#leader:checked").val();
-            var position=$("div#posicion").text();
-           
-            if (id_division=="" &(new_division=="" || id_dependencia=="") || (id_position=="" & new_position=="") || id_employee=="" || start_date==""){
-                $('#error').addClass("alert alert-danger");
-                    $('#error').addClass("rojo");
-                    $('#error').show("slow");
-                    $('#error').html("Faltan Datos Para Realizar el Registro");
-            }else{
-                 $('#error').removeClass("rojo");
-                    $('#error').removeClass("alert alert-danger");
-                    $('#error').removeClass("icon-remove-circle");
-                    $('#error').html("");
-                    
-                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CrearPosition", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
-                    
-            }
+
+//            var id_division = $("#PositionCode_id_division").val();
+//            var id_position = $("#PositionCode_id_position").val();
+//            var id_employee = $("#PositionCode_id_employee").val();
+//            var start_date = $("#PositionCode_start_date").val();
+//            var id_dependencia = $("#PositionCode_id_dependencia").val();
+//            var new_division = $("#PositionCode_new_division").val();
+//            var new_position = $("#new_position").val();
+//            var leader = $("#leader:checked").val();
+//            var position=$("div#posicion").text();
+//           
+//            if (id_division=="" &(new_division=="" || id_dependencia=="") || (id_position=="" & new_position=="") || id_employee=="" || start_date==""){
+//                $('#error').addClass("alert alert-danger");
+//                    $('#error').addClass("rojo");
+//                    $('#error').show("slow");
+//                    $('#error').html("Faltan Datos Para Realizar el Registro");
+//            }else{
+//                 $('#error').removeClass("rojo");
+//                    $('#error').removeClass("alert alert-danger");
+//                    $('#error').removeClass("icon-remove-circle");
+//                    $('#error').html("");
+//                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CrearPosition", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
+//                    
+//            }
+
             });
         }
  
@@ -1020,6 +1031,24 @@ $ARU.UI=(function(){
       
        $('a#siguiente').on('click',function(){
           
+          
+            var id_dependencia = $("#PositionCode_id_dependencia").val();
+            var new_division = $("#PositionCode_new_division").val();
+            
+            var new_position = $("#new_position").val();
+            var leader = $("#leader:checked").val();
+           
+           if ((new_division !="") && (id_dependencia != "")){
+                $ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
+           }          
+          
+            if (new_position !=""){
+                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
+                $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
+                
+           }  
+            
+          
             var idDivision = $("#PositionCode_id_division option:selected").text();
             var newDivision=$("input#PositionCode_new_division").val();
              
@@ -1075,7 +1104,6 @@ $ARU.UI=(function(){
                 $("div#mensaje").html("Nombre de la División");
                 $("div#mensajedependencia").html("Dependencia");
                 $('#test').removeClass("newGroup icon-plus-sign");
-               
                 $('#test').addClass("cancelarnewGroup icon-signout rotarfecha");
                 
                 
@@ -1180,6 +1208,7 @@ $ARU.UI=(function(){
             console.log(result);
              $("div#posicion").html(result);
         }
+        
     return {
         init:init,
         successPass:successPass,

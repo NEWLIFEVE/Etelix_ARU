@@ -239,7 +239,7 @@ class SiteController extends Controller
                                               
                                        </ul>                  
                           </li>
-                            <li id='cargo' name='cargo'>
+                            <li id='cargoemploye' name='cargoemployee'>
                                                    <a href=''>
                                                    <i class='icon-briefcase'></i> 
                                                    <span class='title'>Cargo</span> 
