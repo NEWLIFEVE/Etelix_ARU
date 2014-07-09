@@ -137,7 +137,6 @@ $ARU.AJAX=(function()
             data:formulario,
             success:function(data)
             {
-                
                 result=JSON.parse(data);
                 $ARU.UI.createPosition(result);
             }
@@ -152,9 +151,10 @@ $ARU.AJAX=(function()
     function crearDivision(type,action, formulario)
     {
         
-        $.ajax({
+       var idDivision= $.ajax({
             type:type,
             url:action,
+            async: false,
             data:formulario,
             success:function(data)
             {
@@ -162,7 +162,9 @@ $ARU.AJAX=(function()
                 $ARU.UI.createDivision(result);
       
             }
-        });
+        }).responseText;
+        
+       return idDivision;
     }
     
     
@@ -174,17 +176,19 @@ $ARU.AJAX=(function()
      function crearCargo(type,action, formulario)
     {
         
-        $.ajax({
+        var idPosition = $.ajax({
             type:type,
             url:action,
             data:formulario,
+            async: false,
             success:function(data)
             {
                 result=JSON.parse(data);
                 $ARU.UI.createCargo(result);
-      
             }
-        });
+        }).responseText;
+        
+        return idPosition;
     }
     
     
