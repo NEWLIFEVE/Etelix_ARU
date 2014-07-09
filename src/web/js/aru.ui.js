@@ -1083,7 +1083,7 @@ $ARU.UI=(function(){
                  $("p#idPosition").html( "hola " );
            }
       
-             $ARU.AJAX.posicion("GET", "/PositionCode/getPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
+             $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
                      
              id_division='';
              id_position='';

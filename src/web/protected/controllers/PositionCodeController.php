@@ -221,16 +221,15 @@ class PositionCodeController extends Controller
         $modelEmployeeExist = PositionCode::model()->find("id_employee = $employee");
         
         if($modelEmployeeExist == NULL){
-            echo json_encode("false");
+            echo json_encode(false);
         }else{
             $endDate = $modelEmployeeExist->end_date;
-            
-            if($endDateEmployee == NULL){
-                echo json_encode("true");
-            }elseif($endDateEmployee != NULL && $startDate < $endDate){
-                echo json_encode("true");
-            }elseif($endDateEmployee != NULL && $startDate > $endDate){
-                echo json_encode("false");
+            if($endDate == NULL){
+                echo json_encode(true);
+            }elseif($endDate != NULL && $startDate < $endDate){
+                echo json_encode(true);
+            }elseif($endDate != NULL && $startDate > $endDate){
+                echo json_encode(false);
             }
         }
     }
@@ -251,16 +250,16 @@ class PositionCodeController extends Controller
         if($LevelPosition != NULL)
         {
             if($LevelPosition[0]->leader != 0)
-                echo json_encode("true");
+                echo json_encode(true);
             else
-                echo json_encode("false");
+                echo json_encode(false);
         }
         else
         {
             if($verificarCargo->leader != 0)
-                echo json_encode("true");
+                echo json_encode(true);
             else
-                echo json_encode("false");
+                echo json_encode(false);
         }
     }
     
