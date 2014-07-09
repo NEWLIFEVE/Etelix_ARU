@@ -51,8 +51,8 @@ class DivisionController extends Controller
          $newDivision = $_GET['new_division'];
          $idDependence = $_GET['id_dependencia'];
          $modelDivision = Division::getNewDivision($newDivision,$idDependence);
-         
-         return $modelDivision;
+          echo json_encode($modelDivision);
+       
 
     }
 

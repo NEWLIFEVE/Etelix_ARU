@@ -1034,19 +1034,32 @@ $ARU.UI=(function(){
           
             var id_dependencia = $("#PositionCode_id_dependencia").val();
             var new_division = $("#PositionCode_new_division").val();
-            
             var new_position = $("#new_position").val();
             var leader = $("#leader:checked").val();
-
-            if ((new_division !="") && (id_dependencia != "")){
-                 $ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
-            }          
-
-            if (new_position !=""){
-                 if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
-                 $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
-            }  
             
+           var id_division='';
+           var id_position='';
+    
+           
+           if ((new_division !="") && (id_dependencia != "")){
+                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
+                
+           }
+           
+           else {
+                 id_division= $("#PositionCode_id_division").val();
+           }
+          
+            if (new_position !=""){
+                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
+                  id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
+                
+           }
+           
+           else {
+                  id_position = $("#PositionCode_id_position").val();
+                  id_position = id_position.replace('"',id_position);
+           }
           
             var idDivision = $("#PositionCode_id_division option:selected").text();
             var newDivision=$("input#PositionCode_new_division").val();
@@ -1076,11 +1089,11 @@ $ARU.UI=(function(){
                  $("p#idPosition").html( "hola " );
            }
              
-             var id_division = $("#PositionCode_id_division").val();
-             var id_position = $("#PositionCode_id_position").val();
-             $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
+      
+             $ARU.AJAX.posicion("GET", "/PositionCode/getPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
                      
-             
+             id_division='';
+             id_position='';
              
        });
        
@@ -1154,24 +1167,7 @@ $ARU.UI=(function(){
           
         function createDivision(result)
         {
-            
-            switch(result){
-                case true:
-                   
-                    $('#error').addClass("alert alert-success");
-                    $('#error').addClass("verde");           
-                    $('#error').html("Registro Exitoso!");
-              
-                    break;
-                case false:
-                  
-                    $('#error').addClass("alert alert-danger"); 
-                    $('#error').addClass("rojo");
-                    $('#error').html("Falla en el Registro");
-                    break;
-                
-            }
-            
+            $('div#newid').html(result);
         }
         
         
@@ -1183,27 +1179,11 @@ $ARU.UI=(function(){
         
          function createCargo(result)
         {
-            switch(result){
-                case true:
-                   
-                    $('#error').addClass("alert alert-success");
-                    $('#error').addClass("verde");           
-                    $('#error').html("Registro Exitoso!");
-              
-                    break;
-                case false:
-                  
-                    $('#error').addClass("alert alert-danger"); 
-                    $('#error').addClass("rojo");
-                    $('#error').html("Falla en el Registro");
-                    break;
-            }
-            
+             $('#cargoresul').html(result);
         }
         
         function viewPositionCode(result){
-            
-            console.log(result);
+         
              $("div#posicion").html(result);
         }
         
