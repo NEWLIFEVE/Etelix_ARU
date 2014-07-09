@@ -190,6 +190,40 @@ $ARU.AJAX=(function()
         
         return idPosition;
     }
+     function leaderExist(type,action, formulario)
+    {
+        
+        var leader = $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            async: false,
+            success:function(data)
+            {
+//                result=JSON.parse(data);
+//                $ARU.UI.createCargo(result);
+            }
+        }).responseText;
+        
+        return leader;
+    }
+     function employeeExist(type,action, formulario)
+    {
+        
+        var employee = $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            async: false,
+            success:function(data)
+            {
+//                result=JSON.parse(data);
+//                $ARU.UI.createCargo(result);
+            }
+        }).responseText;
+        
+        return employee;
+    }
     
     
     /**
@@ -221,6 +255,8 @@ $ARU.AJAX=(function()
         crearCargo:crearCargo,
         createPositionCode:createPositionCode,
         posicion:posicion,
+        employeeExist:employeeExist,
+        leaderExist:leaderExist,
         
     };
     
