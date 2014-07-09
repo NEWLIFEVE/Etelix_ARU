@@ -144,8 +144,6 @@ class PositionCode extends CActiveRecord
             
             $modelVacantPositionCode = self::model()->find("id_division = $idDivision AND id_position = $idPosition 
                                                             AND position_code = '$positionCode' AND id_employee = 189");
-                    
-            
 
             if($modelPositionCode == NULL){
 

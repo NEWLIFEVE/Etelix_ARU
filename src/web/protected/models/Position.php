@@ -98,73 +98,73 @@ class Position extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Position the static model class
 	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+        public static function model($className=__CLASS__)
+        {
+                return parent::model($className);
+        }
     
     
-    /**
-     * funcion para listar las posiciones organizacionales creadas
-     */
+        /**
+         * funcion para listar las posiciones organizacionales creadas
+         */
+
+
+        public function getPosition()
+        {
+             return  CHtml::ListData(Position::model()->findAll(),"id","name"); 
+        }
     
     
-    public function getPosition()
-    {
-         return  CHtml::ListData(Position::model()->findAll(),"id","name"); 
-    }
     
-    
-    
-     /**
-     * funcion para verificar si existe lider en la division
-     */
-    
-    
-    public function verficarPosition($division)
-     {
-         $consulta="select leader from position_code, position where id_division=".$division." and id_position=position.id order by leader desc;";
-         $position=self::model()->findAllBySql($consulta);
-         return $position;
-     }
-     
-     
-     
-     /**
-      * funcion para verificar si el cargo cumple como lider
-      */
-     
-     
-     public function verficarCargo($position)
-     {
-         $consulta="select leader from position where id=".$position."";
-         $position=self::model()->findBySql($consulta);
-         return $position;
-     }
-     
-     
-     
-     /**
-      * 
-      * 
-      */
-     
-     public function getNewPosition($newPosition, $leader)
-     {
-            if ($leader=="undefined")$leader=0;
-            $modelCheckPosition = self::model()->find("name = '$newPosition'");
-            
-            if($modelCheckPosition == NULL){
-                $modelNewPosition=new Position;
-                $modelNewPosition->name=$newPosition;
-                $modelNewPosition->leader=$leader;
-                if($modelNewPosition->save())return $modelNewPosition->id; else return false;   
-            }else{
-                
-                
-                return $modelCheckPosition->id;
-                
-                
-            }
-     }
+         /**
+         * funcion para verificar si existe lider en la division
+         */
+
+
+         public function getModelPositionByDivision($division)
+         {
+             $consulta="select leader from position_code, position where id_division=".$division." and id_position=position.id order by leader desc;";
+             $position=self::model()->findAllBySql($consulta);
+             return $position;
+         }
+
+
+
+         /**
+          * funcion para verificar si el cargo cumple como lider
+          */
+
+
+         public function getModelPosition($position)
+         {
+             $consulta="select leader from position where id=".$position."";
+             $position=self::model()->findBySql($consulta);
+             return $position;
+         }
+
+
+
+         /**
+          * 
+          * 
+          */
+
+         public function getNewPosition($newPosition, $leader)
+         {
+                if ($leader=="undefined")$leader=0;
+                $modelCheckPosition = self::model()->find("name = '$newPosition'");
+
+                if($modelCheckPosition == NULL){
+                    $modelNewPosition=new Position;
+                    $modelNewPosition->name=$newPosition;
+                    $modelNewPosition->leader=$leader;
+                    if($modelNewPosition->save())return $modelNewPosition->id; else return false;   
+                }else{
+
+
+                    return $modelCheckPosition->id;
+
+
+                }
+         }
 }

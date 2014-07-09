@@ -91,11 +91,10 @@ class PositionCodeController extends Controller
     
     public function actionGetPositionCode()
     {
-        $division = $_GET['id_division'];
-        $position = $_GET['id_position'];
+        $division = str_replace('"','',$_GET['id_division']);
+        $position = str_replace('"','',$_GET['id_position']);
         $check = $_GET['check'];
         
-
         $vacantPositionCode = self::actionGetVacantPositionCode();
         
         if($vacantPositionCode == false){

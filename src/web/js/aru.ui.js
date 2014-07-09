@@ -1037,16 +1037,15 @@ $ARU.UI=(function(){
             
             var new_position = $("#new_position").val();
             var leader = $("#leader:checked").val();
-           
-           if ((new_division !="") && (id_dependencia != "")){
-                $ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
-           }          
-          
+
+            if ((new_division !="") && (id_dependencia != "")){
+                 $ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia);
+            }          
+
             if (new_position !=""){
-                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
-                $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
-                
-           }  
+                 if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
+                 $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader);
+            }  
             
           
             var idDivision = $("#PositionCode_id_division option:selected").text();
@@ -1057,7 +1056,6 @@ $ARU.UI=(function(){
                   $("p#idDivision").attr( "data-display" );
                   $("p#idDivision").removeClass( "ocultar" );
              }
-             
              else 
              {
                  $("p#idDivision").addClass( "ocultar" );

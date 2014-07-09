@@ -63,9 +63,9 @@ class PositionController extends Controller
         
          $newPosition = $_GET['new_position'];
          $leader = $_GET['leader'];
-         $modelDivision = Position::getNewPosition($newPosition, $leader);
+         $modelPosition = Position::getNewPosition($newPosition, $leader);
          
-         return $modelDivision;
+         return $modelPosition;
 
     }
      
