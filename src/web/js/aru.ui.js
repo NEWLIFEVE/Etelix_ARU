@@ -304,25 +304,25 @@ $ARU.UI=(function(){
                   id_position = $("#PositionCode_id_position").val();              
            }
                  
-                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/GetVacantPositionCode","id_employee="+id_employee+ "&start_date"+start_date); 
-                 var lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position"+id_position); 
+                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
+                 var lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position); 
                  
                     if (form.valid() == false) {
-                        $('.alert-danger').html('TESTING');
+                        $('.alert-danger').html('Todos los Campos son Obligatorios.');
                        
                         return false;
                     }
                     else {
                       
-                        if (employee==true){
-                           $('.alert-danger').html('employee existe'); 
+                        if (employee=='true'){
+                           $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo.'); 
                            $('.alert-danger').css('display', 'block'); 
                            return false;
                         }
                         
                       else{
-                            if (lider==true){
-                               $('.alert-danger').html('Falta Crear Un Lider'); 
+                            if (lider=='false'){
+                               $('.alert-danger').html('Es Necesario Crear un Lider para esta Division.'); 
                                $('.alert-danger').css('display', 'block'); 
                                return false;
                             }
@@ -1009,7 +1009,7 @@ $ARU.UI=(function(){
                     $('#error').removeClass("alert alert-danger");
                     $('#error').removeClass("icon-remove-circle");
                     $('#error').html("");
-                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CrearPosition", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
+                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CreatePositionCode", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
                     
             }
 
