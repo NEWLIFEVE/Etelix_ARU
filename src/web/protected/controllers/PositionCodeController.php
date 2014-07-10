@@ -243,10 +243,47 @@ class PositionCodeController extends Controller
     public function actionCheckLeaderExist()
     { 
         $division = $_GET['id_division'];
-        $position = $_GET['id_position'];
+        $check = $_GET['checkLeader'];
         $LevelPosition = Position::getModelPositionByDivision($division);
-        $verificarCargo = Position::getModelPosition($position);
         
+        
+        if($check == "true"){
+            $position = $_GET['id_position'];
+            $verificarCargo = Position::getModelPosition($position);
+
+            if($LevelPosition != NULL)
+            {
+                if($LevelPosition[0]->leader != 0)
+                    echo json_encode(true);
+                else
+                    echo json_encode(false);
+            }
+            else
+            {
+                if($verificarCargo->leader != 0)
+                    echo json_encode(true);
+                else
+                    echo json_encode(false);
+            }
+        }elseif($check == "false"){
+            if($LevelPosition != NULL)
+            {
+                if($LevelPosition[0]->leader != 0)
+                    echo json_encode(true);
+                else
+                    echo json_encode(false);
+            }else{
+                echo json_encode(false);
+            }
+        }
+        
+    }
+    
+    public function actionCheckLeaderExistByDivision()
+    { 
+        $division = $_GET['id_division'];
+        $LevelPosition = Position::getModelPositionByDivision($division);
+
         if($LevelPosition != NULL)
         {
             if($LevelPosition[0]->leader != 0)
@@ -256,11 +293,21 @@ class PositionCodeController extends Controller
         }
         else
         {
-            if($verificarCargo->leader != 0)
-                echo json_encode(true);
-            else
-                echo json_encode(false);
+            echo json_encode(false);
         }
+
+    }
+    
+    public function actionCheckLeaderByPosition()
+    { 
+        $position = $_GET['id_position'];
+        $verificarCargo = Position::getModelPosition($position);
+
+        if($verificarCargo->leader != 0){
+            echo json_encode(true);
+        }else{
+            echo json_encode(false);
+        }    
     }
     
 }

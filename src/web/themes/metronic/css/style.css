@@ -4221,7 +4221,7 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 {
     color: #1d943b !important;
     width: 5%;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 18px;
     position: static;
     top: 6px;

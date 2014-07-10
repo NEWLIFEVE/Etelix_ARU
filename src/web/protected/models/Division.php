@@ -117,7 +117,7 @@ class Division extends CActiveRecord
     
       public static function getDivision() 
       {
-           return  CHtml::ListData(self::model()->findAll(),"id","name"); 
+           return  CHtml::ListData(self::model()->findAllBySql("SELECT * FROM division ORDER BY name;"),"id","name"); 
       }
         
         
