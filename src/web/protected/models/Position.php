@@ -111,7 +111,7 @@ class Position extends CActiveRecord
 
         public function getPosition()
         {
-             return  CHtml::ListData(Position::model()->findAll(),"id","name"); 
+             return  CHtml::ListData(Position::model()->findAllBySql("SELECT * FROM position ORDER BY name;"),"id","name"); 
         }
     
     
@@ -127,8 +127,6 @@ class Position extends CActiveRecord
              $position=self::model()->findAllBySql($consulta);
              return $position;
          }
-
-
 
          /**
           * funcion para verificar si el cargo cumple como lider
