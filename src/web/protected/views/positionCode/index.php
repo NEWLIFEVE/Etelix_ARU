@@ -141,11 +141,10 @@
                                    
                                  </div>
                               
-                                  
-                         
+
                                  <div class="tab-pane" id="tab2">
                                     <h3 class="block">Confirmar Código de Posición</h3>
-                                    
+
                                     <div class="form-group">
                                         <div class="col-md-4" style="clear: both; width: 100%"> <div id="error"></div></div>
                                        <label class="control-label col-md-3">División:</label>

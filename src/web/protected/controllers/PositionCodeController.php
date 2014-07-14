@@ -39,16 +39,14 @@ class PositionCodeController extends Controller
         $model= new PositionCode;
         $this->render('index',array('model'=>$model));
     }
- 
-    
-    
-    public function actionCrearPosition()
+
+    public function actionCreatePositionCode()
     {
         if($_GET['id_division'] != NULL) $idDivision = $_GET['id_division']; else $idDivision = Division::getNewDivision($_GET['new_division'], $_GET['id_dependencia']);
         if($_GET['id_position'] != NULL) $idPosition = $_GET['id_position']; else $idPosition = Position::getNewPosition($_GET['new_position'], $_GET['leader']);
         if($_GET['check']!= NULL) $check = $_GET['check'];
 
-        $LevelPosition = Position::verficarPosition($idDivision);
+        $LevelPosition = Position::getModelPositionByDivision($idDivision);
 
         //$pedendenciaDivision = DivisionController::actionGetDependencia();
         $pedendenciaDivision = $_GET['codePosition'];
@@ -57,18 +55,18 @@ class PositionCodeController extends Controller
         {
             if($LevelPosition[0]->leader != 0)
             {
-                $createPositionCode = PositionCode::getCreatePositionCode($idDivision,$pedendenciaDivision , $idPosition, $_GET['id_employee'], $_GET['start_date']);
+                $createPositionCode = PositionCode::getNewPositionCode($idDivision,$pedendenciaDivision , $idPosition, $_GET['id_employee'], $_GET['start_date']);
                 echo json_encode($createPositionCode);
             }
             else echo json_encode("sinlider");
         }
         else
         {
-            $verificarCargo = Position::verficarCargo($idPosition);
+            $verificarCargo = Position::getModelPosition($idPosition);
             
             if($verificarCargo->leader != 0)
             {
-                $createPositionCode = PositionCode::getCreatePositionCode($idDivision,$pedendenciaDivision, $idPosition, $_GET['id_employee'], $_GET['start_date']);
+                $createPositionCode = PositionCode::getNewPositionCode($idDivision,$pedendenciaDivision, $idPosition, $_GET['id_employee'], $_GET['start_date']);
                 echo json_encode($createPositionCode);
             }
             else echo json_encode("sinlider");
@@ -78,7 +76,6 @@ class PositionCodeController extends Controller
 
     public function actionAdminPositionCode(){
         
-
         $positionCode = PositionCode::model()->findAllBySql("SELECT pc.id, pc.position_code, pc.id_position, pc.id_division, d.id_dependency, pc.id_employee, pc.start_date, pc.end_date
                                                             FROM position_code pc
                                                             INNER JOIN division as d ON d.id = pc.id_division
@@ -91,12 +88,10 @@ class PositionCodeController extends Controller
     
     public function actionGetPositionCode()
     {
-        
-        $division = str_replace('"','',$_GET['id_division']);
-        $position = str_replace('"','',$_GET['id_position']);
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
         $check = $_GET['check'];
         
-
         $vacantPositionCode = self::actionGetVacantPositionCode();
         
         if($vacantPositionCode == false){
@@ -210,6 +205,109 @@ class PositionCodeController extends Controller
         }else{
             return $oldPositionCode;
         }
+    }
+    
+    
+    /**
+     * Validación para la existencia del empleado en la tabla position_code.
+     * @param int $employee, date $startDate.
+     * @return boolean true(Empleado Existe), false(Empleado no Existe).
+     */
+    public function actionCheckNewEmployee()
+    { 
+        $employee = $_GET['id_employee'];
+        $startDate = date('Y-m-d',  strtotime($_GET['start_date']));
+
+        $modelEmployeeExist = PositionCode::model()->find("id_employee = $employee");
+        
+        if($modelEmployeeExist == NULL){
+            echo json_encode(false);
+        }else{
+            $endDate = $modelEmployeeExist->end_date;
+            if($endDate == NULL){
+                echo json_encode(true);
+            }elseif($endDate != NULL && $startDate < $endDate){
+                echo json_encode(true);
+            }elseif($endDate != NULL && $startDate > $endDate){
+                echo json_encode(false);
+            }
+        }
+    }
+    
+    
+    /**
+     * Validación para la existencia del lider en la tabla position_code dependiendo de la division.
+     * @param int $division, int $position.
+     * @return boolean true(Existe un Lider), false(No Existe el Lider).
+     */
+    public function actionCheckLeaderExist()
+    { 
+        $division = $_GET['id_division'];
+        $check = $_GET['checkLeader'];
+        $LevelPosition = Position::getModelPositionByDivision($division);
+        
+        
+        if($check == "true"){
+            $position = $_GET['id_position'];
+            $verificarCargo = Position::getModelPosition($position);
+
+            if($LevelPosition != NULL)
+            {
+                if($LevelPosition[0]->leader != 0)
+                    echo json_encode(true);
+                else
+                    echo json_encode(false);
+            }
+            else
+            {
+                if($verificarCargo->leader != 0)
+                    echo json_encode(true);
+                else
+                    echo json_encode(false);
+            }
+        }elseif($check == "false"){
+            if($LevelPosition != NULL)
+            {
+                if($LevelPosition[0]->leader != 0)
+                    echo json_encode(true);
+                else
+                    echo json_encode(false);
+            }else{
+                echo json_encode(false);
+            }
+        }
+        
+    }
+    
+    public function actionCheckLeaderExistByDivision()
+    { 
+        $division = $_GET['id_division'];
+        $LevelPosition = Position::getModelPositionByDivision($division);
+
+        if($LevelPosition != NULL)
+        {
+            if($LevelPosition[0]->leader != 0)
+                echo json_encode(true);
+            else
+                echo json_encode(false);
+        }
+        else
+        {
+            echo json_encode(false);
+        }
 
     }
+    
+    public function actionCheckLeaderByPosition()
+    { 
+        $position = $_GET['id_position'];
+        $verificarCargo = Position::getModelPosition($position);
+
+        if($verificarCargo->leader != 0){
+            echo json_encode(true);
+        }else{
+            echo json_encode(false);
+        }    
+    }
+    
 }

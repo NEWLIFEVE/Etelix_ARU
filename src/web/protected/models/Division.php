@@ -117,7 +117,7 @@ class Division extends CActiveRecord
     
       public static function getDivision() 
       {
-           return  CHtml::ListData(self::model()->findAll(),"id","name"); 
+           return  CHtml::ListData(self::model()->findAllBySql("SELECT * FROM division ORDER BY name;"),"id","name"); 
       }
         
         
@@ -125,7 +125,7 @@ class Division extends CActiveRecord
        * funcion para verificar la dependencia de los departmatentos
        */
         
-      public function verificarDependencia($division)
+      public function getModelDivision($division)
       {
          $consult="select * from division where id=".$division."";
          $dependencia=self::model()->findBySql($consult);
@@ -154,21 +154,20 @@ class Division extends CActiveRecord
            * funcion 
            */
           
-      public function escala($division)
+      public function checkLevelDependency($division)
       {
           $consult="select * from division where id=".$division."";
           $dependencia=self::model()->findBySql($consult);
 
-
           while (($dependencia->id_dependency != NULL)):
-              self::escala($dependencia->id_dependency);
+              self::checkLevelDependency($dependencia->id_dependency);
               $dependencia->id_dependency=NULL;
           endwhile;
 
-          $model=  Division::verificarDependencia($division);//dependencia directa
+          $model = self::getModelDivision($division);//dependencia directa
 
           if ($model->id_dependency!=NULL){ 
-            $idDivision= Division::verificarId($model->id, $model->id_dependency);  //escala de pedendencia   
+            $idDivision = self::getTotalDependency($model->id, $model->id_dependency);  //escala de pedendencia   
             //var_dump($model->id_dependency.".".$idDivision);
           }
 
@@ -180,7 +179,7 @@ class Division extends CActiveRecord
          * funcion para verificar Id de la division
          */
         
-      public function verificarId($id, $idDependencia)
+      public function getTotalDependency($id, $idDependencia)
       {
           $cont=0;    
           for ($i = 1; $i <= $id; $i++){
@@ -208,7 +207,5 @@ class Division extends CActiveRecord
           }
           
       }
-             
-        
         
 }

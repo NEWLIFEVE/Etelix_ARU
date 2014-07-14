@@ -278,58 +278,148 @@ $ARU.UI=(function(){
                 onNext: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
-                    var id_dependencia = $("#PositionCode_id_dependencia").val();
-                    var new_division = $("#PositionCode_new_division").val();
-                    var new_position = $("#new_position").val();
-                    var id_employee = $("#PositionCode_id_employee").val();
-                    var start_date = $("#PositionCode_start_date").val();
-                    var leader = $("#leader:checked").val();
-                    var id_division='';
-                    var id_position='';
+
+        var id_dependencia = $("#PositionCode_id_dependencia").val();
+        var new_division = $("#PositionCode_new_division").val();
+        var new_position = $("#new_position").val();
+        var id_employee = $("#PositionCode_id_employee").val();
+        var start_date = $("#PositionCode_start_date").val();
+        var leader = $("#leader:checked").val();
+        var id_division='';
+        var id_position='';
+        var lider= '';
+
                 
-           if ((new_division !="") && (id_dependencia != "")){
-                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
-                
-           }
-           else {
-                 id_division= $("#PositionCode_id_division").val();
-           }
-           
-          if (new_position !=""){
-                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
-                  id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
-           }
-           
-           else {
-                  id_position = $("#PositionCode_id_position").val();              
-           }
+//          if ((new_division !="") && (id_dependencia != "")){
+//              
+//                 if((new_division !="") && (id_dependencia != "") && (new_position !="")){ 
+//                     
+//                 }else{
+//                     
+//                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+//                 
+//                        }
+//          }else{
+//                 id_division= $("#PositionCode_id_division").val();
+//          }
+//           
+//          if (new_position !=""){
+//              
+//                if((new_division !="") && (id_dependencia != "") && (new_position !="")){ 
+//                    
+//                     
+//                    if(leader !='1'){ 
+//                        $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+//                        $('.alert-danger').css('display', 'block'); 
+//                        return false;
+//                    }else if(leader =='1'){ 
+//                        leader=1;
+//                        id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+//                    }
+//                     
+//                    
+//                }else if((new_division =="") && (id_dependencia == "") && (new_position !="")){
+//                
+//                    if(leader == "undefined"){ 
+//                        leader='0';
+//                    }else if(leader =='1'){ 
+//                        leader=1;
+//                    }
+//                    lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=false");
+//                    if(lider == 'false'){
+//
+//                        if(leader != '1'){
+//                            $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+//                            $('.alert-danger').css('display', 'block'); 
+//                            return false;
+//                        }else if(leader == '1'){
+//                            id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+//                        }
+//
+//                    }
+//                    else if(lider == 'true'){
+//                        id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+//                    }
+//                
+//                }
+//                
+//                
+//          }else {
+//                id_position = $("#PositionCode_id_position").val();              
+//          }
                  
-                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/GetVacantPositionCode","id_employee="+id_employee+ "&start_date"+start_date); 
-                 var lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position"+id_position); 
+                var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
                  
-                    if (form.valid() == false) {
-                        $('.alert-danger').html('TESTING');
-                       
-                        return false;
-                    }
-                    else {
-                      
-                        if (employee==true){
-                           $('.alert-danger').html('employee existe'); 
-                           $('.alert-danger').css('display', 'block'); 
-                           return false;
-                        }
+                if (form.valid() == false) {
+                    $('.alert-danger').html('Todos los Campos son Obligatorios');
+                    return false;
+                }else{
+
+                    if (employee=='true'){
+                       $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo'); 
+                       $('.alert-danger').css('display', 'block'); 
+                       return false;
+                    }else{
                         
-                      else{
-                            if (lider==true){
-                               $('.alert-danger').html('Falta Crear Un Lider'); 
-                               $('.alert-danger').css('display', 'block'); 
-                               return false;
+                         if ((new_division !="") && (id_dependencia != "") && (new_position !="")){
+                            
+                            if (leader!='1'){
+                                  $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                  $('.alert-danger').css('display', 'block'); 
+                                  return false;
+                            }else{
+                                id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
                             }
-                          }
+
+                        }if ((new_division !="") || (id_dependencia != "") || (new_position !="")){
+                            
+                            if(new_division!="" && new_position ==""){
+                                id_division= new_division;
+                                id_position = $("#PositionCode_id_position").val();
+                                
+                                lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderByPosition","id_position="+id_position);
+                                if(lider == 'false'){
+                                     $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                     $('.alert-danger').css('display', 'block'); 
+                                       return false;
+                                }else if(lider == 'true'){
+                                    id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                }
+                            }
+
+                            if(new_position!="" && new_division==""){
+                                id_position = new_position;
+                                id_division= $("#PositionCode_id_division").val();
+                                
+                                if (leader!='1'){
+                                    $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                    $('.alert-danger').css('display', 'block'); 
+                                    return false;
+                                }else if (leader == '1'){
+                                    id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                }
+                            }
+
+                        }else if ((new_division =="") && (id_dependencia == "") && (new_position =="")){
+                                if(new_division==""){id_division= $("#PositionCode_id_division").val();}
+                                if(new_position==""){id_position = $("#PositionCode_id_position").val();}
+
+                                lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=true"); 
+                                
+                                if (lider=='false'){
+                                   $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                   $('.alert-danger').css('display', 'block'); 
+                                   return false;
+                               }
+                        }
                     }
-                 
-                    
+                }
+                
+                $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
+                id_division = '';
+                id_position = ''; 
+                lider = '';
 
                     handleTitle(tab, navigation, index);
                 },
@@ -392,7 +482,7 @@ $ARU.UI=(function(){
                         $(this).html(payment.join("<br>"));
                     }
                 });
-            }
+             }
               
                 
             }
@@ -1009,7 +1099,7 @@ $ARU.UI=(function(){
                     $('#error').removeClass("alert alert-danger");
                     $('#error').removeClass("icon-remove-circle");
                     $('#error').html("");
-                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CrearPosition", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
+                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CreatePositionCode", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
                     
             }
 
@@ -1072,39 +1162,20 @@ $ARU.UI=(function(){
                 var leader = $("#leader:checked").val();
                 var id_division='';
                 var id_position='';
-                
-           if ((new_division !="") && (id_dependencia != "")){
-                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
-                
-           }
-           
-           else {
-                 id_division= $("#PositionCode_id_division").val();
-           }
-           
-          if (new_position !=""){
-                if(leader == "undefined") leader='0'; else if(leader =='1'){ leader=1;}
-                  id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
-           }
-           
-           else {
-                  id_position = $("#PositionCode_id_position").val();              
-           }
-          
-            var idDivision = $("#PositionCode_id_division option:selected").text();
-            var newDivision=$("input#PositionCode_new_division").val();
+
+           var idDivision = $("#PositionCode_id_division option:selected").text();
+           var newDivision=$("input#PositionCode_new_division").val();
              
-             if (idDivision!= "División")
-             {
-                  $("p#idDivision").attr( "data-display" );
-                  $("p#idDivision").removeClass( "ocultar" );
-             }
-             
-             else 
-             {
-                 $("p#idDivision").addClass( "ocultar" );
-                 $("p#idDivision").html( " " );  
-             }
+           if (idDivision!= "División")
+           {
+              $("p#idDivision").attr( "data-display" );
+              $("p#idDivision").removeClass( "ocultar" );
+           }
+           else 
+           {
+             $("p#idDivision").addClass( "ocultar" );
+             $("p#idDivision").html( " " );  
+           }
              
            var newPosicion=$("input#new_position").val();
            var idPosicion = $("#PositionCode_id_position option:selected").text();
@@ -1119,9 +1190,7 @@ $ARU.UI=(function(){
                 $("p#idPosition").addClass( "ocultar" );
                  $("p#idPosition").html( " " );
            }
-             $ARU.AJAX.posicion("GET", "/PositionCode/getPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");     
-             id_division='';
-             id_position='';
+
              
              
        });
