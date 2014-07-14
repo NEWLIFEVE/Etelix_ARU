@@ -56,7 +56,7 @@ class UserIdentity extends CUserIdentity
 		else 
 		{
 			$this->_id=$user->id;
-                        $this->setState('rol', $user->id_rol);
+            $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
 			$user->lastvist_at=date('Y-m-d H:m:s P');
