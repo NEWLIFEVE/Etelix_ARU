@@ -271,6 +271,11 @@ $ARU.UI=(function(){
                     success.hide();
                     error.hide();
                     if (form.valid() == false) {
+                       $('.alert-danger').html('Todos los Campos son Obligatorios');
+                      
+                         return false;
+                    }
+                    else{
                         return false;
                     }
                     handleTitle(tab, navigation, clickedIndex);
@@ -352,6 +357,7 @@ $ARU.UI=(function(){
                  
                 if (form.valid() == false) {
                     $('.alert-danger').html('Todos los Campos son Obligatorios');
+                 
                     return false;
                 }else{
 

@@ -4202,7 +4202,9 @@ Responsive Flip Scroll Tables
 
 th.colorstart{
     background:#ff0000;
-}}
+}
+
+}
 
 
 .centrar{
@@ -4294,12 +4296,12 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 
 #seleDepen{
     
-    margin-left: 171px;
+    margin-left: 136px;
 }
 
 
 #checkbox{
-    margin-left: 171px;
+    margin-left: 136px;
 }
 
 .ocultar{
@@ -4308,4 +4310,17 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 
 .fondotablesgris{
    background-color:#DDD; 
+}
+
+
+.contenedor-tabla{
+display: table;
+
+}
+.contenedor-fila{
+display: table-row;
+}
+.contenedor-columna{
+display: table-cell;
+
 }
