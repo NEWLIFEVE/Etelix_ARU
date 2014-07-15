@@ -40,4 +40,12 @@ and open the template in the editor.
         margin-top: 1px;
         font-size: 12px !important;
     }
+    
+    
+    @media (min-width: 1250px)  and (max-width: 1300px){
+        .prueba{
+          
+            color:red !important;
+        }
+    }
 }

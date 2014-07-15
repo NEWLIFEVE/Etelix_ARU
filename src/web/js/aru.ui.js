@@ -271,6 +271,11 @@ $ARU.UI=(function(){
                     success.hide();
                     error.hide();
                     if (form.valid() == false) {
+                       $('.alert-danger').html('Todos los Campos son Obligatorios');
+                      
+                         return false;
+                    }
+                    else{
                         return false;
                     }
                     handleTitle(tab, navigation, clickedIndex);
@@ -278,6 +283,7 @@ $ARU.UI=(function(){
                 onNext: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
+
         var id_dependencia = $("#PositionCode_id_dependencia").val();
         var new_division = $("#PositionCode_new_division").val();
         var new_position = $("#new_position").val();
@@ -287,6 +293,7 @@ $ARU.UI=(function(){
         var id_division='';
         var id_position='';
         var lider= '';
+
                 
 //          if ((new_division !="") && (id_dependencia != "")){
 //              
@@ -350,6 +357,7 @@ $ARU.UI=(function(){
                  
                 if (form.valid() == false) {
                     $('.alert-danger').html('Todos los Campos son Obligatorios');
+                 
                     return false;
                 }else{
 
@@ -1186,7 +1194,7 @@ $ARU.UI=(function(){
            else
            {
                 $("p#idPosition").addClass( "ocultar" );
-                 $("p#idPosition").html( "hola " );
+                 $("p#idPosition").html( " " );
            }
        });
        

@@ -128,20 +128,22 @@
                                           </table>
                                        </div>
                                     </div>
-                                     <div class="form-group">
-                                         <label class="control-label col-md-2">Empleado<span class="required">*</span></label>
-                                         <div class="col-md-4" style="display: inline">
-                                         <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
+                                     <div class="form-group" style="margin-left: 63px">
+                                         
+                                         <div class="col-md-6 form-group">
+                                             <label class="control-label col-md-3">Empleado<span class="required">*</span></label>
+                                             <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
+                                             <span for="PositionCode_id_employee" class="help-block" style="margin-left: 119px;"></span>
+                                             
                                          </div>
-                                         <div class="col-md-6" style="display: inline" id="etiquetafechapc">
+                                         <div class="col-md-6 form-group prueba" style="display: inline; margin-left: -23px;" id="etiquetafechapc">
                                              <label class="control-label col-md-3" >Fecha<span class="required">*</span></label>
                                              <?php echo $form->textField($model,'start_date', array('class'=>'form-control input-medium date-picker')); ?>
+                                             <span for="PositionCode_start_date" class="help-block" style="margin-left: 118px;"></span>
                                          </div>
                                      </div>
-                                   
+                                     
                                  </div>
-                              
-
                                  <div class="tab-pane" id="tab2">
                                     <h3 class="block">Confirmar Código de Posición</h3>
 
