@@ -35,10 +35,10 @@
                   </div>
                   <div class="portlet-body form">
                     <?php $form=$this->beginWidget('CActiveForm', array('id'=>'submit_form','enableAjaxValidation'=>true)); 
-                             $Division=array("class"=>"form-control input-large select2","empty"=>"División");
+                             $Division=array("class"=>"form-control input-medium select2","empty"=>"División");
                              $Divisionotro=array("class"=>"form-control input-medium select2","empty"=>"División");
-                             $Position=array("class"=>"form-control input-large select2","empty"=>"Cargo",);
-                             $Employee=array("class"=>"form-control input-large select2","empty"=>"Empleado",);
+                             $Position=array("class"=>"form-control input-medium select2","empty"=>"Cargo",);
+                             $Employee=array("class"=>"form-control input-medium select2","empty"=>"Empleado",);
                     ?>
                         <div class="form-wizard form-horizontal">
                            <div class="form-body">
@@ -70,78 +70,75 @@
                                    
                                  </div>
                                  <div class="tab-pane active" id="tab1">
-                                    <div class="form-group">
-                                       <label class="control-label col-md-2">División<span class="required">*</span></label>
-                                       <div class="col-md-4" style="display: inline">
-                                           <table>
-                                              <tr>
-                                                  <td>
-                                                       <div id="selectDivision">
-                                                        <?php echo $form->dropDownList($model,'id_division',Division::getDivision(),$Division);?>
+
+                                                        <div id="contenedor">
+                                                            <div id="contenidos">
+                                                                <div id="columna1">
+                                                                     <label class="control-label col-md-2">División<span class="required">*</span></label>
+                                                                </div>
+                                                                <div id="columna1">
+                                                                    <div id="selectDivision" class="form-group">
+                                                                        <?php echo $form->dropDownList($model,'id_division',Division::getDivision(),$Division);?>
+                                                                    </div>
+                                                                    <div id="mensaje"></div>
+                                                                    <?php echo $form->textField($model,'new_division', array('class'=>'form-control input-medium dependencia')); ?>
+                                                                </div>
+
+                                                                <div id="columna2">
+                                                                     <div id="seleDepen" style="margin-left:10px" >
+                                                                         <div id="mensajedependencia" style="margin-left:10px"></div>
+                                                                          <?php echo $form->dropDownList($model,'id_dependencia',Division::getDivision(),$Divisionotro);?>
+                                                                     </div>
+                                                                </div>
+                                                                <div id="columna2">
+                                                                    <p id="test" class="newGroup icon-plus-sign"></p>   
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                  </td>
-                                                  <td>
-                                                      <div id="mensaje"></div>
-                                                      <?php echo $form->textField($model,'new_division', array('class'=>'form-control input-large dependencia')); ?>
-                                                       <!--<input type="text" id="new_division" class="dependencia form-control input-large"  value="" name="new_division"/>-->
-                                                   </td>
-                                                   <td>
-                                                       <div id="seleDepen">
-                                                           <div id="mensajedependencia"></div>
-                                                       <?php echo $form->dropDownList($model,'id_dependencia',Division::getDivision(),$Divisionotro);?>
-                                                       </div>
-                                                   </td>
-                                                   <td>
-                                                       <p id="test" class="newGroup icon-plus-sign"></p>    
-                                                   </td>
-                                              </tr>
-                                          </table>
-                                       </div>
-                                    </div>
-                                     
-                                      <div class="form-group">
-                                       <label class="control-label col-md-2">Cargo<span class="required">*</span></label>
-                                       <div class="col-md-4">
-                                             <table>
-                                              <tr>
-                                                  <td>
-                                                      <div id="selectCargo">
-                                                          <?php echo $form->dropDownList($model,'id_position',Position::getPosition(),$Position);?>
-                                                      </div>
-                                                  </td>
-                                                  <td>
-                                                       <div id="mensajeCargo"></div>
-                                                       <input type="text" id="new_position" class="cargo form-control input-large "  value="" name="new_position"/>
-                                                  </td>
-                                                  <td>
-                                                      
-                                                      <div id="checkbox">
-                                                          <div id="mensajeLider" ></div>
-                                                          <input type="checkbox" id="leader" name="leader" value="1"   />
-                                                      </div>
-                                                     
-                                                  </td>
-                                                  <td>
-                                                      <p id="cargo" class="newGroup  icon-plus-sign"></p>
-                                                  </td>
-                                              </tr>
-                                          </table>
-                                       </div>
-                                    </div>
-                                     <div class="form-group" style="margin-left: 63px">
-                                         
-                                         <div class="col-md-6 form-group">
-                                             <label class="control-label col-md-3">Empleado<span class="required">*</span></label>
-                                             <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
-                                             <span for="PositionCode_id_employee" class="help-block" style="margin-left: 119px;"></span>
-                                             
-                                         </div>
-                                         <div class="col-md-6 form-group prueba" style="display: inline; margin-left: -23px;" id="etiquetafechapc">
-                                             <label class="control-label col-md-3" >Fecha<span class="required">*</span></label>
-                                             <?php echo $form->textField($model,'start_date', array('class'=>'form-control input-medium date-picker')); ?>
-                                             <span for="PositionCode_start_date" class="help-block" style="margin-left: 118px;"></span>
-                                         </div>
-                                     </div>
+                                                        <div id="contenedor">
+                                                            <div id="contenidos">
+                                                                <div id="columna1">
+                                                                     <label class="control-label col-md-2 labelcargo">Cargo<span class="required">*</span></label>
+                                                                </div>
+                                                                <div id="columna1">
+                                                                    <div id="selectCargo" class="form-group" style="margin-left:-1px;">
+                                                                        <?php echo $form->dropDownList($model,'id_position',Position::getPosition(),$Position);?>
+                                                                   </div>
+                                                                    <div id="mensajeCargo"></div>
+                                                                    <input type="text" id="new_position" class="cargo form-control input-medium " style="margin-left:0px;" value="" name="new_position"/>
+                                                                </div>
+                                                                <div id="columna1">
+                                                                    <div id="checkbox">
+                                                                        <div id="mensajeLider" ></div>
+                                                                          <input type="checkbox" id="leader" name="leader" value="1"   />
+                                                                        </div>
+                                                                </div>
+                                                                <div id="columna2">
+                                                                     <p id="cargo" class="newGroup  icon-plus-sign"></p>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div id="contenedor" style="margin-left:-18px;">
+                                                            <div id="contenidos" >
+                                                                <div id="columna1">
+                                                                    <label class="control-label col-md-3 etiquetaemployee">Empleado<span class="required">*</span></label>
+                                                                </div>
+                                                                <div id="columna1" class="form-group campoemployee" >
+                                                                    <?php echo $form->dropDownList($model,'id_employee',Employee::getEmployeeAll(),$Employee);?>
+                                                                </div>
+                                                                <div id="columna1" class="campofecha">
+                                                                    <div id="columna1" class="etiquetafechapc">
+                                                                     <label class="control-label col-md-3">Fecha<span class="required">*</span></label>
+                                                                    </div>
+                                                                    <div id="columna1" class="form-group">
+                                                                     <?php echo $form->textField($model,'start_date', array('class'=>'form-control input-medium date-picker')); ?>                   
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                      
                                  </div>
                                  <div class="tab-pane" id="tab2">
@@ -249,3 +246,6 @@
                      </div>
                 </div>
           </div>
+
+
+  

@@ -8,7 +8,39 @@ and open the template in the editor.
     Author     : ISRAEL
 */
 
-@media (min-width: 993px) and (max-width: 1200px) {  
+@media (min-width: 1201px) and (max-width: 1300px){
+       
+        #responsiveemployee{
+            width: 457px;
+            margin-left: -30px;
+        }
+    }
+
+    
+    @media (min-width: 991px) and (max-width: 1200px)
+{
+    
+    #responsiveemployee{
+             width: 462px;
+             margin-left: -66px;
+             margin-top: 10px;
+        }
+      
+        .campoemployee{
+            float:left;
+            clear:both;
+            margin-left:-1px !important;
+        }
+        .campofecha{
+            float:left;
+            clear:both;
+            margin-left: -91px;
+        }
+        .etiquetaemployee{
+            margin-top: -50px !important;
+        }
+}
+@media (min-width: 600px) and (max-width: 990px) {  
 
 	.page-boxed .header .dropdown .username {
 		display: none;
@@ -17,35 +49,84 @@ and open the template in the editor.
         #etiquetafechapc{
             float:left !important;
             clear: both;
-            margin-top: 15px;
-            margin-left: 36px;
+            margin-left: -67px !important;
+            width:351px;
+            
         }
         
         #seleDepen{
             margin-left:auto;
         }
         #test{
-            margin-left:15px;
+            margin-left:20px;
         }
         #PositionCode_new_division{
             width: 304px !important;
         }
+        #employeedate{
+            width: 562px;
+        }
+         #responsiveemployee{
+             width: 524px;
+             margin-left: -67px;
+             margin-top: 10px;
+        }
+        
+        .division-label{
+            margin-left: 10px;
+        }
+        .position-label{
+            margin-left: -5px;
+        }
+        
+        #s2id_PositionCode_id_employee{
+            float:left;
+            clear:both;
+            
+        }
+        .repolabel{
+            
+            float:left;
+            clear:both;
+        }
+        .labelcargo{
+            margin-left: 15px;
+        }
+        
+        
+        .campoemployee{
+            float:left;
+            clear:both;
+            margin-left:-1px !important;
+        }
+        .campofecha{
+            float:left;
+            clear:both;
+            margin-left: -91px;
+        }
+        .etiquetaemployee{
+            margin-top: -50px !important;
+        }
+        
+        #selectCargo{
+            margin-left: -9px !important;
+        }
 
 }
+ 
 
-@media (max-width: 798px) { 
+
+@media (min-width: 400px) and (max-width: 599px)
+{
     
-    .table thead tr th {
-        
+       .table thead tr th {
         margin-top: 1px;
         font-size: 12px !important;
-    }
+       }
     
-    
-    @media (min-width: 1250px)  and (max-width: 1300px){
-        .prueba{
-          
-            color:red !important;
-        }
-    }
 }
+
+
+
+    
+    

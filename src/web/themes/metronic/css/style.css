@@ -4215,6 +4215,7 @@ th.colorstart{
 input.dependencia, input.cargo, #checkbox, #seleDepen
 {
     display:none;
+    margin-left: -15px;
 }
 
 
@@ -4226,10 +4227,10 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     font-weight: bold;
     font-size: 18px;
     position: static;
-    top: 6px;
+   
     right: 0;
-    margin-left: 5px;
-    margin-top: 80%;
+    margin-left: 10px;
+ 
 }
 
 .cancelarnewGroup
@@ -4239,10 +4240,10 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     font-weight: bold;
     font-size: 18px;
     position: static;
-    top: 6px;
+   
     right: 0;
     margin-left: 5px;
-    margin-top: 80%;
+    
 }
 
 
@@ -4287,21 +4288,17 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 }
 
 .rotarfecha{
-     margin-left: 20px;
+     margin-left: 24px;
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     
 }
 
-#seleDepen{
-    
-    margin-left: 136px;
-}
 
 
 #checkbox{
-    margin-left: 136px;
+    margin-left: 10px;
 }
 
 .ocultar{
@@ -4323,4 +4320,29 @@ display: table-row;
 .contenedor-columna{
 display: table-cell;
 
+}
+
+#divisionresponsive{
+    
+    width: 528px;
+}
+
+
+
+
+#contenedor {
+    display: table;
+    
+    width: 300px;
+   
+    margin-left: 10px;
+}
+#contenidos {
+    display: table-row;
+}
+#columna1, #columna2, #columna3 {
+    display: table-cell;
+   
+    vertical-align: middle;
+    
 }

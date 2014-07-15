@@ -50,7 +50,7 @@
                                                <td>".$value->idEmployee->first_name."</td>
                                                <td>".$value->idEmployee->last_name."</td>
                                                <td>".$value->idDivision->name."</td>
-                                               <td>".Division::getNameDivision($value->id_dependency)."</td>    
+                                               <td>".Division::getNameDivision($value->id_dependency)."&nbsp</td>    
                                                <td>".$value->idPosition->name."</td>
                                                <td>".$value->position_code."</td>
                                                <td>".$value->start_date."</td>

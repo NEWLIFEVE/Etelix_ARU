@@ -220,9 +220,7 @@
                                      
                                      
                                      <div class="div_tabla_editar_empleados">
-                                            <div class="principal">
-                                             
-                                            </div>
+                                           
                                             <div class="contenidos_columnas">
                                                 
                                                   <div class="secundario form-group">
