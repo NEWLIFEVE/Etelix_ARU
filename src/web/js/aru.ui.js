@@ -1196,9 +1196,6 @@ $ARU.UI=(function(){
                 $("p#idPosition").addClass( "ocultar" );
                  $("p#idPosition").html( " " );
            }
-
-             
-             
        });
        
        $('p#test').on('click',function(){

@@ -9,7 +9,6 @@
  * @property integer $leader
  *
  * The followings are the available model relations:
- * @property Employee[] $employees
  * @property PositionCode[] $positionCodes
  */
 class Position extends CActiveRecord
@@ -48,7 +47,6 @@ class Position extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'employees' => array(self::HAS_MANY, 'Employee', 'id_position'),
 			'positionCodes' => array(self::HAS_MANY, 'PositionCode', 'id_position'),
 		);
 	}
@@ -149,20 +147,15 @@ class Position extends CActiveRecord
 
          public function getNewPosition($newPosition, $leader)
          {
-                if ($leader=="undefined")$leader=0;
-                $modelCheckPosition = self::model()->find("name = '$newPosition'");
-
-                if($modelCheckPosition == NULL){
-                    $modelNewPosition=new Position;
-                    $modelNewPosition->name=$newPosition;
-                    $modelNewPosition->leader=$leader;
-                    if($modelNewPosition->save())return $modelNewPosition->id; else return false;   
-                }else{
-
-
-                    return $modelCheckPosition->id;
-
-
-                }
+            if ($leader=="undefined")$leader=0;
+            $modelCheckPosition = self::model()->find("name = '$newPosition'");
+            if($modelCheckPosition == NULL){
+                $modelNewPosition=new Position;
+                $modelNewPosition->name=$newPosition;
+                $modelNewPosition->leader=$leader;
+                if($modelNewPosition->save())return $modelNewPosition->id; else return false;   
+            }else{
+                return $modelCheckPosition->id;
+            }
          }
 }
