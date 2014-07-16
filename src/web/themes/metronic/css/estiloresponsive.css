@@ -55,11 +55,9 @@ and open the template in the editor.
         }
         
         #seleDepen{
-            margin-left:auto;
+            margin-left:21px !important;
         }
-        #test{
-            margin-left:20px;
-        }
+       
         #PositionCode_new_division{
             width: 304px !important;
         }
@@ -109,15 +107,37 @@ and open the template in the editor.
         }
         
         #selectCargo{
-            margin-left: -9px !important;
+            margin-left: -10px !important;
         }
+        .campocargo{
+            margin-left: 5px !important;
+        }
+        .table thead tr th {
+        margin-top: 1px;
+        font-size: 12px !important;
+       }
 
 }
  
 
 
-@media (min-width: 400px) and (max-width: 599px)
+@media (min-width: 200px) and (max-width: 599px)
 {
+    
+         .campoemployee{
+            float:left;
+            clear:both;
+            margin-left:-1px !important;
+        }
+        .campofecha{
+            float:left;
+            clear:both;
+            margin-left: -91px;
+        }
+        
+        .etiquetaemployee{
+            margin-top: -50px !important;
+        }
     
        .table thead tr th {
         margin-top: 1px;
@@ -125,8 +145,3 @@ and open the template in the editor.
        }
     
 }
-
-
-
-    
-    

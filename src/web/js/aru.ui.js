@@ -294,6 +294,7 @@ $ARU.UI=(function(){
         var id_position='';
         var lider= '';
         var dependency = '';
+
                  
                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
                  
@@ -315,7 +316,7 @@ $ARU.UI=(function(){
                                   $('.alert-danger').css('display', 'block'); 
                                   return false;
                             }else{
-                                
+
                                 dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_dependencia+ "&id_position=false&checkDivision=false");
                                 
                                 if(dependency == 'false'){
@@ -326,10 +327,11 @@ $ARU.UI=(function(){
                                     id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
                                     id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
                                 }
+
                             }
 
                         }if ((new_division !="") || (id_dependencia != "") || (new_position !="")){
-                            
+                      //validacion nueva division y posicion llena      
                             if(new_division!="" && new_position ==""){
                                 id_division= new_division;
                                 id_position = $("#PositionCode_id_position").val();
@@ -342,7 +344,7 @@ $ARU.UI=(function(){
                                      $('.alert-danger').css('display', 'block'); 
                                        return false;
                                 }else if(lider == 'true'){
-                                    
+
                                     if(dependency == 'false'){
                                         $('.alert-danger').html('No Existe la División de Dependencia'); 
                                         $('.alert-danger').css('display', 'block'); 
@@ -353,6 +355,7 @@ $ARU.UI=(function(){
                                 }
                             }
 
+                            //validacion lleno division y nuevo cargo nuevo lider
                             if(new_position!="" && new_division==""){
                                 id_position = new_position;
                                 id_division= $("#PositionCode_id_division").val();
@@ -395,6 +398,8 @@ $ARU.UI=(function(){
                                 lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=true"); 
                                 dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position="+id_position+"&checkDivision=true"); 
                                 
+                                ExistDependency= lider= $ARU.AJAX.ExistDependency("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position="+id_position +"&checkDivision=true"); 
+                                
                                 if (lider=='false'){
                                    $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
                                    $('.alert-danger').css('display', 'block'); 
@@ -406,6 +411,14 @@ $ARU.UI=(function(){
                                         return false;
                                    }
                                }
+                               
+                              if (ExistDependency=='false'){
+                                   $('.alert-danger').html('Se Necesita Crear una Dependencia padre'); 
+                                   $('.alert-danger').css('display', 'block'); 
+                                   return false;
+                              }
+                               
+                               
                         }
                     }
                 }
@@ -1183,7 +1196,7 @@ $ARU.UI=(function(){
            else
            {
                 $("p#idPosition").addClass( "ocultar" );
-                 $("p#idPosition").html( " " );
+                $("p#idPosition").html( " " );
            }
        });
        
@@ -1201,6 +1214,8 @@ $ARU.UI=(function(){
                // $(this).html("<");
                 $("input.dependencia").toggle("slide");
                 $("#seleDepen").toggle("slide");
+                $("#selenuevadivision").toggle("slide");
+                
                 $("div#selectDivision").hide("fast");
                 $("div#mensaje").html("Nombre de la División");
                 $("div#mensajedependencia").html("Dependencia");
@@ -1215,6 +1230,7 @@ $ARU.UI=(function(){
                 $("input.dependencia").hide("fast");
                 $("div#selectDivision").toggle("slide");
                 $("#seleDepen").hide("fast");
+                $("#selenuevadivision").hide("fast");
                 $('#test').removeClass("cancelarnewGroup icon-signout");
                 $('#test').addClass("newGroup icon-plus-sign"); 
                
@@ -1232,6 +1248,7 @@ $ARU.UI=(function(){
                  $("div#mensajeCargo").html("Nombre del Cargo");
                  $("div#mensajeLider").html("Lider");
                  $("div#checkbox").toggle("slide");
+                 $("#selenuevocargo").toggle("slide");
                  $('#cargo').removeClass("newGroup icon-plus-sign");
                  $('#cargo').addClass("cancelarnewGroup icon-signout rotarfecha");
             }
@@ -1244,6 +1261,7 @@ $ARU.UI=(function(){
               $("input.cargo").hide("fast");
               $("div#checkbox").hide("fast");
               $("div#selectCargo").toggle("slide");
+               $("#selenuevocargo").hide("fast");
               $('#cargo').removeClass("cancelarnewGroup icon-signout");
               $('#cargo').addClass("newGroup icon-plus-sign"); 
             }

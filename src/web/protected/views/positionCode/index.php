@@ -79,13 +79,18 @@
                                                                 <div id="columna1">
                                                                     <div id="selectDivision" class="form-group">
                                                                         <?php echo $form->dropDownList($model,'id_division',Division::getDivision(),$Division);?>
+                                                                        
                                                                     </div>
+                                                                </div>
+                                                                <div id="column1">
+                                                                    <div id="selenuevadivision" class="form-group">
                                                                     <div id="mensaje"></div>
-                                                                    <?php echo $form->textField($model,'new_division', array('class'=>'form-control input-medium dependencia')); ?>
+                                                                   <?php echo $form->textField($model,'new_division', array('class'=>'form-control input-medium dependencia')); ?>
+                                                                    </div>
                                                                 </div>
 
                                                                 <div id="columna2">
-                                                                     <div id="seleDepen" style="margin-left:10px" >
+                                                                     <div id="seleDepen" style="margin-left:32px" class="form-group" >
                                                                          <div id="mensajedependencia" style="margin-left:10px"></div>
                                                                           <?php echo $form->dropDownList($model,'id_dependencia',Division::getDivision(),$Divisionotro);?>
                                                                      </div>
@@ -95,7 +100,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div id="contenedor">
+                                                    <div id="contenedor" class="campocargo">
                                                             <div id="contenidos">
                                                                 <div id="columna1">
                                                                      <label class="control-label col-md-2 labelcargo">Cargo<span class="required">*</span></label>
@@ -104,8 +109,12 @@
                                                                     <div id="selectCargo" class="form-group" style="margin-left:-1px;">
                                                                         <?php echo $form->dropDownList($model,'id_position',Position::getPosition(),$Position);?>
                                                                    </div>
-                                                                    <div id="mensajeCargo"></div>
-                                                                    <input type="text" id="new_position" class="cargo form-control input-medium " style="margin-left:0px;" value="" name="new_position"/>
+                                                                </div>
+                                                                <div id="columna1">
+                                                                    <div id="selenuevocargo" class="form-group">
+                                                                        <div id="mensajeCargo"></div>
+                                                                        <input type="text" id="new_position" class="cargo form-control input-medium " style="margin-left:0px;" value="" name="new_position"/>
+                                                                    </div>
                                                                 </div>
                                                                 <div id="columna1">
                                                                     <div id="checkbox">
@@ -117,10 +126,7 @@
                                                                      <p id="cargo" class="newGroup  icon-plus-sign"></p>
                                                                 </div>
                                                             </div>
-
                                                         </div>
-
-
                                                         <div id="contenedor" style="margin-left:-18px;">
                                                             <div id="contenidos" >
                                                                 <div id="columna1">
