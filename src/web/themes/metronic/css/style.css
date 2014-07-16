@@ -4212,10 +4212,10 @@ th.colorstart{
    margin-left: 45%;
     
 }
-input.dependencia, input.cargo, #checkbox, #seleDepen
+.dependencia, input.cargo, #checkbox, #seleDepen, #selenuevadivision, #selenuevocargo
 {
     display:none;
-    margin-left: -15px;
+    margin-left: -10px;
 }
 
 
@@ -4258,7 +4258,7 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
     margin-top:-8px;
   
 }
-#checkbox{margin-left:14px;}
+
 
 #tablehourEvent{
     color:#B3B3B3;
@@ -4298,7 +4298,7 @@ input.dependencia, input.cargo, #checkbox, #seleDepen
 
 
 #checkbox{
-    margin-left: 10px;
+    margin-left: 36px;
 }
 
 .ocultar{
@@ -4332,17 +4332,17 @@ display: table-cell;
 
 #contenedor {
     display: table;
-    
     width: 300px;
-   
     margin-left: 10px;
+     border-color: red;
 }
 #contenidos {
     display: table-row;
 }
 #columna1, #columna2, #columna3 {
     display: table-cell;
-   
+   border-color: red;
     vertical-align: middle;
     
 }
+

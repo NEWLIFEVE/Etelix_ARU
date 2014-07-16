@@ -1212,6 +1212,8 @@ $ARU.UI=(function(){
                // $(this).html("<");
                 $("input.dependencia").toggle("slide");
                 $("#seleDepen").toggle("slide");
+                $("#selenuevadivision").toggle("slide");
+                
                 $("div#selectDivision").hide("fast");
                 $("div#mensaje").html("Nombre de la División");
                 $("div#mensajedependencia").html("Dependencia");
@@ -1226,6 +1228,7 @@ $ARU.UI=(function(){
                 $("input.dependencia").hide("fast");
                 $("div#selectDivision").toggle("slide");
                 $("#seleDepen").hide("fast");
+                $("#selenuevadivision").hide("fast");
                 $('#test').removeClass("cancelarnewGroup icon-signout");
                 $('#test').addClass("newGroup icon-plus-sign"); 
                
@@ -1243,6 +1246,7 @@ $ARU.UI=(function(){
                  $("div#mensajeCargo").html("Nombre del Cargo");
                  $("div#mensajeLider").html("Lider");
                  $("div#checkbox").toggle("slide");
+                 $("#selenuevocargo").toggle("slide");
                  $('#cargo').removeClass("newGroup icon-plus-sign");
                  $('#cargo').addClass("cancelarnewGroup icon-signout rotarfecha");
             }
@@ -1255,6 +1259,7 @@ $ARU.UI=(function(){
               $("input.cargo").hide("fast");
               $("div#checkbox").hide("fast");
               $("div#selectCargo").toggle("slide");
+               $("#selenuevocargo").hide("fast");
               $('#cargo').removeClass("cancelarnewGroup icon-signout");
               $('#cargo').addClass("newGroup icon-plus-sign"); 
             }

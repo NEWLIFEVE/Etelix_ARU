@@ -111,6 +111,9 @@ and open the template in the editor.
         #selectCargo{
             margin-left: -9px !important;
         }
+        .campocargo{
+            margin-left: 5px !important;
+        }
 
 }
  
