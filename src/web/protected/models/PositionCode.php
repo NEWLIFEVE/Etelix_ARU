@@ -143,7 +143,9 @@ class PositionCode extends CActiveRecord
             $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($dateFormat)));  
             
             $modelVacantPositionCode = self::model()->find("id_division = $idDivision AND id_position = $idPosition AND position_code = '$positionCode' AND id_employee = 189");
-
+            $modelEmployee = Employee::model()->find("id = $idEmployee");
+            
+            
             if($modelPositionCode == NULL){
 
                 if ($PositionCode->save()){
@@ -160,8 +162,25 @@ class PositionCode extends CActiveRecord
 
             }elseif($modelPositionCode != NULL){
                 if($modelPositionCode->end_date == NULL){
+                    
+                    $employeeName = $modelEmployee->first_name;
+                    if($employeeName == 'Vacante'){
+                        if ($PositionCode->save()){ 
 
-                    return 'EmployeeAlreadyExists';
+                            if($modelVacantPositionCode != NULL){
+                                $modelVacantPositionCode->end_date = $yesterday;
+                                $modelVacantPositionCode->save();
+                            }
+
+                            return TRUE;
+                        } else{ 
+                            return FALSE;
+                        }
+                    }else{
+                        return 'EmployeeAlreadyExists';
+                    }
+
+                    
 
                 }elseif($modelPositionCode->end_date != NULL && $dateFormat > $modelPositionCode->end_date){
 

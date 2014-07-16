@@ -219,13 +219,19 @@ class PositionCodeController extends Controller
         $startDate = date('Y-m-d',  strtotime($_GET['start_date']));
 
         $modelEmployeeExist = PositionCode::model()->find("id_employee = $employee");
+        $modelEmployee = Employee::model()->find("id = $employee");
         
         if($modelEmployeeExist == NULL){
             echo json_encode(false);
         }else{
             $endDate = $modelEmployeeExist->end_date;
             if($endDate == NULL){
-                echo json_encode(true);
+                $employeeName = $modelEmployee->first_name;
+                if($employeeName == 'Vacante'){
+                    echo json_encode(false);
+                }else{
+                    echo json_encode(true);
+                }
             }elseif($endDate != NULL && $startDate < $endDate){
                 echo json_encode(true);
             }elseif($endDate != NULL && $startDate > $endDate){
@@ -245,7 +251,6 @@ class PositionCodeController extends Controller
         $division = $_GET['id_division'];
         $check = $_GET['checkLeader'];
         $LevelPosition = Position::getModelPositionByDivision($division);
-        
         
         if($check == "true"){
             $position = $_GET['id_position'];
@@ -279,7 +284,7 @@ class PositionCodeController extends Controller
         
     }
     
-    public function actionCheckLeaderExistByDivision()
+    public function actionCheckLeaderByDivision()
     { 
         $division = $_GET['id_division'];
         $LevelPosition = Position::getModelPositionByDivision($division);
@@ -308,6 +313,45 @@ class PositionCodeController extends Controller
         }else{
             echo json_encode(false);
         }    
+    }
+    
+    public function actionCheckDependencyByDivision() {
+        
+        $check = $_GET['checkDivision'];
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
+
+        if($check == 'true'){
+            $divisionDependecy = Division::model()->findBySql("select id_dependency from division where id = $division;")->id_dependency;
+            $modelPositionCodeDependency = PositionCode::model()->find("id_division = $divisionDependecy");
+        }elseif($check == 'false'){
+            if(!isset($division)){
+                echo json_encode(true);
+            }else{
+                $modelPositionCodeDependency = PositionCode::model()->find("id_division = $division");
+            }
+        }
+        
+        if($position != 'false'){
+            $positionName = Position::model()->find("id = $position")->name;
+            if($modelPositionCodeDependency == NULL && $positionName == 'Presidente'){
+                echo json_encode(true);
+            }elseif($modelPositionCodeDependency == NULL && $positionName != 'Presidente'){
+                echo json_encode(false);
+            }elseif($modelPositionCodeDependency != NULL && $positionName != 'Presidente'){
+                echo json_encode(true);
+            }
+        }else{
+            if($modelPositionCodeDependency == NULL){
+                echo json_encode(false);
+            }else{
+                echo json_encode(true);
+            }
+        }
+        
+        
+        
+        
     }
     
 }

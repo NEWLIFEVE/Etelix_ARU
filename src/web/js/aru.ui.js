@@ -293,65 +293,7 @@ $ARU.UI=(function(){
         var id_division='';
         var id_position='';
         var lider= '';
-
-                
-//          if ((new_division !="") && (id_dependencia != "")){
-//              
-//                 if((new_division !="") && (id_dependencia != "") && (new_position !="")){ 
-//                     
-//                 }else{
-//                     
-//                 id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
-//                 
-//                        }
-//          }else{
-//                 id_division= $("#PositionCode_id_division").val();
-//          }
-//           
-//          if (new_position !=""){
-//              
-//                if((new_division !="") && (id_dependencia != "") && (new_position !="")){ 
-//                    
-//                     
-//                    if(leader !='1'){ 
-//                        $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
-//                        $('.alert-danger').css('display', 'block'); 
-//                        return false;
-//                    }else if(leader =='1'){ 
-//                        leader=1;
-//                        id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
-//                    }
-//                     
-//                    
-//                }else if((new_division =="") && (id_dependencia == "") && (new_position !="")){
-//                
-//                    if(leader == "undefined"){ 
-//                        leader='0';
-//                    }else if(leader =='1'){ 
-//                        leader=1;
-//                    }
-//                    lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=false");
-//                    if(lider == 'false'){
-//
-//                        if(leader != '1'){
-//                            $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
-//                            $('.alert-danger').css('display', 'block'); 
-//                            return false;
-//                        }else if(leader == '1'){
-//                            id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
-//                        }
-//
-//                    }
-//                    else if(lider == 'true'){
-//                        id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
-//                    }
-//                
-//                }
-//                
-//                
-//          }else {
-//                id_position = $("#PositionCode_id_position").val();              
-//          }
+        var dependency = '';
                  
                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
                  
@@ -360,7 +302,6 @@ $ARU.UI=(function(){
                  
                     return false;
                 }else{
-
                     if (employee=='true'){
                        $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo'); 
                        $('.alert-danger').css('display', 'block'); 
@@ -374,8 +315,17 @@ $ARU.UI=(function(){
                                   $('.alert-danger').css('display', 'block'); 
                                   return false;
                             }else{
-                                id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
-                                id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_dependencia+ "&id_position=false&checkDivision=false");
+                                
+                                if(dependency == 'false'){
+                                    $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                    $('.alert-danger').css('display', 'block'); 
+                                    return false;
+                                }else if(dependency == 'true'){
+                                    id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                    id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                }
                             }
 
                         }if ((new_division !="") || (id_dependencia != "") || (new_position !="")){
@@ -385,12 +335,21 @@ $ARU.UI=(function(){
                                 id_position = $("#PositionCode_id_position").val();
                                 
                                 lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderByPosition","id_position="+id_position);
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_dependencia+ "&id_position="+id_position+"&checkDivision=false");
+                                    
                                 if(lider == 'false'){
                                      $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
                                      $('.alert-danger').css('display', 'block'); 
                                        return false;
                                 }else if(lider == 'true'){
-                                    id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                    
+                                    if(dependency == 'false'){
+                                        $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                    }else if(dependency == 'true'){
+                                        id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                    }
                                 }
                             }
 
@@ -398,13 +357,35 @@ $ARU.UI=(function(){
                                 id_position = new_position;
                                 id_division= $("#PositionCode_id_division").val();
                                 
-                                if (leader!='1'){
-                                    $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
-                                    $('.alert-danger').css('display', 'block'); 
-                                    return false;
-                                }else if (leader == '1'){
-                                    id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderByDivision","id_division="+id_division);
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position=false&checkDivision=true"); 
+                                
+                                if(lider == 'false'){
+                                    if (leader!='1'){
+                                        $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                    }else if (leader == '1'){
+                                        
+                                        if(dependency == 'false'){
+                                            $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                            $('.alert-danger').css('display', 'block'); 
+                                            return false;
+                                        }else if(dependency == 'true'){
+                                            id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                        }
+                                        
+                                    }
+                                }else{
+                                    if(dependency == 'false'){
+                                        $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                    }else if(dependency == 'true'){
+                                        id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                    }
                                 }
+
                             }
 
                         }else if ((new_division =="") && (id_dependencia == "") && (new_position =="")){
@@ -412,11 +393,18 @@ $ARU.UI=(function(){
                                 if(new_position==""){id_position = $("#PositionCode_id_position").val();}
 
                                 lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=true"); 
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position="+id_position+"&checkDivision=true"); 
                                 
                                 if (lider=='false'){
                                    $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
                                    $('.alert-danger').css('display', 'block'); 
                                    return false;
+                               }else if(lider=='true'){
+                                   if(dependency == 'false'){
+                                        $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                   }
                                }
                         }
                     }
@@ -426,6 +414,7 @@ $ARU.UI=(function(){
                 id_division = '';
                 id_position = ''; 
                 lider = '';
+                dependency = '';
 
                     handleTitle(tab, navigation, index);
                 },
