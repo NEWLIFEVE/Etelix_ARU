@@ -54,7 +54,7 @@
                                                <td>".$value->idPosition->name."</td>
                                                <td>".$value->position_code."</td>
                                                <td>".$value->start_date."</td>
-                                               <td>".$value->end_date."</td>
+                                               <td>".$value->end_date."&nbsp</td>
                                             </tr>
                                            ";                               
                                    echo $positionEmployee ;

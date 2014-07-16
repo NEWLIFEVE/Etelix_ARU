@@ -226,6 +226,26 @@ $ARU.AJAX=(function()
     }
     
     
+    
+    
+       function ExistDependency(type,action, formulario)
+    {
+        
+        var ExistDependen = $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            async: false,
+            success:function(data)
+            {
+//                result=JSON.parse(data);
+//                $ARU.UI.createCargo(result);
+            }
+        }).responseText;
+        
+        return ExistDependen;
+    }
+    
     /**
      * 
      * 
@@ -257,6 +277,7 @@ $ARU.AJAX=(function()
         posicion:posicion,
         employeeExist:employeeExist,
         leaderExist:leaderExist,
+        ExistDependency:ExistDependency,
         
     };
     
