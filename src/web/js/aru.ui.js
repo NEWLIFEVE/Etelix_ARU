@@ -422,7 +422,7 @@ $ARU.UI=(function(){
                     }
                 }
                 
-                $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=" + "true");
+                $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=true &id_employee="+id_employee);
                 id_division = '';
                 id_position = ''; 
                 lider = '';

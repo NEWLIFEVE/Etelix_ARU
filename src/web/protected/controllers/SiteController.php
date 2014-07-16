@@ -295,4 +295,48 @@ class SiteController extends Controller
 
         }
            }
+           
+           
+        public function actionExcel()
+        {
+            $files=array();
+            if($_GET['table']=='adminPositionCode')
+            {
+                $files['positionCode']['name']=$_GET['name'];
+                $files['positionCode']['body']=Yii::app()->report->balanceAdmin($_GET['fechas'],$_GET['cabinas'],$_GET['name'],true);
+            }
+
+            foreach($files as $key => $file)
+            {
+                $this->genExcel($file['name'],$file['body'],true);
+            }
+        }
+           
+        public function genExcel($name,$html,$salida=true)
+        {
+            if($salida)
+            {
+                header('Content-type: application/vnd.ms-excel');
+                header("Content-Disposition: attachment; filename={$name}.xls");
+                header("Pragma: cache");
+                header("Expires: 0");
+                echo $html;
+            }
+            else
+            {
+                $ruta=Yii::getPathOfAlias('webroot.adjuntos').DIRECTORY_SEPARATOR;
+                $fp=fopen($ruta."$name.xls","w+");
+                $cuerpo="<!DOCTYPE html>
+                            <html>
+                                <head>
+                                    <meta charset='utf-8'>
+                                    <meta http-equiv='Content-Type' content='application/vnd.ms-excel charset=utf-8'>
+                                </head>
+                                <body>";
+                $cuerpo.=$html;
+                $cuerpo.="</body>
+                </html>";
+                fwrite($fp,$cuerpo);
+            }
+        }     
 }

@@ -164,14 +164,8 @@ class PositionCode extends CActiveRecord
                 if($modelPositionCode->end_date == NULL){
                     
                     $employeeName = $modelEmployee->first_name;
-                    if($employeeName == 'Vacante'){
+                    if($employeeName == 'Vacante'  || $employeeName == 'No'){
                         if ($PositionCode->save()){ 
-
-                            if($modelVacantPositionCode != NULL){
-                                $modelVacantPositionCode->end_date = $yesterday;
-                                $modelVacantPositionCode->save();
-                            }
-
                             return TRUE;
                         } else{ 
                             return FALSE;
