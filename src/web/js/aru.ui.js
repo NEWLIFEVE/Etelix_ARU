@@ -318,7 +318,6 @@ $ARU.UI=(function(){
                             }else{
 
                                 dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_dependencia+ "&id_position=false&checkDivision=false");
-                                
                                 if(dependency == 'false'){
                                     $('.alert-danger').html('No Existe la División de Dependencia'); 
                                     $('.alert-danger').css('display', 'block'); 
