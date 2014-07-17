@@ -10,11 +10,11 @@
                             <span>Generar</span> <i class="icon-angle-down"></i>
                             </button>
                             <ul class="dropdown-menu pull-right" role="menu">
-                                <li><a href="#" class="botonExcel"><i class=" verde icon-file-text"></i> Excel</a></li>
+                                <li><a href="#" class="botonExcel"><i class="verde icon-file-text"></i> Excel</a></li>
                                  <li class="divider"></li>
-                                 <li><a href="#" class="botonCorreo"><i class=" ladrillo icon-envelope"></i> Enviar Por Correo</a></li>
+                                 <li><a href="#" class="botonCorreo"><i class="ladrillo icon-envelope"></i> Enviar Por Correo</a></li>
                                  <li class="divider"></li>
-                                 <li><a href="#" class="printButton"><i class=" azulMetro icon-print"></i> Imprimir</a></li>
+                                 <li><a href="#" class="printButton"><i class="azulMetro icon-print"></i> Imprimir</a></li>
                                
                                 
                             </ul>
