@@ -315,14 +315,16 @@ class SiteController extends Controller
         
         public function actionSendEmail()
         {
+            
+            
             $correo=Yii::app()->getModule('user')->user()->email;
             $topic=$_GET['name'];    
             $files=array();
             if($_GET['table']=='adminPositionCode')
             {
                 $files['positionCode']['name']=$_GET['name'];
-                $files['positionCode']['body']=Yii::app()->report->adminPrositionCode($_GET['ids'],$_GET['name'],false);
-                $files['positionCode']['excel']=Yii::app()->report->adminPrositionCode($_GET['ids'],$_GET['name'],true);
+                $files['positionCode']['body']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
+                $files['positionCode']['excel']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],true);
                 $files['positionCode']['dir']=Yii::getPathOfAlias('webroot.adjuntos').DIRECTORY_SEPARATOR.$files['positionCode']['name'].".xls";    
             }
 
@@ -337,7 +339,7 @@ class SiteController extends Controller
         { 
             if($_GET['table']=='adminPositionCode')
             {
-                echo Yii::app()->reporte->adminPrositionCode($_GET['ids'],$_GET['name'],false);
+                echo Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
             }
         }    
            
