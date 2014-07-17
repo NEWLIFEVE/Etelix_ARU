@@ -43,6 +43,9 @@ return array(
                 'report'=>array(
 			'class'=>'application.components.Reports'
 		),
+                'email'=>array(
+			'class'=>'application.components.Email'
+                ),
 //		'log'=>array(
 //			'class'=>'CLogRouter',
 //			'routes'=>array(
