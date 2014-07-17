@@ -1,4 +1,4 @@
-#Etelix_ARU
+﻿#Etelix_ARU
 ==========
 
 ##Sistema de administracion de RRHH
@@ -7,13 +7,14 @@
 - Exportables para la Vista Administrar Codigo de Posicion
 - Vistas de Administar Codigo de Posicion, Division y Cargo 
 - Formulario para Generar Codigo de Posicion
+- validación para cambio de contraseña (contraseña nueva <> confirmar contraseña)
 
 ##Realese 1.1.2
 - Formato de numeros telefonicos (fijos y moviles) dependiendo del pais seleccionado y del codigo del pais.
 - Fecha al lado de Horas de Declaracion en vista Horas Declaradas.
 - Vista de UpdatePhone para actualizar telefonos con nuevos formatos.
 - Modificado tablas inactivas y activas, ahora solo se ve el nombre,apellido,status y un detalle que depende del tipo de rol, si es Admin
- ve toda la info del empleado en un modal, de no ser admin, solo ve la info de contacto, que era la que estaba antes en la tabla.
+- ve toda la info del empleado en un modal, de no ser admin, solo ve la info de contacto, que era la que estaba antes en la tabla.
 
 ##Realese 1.1.1.2
 - Ahora los empleados que tengan un status de inicio de jornada mayor a 16 hrs sin haber declarado fin de jornada aparecen automaticamente como inactivos.

@@ -1126,17 +1126,12 @@ $ARU.UI=(function(){
          function _changePass(){
              $('#changepass').on('click',function()
                 {
-                   var confirmar_pass= encodeURIComponent($("#Users_validar_pass").val());
-                   var password1=encodeURIComponent($("#Users_pass").val()); 
+                   var confirmarPass= encodeURIComponent($("#Users_validar_pass").val());
+                   var password=encodeURIComponent($("#Users_pass").val()); 
                    var passComparar=encodeURIComponent($("#Users_confir_pass").val()); 
-                   if (password1==passComparar){
-                       console.log(password1);
-                       console.log(passComparar);
-                      $ARU.AJAX.sendPass("GET","/Users/ChangePass","confirmar_pass="+confirmar_pass+"&pass="+password1); 
-                   }
-                   
-                   
-                                                                 
+                   if (password==passComparar){
+                      $ARU.AJAX.sendPass("GET","/Users/ChangePass","confirmar_pass="+confirmarPass+"&pass="+password); 
+                   }                                         
                 });
 
          }
