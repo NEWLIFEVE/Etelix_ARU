@@ -337,7 +337,9 @@ class SiteController extends Controller
         { 
             if($_GET['table']=='adminPositionCode')
             {
-                echo Yii::app()->reporte->adminPositionCode($_GET['ids'],$_GET['name'],false);
+
+                echo Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
+
             }
         }    
            

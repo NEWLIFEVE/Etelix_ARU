@@ -12,9 +12,9 @@
                             <ul class="dropdown-menu pull-right" role="menu">
                                 <li><a href="#" class="botonExcel"><i class=" verde icon-file-text"></i> Excel</a></li>
                                  <li class="divider"></li>
-                                <li><a href="#"><i class="icon-print"></i> Imprimir</a></li>
+                                 <li><a href="#" class="botonCorreo"><i class="icon-envelope"></i> Enviar Por Correo</a></li>
                                  <li class="divider"></li>
-                                <li><a href="#" class="botonCorreo"><i class="icon-envelope"></i> Enviar Por Correo</a></li>
+                                 <li><a href="#" class="printButton"><i class="icon-print"></i> Imprimir</a></li>
                                
                                 
                             </ul>
@@ -86,3 +86,39 @@
  </div>
 
 
+
+
+<div id="administrarPosicion" style="margin-top: 130px;" class="modal fade" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                 <h4 class="modal-title"> Generando Excel para Código de Posición</h4>
+                              </div>
+                              <div class="modal-body" align="center">
+                                  <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="row">
+                                       <div class="col-md-6" style="width:100%;"> 
+                                      <form action="#" role="form">
+                                            <div class="form-group">
+                                               <div class="cambiocontra" style="width: 310%;">
+                                                      
+                                                    <div class="margin-top-10 ">
+                                                       <div class="input-group input-group-fixed">
+                                                       </div>
+                                                    </div>
+                                                        <div id="only-open">
+                                                            <div id="complete" class="verde"></div>
+                                                        </div>
+                                                    </div>
+                                             
+                                              </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div> 
+                           </div>
+                        </div>
+                     </div>
+                </div>
+          </div>

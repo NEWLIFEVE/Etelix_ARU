@@ -1332,7 +1332,6 @@ $ARU.UI=(function(){
                 $("input.dependencia").toggle("slide");
                 $("#seleDepen").toggle("slide");
                 $("#selenuevadivision").toggle("slide");
-                
                 $("div#selectDivision").hide("fast");
                 $("div#mensaje").html("Nombre de la División");
                 $("div#mensajedependencia").html("Dependencia");
@@ -1421,6 +1420,8 @@ $ARU.UI=(function(){
             
             $('a.botonExcel').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
             { 
+             $("#complete").html("<h3>Generando Excel... !!</h3>");   
+             $('#administrarPosicion').modal('show');    
              
            var ids = new Array();//Creamos un Array como contenedor de los ids. 
            var idTable= $('table').attr('id');
@@ -1431,7 +1432,6 @@ $ARU.UI=(function(){
                 });
             
             if (ids!=''){
-                
                  var response = $.ajax({ type: "GET",   
                                     url: '/site/excel?ids='+ids+'&name='+name+"&table="+idTable,   
                                     async: true,
@@ -1440,21 +1440,20 @@ $ARU.UI=(function(){
                                              setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
 
                                              //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
-                                             $("#complete").html("Archivo Excel Generado... !!");
-                                             setTimeout('$("#complete").css("display", "inline");', 1000);
-                                             setTimeout('$("#loading").css("display", "none");', 1000); 
-                                             setTimeout('$("#nombreContenedor").animate({ opacity: "hide" }, "slow");', 1800);
-                                             setTimeout('$("#complete").animate({ opacity: "hide" }, "slow");', 1800);
+                                             
+                                             setTimeout('$("#complete").html("<h3>Archivo Excel Generado... !!</h3>");',1800 );
+                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                                     }
                                   }).responseText;
                
             }
             
             else{
-                console.log ("no hay datos");
+                $("#complete").removeClass("verde"); 
+                $("#complete").addClass("rojo"); 
+                setTimeout('$("#complete").html("<h3>No Existen Datos... !!</h3>");',1800 );
+                setTimeout('$("#administrarPosicion").modal("hide");',2500 );
             }
-            
-            
             
             });
             
@@ -1468,6 +1467,8 @@ $ARU.UI=(function(){
             
              $('a.botonCorreo').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
              {
+                 $("#complete").html("<h3>Enviando Correo... !!</h3>");   
+                 $('#administrarPosicion').modal('show');
                  
                     var ids = new Array();//Creamos un Array como contenedor de los ids. 
                     var idTable= $('table').attr('id');
@@ -1489,14 +1490,8 @@ $ARU.UI=(function(){
                                             
                                     },
                                     success:  function (response) {
-                                            $("#nombreContenedor").css("display", "NONE");
-                                            $("#loading").css("display", "NONE");
-                                            $("#complete").html("Correo Enviado con Exito... !!");
-                                            $("#nombreContenedor").css("display", "inline");
-                                            $("#complete").css("display", "inline");
-                                            setTimeout('$("#nombreContenedor").animate({ opacity: "hide" }, "slow");', 1800);
-                                            setTimeout('$("#complete").animate({ opacity: "hide" }, "slow");', 1800);
-                                    
+                                             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
+                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                                     }
                                   });
                         
@@ -1504,7 +1499,11 @@ $ARU.UI=(function(){
                       }
                       
                       else {
-                          console.log("no hay datos");
+                        
+                        $("#complete").removeClass("verde"); 
+                        $("#complete").addClass("rojo"); 
+                        setTimeout('$("#complete").html("<h3>No Existen Datos... !!</h3>");',1800 );
+                        setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                           
                       }
                  
@@ -1517,7 +1516,60 @@ $ARU.UI=(function(){
          */
         
         function _genPrint(){
-            
+            $('a.printButton').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+             {
+                 
+                    var ids = new Array();//Creamos un Array como contenedor de los ids. 
+                    var idTable= $('table').attr('id');
+                    var name=genNameFile(idTable);
+                    
+                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                            ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
+                        });
+                        
+                      if (ids!='')
+                      {
+                                      //Creamos la variable que contiene la tabla generada.
+                        var response = $.ajax({ type: "GET",   
+                                                url: "/site/print?ids="+ids+"&table="+idTable+"&name="+name,   
+                                                async: false,
+                                              }).responseText;
+                        //Creamos la variable que alberga la pagina con la tabla generada.
+                        var content = '<!DOCTYPE html><html><meta charset="es">'+
+                        '<head><link href="/css/print.css" media="all" rel="stylesheet" type="text/css"></head>'+
+                        '<body>'
+                        //Tabla con Formato
+                        +response+
+
+                        '<script type="text/javascript">function printPage() { window.focus(); window.print();return; }</script>'+
+                        '</body></html>';
+
+
+                        //Creamos un 'iframe' para simular la apertura de una pagina nueva sin recargar ni alterar la anterior.
+                        var newIframe = document.createElement('iframe');
+                        newIframe.width = '0';
+                        newIframe.height = '0';
+                        newIframe.src = 'about:blank';
+                        document.body.appendChild(newIframe);
+                        newIframe.contentWindow.contents = content;
+                        newIframe.src = 'javascript:window["contents"]';
+                        newIframe.focus();
+                        //setTimeout(function() {
+                        newIframe.contentWindow.printPage();
+                        //}, 10);
+                        return;
+                      }
+                      
+                      else{
+                           $('#administrarPosicion').modal('show');
+                           $("#complete").removeClass("verde"); 
+                           $("#complete").addClass("rojo"); 
+                           setTimeout('$("#complete").html("<h3>No Existen Datos... !!</h3>");',1800 );
+                           setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+                          
+                      }
+                    
+             });
         }
         
         
@@ -1530,7 +1582,7 @@ $ARU.UI=(function(){
              var name = '';
              switch(idTable){
                 case 'adminPositionCode':
-                      name = 'ARU Administrar Codigo de Posición';
+                      name = 'ARU Administrar Código de Posición';
                 break;
             }
              
