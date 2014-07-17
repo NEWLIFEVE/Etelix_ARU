@@ -1481,15 +1481,15 @@ $ARU.UI=(function(){
                       if (ids!='')
                       {
                         
+                        console.log(ids);
                         $.ajax({ 
                                     type: "GET",   
                                     url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
-                                    async: true,
+                                    async: false,
                                     beforeSend: function () {
 
                                     },
                                     success:  function (response) {
-                                            
                                              setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
                                              setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                                     }

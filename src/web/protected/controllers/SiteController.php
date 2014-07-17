@@ -315,9 +315,7 @@ class SiteController extends Controller
         
         public function actionSendEmail()
         {
-            
-            
-            $correo=Yii::app()->getModule('user')->user()->email;
+            $correo=  UserIdentity::getEmail();
             $topic=$_GET['name'];    
             $files=array();
             if($_GET['table']=='adminPositionCode')
@@ -331,7 +329,7 @@ class SiteController extends Controller
             foreach($files as $key => $file)
             {   
                 $this->genExcel($file['name'],utf8_encode($file['excel']),false);
-                Yii::app()->report->sendEmail($file['body'],$correo,$topic,$file['dir']);
+                Yii::app()->email->sendEmail($file['body'],$correo,$topic,$file['dir']);
             }
         }
         

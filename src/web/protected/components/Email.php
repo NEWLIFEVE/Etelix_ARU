@@ -18,7 +18,7 @@ class Email extends CFormatter
             $mailer->From = 'sinca.test@gmail.com';
             $mailer->AddReplyTo('sinca.test@gmail.com');
             $mailer->AddAddress($correo);
-            $mailer->FromName = 'SINCA';
+            $mailer->FromName = 'ARU';
             $mailer->CharSet = 'UTF-8';
             $mailer->Subject = Yii::t('', $topic);
             if($dir!=null)

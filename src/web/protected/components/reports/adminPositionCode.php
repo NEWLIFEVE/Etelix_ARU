@@ -7,37 +7,55 @@
     {
         public static function report($ids,$name,$type) 
         {
+            
+            $nameFormat = htmlentities($name, ENT_QUOTES,'UTF-8');
 
+            $styleHeader = "border: 1px solid #ddd; "
+                            . "background-color: #DDD;"
+                            . "text-align: left;"
+                            . "margin-top: 10px;"
+                            . "font-size: 12px;"
+                            . "font-weight: 600;";
+            
+            $styleBody = "padding: 5px;"
+                            . "line-height: 1.428571429;"
+                            . "vertical-align: top;"
+                            . "font-size: 12px;"
+                            . "border-top: 1px solid #ddd;"
+                            . "text-align: left;"
+                            . "border: 1px solid #ddd;"
+                            . "padding: 5px;";
+            
             $positionCode = self::getModel($ids);
             if($positionCode != NULL){
                 
-                $table = "<h2 style='font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;letter-spacing: -1px;text-transform: uppercase;'>{$name}</h2>
+                $table = "<h2 style='font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;letter-spacing: -1px;text-transform: uppercase;'>{$nameFormat}</h2>
                         <br>
-                        <table class='table table-bordered table-striped table-condensed flip-content'>
+                        <table style='border-spacing: 2px;border-color: gray;border-collapse: collapse;border-spacing: 0;'>
                             <thead class='flip-content'>
                               <tr>
-                                 <th class='fondotablesgris'>Nombre</th>
-                                 <th class='fondotablesgris'>Apellido</th>
-                                 <th class='fondotablesgris'>División</th>
-                                 <th class='fondotablesgris'>Dependencia</th>
-                                 <th class='fondotablesgris'>Posición</th>
-                                 <th class='fondotablesgris'>Código de Posición</th>
-                                 <th class='fondotablesgris'>Fecha de Inicio</th>
-                                 <th class='fondotablesgris'>Fecha Fin</th>
+                                 <th style='$styleHeader'>".self::formatText('Nombre')."</th>
+                                 <th style='$styleHeader'>".self::formatText('Apellido')."</th>
+                                 <th style='$styleHeader'>".self::formatText('División')."</th>
+                                 <th style='$styleHeader'>".self::formatText('Dependencia')."</th>
+                                 <th style='$styleHeader'>".self::formatText('Posición')."</th>
+                                 <th style='$styleHeader'>".self::formatText('Código de Posición')."</th>
+                                 <th style='$styleHeader'>".self::formatText('Fecha de Inicio')."</th>
+                                 <th style='$styleHeader'>".self::formatText('Fecha Fin')."</th>
                               </tr>
                            </thead>
-                        .'<tbody>";
+                        <tbody>";
                 foreach ($positionCode as $key => $registro) {
 
                     $table.=   "<tr>
-                                   <td>".$registro->idEmployee->first_name."</td>
-                                   <td>".$registro->idEmployee->last_name."</td>
-                                   <td>".$registro->idDivision->name."</td>
-                                   <td>".Division::getNameDivision($registro->id_dependency)."&nbsp</td>    
-                                   <td>".$registro->idPosition->name."</td>
-                                   <td>".$registro->position_code."</td>
-                                   <td>".$registro->start_date."</td>
-                                   <td>".$registro->end_date."&nbsp</td>
+                                   <td style='$styleBody'>".self::formatText($registro->idEmployee->first_name)."</td>
+                                   <td style='$styleBody'>".self::formatText($registro->idEmployee->last_name)."</td>
+                                   <td style='$styleBody'>".self::formatText($registro->idDivision->name)."</td>
+                                   <td style='$styleBody'>".self::formatText(Division::getNameDivision($registro->id_dependency))."</td>    
+                                   <td style='$styleBody'>".self::formatText($registro->idPosition->name)."</td>
+                                   <td style='$styleBody'>".$registro->position_code."</td>
+                                   <td style='$styleBody'>".$registro->start_date."</td>
+                                   <td style='$styleBody'>".$registro->end_date."</td>
                                 </tr>";
 
                 }
@@ -60,9 +78,14 @@
                                                                       INNER JOIN employee as e ON e.id = pc.id_employee
                                                                       WHERE pc.id IN ($ids)
                                                                       ORDER BY pc.position_code ASC;");
-
             return $modelPositionCode;
 
+        }
+        
+        public static function formatText($text) 
+        {
+            $textFormat = htmlentities($text, ENT_QUOTES,'UTF-8');
+            return $textFormat;
         }
 
     }

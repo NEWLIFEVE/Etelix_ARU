@@ -68,9 +68,15 @@ class UserIdentity extends CUserIdentity
 	/**
 	 *
 	 */
-	public function getId()
+    public function getId()
     {
         return $this->_id;
      
+    }
+    
+    public static function getEmail()
+    {
+        $usuario=Users::model()->findByAttributes(array('username'=>Yii::app()->user->name));
+        return $usuario->email;
     }
 }
