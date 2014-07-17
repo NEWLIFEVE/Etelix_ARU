@@ -165,10 +165,11 @@ class SiteController extends Controller
         }
 
         public static function CreateMenu($id_rol)
-           {
-             switch ($id_rol) {
+    {
+        switch($id_rol)
+        {
             case 1:
-            $option_menu="<li id='create' name='create'>
+                $option_menu = "<li id='create' name='create'>
                                                    <a href='/EventEmployee/Create'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Declarar</span>
@@ -260,7 +261,7 @@ class SiteController extends Controller
                 return $option_menu;
                 break;
             case 2:
-            $option_menu="
+                $option_menu = "
                         <li id='create' name='create'>
                            <a href='/EventEmployee/Create'>
                            <i class='icon-map-marker'></i> 
@@ -292,8 +293,8 @@ class SiteController extends Controller
                 return $option_menu;
 
                 break;
-
         }
+
            }
            
            
@@ -339,4 +340,5 @@ class SiteController extends Controller
                 fwrite($fp,$cuerpo);
             }
         }     
+
 }
