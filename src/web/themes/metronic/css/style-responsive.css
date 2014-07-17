@@ -581,5 +581,9 @@ The Most Extra Small Devices Portrait Mode Only
 
 	.header .navbar-brand {
 		width: 100px;
-	}	
+	}
+        
+        selectDivision.a{
+            width: 199px;
+        }
 }	

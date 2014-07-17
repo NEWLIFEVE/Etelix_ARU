@@ -19,6 +19,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
                 'application.controllers.*',
+                'application.components.reports.*'
 	),
 	'modules'=>array(),
 	// application components
@@ -39,6 +40,12 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+                'report'=>array(
+			'class'=>'application.components.Reports'
+		),
+                'email'=>array(
+			'class'=>'application.components.Email'
+                ),
 //		'log'=>array(
 //			'class'=>'CLogRouter',
 //			'routes'=>array(

@@ -4203,3 +4203,146 @@ Responsive Flip Scroll Tables
 th.colorstart{
     background:#ff0000;
 }
+
+}
+
+
+.centrar{
+    display:block;
+   margin-left: 45%;
+    
+}
+.dependencia, input.cargo, #checkbox, #seleDepen, #selenuevadivision, #selenuevocargo
+{
+    display:none;
+    margin-left: -10px;
+}
+
+
+
+.newGroup
+{
+    color: #1d943b !important;
+    width: 5%;
+    /*font-weight: bold;*/
+    font-size: 18px;
+    position: static;
+   
+    right: 0;
+    margin-left: 10px;
+ 
+}
+
+.cancelarnewGroup
+{
+    color: #bb2413 !important;
+    width: 5%;
+    font-weight: bold;
+    font-size: 18px;
+    position: static;
+   
+    right: 0;
+    margin-left: 5px;
+    
+}
+
+
+
+#PositionCode_dependencia
+{
+    display:none;
+}
+
+
+#mensajeLider{
+    margin-top:-8px;
+  
+}
+
+
+#tablehourEvent{
+    color:#B3B3B3;
+}
+
+#iniciojornada{
+    background: #3CC051; 
+    color:#fff;
+}
+#inicioDescanso{
+    background: #FCB322; color:#fff
+}
+#FinDescanso{
+    background: #57B5E3; color:#fff
+}
+#finJornada{
+   background: #ED4E2A; color:#fff
+}
+#Limite{
+   background: #999; color:#fff
+}
+
+
+.btnCpCentrar{
+    
+    margin-left: 45%;
+}
+
+.rotarfecha{
+     margin-left: 24px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    
+}
+
+
+
+#checkbox{
+    margin-left: 36px;
+}
+
+.ocultar{
+    display: none;
+}
+
+.fondotablesgris{
+   background-color:#DDD; 
+}
+
+
+.contenedor-tabla{
+display: table;
+
+}
+.contenedor-fila{
+display: table-row;
+}
+.contenedor-columna{
+display: table-cell;
+
+}
+
+#divisionresponsive{
+    
+    width: 528px;
+}
+
+
+
+
+#contenedor {
+    display: table;
+    width: 300px;
+    margin-left: 10px;
+     border-color: red;
+}
+#contenidos {
+    display: table-row;
+}
+#columna1, #columna2, #columna3 {
+    display: table-cell;
+   border-color: red;
+    vertical-align: middle;
+    
+}
+

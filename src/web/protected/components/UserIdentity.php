@@ -56,7 +56,7 @@ class UserIdentity extends CUserIdentity
 		else 
 		{
 			$this->_id=$user->id;
-                        $this->setState('rol', $user->id_rol);
+            $this->setState('rol', $user->id_rol);
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
 			$user->lastvist_at=date('Y-m-d H:m:s P');
@@ -68,9 +68,15 @@ class UserIdentity extends CUserIdentity
 	/**
 	 *
 	 */
-	public function getId()
+    public function getId()
     {
         return $this->_id;
      
+    }
+    
+    public static function getEmail()
+    {
+        $usuario=Users::model()->findByAttributes(array('username'=>Yii::app()->user->name));
+        return $usuario->email;
     }
 }

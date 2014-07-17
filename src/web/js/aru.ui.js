@@ -12,6 +12,7 @@ $ARU.UI=(function(){
         _validarDatos();
         _applyMetroSelect();   
         _loadFirstView();
+        _loadCp();
         _changePass();
         _viewdetalle();
         _menu();
@@ -19,17 +20,15 @@ $ARU.UI=(function(){
         _treeDirectory();
         _controllersByRol();
         _MaskCell();
-       
-      
-       
-     
-        
+        _CreatePositionCode();
+        _addDivision();
+        _genExcel();
+        _genEmail();
+        _genPrint();
     }
     
       var result=(location.pathname).split('/');
-    
-      
-                
+
             function _MaskCell(){
                
                 $("#Employee_extension_numeric").inputmask("mask", {
@@ -209,21 +208,305 @@ $ARU.UI=(function(){
                     case ('EventEmployee'):
                         $('li#create').addClass(' active');
                         break;
+                    case ('positionCode'):
+                        $('li#codigoposicion').addClass(' active');
+                        break;
+                    case ('division'):
+                        $('li#division').addClass(' active');
+                        break;
          
                     }
             }
+            
+            function _loadCp(){
+                
+               var form = $('#submit_form');        
+               var error = $('.alert-danger', form); 
+               var lider= false;
+               
+               var success = $('.alert-success', form);
+               var handleTitle = function(tab, navigation, index) {
+               var total = navigation.find('li').length;
+              
+               var current = index + 1;
+                // set wizard title
+                $('.step-title', $('#form_wizard_12')).text('Paso ' + (index + 1) + ' de ' + total);
+                // set done steps
+                jQuery('li', $('#form_wizard_12')).removeClass("done");
+                var li_list = navigation.find('li');
+                for (var i = 0; i < index; i++) {
+                    jQuery(li_list[i]).addClass("done");
+                }
+
+               
+                if (current == 1) {
+                    
+                    $('#form_wizard_12').find('.button-previous').hide();
+                    
+                } else {
+                  
+                    $('#form_wizard_12').find('.button-previous').show();
+                }
+
+                if (current >= total) {
+              
+                    $('#form_wizard_12').find('.button-next').hide();
+                    $('#form_wizard_12').find('.button-submitcp').show();
+                    displayConfirm();
+                    displayConfirmpc();
+                   
+                } else {
+                      
+                    $('#form_wizard_12').find('.button-next').show();
+                    $('#form_wizard_12').find('.button-submitcp').hide();
+                }
+                App.scrollTo($('.page-title'));
+            }
+
+            // default form wizard
+            $('#form_wizard_12').bootstrapWizard({
+               
+                'nextSelector': '.button-next',
+                'previousSelector': '.button-previous',
+                onTabClick: function (tab, navigation, index, clickedIndex) {
+                    success.hide();
+                    error.hide();
+                    if (form.valid() == false) {
+                       $('.alert-danger').html('Todos los Campos son Obligatorios');
+                      
+                         return false;
+                    }
+                    else{
+                        return false;
+                    }
+                    handleTitle(tab, navigation, clickedIndex);
+                },
+                onNext: function (tab, navigation, index) {
+                    success.hide();
+                    error.hide();
+
+        var id_dependencia = $("#PositionCode_id_dependencia").val();
+        var new_division = $("#PositionCode_new_division").val();
+        var new_position = $("#new_position").val();
+        var id_employee = $("#PositionCode_id_employee").val();
+        var start_date = $("#PositionCode_start_date").val();
+        var leader = $("#leader:checked").val();
+        var id_division='';
+        var id_position='';
+        var lider= '';
+        var dependency = '';
+
+
+                var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
+                 
+                if (form.valid() == false) {
+                    $('.alert-danger').html('Todos los Campos son Obligatorios');
+                 
+                    return false;
+                }else{
+                    if (employee=='true'){
+                       $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo'); 
+                       $('.alert-danger').css('display', 'block'); 
+                       return false;
+                    }else{
+                        
+                         if ((new_division !="") && (id_dependencia != "") && (new_position !="")){
+                            
+                            if (leader!='1'){
+                                  $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                  $('.alert-danger').css('display', 'block'); 
+                                  return false;
+                            }else{
+
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_dependencia+ "&id_position=false&checkDivision=false");
+                                if(dependency == 'false'){
+                                    $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                    $('.alert-danger').css('display', 'block'); 
+                                    return false;
+                                }else if(dependency == 'true'){
+                                    id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                    id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                }
+
+                            }
+
+                        }if ((new_division !="") || (id_dependencia != "") || (new_position !="")){
+                      //validacion nueva division y posicion llena      
+                            if(new_division!="" && new_position ==""){
+                                id_division= new_division;
+                                id_position = $("#PositionCode_id_position").val();
+                                
+                                lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderByPosition","id_position="+id_position);
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_dependencia+ "&id_position="+id_position+"&checkDivision=false");
+                                    
+                                if(lider == 'false'){
+                                     $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                     $('.alert-danger').css('display', 'block'); 
+                                       return false;
+                                }else if(lider == 'true'){
+
+                                    if(dependency == 'false'){
+                                        $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                    }else if(dependency == 'true'){
+                                        id_division=$ARU.AJAX.crearDivision("GET", "/Division/GetNewDivision", "new_division=" + new_division + "&id_dependencia=" + id_dependencia).split('"').join('');
+                                    }
+                                }
+                            }
+
+                            //validacion lleno division y nuevo cargo nuevo lider
+                            if(new_position!="" && new_division==""){
+                                id_position = new_position;
+                                id_division= $("#PositionCode_id_division").val();
+                                
+                                lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderByDivision","id_division="+id_division);
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position=false&checkDivision=true"); 
+                                
+                                if(lider == 'false'){
+                                    if (leader!='1'){
+                                        $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                    }else if (leader == '1'){
+                                        
+                                        if(dependency == 'false'){
+                                            $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                            $('.alert-danger').css('display', 'block'); 
+                                            return false;
+                                        }else if(dependency == 'true'){
+                                            id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                        }
+                                        
+                                    }
+                                }else{
+                                    if(dependency == 'false'){
+                                        $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                    }else if(dependency == 'true'){
+                                        id_position = $ARU.AJAX.crearCargo("GET", "/Position/getNewPosition", "new_position=" + new_position + "&leader=" + leader).split('"').join('');
+                                    }
+                                }
+
+                            }
+
+                        }else if ((new_division =="") && (id_dependencia == "") && (new_position =="")){
+                                if(new_division==""){id_division= $("#PositionCode_id_division").val();}
+                                if(new_position==""){id_position = $("#PositionCode_id_position").val();}
+
+                                lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=true"); 
+                                dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position="+id_position+"&checkDivision=true"); 
+                                
+                                ExistDependency= lider= $ARU.AJAX.ExistDependency("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position="+id_position +"&checkDivision=true"); 
+                                
+                                if (lider=='false'){
+                                   $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
+                                   $('.alert-danger').css('display', 'block'); 
+                                   return false;
+                               }else if(lider=='true'){
+                                   if(dependency == 'false'){
+                                        $('.alert-danger').html('No Existe la División de Dependencia'); 
+                                        $('.alert-danger').css('display', 'block'); 
+                                        return false;
+                                   }
+                               }
+                               
+                              if (ExistDependency=='false'){
+                                   $('.alert-danger').html('Se Necesita Crear una Dependencia padre'); 
+                                   $('.alert-danger').css('display', 'block'); 
+                                   return false;
+                              }
+                               
+                               
+                        }
+                    }
+                }
+                
+                $ARU.AJAX.posicion("GET", "/PositionCode/GetPositionCode", "id_division=" + id_division + "&id_position=" + id_position + "&check=true &id_employee="+id_employee);
+                id_division = '';
+                id_position = ''; 
+                lider = '';
+                dependency = '';
+
+                    handleTitle(tab, navigation, index);
+                },
+                onPrevious: function (tab, navigation, index) {
+                    success.hide();
+                    error.hide();
+                    handleTitle(tab, navigation, index);
+                },
+                onTabShow: function (tab, navigation, index) {
+                    var total = navigation.find('li').length;
+                    var current = index + 1;
+                    var $percent = (current / total) * 100;
+                    $('#form_wizard_12').find('.progress-bar').css({
+                        width: $percent + '%'
+                    });
+                }
+            });
+              
+              
+            $('#form_wizard_12').find('.button-previous').hide();
+            $('#form_wizard_12.button-submit').click(function () {
+//                alert('Finished! Hope you like it :)');
+            }).hide();
+
+              
+                var displayConfirm = function() {
+                $('#tab3 .form-control-static', form).each(function(){
+                    var input = $('[name="'+$(this).attr("data-display")+'"]', form);
+                    if (input.is(":text") || input.is("textarea")) {
+                        $(this).html(input.val());
+                    } else if (input.is("select")) {
+                        $(this).html(input.find('option:selected').text());
+                    } else if (input.is(":radio") && input.is(":checked")) {
+                        $(this).html(input.attr("data-title"));
+                    } else if ($(this).attr("data-display") == 'payment') {
+                        var payment = [];
+                        $('[name="payment[]"]').each(function(){
+                            payment.push($(this).attr('data-title'));
+                        });
+                        $(this).html(payment.join("<br>"));
+                    }
+                });
+            }
+            
+             var displayConfirmpc = function() {
+       
+                $('#tab2 .form-control-static', form).each(function(){
+                    var input = $('[name="'+$(this).attr("data-display")+'"]', form);
+                    if (input.is(":text") || input.is("textarea")) {
+                        $(this).html(input.val());
+                    } else if (input.is("select")) {
+                        $(this).html(input.find('option:selected').text());
+                    } else if (input.is(":radio") && input.is(":checked")) {
+                        $(this).html(input.attr("data-title"));
+                    } else if ($(this).attr("data-display") == 'payment') {
+                        var payment = [];
+                        $('[name="payment[]"]').each(function(){
+                            payment.push($(this).attr('data-title'));
+                        });
+                        $(this).html(payment.join("<br>"));
+                    }
+                });
+             
+              
+              
+             }}
             
             
             
             function _loadFirstView()
             {
-                
-               var form = $('#submit_form');
-               var error = $('.alert-danger', form);
+               var form = $('#submit_form');        
+               var error = $('.alert-danger', form); 
+               var lider= false;
+               
                var success = $('.alert-success', form);
                var handleTitle = function(tab, navigation, index) {
                var total = navigation.find('li').length;
-               console.log(total);
+              
                var current = index + 1;
                 // set wizard title
                 $('.step-title', $('#form_wizard_1')).text('Paso ' + (index + 1) + ' de ' + total);
@@ -234,32 +517,45 @@ $ARU.UI=(function(){
                     jQuery(li_list[i]).addClass("done");
                 }
 
+               
                 if (current == 1) {
+                    
                     $('#form_wizard_1').find('.button-previous').hide();
+                    
                 } else {
+                  
                     $('#form_wizard_1').find('.button-previous').show();
                 }
 
                 if (current >= total) {
+              
                     $('#form_wizard_1').find('.button-next').hide();
-                    $('#form_wizard_1').find('.button-submit').show();
+                    $('#form_wizard_1').find('.button-submitcp').show();
                     displayConfirm();
+                  
                    
                 } else {
+                      
                     $('#form_wizard_1').find('.button-next').show();
-                    $('#form_wizard_1').find('.button-submit').hide();
+                    $('#form_wizard_1').find('.button-submitcp').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
             $('#form_wizard_1').bootstrapWizard({
+               
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
                     success.hide();
                     error.hide();
                     if (form.valid() == false) {
+                       $('.alert-danger').html('Todos los Campos son Obligatorios');
+                      
+                         return false;
+                    }
+                    else{
                         return false;
                     }
                     handleTitle(tab, navigation, clickedIndex);
@@ -268,16 +564,18 @@ $ARU.UI=(function(){
                     success.hide();
                     error.hide();
 
-                    if (form.valid() == false) {
-                        return false;
-                    }
+       
+                if (form.valid() == false) {
+                    $('.alert-danger').html('Todos los Campos son Obligatorios');
+                 
+                    return false;
+                }
 
                     handleTitle(tab, navigation, index);
                 },
                 onPrevious: function (tab, navigation, index) {
                     success.hide();
                     error.hide();
-
                     handleTitle(tab, navigation, index);
                 },
                 onTabShow: function (tab, navigation, index) {
@@ -291,7 +589,7 @@ $ARU.UI=(function(){
             });
               
               
-                    $('#form_wizard_1').find('.button-previous').hide();
+            $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
 //                alert('Finished! Hope you like it :)');
             }).hide();
@@ -315,15 +613,10 @@ $ARU.UI=(function(){
                     }
                 });
             }
-              
-                
-            }
             
-        
-      
-        
-        
-        
+           
+            }
+         
     /**
      * carga al principio de la interfaz de declarar la jornada de trabajo
      */
@@ -479,7 +772,7 @@ $ARU.UI=(function(){
                             multiple:false,
                             onSuccess:function(files,data,xhr)
                             {
-                                console.log(data);
+                                
                                 $("#filename").html(files);
                                 $("#foto").attr('src',"/"+data[1]);
                                 $("#load_photo").attr('src',"/"+data[1]);
@@ -511,8 +804,13 @@ $ARU.UI=(function(){
             
          function _applyMetroSelect(){
              
-            
-            
+             $(".select2").select2({
+                placeholder: "Select",
+                allowClear: true,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
              $("#Employee_id_nationality").select2({
                 placeholder: "Select",
                 allowClear: true,
@@ -576,7 +874,7 @@ $ARU.UI=(function(){
                 escapeMarkup: function (m) {
                     return m;
                 }
-            });
+            });      
          }
          
          /**
@@ -587,25 +885,21 @@ $ARU.UI=(function(){
          function _controllersByRol ()
          {
              $('a#controllersByRoles').on('click',function(){
-                 var id=($(this).find('div#controllers').text());
-                 var rol= $('#idrol').text();
-                 $ARU.AJAX.idRol("GET","/Rol/IdRol","idcontrollers="+id+"&rol="+rol);
+                 var nameController=($(this).find('div#controllers').text());
+                 var rol= $('#rol').text();
+        
+                 $ARU.AJAX.idRol("POST","/Rol/IdRol","nameController="+nameController+"&rol="+rol);
                 });
          }
          
          function viewActionController(result)
          {
-         
-                var html = "<div><h2>ACCIONES</h2></div>";//creamos una variable donde almacenar la información
-                for(datos in result)//recorremos el json
+            var html = "<div><h2>ACCIONES</h2></div>";//creamos una variable donde almacenar la información
+            for(var i in result)
             {
-                html += "<div><a href='#'>" +result[datos]+ "</a></div>";
-              
-              
+                html += "<div><a href='#'>" +result[i]+ "</a></div>";
             }
-                $('#ActionByRoles').html(html);
-
-           
+            $('#ActionByRoles').html(html);
          }
          
          
@@ -744,8 +1038,38 @@ $ARU.UI=(function(){
                          minlength: 5,    
                     }
                     ,
-                    
+                    'Employee[cp]':{
+                         required: true, 
+                    }
+                    ,
+                    'Employee[codeDependence]':{
+                         required: true,  
+                    }
+                    ,
                      'Rol[name_rol]':{
+                         required: true,    
+                    },
+                     'PositionCode[id_position]':{
+                         required: true,    
+                    },
+                     'PositionCode[id_employee]':{
+                         required: true,    
+                    },
+                     'PositionCode[start_date]':{
+                         required: true,    
+                    },
+                    
+                     'PositionCode[new_division]':{
+                         required: true,    
+                    },
+                     'PositionCode[id_dependencia]':{
+                         required: true,    
+                    },
+                     'new_position':{
+                         required: true,    
+                    },
+                    
+                    'PositionCode[id_division]':{
                          required: true,    
                     }
                 },
@@ -796,11 +1120,8 @@ $ARU.UI=(function(){
                 }
 
             });
-//  
-//              
-//          
+ 
          }
-         
          
          function _changePass(){
              $('#changepass').on('click',function()
@@ -815,16 +1136,12 @@ $ARU.UI=(function(){
          
          function _viewdetalle()
          {
-            
              $('a#detalle').on('click',function(){
                  var id=($(this).find('div#id_employ').text());
                  $ARU.AJAX.searchEmployee("GET","/Employee/DynamicEmployee","id_employee="+id);
                 });
          }
-         
-        
-            
-            
+           
         function successPass(result){
             
             switch(result){
@@ -849,7 +1166,6 @@ $ARU.UI=(function(){
         }
         
         function viewEmployeeModal(result){
-             
              
                 $('#title').html(result[0].name);
                 $('#name').html(result[0].name);
@@ -884,22 +1200,405 @@ $ARU.UI=(function(){
                 $('#detalle_empleado').modal('show');
         }
         
-        
-        
-         
-         
-         
+        function _CreatePositionCode()
+        {
+            $('a#positioncode').on('click', function() {
+
+            var id_division = $("#PositionCode_id_division").val();
+            var id_position = $("#PositionCode_id_position").val();
+            var id_employee = $("#PositionCode_id_employee").val();
+            var start_date = $("#PositionCode_start_date").val();
+            var id_dependencia = $("#PositionCode_id_dependencia").val();
+            var new_division = $("#PositionCode_new_division").val();
+            var new_position = $("#new_position").val();
+            var leader = $("#leader:checked").val();
+            var position=$("div#posicion").text();
+           
+            if (id_division=="" &(new_division=="" || id_dependencia=="") || (id_position=="" & new_position=="") || id_employee=="" || start_date==""){
+                $('#error').addClass("alert alert-danger");
+                    $('#error').addClass("rojo");
+                    $('#error').show("slow");
+                    $('#error').html("Faltan Datos Para Realizar el Registro");
+            }else{
+                 $('#error').removeClass("rojo");
+                    $('#error').removeClass("alert alert-danger");
+                    $('#error').removeClass("icon-remove-circle");
+                    $('#error').html("");
+                    $ARU.AJAX.createPositionCode("GET", "/PositionCode/CreatePositionCode", "id_employee=" + id_employee + "&id_position=" + id_position + "&new_position=" + new_position + "&leader=" + leader + "&id_division=" + id_division + "&new_division=" + new_division + "&id_dependencia=" + id_dependencia + "&start_date=" + start_date+ "&check=" + "false" + "&codePosition=" + position);
+                    
+            }
+
+            });
+        }
  
-    
+        
+        function createPosition(result)
+        {
+              switch(result){
+                case true:
+                    $('div#mensaje').html("<h4>Creación Exitosa de Código de Posición!</h4>");
+                    $('#codigo_posicion').modal('show');
+                    $("#PositionCode_id_division").select2('val', '');
+                    $("#PositionCode_id_position").select2('val', '');
+                    $("#PositionCode_id_employee").select2('val', '');
+                    $("#PositionCode_start_date").val(" ");
+
+                    break;
+                case false:
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("Falla en el Registro");
+                    $('#error').show();
+                    $('#error').fadeToggle(3000);
+                    break;
+                
+                case 'EmployeeAlreadyExists':
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("El Empleado ya Existe y aún está Activo");
+                    $('#error').show();
+                    $('#error').fadeToggle(3000);
+                    break;
+                           
+                case "sinlider":
+                  
+                    $('#error').addClass("alert alert-danger"); 
+                    $('#error').addClass("rojo");
+                    $('#error').html("Se Necesita Crear un Lider/Coordinador/Gerente para esta División");
+                    $('#error').show();
+                    $('#error').fadeToggle(3000);
+                    break;
+                
+            }
+            
+            
+            
+        }
+        
+        function _addDivision()
+        {
+           $('a#siguiente').on('click',function(){
+
+                var id_dependencia = $("#PositionCode_id_dependencia").val();
+                var new_division = $("#PositionCode_new_division").val();
+                var new_position = $("#new_position").val();
+                var leader = $("#leader:checked").val();
+                var id_division='';
+                var id_position='';
+
+           var idDivision = $("#PositionCode_id_division option:selected").text();
+           var newDivision=$("input#PositionCode_new_division").val();
+             
+           if (idDivision!= "División")
+           {
+              $("p#idDivision").attr( "data-display" );
+              $("p#idDivision").removeClass( "ocultar" );
+           }
+           else 
+           {
+             $("p#idDivision").addClass( "ocultar" );
+             $("p#idDivision").html( " " );  
+           }
+             
+           var newPosicion=$("input#new_position").val();
+           var idPosicion = $("#PositionCode_id_position option:selected").text();
+           
+           if (idPosicion!= "Cargo")
+           {
+               $("p#idPosition").attr( "data-display" );
+               $("p#idPosition").removeClass( "ocultar" );
+           }
+           else
+           {
+                $("p#idPosition").addClass( "ocultar" );
+                $("p#idPosition").html( " " );
+           }
+       });
+       
+       $('p#test').on('click',function(){
+
+                    $("#PositionCode_id_division").select2('val', '');
+                    $("#PositionCode_dependencia").select2('val', '');
+                    $('#error').removeClass("rojo");
+                    $('#error').removeClass("alert alert-danger");
+                    $('#error').removeClass("icon-remove-circle"); 
+                    $('#error').html("");
+                    
+            $("input.dependencia").val("");
+            if($("input.dependencia").css("display")=="none"){
+               // $(this).html("<");
+                $("input.dependencia").toggle("slide");
+                $("#seleDepen").toggle("slide");
+                $("#selenuevadivision").toggle("slide");
+                $("div#selectDivision").hide("fast");
+                $("div#mensaje").html("Nombre de la División");
+                $("div#mensajedependencia").html("Dependencia");
+                $('#test').removeClass("newGroup icon-plus-sign");
+                $('#test').addClass("cancelarnewGroup icon-signout rotarfecha");
+                
+                
+                
+            }else{
+                $("div#mensaje").html("");
+                $("div#mensajedependencia").html("");
+                $("input.dependencia").hide("fast");
+                $("div#selectDivision").toggle("slide");
+                $("#seleDepen").hide("fast");
+                $("#selenuevadivision").hide("fast");
+                $('#test').removeClass("cancelarnewGroup icon-signout");
+                $('#test').addClass("newGroup icon-plus-sign"); 
+               
+                //$(this).html("+");
+            }
+        });
+       $('p#cargo').on('click',function(){
+         
+            $("#new_position").val("");
+            $("#PositionCode_id_position").select2('val', '');
+            if($("input.cargo").css("display")=="none"){
+                 //$(this).html("<");
+                 $("input.cargo").toggle("slide");
+                 $("div#selectCargo").hide("fast");
+                 $("div#mensajeCargo").html("Nombre del Cargo");
+                 $("div#mensajeLider").html("Lider");
+                 $("div#checkbox").toggle("slide");
+                 $("#selenuevocargo").toggle("slide");
+                 $('#cargo').removeClass("newGroup icon-plus-sign");
+                 $('#cargo').addClass("cancelarnewGroup icon-signout rotarfecha");
+            }
+            
+            else
+            {
+                
+              $("div#mensajeCargo").html("");
+              $("div#mensajeLider").html("");
+              $("input.cargo").hide("fast");
+              $("div#checkbox").hide("fast");
+              $("div#selectCargo").toggle("slide");
+               $("#selenuevocargo").hide("fast");
+              $('#cargo').removeClass("cancelarnewGroup icon-signout");
+              $('#cargo').addClass("newGroup icon-plus-sign"); 
+            }
+          
+        });
+            
+        }
+        
+        
+        
+          
+        function createDivision(result)
+        {
+            $('div#newid').html(result);
+        }
+        
+        
+        
+        /**
+         * funcion para cargar mensajes de cracion de cargos nuevos en la organizacion
+         */
+        
+        
+         function createCargo(result)
+        {
+             $('#cargoresul').html(result);
+        }
+        
+        function viewPositionCode(result){
+         
+             $("div#posicion").html(result);
+        }
+        
+        
+        /**
+         * funcion para el excel
+         */
+        
+        function _genExcel(){
+            
+            $('a.botonExcel').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+            { 
+             $("#complete").html("<h3>Generando Excel... !!</h3>");   
+             $('#administrarPosicion').modal('show');    
+             
+           var ids = new Array();//Creamos un Array como contenedor de los ids. 
+           var idTable= $('table').attr('id');
+           var name=genNameFile(idTable);
+         
+          $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                            ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
+                });
+            
+            if (ids!=''){
+                 //$ARU.AJAX.excelCp("GET", "/site/excel","ids="+ ids +"&name="+ name +"&table="+ idTable, ids, idTable,name );
+                    
+                 var response = $.ajax({ type: "GET",   
+                                    url: '/site/excel?ids='+ids+'&name='+name+"&table="+idTable,   
+                                    async: true,
+                                    success:  function (response) {
+                                            //Abrimos una Ventana (sin recargarla pagina) al controlador "Site", que a su ves llama a la funcion actionExcel().
+                                             setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
+                                             //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
+                                             setTimeout('$("#complete").html("<h3>Archivo Excel Generado... !!</h3>");',1800 );
+                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+                                    }
+                                  }).responseText;
+               
+            }
+            
+            else{
+                $("#complete").removeClass("verde"); 
+                $("#complete").addClass("rojo"); 
+                setTimeout('$("#complete").html("<h3>No Existen Datos... !!</h3>");',1800 );
+                setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+            }
+            
+            });
+            
+        }
+        
+        /**
+         * funcion para el email
+         */
+        
+        function _genEmail(){
+            
+             $('a.botonCorreo').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+             {
+                
+                 $("#complete").html("<h3>Enviando Correo... !!</h3>");   
+                 $('#administrarPosicion').modal('show');
+                 
+                    var ids = new Array();//Creamos un Array como contenedor de los ids. 
+                    var idTable= $('table').attr('id');
+                    var name=genNameFile(idTable);
+                    
+                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                            ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
+                        });
+                        
+                      if (ids!='')
+                      {
+                          $ARU.AJAX.emailCp("GET", "/site/sendemail","ids="+ ids +"&name="+ name +"&table="+ idTable);
+                  
+                          
+//                        $.ajax({ 
+//                                    type: "GET",   
+//                                    url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
+//                                    async: false,
+//                                    success:  function (response) {
+////                                             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
+////                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+//                                    }
+//                                  });
+                      }
+//                      
+                      else {
+                        
+                        $("#complete").removeClass("verde"); 
+                        $("#complete").addClass("rojo"); 
+                        setTimeout('$("#complete").html("<h3>No Existen Datos... !!</h3>");',1800 );
+                        setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+                          
+                      }
+                 
+             });
+            
+        }
+        
+        /**
+         * funcion para imprimir
+         */
+        
+        function _genPrint(){
+            $('a.printButton').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+             {
+                 
+                    var ids = new Array();//Creamos un Array como contenedor de los ids. 
+                    var idTable= $('table').attr('id');
+                    var name=genNameFile(idTable);
+                    
+                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                            ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
+                        });
+                        
+                      if (ids!='')
+                      {
+                                      //Creamos la variable que contiene la tabla generada.
+                        var response = $.ajax({ type: "GET",   
+                                                url: "/site/print?ids="+ids+"&table="+idTable+"&name="+name,   
+                                                async: false,
+                                              }).responseText;
+                        //Creamos la variable que alberga la pagina con la tabla generada.
+                        var content = '<!DOCTYPE html><html><meta charset="es">'+
+                        '<head><link href="/css/print.css" media="all" rel="stylesheet" type="text/css"></head>'+
+                        '<body>'
+                        //Tabla con Formato
+                        +response+
+
+                        '<script type="text/javascript">function printPage() { window.focus(); window.print();return; }</script>'+
+                        '</body></html>';
+
+
+                        //Creamos un 'iframe' para simular la apertura de una pagina nueva sin recargar ni alterar la anterior.
+                        var newIframe = document.createElement('iframe');
+                        newIframe.width = '0';
+                        newIframe.height = '0';
+                        newIframe.src = 'about:blank';
+                        document.body.appendChild(newIframe);
+                        newIframe.contentWindow.contents = content;
+                        newIframe.src = 'javascript:window["contents"]';
+                        newIframe.focus();
+                        //setTimeout(function() {
+                        newIframe.contentWindow.printPage();
+                        //}, 10);
+                        return;
+                      }
+                      
+                      else{
+                           $('#administrarPosicion').modal('show');
+                           $("#complete").removeClass("verde"); 
+                           $("#complete").addClass("rojo"); 
+                           setTimeout('$("#complete").html("<h3>No Existen Datos... !!</h3>");',1800 );
+                           setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+                          
+                      }
+                    
+             });
+        }
+        
+        
+        /**
+         * Titulos para los reportes
+         */
+        
+        
+         function genNameFile(idTable){
+             var name = '';
+             switch(idTable){
+                case 'adminPositionCode':
+                      name = 'ARU Administrar Código de Posición';
+                break;
+            }
+             
+            
+             return name;
+                }
+         
+        
     return {
         init:init,
         successPass:successPass,
         viewEmployeeModal:viewEmployeeModal,
         rolCreate: rolCreate,
-        viewActionController:viewActionController
+        viewActionController:viewActionController,
+        createPosition:createPosition,
+        createDivision:createDivision,
+        createCargo:createCargo,
+        viewPositionCode:viewPositionCode,
+        genNameFile:genNameFile,
         
-      
-        
-       
     };
 })();

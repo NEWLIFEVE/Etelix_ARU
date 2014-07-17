@@ -165,10 +165,11 @@ class SiteController extends Controller
         }
 
         public static function CreateMenu($id_rol)
-           {
-             switch ($id_rol) {
+    {
+        switch($id_rol)
+        {
             case 1:
-            $option_menu="<li id='create' name='create'>
+                $option_menu = "<li id='create' name='create'>
                                                    <a href='/EventEmployee/Create'>
                                                    <i class='icon-map-marker'></i> 
                                                    <span class='title'>Declarar</span>
@@ -187,10 +188,11 @@ class SiteController extends Controller
                                                  <a href='/Employee/infoEmployee'>
                                                  Mi Perfil</a>
                                               </li>
-                                              <li >
+                                              <li>
                                                  <a href='/Employee/SearchEmployee'>
                                                 Ver Empleados</a>
                                               </li>
+                                             
                                        </ul>
                          </li>
                          <!--<li id='controladores' name='controladores'>
@@ -200,11 +202,66 @@ class SiteController extends Controller
                                                    
                                                    </a>
                           </li>-->
+                         <li id='codigoposicion' name='codigoposicion'>
+                                                   <a href=''>
+                                                   <i class='icon-group'></i> 
+                                                   <span class='title'>Código de Posición</span> 
+                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                                                   
+                                               <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/positionCode/'>
+                                                 Crear Cp</a>
+                                              </li>
+                                              <li>
+                                                 <a href='/positionCode/AdminPositionCode'>
+                                                Administrar Cp</a>
+                                              </li>
+                                              
+                                       </ul>                  
+                          </li>
+                          
+                            <li id='division' name='division'>
+                                                   <a href=''>
+                                                   <i class='icon-th-large'></i> 
+                                                   <span class='title'>División</span> 
+                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                                                   
+                                               <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/division/viewDivision'>
+                                                 Divisiones</a>
+                                              </li>
+                                              
+                                              
+                                       </ul>                  
+                          </li>
+                            <li id='cargoemploye' name='cargoemployee'>
+                                                   <a href=''>
+                                                   <i class='icon-briefcase'></i> 
+                                                   <span class='title'>Cargo</span> 
+                                                   <span class='arrow '></span>
+                                                   <span class='selected'></span>
+                                                   </a>
+                                                   
+                                               <ul class='sub-menu'>
+                                              <li>
+                                                 <a href='/position/viewPosition'>
+                                                 Cargos</a>
+                                              </li>
+                                              
+                                              
+                                       </ul>                  
+                          </li>
                             ";
                 return $option_menu;
                 break;
             case 2:
-            $option_menu="
+                $option_menu = "
                         <li id='create' name='create'>
                            <a href='/EventEmployee/Create'>
                            <i class='icon-map-marker'></i> 
@@ -236,7 +293,95 @@ class SiteController extends Controller
                 return $option_menu;
 
                 break;
+            
+            case 3:
+                $option_menu = "
+                        <li id='create' name='create'>
+                           <a href='/EventEmployee/Create'>
+                           <i class='icon-map-marker'></i> 
+                           <span class='title'>Declarar</span>
+                           <span class='selected'></span>
+                           </a>
+                        </li>
+                         
+                            ";
+                return $option_menu;
 
+                break;
         }
+
            }
+           
+           
+        public function actionExcel()
+        {
+            $files=array();
+            if($_GET['table']=='adminPositionCode')
+            {
+                $files['positionCode']['name']=$_GET['name'];
+                $files['positionCode']['body']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],true);
+            }
+
+            foreach($files as $key => $file)
+            {
+                $this->genExcel($file['name'],$file['body'],true);
+            }
+        }
+        
+        public function actionSendEmail()
+        {
+            $correo=  UserIdentity::getEmail();
+            $topic=$_GET['name'];    
+            $files=array();
+            if($_GET['table']=='adminPositionCode')
+            {
+                $files['positionCode']['name']=$_GET['name'];
+                $files['positionCode']['body']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
+                $files['positionCode']['excel']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],true);
+                $files['positionCode']['dir']=Yii::getPathOfAlias('webroot.adjuntos').DIRECTORY_SEPARATOR.$files['positionCode']['name'].".xls";    
+            }
+
+            foreach($files as $key => $file)
+            {   
+                $this->genExcel($file['name'],utf8_encode($file['excel']),false);
+                Yii::app()->email->sendEmail($file['body'],$correo,$topic,$file['dir']);
+            }
+        }
+        
+        public function actionPrint()
+        { 
+            if($_GET['table']=='adminPositionCode')
+            {
+                echo Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
+            }
+        }    
+           
+        public function genExcel($name,$html,$salida=true)
+        {
+            if($salida)
+            {
+                header('Content-type: application/vnd.ms-excel');
+                header("Content-Disposition: attachment; filename={$name}.xls");
+                header("Pragma: cache");
+                header("Expires: 0");
+                echo $html;
+            }
+            else
+            {
+                $ruta=Yii::getPathOfAlias('webroot.adjuntos').DIRECTORY_SEPARATOR;
+                $fp=fopen($ruta."$name.xls","w+");
+                $cuerpo="<!DOCTYPE html>
+                            <html>
+                                <head>
+                                    <meta charset='utf-8'>
+                                    <meta http-equiv='Content-Type' content='application/vnd.ms-excel charset=utf-8'>
+                                </head>
+                                <body>";
+                $cuerpo.=$html;
+                $cuerpo.="</body>
+                </html>";
+                fwrite($fp,$cuerpo);
+            }
+        }     
+
 }

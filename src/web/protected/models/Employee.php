@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'employee':
  * @property integer $id
- * @property integer $id_position
  * @property integer $id_supervisor
  * @property integer $id_education
  * @property integer $id_marital_status
@@ -32,7 +31,6 @@
  * @property ChildrenEmployee[] $childrenEmployees
  * @property EmergencyEmployee[] $emergencyEmployees
  * @property LanguageEmployee[] $languageEmployees
- * @property Position $idPosition
  * @property Employee $idSupervisor
  * @property Employee[] $employees
  * @property LevelEducation $idEducation
@@ -50,8 +48,13 @@ class Employee extends CActiveRecord
     public $line2;
     public $zip;
     public $cod_phone;
-    
-	/**
+    public $cp;
+    public $codeDependence;
+    public $empleados;
+
+
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -67,11 +70,11 @@ class Employee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_position, id_supervisor, id_education, id_marital_status, id_gender, id_nationality', 'numerical', 'integerOnly'=>true),
+			array('id_supervisor, id_education, id_marital_status, id_gender, id_nationality', 'numerical', 'integerOnly'=>true),
 			array('first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, second_name, second_last_name', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_position, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_gender, id_nationality, second_name, second_last_name, image_rute', 'safe', 'on'=>'search'),
+			array('id, id_supervisor, id_education, id_marital_status, first_name, last_name, date_birth, identity_card, email_personal, email_company, skype, cellphone, home_phone, extension_numeric, id_gender, id_nationality, second_name, second_last_name, image_rute', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,7 +92,6 @@ class Employee extends CActiveRecord
 			'childrenEmployees' => array(self::HAS_MANY, 'ChildrenEmployee', 'id_employee'),
 			'emergencyEmployees' => array(self::HAS_MANY, 'EmergencyEmployee', 'id_employee'),
 			'languageEmployees' => array(self::HAS_MANY, 'LanguageEmployee', 'id_employee'),
-			'idPosition' => array(self::BELONGS_TO, 'Position', 'id_position'),
 			'idSupervisor' => array(self::BELONGS_TO, 'Employee', 'id_supervisor'),
 			'employees' => array(self::HAS_MANY, 'Employee', 'id_supervisor'),
 			'idEducation' => array(self::BELONGS_TO, 'LevelEducation', 'id_education'),
@@ -107,7 +109,6 @@ class Employee extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_position' => 'Id Position',
 			'id_supervisor' => 'Id Supervisor',
 			'id_education' => 'Id Education',
 			'id_marital_status' => 'Id Marital Status',
@@ -148,7 +149,6 @@ class Employee extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_position',$this->id_position);
 		$criteria->compare('id_supervisor',$this->id_supervisor);
 		$criteria->compare('id_education',$this->id_education);
 		$criteria->compare('id_marital_status',$this->id_marital_status);
@@ -254,59 +254,53 @@ class Employee extends CActiveRecord
             return $dynamicEmployee;
         }
         
-        
+        /**
+         * funcion que consulta los empleados para listar nombre y apallidos para la tabla de eventos 
+         * @return type
+         */
         public function getHourEvent()
             {
-              $consulta="select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name";
-              $employeedeclare=self::model()->findAllBySql($consulta);
-              return $employeedeclare;
+               return self::model()->findAllBySql("select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name");
             }
         
-        
+        /**
+         * funcion para crear los encabezados de las tablas activos e inactivos
+         * @param type $id
+         * @return string
+         */
         public function createOption( $id)
-         {
-            
-           
-                $opciones="<tr>
-                                    <th>Foto</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th colspan='2'>Status</th>
-                                 </tr>";
-                
-      
-
-                return $opciones;
-         }
-         
-         
-         public function getfiltro($type)
-                 
         {
-             
+            $opciones="<tr><th>Foto</th><th>Nombre</th><th>Apellido</th><th colspan='2'>Status</th></tr>";
+            return $opciones;
+        }
+        
+         /**
+          * funcion para filtrar los empleados que tienen user y empleado creado, pasando como parametros el tipo (activos e inactivos)
+          * @param type $type
+          * @return type
+          */
+         
+        public function getfiltro($type) 
+        {
             $array = array();
-             $consulta="select e.id, e.first_name
+            $consulta = "select e.id, e.first_name
                         from
                         employee e, users u
                         where  u.id_employee = e.id and u.id_status NOT IN(2,3) order by e.first_name";
-             
-             $model=self::model()->findAllBySql($consulta);
-             foreach ($model as $key=> $value)
-                 {
-                
-                 $event=  EventEmployee::getfiltroHour($value->id, $type); 
-                
-                 if ($event!=NULL){
-                     $array[]=$event;
-                     
-                 }
-                
-                 }
-                 
-                // var_dump($event);
-              return $array;
-               
-       }
+
+            $model = self::model()->findAllBySql($consulta);
+            foreach ($model as $key => $value) {
+                $event = EventEmployee::getfiltroHour($value->id, $type);
+                if ($event != NULL) $array[] = $event;  
+            }
+            return $array;
+        }
+       
+        public function getEmployeeAll()
+        {
+            $consult ="select e.id, (e.first_name||' '|| e.last_name) as empleados from employee e, users u where e.id=u.id_employee order by first_name ";
+            return  CHtml::ListData(self::model()->findAllBySql($consult),"id","empleados"); 
+        }
        
    
        

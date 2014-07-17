@@ -236,106 +236,86 @@ class EmployeeController extends Controller
      * vista para actualizar los datos de numeros de telefonos para empleados
      * 
      */
-    
-    
     public function actionUpdatePhone()
-      {
-         $model=new Employee;
-         $Address= new Address;
-       
-             if(isset($_POST['Employee'])){
-                 $model=Employee::getEmployee(Yii::app()->user->id);
-                 $model->attributes = $_POST['Employee'];
-                  Users::updateStatus(Yii::app()->user->id);
-                  if($model->save())
-                    {
-                       $this->redirect(array('infoEmployee', 'id' => $model->id));
-                    }
-             }
-             
-       
-         
-         
-         $this->render('UpdatePhone',array('model'=>$model, 'address'=>$Address));
-            
-       
-        
-      }
+    {
+        $model=new Employee;
+        $Address=new Address;
+        if(isset($_POST['Employee']))
+        {
+            $model=Employee::getEmployee(Yii::app()->user->id);
+            $model->attributes = $_POST['Employee'];
+            Users::updateStatus(Yii::app()->user->id);
+            if($model->save())
+            {
+                $this->redirect(array('infoEmployee', 'id' => $model->id));
+            }
+        }
 
+        $this->render('UpdatePhone',array('model'=>$model, 'address'=>$Address));
+    }
 
-    
-    
-    
-    
-    
-    
-    
-    
     /**
      * 
      * Vista de carga de datos basicos del empleado con estatus 3
      */
     public function actionFirstView()
-    {    
-        
-         
-          $model=Employee::getEmployee(Yii::app()->user->id);
-        
-          if (is_null($model)){
-              $model=new Employee;
-              $Address=new Address;
-              if(isset($_POST['Employee']))
+    {
+        $model=Employee::getEmployee(Yii::app()->user->id);
+        if(is_null($model))
         {
-            $model->id_nationality=$_POST['Employee']['nationality'];
-            $model->attributes = $_POST['Employee'];
-    
-            if($model->save())
+            $model=new Employee;
+            $Address=new Address;
+            if(isset($_POST['Employee']))
             {
-                Users::updateStatus(Yii::app()->user->id);
-                Users::assignEmployee(Yii::app()->user->id, $model->id);
+                $model->id_nationality=$_POST['Employee']['nationality'];
+                $model->attributes = $_POST['Employee'];
 
-                if(Address::validAddressForm($_POST['Address']))
+                if($model->save())
                 {
-                    $checkAddress = Address::checkAddress($_POST['Address']);
+                    Users::updateStatus(Yii::app()->user->id);
+                    Users::assignEmployee(Yii::app()->user->id, $model->id);
 
-                    if(is_null($checkAddress))
+                    if(Address::validAddressForm($_POST['Address']))
                     {
-                         $idAddress= Address::newAddress($_POST['Address']['address_line_1'],$_POST['Address']['address_line_2'],$_POST['Address']['zip'],$_POST['Address']['id_city'] ); 
-                    }
-                    else
-                    {
-                        $idAddress = $checkAddress;
-                    }
+                        $checkAddress = Address::checkAddress($_POST['Address']);
 
-                    $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
-                        /* si esdddddd */
-                    if(is_null($checkAddressEmployee))
-                    {
-                        if($Address->id!= NULL)
+                        if(is_null($checkAddress))
                         {
-                            $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
-                            $OldAddressEmployee->end_date = date("Y-m-d");
-                            $OldAddressEmployee->save();
+                             $idAddress= Address::newAddress($_POST['Address']['address_line_1'],$_POST['Address']['address_line_2'],$_POST['Address']['zip'],$_POST['Address']['id_city'] ); 
                         }
-                        $AddressEmployee = new AddressEmployee;
-                        $AddressEmployee->id_employee = $model->id;
-                        $AddressEmployee->id_address = $idAddress;
-                        $AddressEmployee->start_date = date("Y-m-d");
-                        if($AddressEmployee->save())
+                        else
                         {
-
+                            $idAddress = $checkAddress;
                         }
-                        $this->redirect(array('infoEmployee', 'id' => $model->id));
-                    }
-                    else
-                    {
-                            return false;
+
+                        $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
+                            /* si esdddddd */
+                        if(is_null($checkAddressEmployee))
+                        {
+                            if($Address->id!= NULL)
+                            {
+                                $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
+                                $OldAddressEmployee->end_date = date("Y-m-d");
+                                $OldAddressEmployee->save();
+                            }
+                            $AddressEmployee = new AddressEmployee;
+                            $AddressEmployee->id_employee = $model->id;
+                            $AddressEmployee->id_address = $idAddress;
+                            $AddressEmployee->start_date = date("Y-m-d");
+                            if($AddressEmployee->save())
+                            {
+
+                            }
+                            $this->redirect(array('infoEmployee', 'id' => $model->id));
+                        }
+                        else
+                        {
+                                return false;
+                        }
                     }
                 }
             }
-        }
           }
-          
           else{   
                 $addressModel = AddressEmployee::loadAddressByEmployee($model->id);
                 if(is_null($addressModel))
@@ -345,59 +325,55 @@ class EmployeeController extends Controller
                 
                 if(isset($_POST['Employee']))
                 {
-                    $model->id_nationality=$_POST['Employee']['nationality'];
-                    $model->attributes = $_POST['Employee'];
-    
-                    if($model->save())
+                    Users::updateStatus(Yii::app()->user->id);
+                    Users::assignEmployee(Yii::app()->user->id, $model->id);
+
+                    if(Address::validAddressForm($_POST['Address']))
                     {
-                        Users::updateStatus(Yii::app()->user->id);
-                        Users::assignEmployee(Yii::app()->user->id, $model->id);
+                        $checkAddress = Address::checkAddress($_POST['Address']);
 
-                        if(Address::validAddressForm($_POST['Address']))
+                        if(is_null($checkAddress))
                         {
-                            $checkAddress = Address::checkAddress($_POST['Address']);
+                            $idAddress= Address::newAddress($_POST['Address']['address_line_1'],$_POST['Address']['address_line_2'],$_POST['Address']['zip'],$_POST['Address']['id_city'] ); 
+                        }
+                        else
+                        {
+                            $idAddress = $checkAddress;
+                        }
 
-                            if(is_null($checkAddress))
+                        $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
+                        /* si esdddddd */
+                        if(is_null($checkAddressEmployee))
+                        {
+                            if($Address->id!= NULL)
                             {
-                                $idAddress= Address::newAddress($_POST['Address']['address_line_1'],$_POST['Address']['address_line_2'],$_POST['Address']['zip'],$_POST['Address']['id_city'] ); 
+                                $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
+                                $OldAddressEmployee->end_date = date("Y-m-d");
+                                $OldAddressEmployee->save();
                             }
-                            else
+                            $AddressEmployee = new AddressEmployee;
+                            $AddressEmployee->id_employee = $model->id;
+                            $AddressEmployee->id_address = $idAddress;
+                            $AddressEmployee->start_date = date("Y-m-d");
+                            if($AddressEmployee->save())
                             {
-                                $idAddress = $checkAddress;
-                            }
 
-                            $checkAddressEmployee = AddressEmployee::checkAddressByEmployee($model->id, $idAddress);
-                                /* si esdddddd */
-                            if(is_null($checkAddressEmployee))
-                            {
-                                if($Address->id!= NULL)
-                                {
-                                    $OldAddressEmployee = AddressEmployee::model()->find('id_address =:address', array(':address' => $Address->id));
-                                    $OldAddressEmployee->end_date = date("Y-m-d");
-                                    $OldAddressEmployee->save();
-                                }
-                                $AddressEmployee = new AddressEmployee;
-                                $AddressEmployee->id_employee = $model->id;
-                                $AddressEmployee->id_address = $idAddress;
-                                $AddressEmployee->start_date = date("Y-m-d");
-                                if($AddressEmployee->save())
-                                {
-
-                                }
-                                $this->redirect(array('infoEmployee', 'id' => $model->id));
                             }
-                            else
-                            {
-                               $this->redirect(array('infoEmployee', 'id' => $model->id));
-                            }
+                            $this->redirect(array('infoEmployee', 'id' => $model->id));
+                        }
+                        else
+                        {
+                            $this->redirect(array('infoEmployee', 'id' => $model->id));
                         }
                     }
                 }
-    
-          }
-        
+            }
+
         $this->render('viewfirstemployee', array('model'=>$model,'Address'=>$Address));
     }
+
+    
+                        
     
    
     /**
@@ -486,23 +462,14 @@ class EmployeeController extends Controller
         $this->render('AdminControllers',  array('rol'=>$rol));
     }
     
-    public function actionAdminPermit()
+    public function actionAdminPermit($id)
      {
-        $idrol=$_GET['idRol'];
+//        $idrol=$_GET['idRol'];
          $rol= Rol::getRol();
-         $model= ActionRol::getActionRol($idrol);
+         $model= ActionRol::getActionRol($id);
         
          $controllers= Controllers::getControllers();
-         $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$idrol));
+         $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$id));
      }
-     
-     
-       public function actionCodePosition()
-    {
 
-            $this->render('CodePosition');
-
-    }
-    
-    
 }

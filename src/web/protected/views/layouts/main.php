@@ -36,6 +36,7 @@
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/style-metronic.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/style.css" />
 
+   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/estiloresponsive.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/style-responsive.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/plugins.css" />
    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/metronic/css/themes/light.css" />
@@ -193,7 +194,7 @@
                                                <!-- BEGIN FOOTER -->
                                        <div class='footer'>
                                           <div class='footer-inner'>
-                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.1.2
+                                             Copyright &copy; <?php echo date('Y'); ?> ETELIX Group All Rights Reserved Version 1.2
                                           </div>
                                           <div class='footer-tools'>
                                              <span class='go-top'>

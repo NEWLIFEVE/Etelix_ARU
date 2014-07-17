@@ -161,7 +161,7 @@
                                        <a href="javascript:;" class="btn blue button-next">
                                        Siguiente <i class="m-icon-swapright m-icon-white"></i>
                                        </a>
-                                        <input type="submit" value='enviar' class="btn green button-submit" />
+                                        <input type="submit" value='enviar' class="btn green button-submitcp" style="display: none" />
                                        </a>                            
                                     </div>
                                  </div>
