@@ -1480,14 +1480,13 @@ $ARU.UI=(function(){
                       if (ids!='')
                       {
                         
+                        console.log(ids);
                         $.ajax({ 
                                     type: "GET",   
                                     url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
-                                    async: true,
+                                    async: false,
                                     beforeSend: function () {
-                                            //window.open('/site/sendemail?ids='+ids+'&name=Balance%20Cabinas','_top');
-//                                            $("#nombreContenedor").css("display", "inline");
-//                                            $("#loading").css("display", "inline");
+                                            
                                     },
                                     success:  function (response) {
                                             $("#nombreContenedor").css("display", "NONE");
@@ -1497,6 +1496,7 @@ $ARU.UI=(function(){
                                             $("#complete").css("display", "inline");
                                             setTimeout('$("#nombreContenedor").animate({ opacity: "hide" }, "slow");', 1800);
                                             setTimeout('$("#complete").animate({ opacity: "hide" }, "slow");', 1800);
+                                    
                                     }
                                   });
                         
