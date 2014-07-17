@@ -293,6 +293,21 @@ class SiteController extends Controller
                 return $option_menu;
 
                 break;
+            
+            case 3:
+                $option_menu = "
+                        <li id='create' name='create'>
+                           <a href='/EventEmployee/Create'>
+                           <i class='icon-map-marker'></i> 
+                           <span class='title'>Declarar</span>
+                           <span class='selected'></span>
+                           </a>
+                        </li>
+                         
+                            ";
+                return $option_menu;
+
+                break;
         }
 
            }

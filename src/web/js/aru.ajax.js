@@ -292,7 +292,20 @@ $ARU.AJAX=(function()
      * 
      * 
      */
-    
+     function emailCp(type,action, formulario)
+    {
+       
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
+             setTimeout('$("#administrarPosicion").modal("hide");',2500 );   
+            }
+        });
+    }
     
     
      return {
@@ -310,6 +323,7 @@ $ARU.AJAX=(function()
         leaderExist:leaderExist,
         ExistDependency:ExistDependency,
         excelCp:excelCp,
+        emailCp:emailCp,
         
     };
     

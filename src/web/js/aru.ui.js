@@ -1467,6 +1467,7 @@ $ARU.UI=(function(){
             
              $('a.botonCorreo').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
              {
+                
                  $("#complete").html("<h3>Enviando Correo... !!</h3>");   
                  $('#administrarPosicion').modal('show');
                  
@@ -1480,22 +1481,20 @@ $ARU.UI=(function(){
                         
                       if (ids!='')
                       {
-                        
-                        console.log(ids);
-                        $.ajax({ 
-                                    type: "GET",   
-                                    url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
-                                    async: false,
-                                    beforeSend: function () {
-
-                                    },
-                                    success:  function (response) {
-                                             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
-                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
-                                    }
-                                  });
+                          $ARU.AJAX.emailCp("GET", "/site/sendemail","ids="+ ids +"&name="+ name +"&table="+ idTable);
+                  
+                          
+//                        $.ajax({ 
+//                                    type: "GET",   
+//                                    url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
+//                                    async: false,
+//                                    success:  function (response) {
+////                                             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
+////                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+//                                    }
+//                                  });
                       }
-                      
+//                      
                       else {
                         
                         $("#complete").removeClass("verde"); 
