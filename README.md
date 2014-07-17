@@ -3,6 +3,7 @@
 
 ##Sistema de administracion de RRHH
 
+##Realese 1.2
 - Exportables para la Vista Administrar Codigo de Posicion
 - Vistas de Administar Codigo de Posicion, Division y Cargo 
 - Formulario para Generar Codigo de Posicion
