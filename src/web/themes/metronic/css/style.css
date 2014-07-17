@@ -4183,8 +4183,10 @@ Responsive Flip Scroll Tables
     width: 24%;
 }
 #confirmaemployee{ width: 70%;}
-.verde{color:#10a062; }
+.verde{color:#35aa47; }
 .rojo{color:#FF0000;}
+.ladrillo{color:#d2322d;}
+.azulMetro{color:#4b8df8;}
 .margen_detalle_empleado{float: left; margin-right: 20px;}
 
 
@@ -4247,7 +4249,6 @@ th.colorstart{
 }
 
 
-
 #PositionCode_dependencia
 {
     display:none;
@@ -4294,9 +4295,6 @@ th.colorstart{
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     
 }
-
-
-
 #checkbox{
     margin-left: 36px;
 }
@@ -4326,9 +4324,6 @@ display: table-cell;
     
     width: 528px;
 }
-
-
-
 
 #contenedor {
     display: table;
