@@ -7,7 +7,7 @@
 - Exportables para la Vista Administrar Codigo de Posicion
 - Vistas de Administar Codigo de Posicion, Division y Cargo 
 - Formulario para Generar Codigo de Posicion
-- validación para cambio de contraseña (contraseña nueva <> confirmar contraseña)
+- Corregida validación para cambio de contraseña (contraseña nueva <> confirmar contraseña)
 
 ##Realese 1.1.2
 - Formato de numeros telefonicos (fijos y moviles) dependiendo del pais seleccionado y del codigo del pais.
