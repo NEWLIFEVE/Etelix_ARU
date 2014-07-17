@@ -264,6 +264,37 @@ $ARU.AJAX=(function()
             }
         });
     }
+    
+    
+    /**
+     * 
+     * 
+     */
+    
+     function excelCp(type,action, formulario, ids, idTable, name)
+    {
+        
+        $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                 setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
+                                             //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
+                 setTimeout('$("#complete").html("<h3>Archivo Excel Generado... !!</h3>");',1800 );
+                 setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+            }
+        });
+    }
+    
+    /**
+     * 
+     * 
+     */
+    
+    
+    
      return {
         sendEvent:sendEvent,
         sendPass:sendPass,
@@ -278,6 +309,7 @@ $ARU.AJAX=(function()
         employeeExist:employeeExist,
         leaderExist:leaderExist,
         ExistDependency:ExistDependency,
+        excelCp:excelCp,
         
     };
     

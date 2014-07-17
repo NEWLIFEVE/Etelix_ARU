@@ -1432,15 +1432,15 @@ $ARU.UI=(function(){
                 });
             
             if (ids!=''){
+                 //$ARU.AJAX.excelCp("GET", "/site/excel","ids="+ ids +"&name="+ name +"&table="+ idTable, ids, idTable,name );
+                    
                  var response = $.ajax({ type: "GET",   
                                     url: '/site/excel?ids='+ids+'&name='+name+"&table="+idTable,   
                                     async: true,
                                     success:  function (response) {
                                             //Abrimos una Ventana (sin recargarla pagina) al controlador "Site", que a su ves llama a la funcion actionExcel().
                                              setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
-
                                              //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
-                                             
                                              setTimeout('$("#complete").html("<h3>Archivo Excel Generado... !!</h3>");',1800 );
                                              setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                                     }
@@ -1486,9 +1486,7 @@ $ARU.UI=(function(){
                                     url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
                                     async: true,
                                     beforeSend: function () {
-                                            //window.open('/site/sendemail?ids='+ids+'&name=Balance%20Cabinas','_top');
-//                                            $("#nombreContenedor").css("display", "inline");
-//                                            $("#loading").css("display", "inline");
+
                                     },
                                     success:  function (response) {
                                             
@@ -1496,8 +1494,6 @@ $ARU.UI=(function(){
                                              setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                                     }
                                   });
-                        
-                        
                       }
                       
                       else {
