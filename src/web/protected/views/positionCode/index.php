@@ -21,7 +21,7 @@
          </div>
 <div class="row">
             <div class="col-md-12">
-               <div class="portlet box blue" id="form_wizard_1">
+               <div class="portlet box blue" id="form_wizard_12">
                   <div class="portlet-title">
                      <div class="caption">
                         <i class="icon-reorder"></i> Crear Código de Posición- <span class="step-title">Paso 1 de 2</span>

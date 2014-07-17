@@ -47,6 +47,7 @@
                                <?php foreach($model as $value){
                                    $positionEmployee="
                                            <tr>
+                                               <td class='ocultar'>".$value->idEmployee->id."</td>
                                                <td>".$value->idEmployee->first_name."</td>
                                                <td>".$value->idEmployee->last_name."</td>
                                                <td>".$value->idDivision->name."</td>
