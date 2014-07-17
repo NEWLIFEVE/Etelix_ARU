@@ -47,6 +47,7 @@ class EmployeeController extends Controller
     public function actionInfoEmployee() 
     {
         $Employee=Employee::getEmployee(Yii::app()->user->id);
+       
         if(is_null($Employee))
         {
             $Employee = new Employee;
@@ -59,6 +60,7 @@ class EmployeeController extends Controller
 
         if(isset($_POST['Employee']))
         {
+            
             $Employee->attributes = $_POST['Employee'];
             if($Employee->save())
             {
@@ -230,10 +232,48 @@ class EmployeeController extends Controller
         }
     }
     
+    /*
+     * vista para actualizar los datos de numeros de telefonos para empleados
+     * 
+     */
+    
+    
+    public function actionUpdatePhone()
+      {
+         $model=new Employee;
+         $Address= new Address;
+       
+             if(isset($_POST['Employee'])){
+                 $model=Employee::getEmployee(Yii::app()->user->id);
+                 $model->attributes = $_POST['Employee'];
+                  Users::updateStatus(Yii::app()->user->id);
+                  if($model->save())
+                    {
+                       $this->redirect(array('infoEmployee', 'id' => $model->id));
+                    }
+             }
+             
+       
+         
+         
+         $this->render('UpdatePhone',array('model'=>$model, 'address'=>$Address));
+            
+       
+        
+      }
+
+
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * 
-     * funcion de prueba para armar la primera vista del usuario
+     * Vista de carga de datos basicos del empleado con estatus 3
      */
     public function actionFirstView()
     {    
@@ -294,14 +334,15 @@ class EmployeeController extends Controller
                 }
             }
         }
-              
-              
           }
           
-          else{
-             
-             $Address=Address::employee(AddressEmployee::loadAddressByEmployee($model->id)->id_address);
-        
+          else{   
+                $addressModel = AddressEmployee::loadAddressByEmployee($model->id);
+                if(is_null($addressModel))
+                    $Address = new Address;
+                else
+                    $Address=Address::employee($addressModel->id_address);
+                
                 if(isset($_POST['Employee']))
                 {
                     $model->id_nationality=$_POST['Employee']['nationality'];
@@ -397,6 +438,7 @@ class EmployeeController extends Controller
                             'email_personal'=>$model->email_personal,
                             'email_company'=>$model->email_company,
                             'cellphone'=>$model->cellphone,
+                            'skype'=>$model->skype,
                             'homephone'=>$model->home_phone,
                             'extension_numeric'=>$model->extension_numeric,
                             'nationality'=>$model->idNationality->name,
@@ -453,6 +495,14 @@ class EmployeeController extends Controller
          $controllers= Controllers::getControllers();
          $this->render('AdminPermit',array('model'=>$model, 'controllers'=>$controllers,'rol'=>$rol,'idrol'=>$idrol));
      }
+     
+     
+       public function actionCodePosition()
+    {
+
+            $this->render('CodePosition');
+
+    }
     
     
 }
