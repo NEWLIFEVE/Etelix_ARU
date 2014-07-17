@@ -387,7 +387,16 @@ class EmployeeController extends Controller
 //        $search=  Employee::getIdEmployee();
 //        if ($search!=null)
 //        {
-            $this->render('SearchEmployee');
+        
+        $filtroactivo= Employee::getfiltro("active");
+        $filtroinactivo= Employee::getfiltro("inactive");
+        $hourdeclare= Employee::getHourEvent();
+        
+        $this->render('SearchEmployee',array('filtroactivo'=>$filtroactivo,
+                                             'filtroinactivo'=>$filtroinactivo,
+                                             'hourdeclare'=>$hourdeclare));
+        
+        
 //            $this->render('SearchEmployee', array('search'=>$search));
 //        }
 //        else

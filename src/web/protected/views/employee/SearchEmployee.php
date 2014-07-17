@@ -38,7 +38,7 @@
                                   <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
-                                  <?php $filtroactivo= Employee::getfiltro("active"); ?>
+                                  <?php // $filtroactivo= Employee::getfiltro("active"); ?>
                                   <?php if ($filtroactivo!=NULL){ 
 
                                             foreach ($filtroactivo as $value) {
@@ -76,7 +76,7 @@
                                  <?php echo  $opciones=  Employee::createOption(Yii::app()->user->getState('rol')); ?>
                               </thead>
                               <tbody>
-                                  <?php  $filtroinactivo= Employee::getfiltro("inactive");?>
+                                  <?php //  $filtroinactivo= Employee::getfiltro("inactive");?>
                                 <?php if ($filtroinactivo!=NULL){ 
                                       
                                       
@@ -125,7 +125,7 @@
                               
                               
                               <tbody>
-                                  <?php $hourdeclare= Employee::getHourEvent(); ?>
+                                  <?php // $hourdeclare= Employee::getHourEvent(); ?>
                                  <?php  foreach ($hourdeclare as $value)
                                     
                                      {?>

@@ -259,9 +259,9 @@ class Employee extends CActiveRecord
          * @return type
          */
         public function getHourEvent()
-            {
-               return self::model()->findAllBySql("select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name");
-            }
+        {
+           return self::model()->findAllBySql("select e.* from employee e, users u where u.id_employee = e.id and u.id_status NOT IN(2,3) ORDER BY e.first_name");
+        }
         
         /**
          * funcion para crear los encabezados de las tablas activos e inactivos
