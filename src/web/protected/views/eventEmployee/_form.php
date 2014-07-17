@@ -111,7 +111,7 @@ for($i=1;$i<5;$i++)
                     <div class="form-actions fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-offset-3 col-md-9">
+                                <div class="col-md-offset-3 col-md-12">
                                     <a id="declare" class="btn blue btdeclare centrar_botones" data-toggle="modal" href="#responsive">
                                         Declarar
                                     </a>
