@@ -16,9 +16,9 @@ class Reports extends CApplicationComponent
      * @return string
      */
     
-    public function adminPrositionCode($day,$name,$dir)
+    public function adminPositionCode($day,$name,$dir)
     {
-        $var=  adminPrositionCode::report($day,$name,$dir);
+        $var=  adminPositionCode::report($day,$name,$dir);
         return $var;
     }
 

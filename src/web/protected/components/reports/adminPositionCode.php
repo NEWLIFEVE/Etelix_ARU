@@ -3,7 +3,7 @@
     /**
      * @package reportes
      */
-    class adminPrositionCode extends Reportes 
+    class adminPositionCode extends Reports 
     {
         public static function report($ids,$name,$type) 
         {

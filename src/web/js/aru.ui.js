@@ -1419,6 +1419,45 @@ $ARU.UI=(function(){
         
         function _genExcel(){
             
+            $('a.botonExcel').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+            { 
+             
+           var ids = new Array();//Creamos un Array como contenedor de los ids. 
+           var idTable= $('table').attr('id');
+           var name=genNameFile(idTable);
+         
+          $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                            ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
+                });
+            
+            if (ids!=''){
+                
+                 var response = $.ajax({ type: "GET",   
+                                    url: '/site/excel?ids='+ids+'&name='+name+"&table="+idTable,   
+                                    async: true,
+                                    success:  function (response) {
+                                            //Abrimos una Ventana (sin recargarla pagina) al controlador "Site", que a su ves llama a la funcion actionExcel().
+                                             setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
+
+                                             //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
+                                             $("#complete").html("Archivo Excel Generado... !!");
+                                             setTimeout('$("#complete").css("display", "inline");', 1000);
+                                             setTimeout('$("#loading").css("display", "none");', 1000); 
+                                             setTimeout('$("#nombreContenedor").animate({ opacity: "hide" }, "slow");', 1800);
+                                             setTimeout('$("#complete").animate({ opacity: "hide" }, "slow");', 1800);
+                                    }
+                                  }).responseText;
+               
+            }
+            
+            else{
+                console.log ("no hay datos");
+            }
+            
+            
+            
+            });
+            
         }
         
         /**
@@ -1426,6 +1465,50 @@ $ARU.UI=(function(){
          */
         
         function _genEmail(){
+            
+             $('a.botonCorreo').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+             {
+                 
+                    var ids = new Array();//Creamos un Array como contenedor de los ids. 
+                    var idTable= $('table').attr('id');
+                    var name=genNameFile(idTable);
+                    
+                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                            ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
+                        });
+                        
+                      if (ids!='')
+                      {
+                        
+                        $.ajax({ 
+                                    type: "GET",   
+                                    url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
+                                    async: true,
+                                    beforeSend: function () {
+                                            //window.open('/site/sendemail?ids='+ids+'&name=Balance%20Cabinas','_top');
+//                                            $("#nombreContenedor").css("display", "inline");
+//                                            $("#loading").css("display", "inline");
+                                    },
+                                    success:  function (response) {
+                                            $("#nombreContenedor").css("display", "NONE");
+                                            $("#loading").css("display", "NONE");
+                                            $("#complete").html("Correo Enviado con Exito... !!");
+                                            $("#nombreContenedor").css("display", "inline");
+                                            $("#complete").css("display", "inline");
+                                            setTimeout('$("#nombreContenedor").animate({ opacity: "hide" }, "slow");', 1800);
+                                            setTimeout('$("#complete").animate({ opacity: "hide" }, "slow");', 1800);
+                                    }
+                                  });
+                        
+                        
+                      }
+                      
+                      else {
+                          console.log("no hay datos");
+                          
+                      }
+                 
+             });
             
         }
         
@@ -1437,6 +1520,25 @@ $ARU.UI=(function(){
             
         }
         
+        
+        /**
+         * Titulos para los reportes
+         */
+        
+        
+         function genNameFile(idTable){
+             var name = '';
+             switch(idTable){
+                case 'adminPositionCode':
+                      name = 'ARU Administrar Codigo de Posición';
+                break;
+            }
+             
+            
+             return name;
+                }
+         
+        
     return {
         init:init,
         successPass:successPass,
@@ -1447,6 +1549,7 @@ $ARU.UI=(function(){
         createDivision:createDivision,
         createCargo:createCargo,
         viewPositionCode:viewPositionCode,
+        genNameFile:genNameFile,
         
     };
 })();
