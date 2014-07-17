@@ -1432,15 +1432,15 @@ $ARU.UI=(function(){
                 });
             
             if (ids!=''){
+                 //$ARU.AJAX.excelCp("GET", "/site/excel","ids="+ ids +"&name="+ name +"&table="+ idTable, ids, idTable,name );
+                    
                  var response = $.ajax({ type: "GET",   
                                     url: '/site/excel?ids='+ids+'&name='+name+"&table="+idTable,   
                                     async: true,
                                     success:  function (response) {
                                             //Abrimos una Ventana (sin recargarla pagina) al controlador "Site", que a su ves llama a la funcion actionExcel().
                                              setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
-
                                              //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
-                                             
                                              setTimeout('$("#complete").html("<h3>Archivo Excel Generado... !!</h3>");',1800 );
                                              setTimeout('$("#administrarPosicion").modal("hide");',2500 );
                                     }
@@ -1467,6 +1467,7 @@ $ARU.UI=(function(){
             
              $('a.botonCorreo').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
              {
+                
                  $("#complete").html("<h3>Enviando Correo... !!</h3>");   
                  $('#administrarPosicion').modal('show');
                  
@@ -1480,24 +1481,20 @@ $ARU.UI=(function(){
                         
                       if (ids!='')
                       {
-                        
-                        console.log(ids);
-                        $.ajax({ 
-                                    type: "GET",   
-                                    url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
-                                    async: false,
-                                    beforeSend: function () {
-                                            
-                                    },
-                                    success:  function (response) {
-                                             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
-                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
-                                    }
-                                  });
-                        
-                        
+                          $ARU.AJAX.emailCp("GET", "/site/sendemail","ids="+ ids +"&name="+ name +"&table="+ idTable);
+                  
+                          
+//                        $.ajax({ 
+//                                    type: "GET",   
+//                                    url: '/site/sendemail?ids='+ids+'&name='+name+"&table="+idTable,   
+//                                    async: false,
+//                                    success:  function (response) {
+////                                             setTimeout('$("#complete").html("<h3>Correo Enviado con Exito... !!</h3>");',1800 );
+////                                             setTimeout('$("#administrarPosicion").modal("hide");',2500 );
+//                                    }
+//                                  });
                       }
-                      
+//                      
                       else {
                         
                         $("#complete").removeClass("verde"); 
