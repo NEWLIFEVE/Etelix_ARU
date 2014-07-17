@@ -32,7 +32,7 @@
                         <table class="table table-bordered table-striped table-condensed flip-content">
                            <thead class="flip-content">
                               <tr>
-                                  <th class="fondotablesgris">Nombre</th>
+                                 <th class="fondotablesgris">Nombre</th>
                                  <th class="fondotablesgris">Apellido</th>
                                  <th class="fondotablesgris">División</th>
                                  <th class="fondotablesgris">Dependencia</th>
@@ -40,7 +40,6 @@
                                  <th class="fondotablesgris">Código de Posición</th>
                                  <th class="fondotablesgris">Fecha de Inicio</th>
                                  <th class="fondotablesgris">Fecha Fin</th>
-                                
                               </tr>
                            </thead>
                            <tbody>

@@ -303,7 +303,7 @@ class SiteController extends Controller
             if($_GET['table']=='adminPositionCode')
             {
                 $files['positionCode']['name']=$_GET['name'];
-                $files['positionCode']['body']=Yii::app()->report->balanceAdmin($_GET['fechas'],$_GET['cabinas'],$_GET['name'],true);
+                $files['positionCode']['body']=Yii::app()->report->adminPrositionCode($_GET['ids'],$_GET['name'],true);
             }
 
             foreach($files as $key => $file)

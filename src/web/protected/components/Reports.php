@@ -16,9 +16,9 @@ class Reports extends CApplicationComponent
      * @return string
      */
     
-    public function balanceAdmin($day,$name,$dir)
+    public function adminPrositionCode($day,$name,$dir)
     {
-        $var=  balanceAdmin::reporte($day,$name,$dir);
+        $var=  adminPrositionCode::report($day,$name,$dir);
         return $var;
     }
 
