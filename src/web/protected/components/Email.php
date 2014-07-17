@@ -21,12 +21,14 @@ class Email extends CFormatter
             $mailer->FromName = 'ARU';
             $mailer->CharSet = 'UTF-8';
             $mailer->Subject = Yii::t('', $topic);
-            if($dir!=null)
+            if($dir!=null){
                 $mailer->AddAttachment($dir);
+            }    
             $message = $html;
             $mailer->Body = $message;
-            if($mailer->Send() && $dir!=null)
+            if($mailer->Send() && $dir!=null){
                 unlink($dir);
+            }    
         }
     }
 }
