@@ -20,6 +20,7 @@
             $styleBody = "padding: 5px;"
                             . "line-height: 1.428571429;"
                             . "vertical-align: top;"
+                            . "font-size: 12px;"
                             . "border-top: 1px solid #ddd;"
                             . "text-align: left;"
                             . "border: 1px solid #ddd;"
@@ -50,11 +51,11 @@
                                    <td style='$styleBody'>".self::formatText($registro->idEmployee->first_name)."</td>
                                    <td style='$styleBody'>".self::formatText($registro->idEmployee->last_name)."</td>
                                    <td style='$styleBody'>".self::formatText($registro->idDivision->name)."</td>
-                                   <td style='$styleBody'>".self::formatText(Division::getNameDivision($registro->id_dependency))."&nbsp</td>    
+                                   <td style='$styleBody'>".self::formatText(Division::getNameDivision($registro->id_dependency))."</td>    
                                    <td style='$styleBody'>".self::formatText($registro->idPosition->name)."</td>
                                    <td style='$styleBody'>".$registro->position_code."</td>
                                    <td style='$styleBody'>".$registro->start_date."</td>
-                                   <td style='$styleBody'>".$registro->end_date."&nbsp</td>
+                                   <td style='$styleBody'>".$registro->end_date."</td>
                                 </tr>";
 
                 }

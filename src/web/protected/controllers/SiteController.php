@@ -315,7 +315,7 @@ class SiteController extends Controller
         
         public function actionSendEmail()
         {
-            $correo='pnfiuty.rramirez@gmail.com';
+            $correo=  UserIdentity::getEmail();
             $topic=$_GET['name'];    
             $files=array();
             if($_GET['table']=='adminPositionCode')
@@ -337,9 +337,7 @@ class SiteController extends Controller
         { 
             if($_GET['table']=='adminPositionCode')
             {
-
                 echo Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
-
             }
         }    
            
