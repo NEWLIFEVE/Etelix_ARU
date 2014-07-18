@@ -308,7 +308,11 @@ $ARU.UI=(function(){
                        $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo'); 
                        $('.alert-danger').css('display', 'block'); 
                        return false;
-                    }else{
+                    }else if(employee!='false' && employee!='true'){   
+                       $('.alert-danger').html('Debe Seleccionar una Fecha Mayor a '+employee); 
+                       $('.alert-danger').css('display', 'block'); 
+                       return false;
+                    }else if(employee=='false'){
                         
                          if ((new_division !="") && (id_dependencia != "") && (new_position !="")){
                             
