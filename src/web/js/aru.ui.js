@@ -1436,7 +1436,6 @@ $ARU.UI=(function(){
           $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                 });
-            alert(idTable);
             if (ids!=''){
                  //$ARU.AJAX.excelCp("GET", "/site/excel","ids="+ ids +"&name="+ name +"&table="+ idTable, ids, idTable,name );
                     
