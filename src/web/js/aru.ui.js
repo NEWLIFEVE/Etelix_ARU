@@ -311,7 +311,11 @@ $ARU.UI=(function(){
                        $('.alert-danger').html('El Empleado ya Existe y aún se Encuentra Activo'); 
                        $('.alert-danger').css('display', 'block'); 
                        return false;
-                    }else{
+                    }else if(employee!='false' && employee!='true'){   
+                       $('.alert-danger').html('Debe Seleccionar una Fecha Mayor a '+employee); 
+                       $('.alert-danger').css('display', 'block'); 
+                       return false;
+                    }else if(employee=='false'){
                         
                          if ((new_division !="") && (id_dependencia != "") && (new_position !="")){
                             
@@ -1426,13 +1430,13 @@ $ARU.UI=(function(){
              $('#administrarPosicion').modal('show');    
              
            var ids = new Array();//Creamos un Array como contenedor de los ids. 
-           var idTable= $('table').attr('id');
+           var idTable= $('div.tab-content div.active table').attr('id');
            var name=genNameFile(idTable);
          
-          $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+          $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                 });
-            
+            alert(idTable);
             if (ids!=''){
                  //$ARU.AJAX.excelCp("GET", "/site/excel","ids="+ ids +"&name="+ name +"&table="+ idTable, ids, idTable,name );
                     
@@ -1474,10 +1478,10 @@ $ARU.UI=(function(){
                  $('#administrarPosicion').modal('show');
                  
                     var ids = new Array();//Creamos un Array como contenedor de los ids. 
-                    var idTable= $('table').attr('id');
+                    var idTable= $('div.tab-content div.active table').attr('id');
                     var name=genNameFile(idTable);
                     
-                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                     $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                         });
                         
@@ -1519,10 +1523,10 @@ $ARU.UI=(function(){
              {
                  
                     var ids = new Array();//Creamos un Array como contenedor de los ids. 
-                    var idTable= $('table').attr('id');
+                    var idTable= $('div.tab-content div.active table').attr('id');
                     var name=genNameFile(idTable);
                     
-                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                     $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                         });
                         
@@ -1581,7 +1585,10 @@ $ARU.UI=(function(){
              var name = '';
              switch(idTable){
                 case 'adminPositionCode':
-                      name = 'ARU Administrar Código de Posición';
+                      name = 'ARU Administrar Código de Posición Activos';
+                break;
+                case 'adminPositionCodeInactives':
+                      name = 'ARU Administrar Código de Posición Inactivos';
                 break;
             }
              return name;

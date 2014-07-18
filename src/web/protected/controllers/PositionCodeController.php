@@ -77,20 +77,20 @@ class PositionCodeController extends Controller
     public function actionAdminPositionCode(){
         
         $modelPositionCodeActives = PositionCode::model()->findAllBySql("SELECT pc.id, pc.position_code, pc.id_position, pc.id_division, d.id_dependency, pc.id_employee, pc.start_date, pc.end_date
-                                                            FROM position_code pc
-                                                            INNER JOIN division as d ON d.id = pc.id_division
-                                                            INNER JOIN position as p ON p.id = pc.id_position
-                                                            INNER JOIN employee as e ON e.id = pc.id_employee
-                                                            WHERE pc.end_date IS NULL
-                                                            ORDER BY pc.position_code ASC;");
+                                                                         FROM position_code pc
+                                                                         INNER JOIN division as d ON d.id = pc.id_division
+                                                                         INNER JOIN position as p ON p.id = pc.id_position
+                                                                         INNER JOIN employee as e ON e.id = pc.id_employee
+                                                                         WHERE pc.end_date IS NULL
+                                                                         ORDER BY pc.position_code ASC;");
         
         $modelPositionCodeInactives = PositionCode::model()->findAllBySql("SELECT pc.id, pc.position_code, pc.id_position, pc.id_division, d.id_dependency, pc.id_employee, pc.start_date, pc.end_date
-                                                            FROM position_code pc
-                                                            INNER JOIN division as d ON d.id = pc.id_division
-                                                            INNER JOIN position as p ON p.id = pc.id_position
-                                                            INNER JOIN employee as e ON e.id = pc.id_employee
-                                                            WHERE pc.end_date IS NOT NULL
-                                                            ORDER BY pc.position_code ASC;");
+                                                                           FROM position_code pc
+                                                                           INNER JOIN division as d ON d.id = pc.id_division
+                                                                           INNER JOIN position as p ON p.id = pc.id_position
+                                                                           INNER JOIN employee as e ON e.id = pc.id_employee
+                                                                           WHERE pc.end_date IS NOT NULL
+                                                                           ORDER BY pc.position_code ASC;");
       
         $this->render('AdminPc',array('modelPositionCodeActives'=>$modelPositionCodeActives,
                                       'modelPositionCodeInactives'=>$modelPositionCodeInactives));
@@ -120,7 +120,8 @@ class PositionCodeController extends Controller
                     INNER JOIN division as d ON d.id = pc.id_division
                     INNER JOIN position as p ON p.id = pc.id_position
                     WHERE pc.id_division $comparador $dependecy
-                    AND p.leader = 1;";
+                    AND p.leader = 1
+                    AND pc.end_date IS NULL;";
                 
             }elseif($levelPosition == 0){
 
@@ -129,7 +130,8 @@ class PositionCodeController extends Controller
                     INNER JOIN division as d ON d.id = pc.id_division
                     INNER JOIN position as p ON p.id = pc.id_position
                     WHERE pc.id_division = $division
-                    AND p.leader = 1;";
+                    AND p.leader = 1
+                    AND pc.end_date IS NULL;";
             }
 
             $modelStart = PositionCode::model()->findBySql($sql);
@@ -239,7 +241,7 @@ class PositionCodeController extends Controller
         $employee = $_GET['id_employee'];
         $startDate = date('Y-m-d',  strtotime($_GET['start_date']));
 
-        $modelEmployeeExist = PositionCode::model()->find("id_employee = $employee");
+        $modelEmployeeExist = PositionCode::model()->findBySql("SELECT * FROM position_code WHERE id_employee = $employee ORDER BY start_date DESC LIMIT 1;");
         $modelEmployee = Employee::model()->find("id = $employee");
         
         if($modelEmployeeExist == NULL){
@@ -253,8 +255,8 @@ class PositionCodeController extends Controller
                 }else{
                     echo json_encode(true);
                 }
-            }elseif($endDate != NULL && $startDate < $endDate){
-                echo json_encode(true);
+            }elseif($endDate != NULL && $startDate <= $endDate){
+                echo json_encode($endDate);
             }elseif($endDate != NULL && $startDate > $endDate){
                 echo json_encode(false);
             }
@@ -388,7 +390,29 @@ class PositionCodeController extends Controller
                 echo json_encode(false);
             }
         }
+    }
+    
+    public function actionSetEmployeeVacant() {
+        $employee = $_GET['id_employee'];
+        $division = $_GET['id_division'];
+        $position = $_GET['id_position'];
 
+        $modelEmployeeExist = PositionCode::model()->find("id_division = $division 
+                                                           AND id_position = $position 
+                                                           AND id_employee = $employee 
+                                                           AND end_date IS NULL");
+        $modelEmployeeVacant = Employee::model()->find("first_name = 'Vacante'")->id;
+        
+        if($modelEmployeeExist == NULL){
+            echo json_encode(false);
+        }else{
+            $modelEmployeeExist->id_employee = $modelEmployeeVacant;
+            if($modelEmployeeExist->save()){
+                echo json_encode(true);
+            }else{
+                echo json_encode(false);
+            }
+        }
     }
     
     

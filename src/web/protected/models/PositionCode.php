@@ -142,7 +142,14 @@ class PositionCode extends CActiveRecord
             $dateFormat = date('Y-m-d',  strtotime($startDate));
             $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($dateFormat)));  
             
-            $modelVacantPositionCode = self::model()->find("id_division = $idDivision AND id_position = $idPosition AND position_code = '$positionCode' AND id_employee = 189");
+            $modelVacantPositionCode = self::model()->findBySql("SELECT * FROM position_code as pc
+                                                                INNER JOIN division as d ON d.id = pc.id_division
+                                                                INNER JOIN position as p ON p.id = pc.id_position
+                                                                INNER JOIN employee as e ON e.id = pc.id_employee
+                                                                WHERE id_division = $idDivision 
+                                                                AND pc.id_position = $idPosition 
+                                                                AND pc.position_code = '$positionCode' 
+                                                                AND e.first_name = 'Vacante';");
             $modelEmployee = Employee::model()->find("id = $idEmployee");
             
             
