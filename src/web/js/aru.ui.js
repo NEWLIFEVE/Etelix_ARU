@@ -25,6 +25,7 @@ $ARU.UI=(function(){
         _genExcel();
         _genEmail();
         _genPrint();
+        _deleteCp();
     }
     
       var result=(location.pathname).split('/');
@@ -1396,12 +1397,9 @@ $ARU.UI=(function(){
             $('div#newid').html(result);
         }
         
-        
-        
         /**
          * funcion para cargar mensajes de cracion de cargos nuevos en la organizacion
          */
-        
         
          function createCargo(result)
         {
@@ -1584,11 +1582,23 @@ $ARU.UI=(function(){
                       name = 'ARU Administrar Código de Posición';
                 break;
             }
-             
-            
              return name;
                 }
+                
+         /**
+          * 
+          * 
+          */
          
+         function _deleteCp(){
+             $('a#deleteCp').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+             {
+                   var id=($(this).find('div#id_employ').text());
+                   $ARU.AJAX.searchEmployee("GET","/PositionCode/SetEndDate","id_employee="+id);
+             });
+             
+             
+         }
         
     return {
         init:init,

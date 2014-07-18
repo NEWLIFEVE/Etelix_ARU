@@ -54,6 +54,7 @@
                                  <th class="fondotablesgris">Código de Posición</th>
                                  <th class="fondotablesgris">Fecha de Inicio</th>
                                  <th class="fondotablesgris">Fecha Fin</th>
+                                 <th class="fondotablesgris"></th>
                               </tr>
                            </thead>
                            <tbody>
@@ -69,6 +70,7 @@
                                                <td>".$value->position_code."</td>
                                                <td>".$value->start_date."</td>
                                                <td>".$value->end_date."&nbsp</td>
+                                               <td> <a href='#' id='deleteCp'><div id='id_employ' style='display:none;'>$value->id_employee</div><i class='icon-trash'></i></a></td>
                                             </tr>
                                            ";                               
                                    echo $positionEmployee ;
