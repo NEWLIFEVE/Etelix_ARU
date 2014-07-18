@@ -384,16 +384,60 @@ class EmployeeController extends Controller
     
     public function actionSearchEmployee()
     {
-//        $search=  Employee::getIdEmployee();
-//        if ($search!=null)
-//        {
-            $this->render('SearchEmployee');
-//            $this->render('SearchEmployee', array('search'=>$search));
-//        }
-//        else
-//        {
-//            return false;
-//        }
+        $filtroactivo= Employee::getfiltro("active");
+        $filtroinactivo= Employee::getfiltro("inactive");
+        $hourdeclare= Employee::getHourEvent();
+        $employeeActive = '';
+        $employeeInactive = '';
+        
+        if ($filtroactivo!=NULL){ 
+
+            foreach ($filtroactivo as $value) {
+             if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+
+                         $status=EventEmployee::getSearchStatus($value->id);
+                         $estilo=EventEmployee::getStilo($status['id_type_event']);
+                         if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
+             $employeeActive.="
+                     <tr>
+                     <td><img class='sizephotoemployee' src='/$photoemployee'></td>
+                     <td>$value->first_name</td>  
+                     <td>$value->last_name</td>
+                     <td><span class='label label-sm $estilo' > $status[name]</span></td>
+                     <td>$opc</td>
+                     </tr>
+                     ";
+             } 
+
+        }
+        
+        if ($filtroinactivo!=NULL){ 
+        
+          foreach ($filtroinactivo as $value) {
+               if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+
+                           $status=EventEmployee::getSearchStatus($value->id);
+                           $estilo=EventEmployee::getStilo($status['id_type_event']);
+                           if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
+               $employeeInactive.="
+                       <tr>
+                       <td><img class='sizephotoemployee' src='/$photoemployee'></td>
+                       <td>$value->first_name</td>  
+                       <td>$value->last_name</td>
+                       <td><span class='label label-sm $estilo' > $status[name]</span></td>
+                       <td>$opc</td>
+                       </tr>
+                       ";
+          } 
+           
+        }
+
+        $this->render('SearchEmployee',array('filtroactivo'=>$filtroactivo,
+                                             'filtroinactivo'=>$filtroinactivo,
+                                             'hourdeclare'=>$hourdeclare,
+                                             'employeeActive'=>$employeeActive,
+                                             'employeeInactive'=>$employeeInactive));
+
     }
     
     public function actionDynamicEmployee()

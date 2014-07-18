@@ -76,14 +76,24 @@ class PositionCodeController extends Controller
 
     public function actionAdminPositionCode(){
         
-        $positionCode = PositionCode::model()->findAllBySql("SELECT pc.id, pc.position_code, pc.id_position, pc.id_division, d.id_dependency, pc.id_employee, pc.start_date, pc.end_date
+        $modelPositionCodeActives = PositionCode::model()->findAllBySql("SELECT pc.id, pc.position_code, pc.id_position, pc.id_division, d.id_dependency, pc.id_employee, pc.start_date, pc.end_date
                                                             FROM position_code pc
                                                             INNER JOIN division as d ON d.id = pc.id_division
                                                             INNER JOIN position as p ON p.id = pc.id_position
                                                             INNER JOIN employee as e ON e.id = pc.id_employee
+                                                            WHERE pc.end_date IS NULL
+                                                            ORDER BY pc.position_code ASC;");
+        
+        $modelPositionCodeInactives = PositionCode::model()->findAllBySql("SELECT pc.id, pc.position_code, pc.id_position, pc.id_division, d.id_dependency, pc.id_employee, pc.start_date, pc.end_date
+                                                            FROM position_code pc
+                                                            INNER JOIN division as d ON d.id = pc.id_division
+                                                            INNER JOIN position as p ON p.id = pc.id_position
+                                                            INNER JOIN employee as e ON e.id = pc.id_employee
+                                                            WHERE pc.end_date IS NOT NULL
                                                             ORDER BY pc.position_code ASC;");
       
-        $this->render('AdminPc',array('model'=>$positionCode));
+        $this->render('AdminPc',array('modelPositionCodeActives'=>$modelPositionCodeActives,
+                                      'modelPositionCodeInactives'=>$modelPositionCodeInactives));
     }
     
     public function actionGetPositionCode()
@@ -359,10 +369,28 @@ class PositionCodeController extends Controller
                 echo json_encode(true);
             }
         }
-        
-        
-        
-        
+
     }
+    
+    public function actionSetEndDate() {
+        $employee = $_GET['id_employee'];
+        $endDate = date('Y-m-d');
+
+        $modelEmployeeExist = PositionCode::model()->find("id_employee = $employee");
+        
+        if($modelEmployeeExist == NULL){
+            echo json_encode(false);
+        }else{
+            $modelEmployeeExist->end_date = $endDate;
+            if($modelEmployeeExist->save()){
+                echo json_encode(true);
+            }else{
+                echo json_encode(false);
+            }
+        }
+
+    }
+    
+    
     
 }
