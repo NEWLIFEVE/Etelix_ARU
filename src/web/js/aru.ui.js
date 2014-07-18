@@ -1433,7 +1433,7 @@ $ARU.UI=(function(){
            var idTable= $('table').attr('id');
            var name=genNameFile(idTable);
          
-          $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+          $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                 });
             
@@ -1481,7 +1481,7 @@ $ARU.UI=(function(){
                     var idTable= $('table').attr('id');
                     var name=genNameFile(idTable);
                     
-                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                     $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                         });
                         
@@ -1526,7 +1526,7 @@ $ARU.UI=(function(){
                     var idTable= $('table').attr('id');
                     var name=genNameFile(idTable);
                     
-                     $("#"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
+                     $("div.tab-content div.active #"+idTable+" td#ids").each(function(index){ //Con esta funcion de jquery recorremis la columna (oculta) de los ids.
                             ids[index]=$(this).text(); //incluimos los ids de la columna en el array.
                         });
                         
@@ -1585,7 +1585,10 @@ $ARU.UI=(function(){
              var name = '';
              switch(idTable){
                 case 'adminPositionCode':
-                      name = 'ARU Administrar Código de Posición';
+                      name = 'ARU Administrar Código de Posición Activos';
+                break;
+                case 'adminPositionCodeInactives':
+                      name = 'ARU Administrar Código de Posición Inactivos';
                 break;
             }
              return name;

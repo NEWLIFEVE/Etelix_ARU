@@ -316,7 +316,7 @@ class SiteController extends Controller
         public function actionExcel()
         {
             $files=array();
-            if($_GET['table']=='adminPositionCode')
+            if($_GET['table']=='adminPositionCode' || $_GET['table']=='adminPositionCodeInactives')
             {
                 $files['positionCode']['name']=$_GET['name'];
                 $files['positionCode']['body']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],true);
@@ -333,7 +333,7 @@ class SiteController extends Controller
             $correo=  UserIdentity::getEmail();
             $topic=$_GET['name'];    
             $files=array();
-            if($_GET['table']=='adminPositionCode')
+            if($_GET['table']=='adminPositionCode' || $_GET['table']=='adminPositionCodeInactives')
             {
                 $files['positionCode']['name']=$_GET['name'];
                 $files['positionCode']['body']=Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
@@ -350,7 +350,7 @@ class SiteController extends Controller
         
         public function actionPrint()
         { 
-            if($_GET['table']=='adminPositionCode')
+            if($_GET['table']=='adminPositionCode' || $_GET['table']=='adminPositionCodeInactives')
             {
                 echo Yii::app()->report->adminPositionCode($_GET['ids'],$_GET['name'],false);
             }
