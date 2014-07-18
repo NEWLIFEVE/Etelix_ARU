@@ -416,7 +416,6 @@ $ARU.UI=(function(){
                                         return false;
                                    }
                                }
-
                         }
                     }
                 }
