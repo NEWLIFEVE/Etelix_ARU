@@ -39,28 +39,28 @@
                               </thead>
                               <tbody>
                                   <?php // $filtroactivo= Employee::getfiltro("active"); ?>
-                                  <?php if ($filtroactivo!=NULL){ 
+                                  <?php // if ($filtroactivo!=NULL){ 
 
-                                            foreach ($filtroactivo as $value) {
-                                             if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+//                                            foreach ($filtroactivo as $value) {
+//                                             if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+//
+//                                                         $status=EventEmployee::getSearchStatus($value->id);
+//                                                         $estilo=EventEmployee::getStilo($status['id_type_event']);
+//                                                         if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
+//                                             $employee="
+//                                                     <tr>
+//                                                     <td><img class='sizephotoemployee' src='/$photoemployee'></td>
+//                                                     <td>$value->first_name</td>  
+//                                                     <td>$value->last_name</td>
+//                                                     <td><span class='label label-sm $estilo' > $status[name]</span></td>
+//                                                     <td>$opc</td>
+//                                                     </tr>
+//                                                     ";
+                                             echo $employeeActive;
 
-                                                         $status=EventEmployee::getSearchStatus($value->id);
-                                                         $estilo=EventEmployee::getStilo($status['id_type_event']);
-                                                         if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
-                                             $employee="
-                                                     <tr>
-                                                     <td><img class='sizephotoemployee' src='/$photoemployee'></td>
-                                                     <td>$value->first_name</td>  
-                                                     <td>$value->last_name</td>
-                                                     <td><span class='label label-sm $estilo' > $status[name]</span></td>
-                                                     <td>$opc</td>
-                                                     </tr>
-                                                     ";
-                                             echo $employee;
-
-                                             } 
-                                       
-                                       } ?>
+//                                             } 
+//                                       
+//                                       } ?>
                                   <?php //else { echo "vacio";} ?>
                               
                               </tbody>
@@ -77,28 +77,28 @@
                               </thead>
                               <tbody>
                                   <?php //  $filtroinactivo= Employee::getfiltro("inactive");?>
-                                <?php if ($filtroinactivo!=NULL){ 
+                                <?php // if ($filtroinactivo!=NULL){ 
                                       
                                       
-                                      foreach ($filtroinactivo as $value) {
-                                       if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
-
-                                                   $status=EventEmployee::getSearchStatus($value->id);
-                                                   $estilo=EventEmployee::getStilo($status['id_type_event']);
-                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
-                                       $employee="
-                                               <tr>
-                                               <td><img class='sizephotoemployee' src='/$photoemployee'></td>
-                                               <td>$value->first_name</td>  
-                                               <td>$value->last_name</td>
-                                               <td><span class='label label-sm $estilo' > $status[name]</span></td>
-                                               <td>$opc</td>
-                                               </tr>
-                                               ";
-                                       echo $employee;
+//                                      foreach ($filtroinactivo as $value) {
+//                                       if (is_null($value->image_rute)){ $photoemployee="themes/metronic/img/profile/profile.jpg";} else {$photoemployee=$value->image_rute;} 
+//
+//                                                   $status=EventEmployee::getSearchStatus($value->id);
+//                                                   $estilo=EventEmployee::getStilo($status['id_type_event']);
+//                                                   if (Yii::app()->user->getState('rol')==1){$opc="<a href='#' id='detalle' class='btn default btn-xs green-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Detalle</a>";} else { $opc="<a href='#' id='detalle' class='btn default btn-xs blue-stripe'><div id='id_employ' style='display:none;'>$value->id</div>Contactos</a>";}
+//                                       $employee="
+//                                               <tr>
+//                                               <td><img class='sizephotoemployee' src='/$photoemployee'></td>
+//                                               <td>$value->first_name</td>  
+//                                               <td>$value->last_name</td>
+//                                               <td><span class='label label-sm $estilo' > $status[name]</span></td>
+//                                               <td>$opc</td>
+//                                               </tr>
+//                                               ";
+                                       echo $employeeInactive;
                                        
                                        
-                                       } } ?>
+//                                       } } ?>
                             
                               
                               </tbody>
