@@ -57,7 +57,7 @@
                               </tr>
                            </thead>
                            <tbody>
-                               <?php foreach($model as $value){
+                               <?php foreach($modelPositionCodeActives as $value){
                                    $positionEmployee="
                                            <tr>
                                                <td class='ocultar' id='ids'>".$value->id."</td>

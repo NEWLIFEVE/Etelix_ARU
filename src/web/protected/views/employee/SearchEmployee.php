@@ -135,7 +135,7 @@
                                   <td><img class="sizephotoemployee" src="/<?php echo $photoemployee; ?>"></td>
                                   <td><?php echo $value->first_name; ?></td>
                                   <td><?php echo $value->last_name; ?></td>
-                                           <?php $hora=  EventEmployee::getEventosHoras($value->id) ;?>
+                                           <?php $hora=  EventEmployee::getEventosHoras($value->id);?>
                                            <?php foreach ($hora as $key=> $value){ ?>  
                                               <?php  if ($value['event']){} else{ echo "<td></td>";} ?>
                                               <?php  if ($value['event']==1)echo "<td>".$value['hour']."<span id='tablehourEvent'>   (".$value['date'].")</span></td>"; ?>
