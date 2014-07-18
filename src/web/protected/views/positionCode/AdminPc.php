@@ -32,7 +32,22 @@
             </div>
          </div>
 
-  <div class="portlet box blue">
+
+      <!-- END PAGE HEADER-->
+<div class="row">
+         
+            <div class="col-md-12">
+               <div class="tabbable tabbable-custom tabbable-full-width">
+                  <ul class="nav nav-tabs">
+                     <li class="active"><a data-toggle="tab" href="#tab_2_2">Activos</a></li>
+                     <li><a data-toggle="tab" href="#tab_1_3">Inactivos</a></li>
+                     <li><a data-toggle="tab" href="#tab_1_5"> </a></li>
+                  </ul>
+                  <div class="tab-content">
+                     <div id="tab_2_2" class="tab-pane active">
+                          <div class="table-responsive">
+                           
+                     <div class="portlet box blue">
                      <div class="portlet-title">
                         <div class="caption"><i class="icon-cogs"></i>Código de Posiciones </div>
                         <div class="tools">
@@ -78,7 +93,81 @@
                            </tbody>
                         </table>
                      </div>
+               </div>      
+                        </div>
+                     </div>
+                     <!--end tab-pane-->
+                     <div id="tab_1_3" class="tab-pane">
+                   
+                          <div class="table-responsive1111">
+                           <div class="portlet box blue">
+                     <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>Código de Posiciones </div>
+                        <div class="tools">
+                           <a href="javascript:;" class="collapse"></a>
+                           <!--<a href="#portlet-config" data-toggle="modal" class="config"></a>-->
+                           <a href="javascript:;" class="reload"></a>
+                           <a href="javascript:;" class="remove"></a>
+                        </div>
+                     </div>
+                     <div class="portlet-body flip-scroll">
+                        <table class="table table-bordered table-striped table-condensed flip-content" id="adminPositionCode" name="adminPositionCode">
+                           <thead class="flip-content">
+                              <tr>
+                                 <th class="fondotablesgris">Nombre</th>
+                                 <th class="fondotablesgris">Apellido</th>
+                                 <th class="fondotablesgris">División</th>
+                                 <th class="fondotablesgris">Dependencia</th>
+                                 <th class="fondotablesgris">Posición</th>
+                                 <th class="fondotablesgris">Código de Posición</th>
+                                 <th class="fondotablesgris">Fecha de Inicio</th>
+                                 <th class="fondotablesgris">Fecha de Fin</th>
+                                 
+                              </tr>
+                           </thead>
+                           <tbody>
+                               <?php foreach($modelPositionCodeInactives as $value){
+                                   $positionEmployee="
+                                           <tr>
+                                               <td class='ocultar' id='ids'>".$value->id."</td>
+                                               <td>".$value->idEmployee->first_name."</td>
+                                               <td>".$value->idEmployee->last_name."</td>
+                                               <td>".$value->idDivision->name."</td>
+                                               <td>".Division::getNameDivision($value->id_dependency)."&nbsp</td>    
+                                               <td>".$value->idPosition->name."</td>
+                                               <td>".$value->position_code."</td>
+                                               <td>".$value->start_date."</td>
+                                               <td>".$value->end_date."</td>
+                                            </tr>
+                                           ";                               
+                                   echo $positionEmployee ;
+                               } ?>
+                              
+                           </tbody>
+                        </table>
+                     </div>
+               </div> 
+                            </div>
+        
+                     </div>
+                     <!--end tab-pane-->
+                     <div id="tab_1_4" class="tab-pane">
+                      <div class="table-responsive">
+                           <table class="table table-striped table-bordered table-advance table-hover">
+                              
+                           </table>
+                            </div>
+                     
+                        
+                     </div>
+                     <!--end tab-pane-->
+                     </div>
+                     
+                    </div>
+                     <!--end tab-pane-->
+                  </div>
                </div>
+            </div>
 
 
 
