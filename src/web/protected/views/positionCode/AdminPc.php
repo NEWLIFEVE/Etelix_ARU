@@ -53,7 +53,6 @@
                                  <th class="fondotablesgris">Posición</th>
                                  <th class="fondotablesgris">Código de Posición</th>
                                  <th class="fondotablesgris">Fecha de Inicio</th>
-                                 <th class="fondotablesgris">Fecha Fin</th>
                                  <th class="fondotablesgris"></th>
                               </tr>
                            </thead>
@@ -69,8 +68,8 @@
                                                <td>".$value->idPosition->name."</td>
                                                <td>".$value->position_code."</td>
                                                <td>".$value->start_date."</td>
-                                               <td>".$value->end_date."&nbsp</td>
-                                               <td> <a href='#' id='deleteCp'><div id='id_employ' style='display:none;'>$value->id_employee</div><i class='icon-trash'></i></a></td>
+                                              
+                                               <td> <a href='#elimarConfirmar' id='deleteCp' class='confirmardelete'><div id='id_employ' style='display:none;'>$value->id_employee</div><div id='name_employ' style='display:none;'>".$value->idEmployee->first_name."</div><div id='last_employ' style='display:none;'>".$value->idEmployee->last_name."</div><i class='icon-trash'></i></a></td>
                                             </tr>
                                            ";                               
                                    echo $positionEmployee ;
@@ -87,15 +86,12 @@
      <a href="/positionCode/index"/><button type="button" class="btn green">Agregar</button></a>
  </div>
 
-
-
-
 <div id="administrarPosicion" style="margin-top: 130px;" class="modal fade" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                            <div class="modal-content">
                               <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                 <h4 class="modal-title"> Generando Excel para Código de Posición</h4>
+                                 <h4 class="modal-title"> Código de Posición</h4>
                               </div>
                               <div class="modal-body" align="center">
                                   <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
@@ -113,7 +109,6 @@
                                                             <div id="complete" class="verde"></div>
                                                         </div>
                                                     </div>
-                                             
                                               </div>
                                        </div>
                                     </form>
@@ -123,4 +118,43 @@
                         </div>
                      </div>
                 </div>
-          </div>
+          
+
+<div id="elimarConfirmar" class="modal fade" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                 <h4 class="modal-title"> ¿Esta Seguro Que desea Eliminar este Empleado?</h4>
+                              </div>
+                              <div class="modal-body" align="center">
+                                  <div class="modalemployee" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="row">
+                                       <div class="col-md-6" style="width:100%;"> 
+                                      <form action="#" role="form">
+                                            <div class="form-group">
+                                               <div class="cambiocontra" style="width: 310%;">
+                                                      
+                                                    <div class="margin-top-10 ">
+                                                       <div class="input-group input-group-fixed">
+                                                       </div>
+                                                    </div>
+                                                        <div id="only-open">
+                                                            <div id="first_name"></div>
+                                                        </div>
+                                                   <div class="modal-footer employefooter">
+                                                     <a href="#" id="confirmDelete"><div id='id_employee' style='display:none;'>$value->id_employee</div><button type="button" class="btn blue">Aceptar</button></a>
+                                                  </div>
+                                                   <div class="modal-footer refreshemployee ocultar">
+                                                         <a href="/positionCode/AdminPositionCode"><button type="button" class="btn blue">Aceptar</button></a>
+                                                   </div>
+                                               </div>
+                                         </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div> 
+                           </div>
+                        </div>
+                     </div>
+                </div>

@@ -281,7 +281,7 @@ $ARU.AJAX=(function()
             success:function(data)
             {
                  setTimeout("window.open('/site/excel?ids="+ids+"&name="+name+"&table="+idTable+"','_top');",500);
-                                             //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
+                 //Mostramos los Mensajes y despues de la Descarga se Ocultan Automaticamente.
                  setTimeout('$("#complete").html("<h3>Archivo Excel Generado... !!</h3>");',1800 );
                  setTimeout('$("#administrarPosicion").modal("hide");',2500 );
             }
@@ -289,7 +289,7 @@ $ARU.AJAX=(function()
     }
     
     /**
-     * 
+     * funcion para enviar por email la tabla cp
      * 
      */
      function emailCp(type,action, formulario)
@@ -308,6 +308,24 @@ $ARU.AJAX=(function()
     }
     
     
+    /**
+     * funcion para eliminar (quitar de la tabla cp) al empleado con su cp
+     */
+    
+    function endDate(type,action, formulario){
+          $.ajax({
+            type:type,
+            url:action,
+            data:formulario,
+            success:function(data)
+            {
+                result=JSON.parse(data);
+                $ARU.UI.messageCp(result);
+            }
+        });
+        
+    }
+    
      return {
         sendEvent:sendEvent,
         sendPass:sendPass,
@@ -324,6 +342,7 @@ $ARU.AJAX=(function()
         ExistDependency:ExistDependency,
         excelCp:excelCp,
         emailCp:emailCp,
+        endDate:endDate,
         
     };
     

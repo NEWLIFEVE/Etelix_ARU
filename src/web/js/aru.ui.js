@@ -26,6 +26,8 @@ $ARU.UI=(function(){
         _genEmail();
         _genPrint();
         _deleteCp();
+        _confirmDeleteCp();
+    
     }
     
       var result=(location.pathname).split('/');
@@ -1591,13 +1593,53 @@ $ARU.UI=(function(){
           */
          
          function _deleteCp(){
-             $('a#deleteCp').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+               
+             $('a#deleteCp').on('click',function(event)
              {
-                   var id=($(this).find('div#id_employ').text());
-                   $ARU.AJAX.searchEmployee("GET","/PositionCode/SetEndDate","id_employee="+id);
+                   
+                   var idEmployee=($(this).find('div#id_employ').text());
+                 
+                   var first_name=($(this).find('div#name_employ').text());
+                   var last_name=($(this).find('div#last_employ').text());
+                    
+                    $('#first_name').html('<h4>'+ first_name +' '+ last_name+ '</h4>');
+                    $('#id_employee').html(idEmployee);
+                    $('.employefooter').removeClass("ocultar");
+                    $('#elimarConfirmar').modal('show');
+                    
+//                   $ARU.AJAX.endDate("GET","/PositionCode/SetEndDate","id_employee="+id);
              });
+         
+         }
+         
+         function _confirmDeleteCp(id){
+       
+             $('a#confirmDelete').on('click',function(event)//Al pulsar la imagen de Excel, es Generada la siguiente Funcion:
+             {
+                
+                  var idEmployee=($(this).find('div#id_employee').text());
+                  $ARU.AJAX.endDate("GET","/PositionCode/SetEndDate","id_employee="+idEmployee);
+             });
+         }
+         
+           function messageCp(result){
              
-             
+              switch(result){
+                case true:
+                            
+                           $('#first_name').addClass("verde");
+                           $('#first_name').html("<h3>Código Cp Eliminado... !!</h3>");
+                           $('.employefooter').addClass("ocultar");
+                           $('.refreshemployee').removeClass("ocultar");
+                        
+//                           $("#messegeConfirm").addClass("verde"); 
+//                           $("#messegeConfirm").html("<h3>Código Cp Eliminado... !!</h3>");
+                           
+                break;
+                case false:
+                      
+                break;
+            }
          }
         
     return {
@@ -1611,6 +1653,9 @@ $ARU.UI=(function(){
         createCargo:createCargo,
         viewPositionCode:viewPositionCode,
         genNameFile:genNameFile,
+        messageCp: messageCp,
+       
+       
         
     };
 })();

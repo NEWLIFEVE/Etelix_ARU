@@ -376,7 +376,7 @@ class PositionCodeController extends Controller
         $employee = $_GET['id_employee'];
         $endDate = date('Y-m-d');
 
-        $modelEmployeeExist = PositionCode::model()->find("id_employee = $employee");
+        $modelEmployeeExist = PositionCode::model()->findBySql("SELECT * FROM position_code WHERE id_employee = $employee ORDER BY start_date DESC LIMIT 1;");
         
         if($modelEmployeeExist == NULL){
             echo json_encode(false);
