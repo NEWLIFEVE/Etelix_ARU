@@ -111,7 +111,7 @@
                         </div>
                      </div>
                      <div class="portlet-body flip-scroll">
-                        <table class="table table-bordered table-striped table-condensed flip-content" id="adminPositionCode" name="adminPositionCode">
+                        <table class="table table-bordered table-striped table-condensed flip-content" id="adminPositionCodeInactives" name="adminPositionCode">
                            <thead class="flip-content">
                               <tr>
                                  <th class="fondotablesgris">Nombre</th>
