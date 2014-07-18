@@ -99,7 +99,7 @@
                      <!--end tab-pane-->
                      <div id="tab_1_3" class="tab-pane">
                    
-                          <div class="table-responsive1111">
+                          <div class="table-responsive">
                            <div class="portlet box blue">
                      <div class="portlet-title">
                         <div class="caption"><i class="icon-cogs"></i>Código de Posiciones </div>
