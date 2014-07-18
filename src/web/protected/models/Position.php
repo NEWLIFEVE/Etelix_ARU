@@ -121,7 +121,7 @@ class Position extends CActiveRecord
 
          public function getModelPositionByDivision($division)
          {
-             $consulta="select leader from position_code, position where id_division=".$division." and id_position=position.id order by leader desc;";
+             $consulta="select leader from position_code, position where id_division=".$division." and id_position=position.id and end_date is null order by leader desc;";
              $position=self::model()->findAllBySql($consulta);
              return $position;
          }
