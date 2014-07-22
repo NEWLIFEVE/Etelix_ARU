@@ -142,7 +142,7 @@ class PositionCode extends CActiveRecord
             $dateFormat = date('Y-m-d',  strtotime($startDate));
             $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($dateFormat)));  
             
-            $modelVacantPositionCode = self::model()->findBySql("SELECT * FROM position_code as pc
+            $modelVacantPositionCode = self::model()->findBySql("SELECT pc.* FROM position_code as pc
                                                                 INNER JOIN division as d ON d.id = pc.id_division
                                                                 INNER JOIN position as p ON p.id = pc.id_position
                                                                 INNER JOIN employee as e ON e.id = pc.id_employee
@@ -159,7 +159,7 @@ class PositionCode extends CActiveRecord
 
                     if($modelVacantPositionCode != NULL){
                         $modelVacantPositionCode->end_date = $yesterday;
-                        $modelVacantPositionCode->save();
+                        $modelVacantPositionCode->save(false);
                     }
                     
                     return TRUE; 
@@ -173,6 +173,7 @@ class PositionCode extends CActiveRecord
                     $employeeName = $modelEmployee->first_name;
                     if($employeeName == 'Vacante'  || $employeeName == 'No'){
                         if ($PositionCode->save()){ 
+                            
                             return TRUE;
                         } else{ 
                             return FALSE;
@@ -189,7 +190,7 @@ class PositionCode extends CActiveRecord
                         
                         if($modelVacantPositionCode != NULL){
                             $modelVacantPositionCode->end_date = $yesterday;
-                            $modelVacantPositionCode->save();
+                            $modelVacantPositionCode->save(false);
                         }
                         
                         return TRUE;

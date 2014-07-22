@@ -148,13 +148,12 @@ class PositionCodeController extends Controller
             if($modelStart == NULL){
                 $position_code = '1';
             }else{
-                
-                $sql = "SELECT MAX(cast(regexp_replace(pc.position_code, '".$codePosition.".' , '') as int))+1 as position_code
+                $sql = "SELECT MAX(cast(regexp_replace(pc.position_code, '$codePosition.' , '') as int))+1 as position_code
                         FROM position_code as pc
                         INNER JOIN division as d ON d.id = pc.id_division
                         INNER JOIN position as p ON p.id = pc.id_position
                         INNER JOIN employee as e ON e.id = pc.id_employee
-                        WHERE pc.position_code LIKE '".$codePosition."._' 
+                        WHERE pc.position_code LIKE ANY ('{\"$codePosition._\", \"$codePosition.__\"}')
                         AND pc.end_date IS NULL;";
                 
                 $modelEnd = PositionCode::model()->findBySql($sql);
@@ -170,9 +169,7 @@ class PositionCodeController extends Controller
                 }        
   
                 $position_code = $codePosition.'.'.$newNumber;
-
-            }
-        
+               }
         }else{
             $position_code = $vacantPositionCode;
         }
@@ -200,13 +197,13 @@ class PositionCodeController extends Controller
                 return false;
             }else{
                 $sql = "SELECT pc.position_code 
-                        FROM position_code pc
-                        INNER JOIN division as d ON d.id = pc.id_division
-                        INNER JOIN position as p ON p.id = pc.id_position
-                        INNER JOIN employee as e ON e.id = pc.id_employee
-                        WHERE pc.id_division = $division
-                        AND pc.id_position = $position    
-                        AND e.first_name = 'Vacante'
+                        FROM position_code pc 
+                        INNER JOIN division as d ON d.id = pc.id_division 
+                        INNER JOIN position as p ON p.id = pc.id_position 
+                        INNER JOIN employee as e ON e.id = pc.id_employee 
+                        WHERE pc.id_division = $division 
+                        AND pc.id_position = $position     
+                        AND e.first_name = 'Vacante' 
                         AND pc.end_date IS NULL;";
 
                 $modelPositionCode = PositionCode::model()->findBySql($sql);
@@ -376,13 +373,29 @@ class PositionCodeController extends Controller
     
     public function actionSetEndDate() {
         $employee = $_GET['id_employee'];
+        $position = $_GET['id_eposition'];
         $endDate = date('Y-m-d');
+        
+        $modelCheckPositionLeader = Position::model()->find("id = $position")->leader;
+        $modelEmployeeVacant = Employee::model()->find("name = 'Vacante'")->id;
 
         $modelEmployeeExist = PositionCode::model()->findBySql("SELECT * FROM position_code WHERE id_employee = $employee ORDER BY start_date DESC LIMIT 1;");
         
         if($modelEmployeeExist == NULL){
             echo json_encode(false);
         }else{
+            
+            if($modelCheckPositionLeader == 1){
+                $modelNewEmployeePC = new PositionCode;
+                
+                $modelNewEmployeePC->id_employee = $modelEmployeeVacant;
+                $modelNewEmployeePC->id_position = $position;
+                $modelNewEmployeePC->id_division = $modelEmployeeExist->id_division;
+                $modelNewEmployeePC->start_date = $endDate;
+                $modelNewEmployeePC->save();
+                
+            }
+            
             $modelEmployeeExist->end_date = $endDate;
             if($modelEmployeeExist->save()){
                 echo json_encode(true);
