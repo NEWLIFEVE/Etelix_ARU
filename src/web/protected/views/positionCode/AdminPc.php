@@ -84,7 +84,7 @@
                                                <td>".$value->position_code."</td>
                                                <td>".$value->start_date."</td>
                                               
-                                               <td> <a href='#elimarConfirmar' id='deleteCp' class='confirmardelete'><div id='id_employ' style='display:none;'>$value->id_employee</div><div id='name_employ' style='display:none;'>".$value->idEmployee->first_name."</div><div id='last_employ' style='display:none;'>".$value->idEmployee->last_name."</div><i class='icon-trash'></i></a></td>
+                                               <td> <a href='#elimarConfirmar' id='deleteCp' class='confirmardelete'><div id='id_employ' style='display:none;'>$value->id_employee</div><div id='name_employ' style='display:none;'>".$value->idEmployee->first_name."</div><div id='last_employ' style='display:none;'>".$value->idEmployee->last_name."</div><div id='id_position' style='display:none;'>".$value->id_position."</div><i class='icon-trash'></i></a></td>
                                             </tr>
                                            ";                               
                                    echo $positionEmployee ;
@@ -157,8 +157,6 @@
                               
                            </table>
                             </div>
-                     
-                        
                      </div>
                      <!--end tab-pane-->
                      </div>
@@ -232,7 +230,7 @@
                                                             <div id="first_name"></div>
                                                         </div>
                                                    <div class="modal-footer employefooter">
-                                                     <a href="#" id="confirmDelete"><div id='id_employee' style='display:none;'>$value->id_employee</div><button type="button" class="btn blue">Aceptar</button></a>
+                                                     <a href="#" id="confirmDelete"><div id='id_employee' style='display:none;'></div><div id='id_posi' style='display:none;'></div><button type="button" class="btn blue">Aceptar</button></a>
                                                   </div>
                                                    <div class="modal-footer refreshemployee ocultar">
                                                          <a href="/positionCode/AdminPositionCode"><button type="button" class="btn blue">Aceptar</button></a>
