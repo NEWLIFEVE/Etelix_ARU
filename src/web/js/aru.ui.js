@@ -1597,9 +1597,11 @@ $ARU.UI=(function(){
                  
                    var first_name=($(this).find('div#name_employ').text());
                    var last_name=($(this).find('div#last_employ').text());
+                   var idPosition=($(this).find('div#id_position').text());
                     
                     $('#first_name').html('<h4>'+ first_name +' '+ last_name+ '</h4>');
                     $('#id_employee').html(idEmployee);
+                    $('#id_posi').html(idPosition);
                     $('.employefooter').removeClass("ocultar");
                     $('#elimarConfirmar').modal('show');
                     
@@ -1614,7 +1616,8 @@ $ARU.UI=(function(){
              {
                 
                   var idEmployee=($(this).find('div#id_employee').text());
-                  $ARU.AJAX.endDate("GET","/PositionCode/SetEndDate","id_employee="+idEmployee);
+                  var idPosition=($(this).find('div#id_posi').text());
+                  $ARU.AJAX.endDate("GET","/PositionCode/SetEndDate","id_employee="+idEmployee +"&id_position="+ idPosition);
              });
          }
          
