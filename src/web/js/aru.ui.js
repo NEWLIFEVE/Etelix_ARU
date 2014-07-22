@@ -404,7 +404,6 @@ $ARU.UI=(function(){
 
                                 lider= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckLeaderExist","id_division="+id_division+ "&id_position="+id_position+"&checkLeader=true"); 
                                 dependency= $ARU.AJAX.leaderExist("GET","/PositionCode/CheckDependencyByDivision","id_division="+id_division+ "&id_position="+id_position+"&checkDivision=true"); 
-                              console.log(lider);
 
                                 if (lider=='false'){
                                    $('.alert-danger').html('Se Necesita Crear un Lider/Coordinador/Gerente para esta División'); 
@@ -417,10 +416,6 @@ $ARU.UI=(function(){
                                         return false;
                                    }
                                }
-                               
-                            
-                               
-                               
                         }
                     }
                 }
