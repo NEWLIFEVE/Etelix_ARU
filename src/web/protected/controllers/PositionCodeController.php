@@ -373,11 +373,11 @@ class PositionCodeController extends Controller
     
     public function actionSetEndDate() {
         $employee = $_GET['id_employee'];
-        $position = $_GET['id_eposition'];
+        $position = $_GET['id_position'];
         $endDate = date('Y-m-d');
         
         $modelCheckPositionLeader = Position::model()->find("id = $position")->leader;
-        $modelEmployeeVacant = Employee::model()->find("name = 'Vacante'")->id;
+        $modelEmployeeVacant = Employee::model()->find("first_name = 'Vacante'")->id;
 
         $modelEmployeeExist = PositionCode::model()->findBySql("SELECT * FROM position_code WHERE id_employee = $employee ORDER BY start_date DESC LIMIT 1;");
         
@@ -385,19 +385,24 @@ class PositionCodeController extends Controller
             echo json_encode(false);
         }else{
             
-            if($modelCheckPositionLeader == 1){
+            if($modelCheckPositionLeader == '1'){
                 $modelNewEmployeePC = new PositionCode;
-                
                 $modelNewEmployeePC->id_employee = $modelEmployeeVacant;
                 $modelNewEmployeePC->id_position = $position;
                 $modelNewEmployeePC->id_division = $modelEmployeeExist->id_division;
+                $modelNewEmployeePC->position_code = $modelEmployeeExist->position_code;
                 $modelNewEmployeePC->start_date = $endDate;
-                $modelNewEmployeePC->save();
-                
+                if($modelNewEmployeePC->save()){
+                    $checkNewEmployee = true;
+                }else{
+                    $checkNewEmployee = false;
+                }
+            }else{
+                $checkNewEmployee = true;
             }
             
             $modelEmployeeExist->end_date = $endDate;
-            if($modelEmployeeExist->save()){
+            if($modelEmployeeExist->save() && $checkNewEmployee == true){
                 echo json_encode(true);
             }else{
                 echo json_encode(false);
