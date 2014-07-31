@@ -310,15 +310,39 @@
                               
                                  </div>
                                   
-                                <?php  if (!empty($Address->idCity->idState->idCountry->name)){
-                                    $pais=$Address->idCity->idState->idCountry->name;
-                                    $code=$Address->idCity->idState->idCountry->code;
-                                            }
-                                        else {
-                                            $pais="seleccione País";
-                                           $code="";
-                                            }   
-                                    ?>
+                                <?php
+                                  if(!empty($Address->idCity->idState->idCountry->name))
+                                  {
+                                      $pais = $Address->idCity->idState->idCountry->name;
+                                      $code = $Address->idCity->idState->idCountry->code;
+                                  }
+                                  else
+                                  {
+                                      $pais = "seleccione País";
+                                      $code = "";
+                                  }
+
+                                  if(!empty($Address->idCity->idState->name))
+                                  {
+                                      $state = $Address->idCity->idState->name;
+                                      $codeState = $Address->idCity->idState->id;
+                                  }
+                                  else
+                                  {
+                                      $state = "seleccione Estado";
+                                      $codeState = "";
+                                  }
+
+                                  if(!empty($Address->id_city))
+                                  {
+                                      $codeCity = $Address->id_city;
+                                  }
+                                  else
+                                  {
+                                      $city = "seleccione Ciudad";
+                                      $codeCity = "";
+                                  }
+                                  ?>
                                   
                                   <?php 
                                     $ajaxState=array(
@@ -346,11 +370,24 @@
                                         
                                         ),
                                         "class"=>"form-control",
+                                        "options" => array($codeState=>array('selected'=>true)),
                                         "value"=>"1",
                                         
                                     );
                                   
                                   ?>
+                                  
+                                  <?php 
+                                    $ciudadOptiones=array(
+                                      
+                                        "class"=>"form-control",
+                                        "options" => array($codeCity=>array('selected'=>true)),
+                                        "value"=>"1",
+                                        
+                                    );
+                                  
+                                  ?>
+
 
                                  <div id="tab_2-2" class="tab-pane">
                                          <div class="form-group">
@@ -399,7 +436,8 @@
                                           if(empty($Address->idCity->idState->name))
                                            echo $form->dropDownList($Employee,'state', array('empty'=>'Seleccione un Estado'),$ajaxCity);
                                           else
-                                            echo $form->dropDownList($Employee,'state', array('empty'=>$Address->idCity->idState->name),$ajaxCity);
+                                              
+                                            echo $form->dropDownList($Employee,'state', State::getState($code),$ajaxCity);
                                           ?>
                                         
                                        </div>
@@ -410,7 +448,7 @@
                                           if(empty($Address->idCity->name))
                                            echo $form->dropDownList($Address,'id_city',array('empty'=>'Seleccione un Estado'),array("class"=>"form-control"));
                                           else
-                                           echo $form->dropDownList($Address,'id_city',array($Address->id_city=>$Address->idCity->name),array("class"=>"form-control"));
+                                           echo $form->dropDownList($Address,'id_city',  City::getCity($Address->idCity->id_state),array("class"=>"form-control"));
                                           ?>
                                          
                                        </div>   

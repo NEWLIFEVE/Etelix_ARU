@@ -103,9 +103,15 @@ class State extends CActiveRecord
 		return parent::model($className);
 	}
         
-         public static function getListStateCountry($country)
+    public static function getListStateCountry($country)
 	{
-            return CHtml::listData(self::model()->findAll('id_country=:country',array(':country'=>$country)), 'id', 'name');
+       return CHtml::listData(self::model()->findAll('id_country=:country',array(':country'=>$country)), 'id', 'name');
 	}
-        
+    
+    public static function getState($country)
+    {
+
+        return CHtml::ListData(self::model()->findAll('id_country=:country', array(':country' => $country)), 'id', 'name');
+    }
+
 }

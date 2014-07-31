@@ -71,6 +71,7 @@ class EventEmployeeController extends Controller
                 if ($model){
                     $eventos=EventEmployee::getWorkday($Employee->id, $model->date);
                     $validate_hour=EventEmployee::getValidate_hour($eventos[0]['hour'], $model->date);
+                
                     if ($validate_hour){
                         $this->render('create',array('eventos'=>$eventos,));
                     }else {
