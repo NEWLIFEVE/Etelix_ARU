@@ -4329,14 +4329,14 @@ display: table-cell;
     display: table;
     width: 300px;
     margin-left: 10px;
-     border-color: red;
+    border-color: red;
 }
 #contenidos {
     display: table-row;
 }
 #columna1, #columna2, #columna3 {
     display: table-cell;
-   border-color: red;
+    border-color: red;
     vertical-align: middle;
     
 }

@@ -288,16 +288,16 @@ $ARU.UI=(function(){
                     success.hide();
                     error.hide();
 
-        var id_dependencia = $("#PositionCode_id_dependencia").val();
-        var new_division = $("#PositionCode_new_division").val();
-        var new_position = $("#new_position").val();
-        var id_employee = $("#PositionCode_id_employee").val();
-        var start_date = $("#PositionCode_start_date").val();
-        var leader = $("#leader:checked").val();
-        var id_division='';
-        var id_position='';
-        var lider= '';
-        var dependency = '';
+                    var id_dependencia = $("#PositionCode_id_dependencia").val();
+                    var new_division = $("#PositionCode_new_division").val();
+                    var new_position = $("#new_position").val();
+                    var id_employee = $("#PositionCode_id_employee").val();
+                    var start_date = $("#PositionCode_start_date").val();
+                    var leader = $("#leader:checked").val();
+                    var id_division='';
+                    var id_position='';
+                    var lider= '';
+                    var dependency = '';
 
 
                 var employee= $ARU.AJAX.employeeExist("GET","/PositionCode/CheckNewEmployee","id_employee="+id_employee+ "&start_date="+start_date); 
